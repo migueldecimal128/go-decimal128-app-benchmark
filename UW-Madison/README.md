@@ -6,8 +6,8 @@ against the C programs they translate.
 
 - **`DFPBenchmarksv1.0.gz`** is the suite as distributed (a tar.gz archive dated
   September 2009), complete and unchanged.
-- **`DFPBenchmarksv1.0/`** holds the parts worth reading, extracted from that
-  archive and unchanged: the C sources and headers, makefiles, build and
+- **`DFPBenchmarksv1.0-code-only/`** holds the parts worth reading, extracted
+  from that archive and unchanged: the C sources and headers, makefiles, build and
   test-generator scripts, and READMEs (191 files).
 - **The two papers** describe the suite and its results (IEEE ICCD 2007 and
   2009).
@@ -19,7 +19,7 @@ source: the test data (`bin/`, `ascii/`, `expected_output/`, `dataset/`,
 archive:
 
 ```
-tar xzf DFPBenchmarksv1.0.gz
+tar xzf DFPBenchmarksv1.0.gz      # unpacks the complete suite into DFPBenchmarksv1.0/
 ```
 
 The benchmark itself reads nothing in this folder. The inputs and goldens it
@@ -28,10 +28,10 @@ the archive's files.
 
 | Go program | C original |
 |---|---|
-| `apps/euro_conversion` | `DFPBenchmarksv1.0/euro_conversion` |
-| `apps/risk_management` | `DFPBenchmarksv1.0/risk_management` |
-| `apps/tax_preparation` | `DFPBenchmarksv1.0/tax_preparation` (fed / CA / NC solvers) |
-| `apps/banking` | `DFPBenchmarksv1.0/banking` |
+| `apps/euro_conversion` | `DFPBenchmarksv1.0-code-only/euro_conversion` |
+| `apps/risk_management` | `DFPBenchmarksv1.0-code-only/risk_management` |
+| `apps/tax_preparation` | `DFPBenchmarksv1.0-code-only/tax_preparation` (fed / CA / NC solvers) |
+| `apps/banking` | `DFPBenchmarksv1.0-code-only/banking` |
 
-`DFPBenchmarksv1.0/telco` is the suite's modified version of Mike Cowlishaw's
+`DFPBenchmarksv1.0-code-only/telco` is the suite's modified version of Mike Cowlishaw's
 telco benchmark; `apps/telco` follows Cowlishaw's original instead.
