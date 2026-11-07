@@ -48,3 +48,43 @@ Workloads:
 - **banking**: 643 records: deposits, mortgages, credit cards; stderr transcript (3,326 lines) byte-identical to the golden.
 - **telco**: 1,000,000 calls: Mike Cowlishaw's telephone billing run; the 1,000,000-line output matches the reference (SHA-256) and the control totals 1004737.58 / 57628.30 / 25042.17 match his published values. Its timed loop includes decoding each record and formatting each line, as the benchmark defines.
 
+## x86_64
+
+Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · all rows measured in one run, 2026-11-07 14:14 UTC · benchmark code `fa760f8`
+
+Startup baseline: **4.10 ms** (fastest of 45 launches between the whole runs, measured 2026-11-07 14:14 UTC).
+
+| app | library | compute | median | p10–p90 | xcheck | whole | startup | correct |
+|---|---|--:|--:|--:|--:|--:|--:|:--:|
+| euro_conversion | miguel-decimal128-go `073024a` | 2,036.7 | 2,096.0 | 2,084.9–2,464.1 | 1.06 | 53,965.6 | 40,993.8 | ✓ |
+| euro_conversion | bid754 `v0.2.0` | 3,977.9 | 4,071.9 | 4,040.9–4,354.5 | 1.05 | 58,017.1 | 40,993.8 | ✓ |
+| risk_management | miguel-decimal128-go `073024a` | 27,038.4 | 27,671.7 | 27,102.5–29,198.8 | 1.05 | 458,133.8 | 204,968.9 | 20/20 |
+| risk_management | bid754 `v0.2.0` | not supported | — | — | — | — | — | — |
+| tax_preparation fed | miguel-decimal128-go `073024a` | 5,346.3 | 5,385.7 | 5,369.3–5,514.7 | 1.04 | 4,939,907.0 | 4,099,377.0 | ✓ |
+| tax_preparation fed | bid754 `v0.2.0` | 15,128.4 | 15,232.4 | 15,189.0–15,461.3 | 1.05 | 5,026,653.0 | 4,099,377.0 | ✓ |
+| tax_preparation ca | miguel-decimal128-go `073024a` | 1,002.2 | 1,026.8 | 1,022.7–1,053.8 | 1.07 | 4,820,975.0 | 4,099,377.0 | ✓ |
+| tax_preparation ca | bid754 `v0.2.0` | 3,263.9 | 3,316.1 | 3,303.7–3,388.2 | 1.05 | 4,889,041.0 | 4,099,377.0 | ✓ |
+| tax_preparation nc | miguel-decimal128-go `073024a` | 1,642.5 | 1,653.6 | 1,649.8–1,700.9 | 1.04 | 4,790,316.0 | 4,099,377.0 | ✓ |
+| tax_preparation nc | bid754 `v0.2.0` | 5,311.6 | 5,366.4 | 5,347.1–5,515.7 | 1.04 | 4,912,593.0 | 4,099,377.0 | ✓ |
+| banking | miguel-decimal128-go `073024a` | 1,999.3 | 2,057.0 | 2,010.1–2,638.5 | 1.74 | 12,917.0 | 6,375.4 | ✓ |
+| banking | bid754 `v0.2.0` | not supported | — | — | — | — | — | — |
+| telco | miguel-decimal128-go `073024a` | 174.3 | 177.2 | 175.0–181.7 | 1.01 | 199.0 | 4.1 | ✓ |
+| telco | bid754 `v0.2.0` | not supported | — | — | — | — | — | — |
+
+> bid754 does not run risk_management: bid754 has no power function.
+> bid754 does not run banking: bid754 has no logarithm or compound.
+> bid754 does not run telco: bid754 quantizes ties-to-even only; telco truncates its taxes.
+
+Libraries:
+
+- **miguel-decimal128-go**: [decimal128-go](https://github.com/migueldecimal128/decimal128-go), pure Go. Two adapter wrappers are real calls: FromBID128 (input decoding only) and quantize with a rounding direction (telco: +0.9% fastest sample, +1.2% median).
+- **bid754**: [bid754](https://github.com/sky1core/bid754), a pure-Go port of Intel's libbid v20U4. Its adapter re-lays Intel's string form ("+150E-2") into decNumber's ("1.50"), about 20 ns per string, and reaches its per-direction round-to-integral methods through a table (about 34 ns against 26 ns direct); both are part of its time. It has no power, logarithm or directed quantize, so risk, banking and telco do not run with it.
+
+Workloads:
+
+- **euro_conversion**: 100 records: legacy-currency ↔ euro triangulation; stderr transcript byte-identical to the golden.
+- **risk_management**: 20 stocks: per-stock CAPM prediction; **correct** counts the per-stock output files that match the golden.
+- **tax_preparation**: 1 return per form (fed / ca / nc); stderr transcript byte-identical to the golden. One return per process, so **whole** is mostly startup.
+- **banking**: 643 records: deposits, mortgages, credit cards; stderr transcript (3,326 lines) byte-identical to the golden.
+- **telco**: 1,000,000 calls: Mike Cowlishaw's telephone billing run; the 1,000,000-line output matches the reference (SHA-256) and the control totals 1004737.58 / 57628.30 / 25042.17 match his published values. Its timed loop includes decoding each record and formatting each line, as the benchmark defines.
+
