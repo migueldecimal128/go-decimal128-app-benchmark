@@ -1,0 +1,3 @@
+# Benchmark inputs and goldens are compared byte for byte: never convert line
+# endings or otherwise touch them.
+data/** -text
