@@ -10,6 +10,15 @@ apps: the original C program's output, produced with decNumber; telco: its
 1,000,000-line output and Cowlishaw's published control totals), so a timing
 only counts when the output is right.
 
+## Results
+
+**[results/RESULTS.md](results/RESULTS.md)** has the latest results: one
+section per machine architecture (currently arm64, Apple M3 Pro, and x86_64,
+Intel Core i9-9880H), with every library's time per record on each app, its
+spread, the runner's cross-check of the program's own timer, and whether every
+run matched the reference output. The records behind it, one per row per run,
+are in [`results/data/`](results/data/).
+
 ## Status
 
 - **Apps:** copied from
