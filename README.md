@@ -19,9 +19,10 @@ produced with decNumber.
   only, called directly.
 - **Data:** inputs and goldens for all four apps are in [`data/`](data/README.md)
   (1.7 MB, with provenance and SHA-256 checksums).
-- **Next:** a Go-native runner (`go run ./cmd/bench`) that builds, gates and
-  times the apps; then a compile-time library adapter so other Go decimal
-  libraries can be measured.
+- **Runner:** `go run ./cmd/bench` builds, gates and times every app; results
+  are in [`results/RESULTS.md`](results/RESULTS.md).
+- **Next:** a compile-time library adapter, so other Go decimal libraries can
+  be measured.
 
 Code comments still name paths in decimal128-app-benchmark (for example
 `apps/<app>/c/src/main.c`); those refer to that repository.
@@ -35,25 +36,34 @@ apps/tax_preparation/cmd/tax-{fed,ca,nc}-d128/
 apps/tax_preparation/internal/tax/       the three tax forms
 apps/banking/cmd/banking-d128/           banking
 internal/harness/                        shared timing and I/O helpers (MIT)
+cmd/bench/                               the runner (MIT)
+baseline/noop/                           startup baseline program (MIT)
+results/                                 records and RESULTS.md
 data/<app>/                              inputs and goldens (see data/README.md)
 ```
 
-## Building
+## Running
 
-Requires Go 1.26.4 or later.
-
-```
-go build -trimpath -o bin/ ./...
-```
-
-Until the runner exists, an app can be checked by hand from its data folder,
-for example euro conversion:
+Requires Go 1.26.4 or later. From the repository root:
 
 ```
-cd data/euro_conversion
-../../bin/euro-d128 testGen/bin/Euro.bin.BID128 euro_run.out 2>/tmp/euro.err
-cmp /tmp/euro.err golden/Euro.output.DECNUMBER_FIXED128 && echo OK
+go run ./cmd/bench                 # build, gate and time every app
+go run ./cmd/bench -app banking    # one app
+go run ./cmd/bench -report-only    # rewrite results/RESULTS.md from the records
 ```
+
+Each run appends one record per row to `results/data/<app>.jsonl` and rewrites
+`results/RESULTS.md`, which explains its columns. In short:
+
+- **Gate:** every run's output is compared byte for byte with the golden
+  (risk: each stock's output file); a mismatch marks the row ✗.
+- **compute:** the program's own timed loop. The runner sizes it so each timed
+  sample lasts at least 100 µs, with about 200 ms of samples, runs it in 3
+  processes, and cross-checks it against its own clock.
+- **whole:** one run from process start to exit, fastest of 9; **startup** is a
+  do-nothing Go program launched the same way.
+
+To build the programs only: `go build -trimpath -o bin/ ./apps/...`
 
 ## Licensing
 

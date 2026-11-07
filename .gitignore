@@ -3,3 +3,4 @@ bin/
 *.test
 *.out
 data/risk_management/testGen/result/
+results/.build/
