@@ -1,0 +1,3326 @@
+Start of the Banking benchmark
+cmd: Y_CD 1 96840.06 1 1 2 0
+[INFO] main.c:Y_CD opens a CD account
+
+cmd: D_CD 1 98020 1 1 8 0
+[INFO] main.c:D_CD opens a CD account
+
+cmd: GXSD_FRM15 1 9156998 3 180 0 915699.8
+[INFO] main.c:GXSD_FRM15 opens a mortgage account
+
+[INFO] ###### GXSD_FRM15's MORTGAGE acct with financed part: $9156998 and downpayment: $915699.8 is opened ######
+
+cmd: ITN_ARM1 1 85027481 5 396 0 8502748.1
+[INFO] main.c:ITN_ARM1 opens a mortgage account
+
+[INFO] ###### ITN_ARM1's MORTGAGE acct with financed part: $85027481 and downpayment: $8502748.1 is opened ######
+
+cmd: VUZA_CD 1 36 1 1 3 0
+[INFO] main.c:VUZA_CD opens a CD account
+
+cmd: YEA_CD 1 614190.92 1 1 3 0
+[INFO] main.c:YEA_CD opens a CD account
+
+cmd: JJCJR_CK 1 8649.32 0 0 4 0
+[INFO] main.c:JJCJR_CK opens a CHECKING account
+
+cmd: Q_CD 1 136277123 1 1 8 0
+[INFO] main.c:Q_CD opens a CD account
+
+cmd: DZIP_ARM51 1 2325405 6 324 0 232540.5
+[INFO] main.c:DZIP_ARM51 opens a mortgage account
+
+[INFO] ###### DZIP_ARM51's MORTGAGE acct with financed part: $2325405 and downpayment: $232540.5 is opened ######
+
+cmd: MRLOL_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling MRLOL_CC's Credit Card account
+
+[INFO] ###### MRLOL_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: COEEX_CD 1 74 1 6 2 0
+[INFO] main.c:COEEX_CD opens a CD account
+
+cmd: J_CD 1 302 1 3 3 0
+[INFO] main.c:J_CD opens a CD account
+
+cmd: P_CK 1 5 0 0 2 0
+[INFO] main.c:P_CK opens a CHECKING account
+
+cmd: XLNWH_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling XLNWH_CC's Credit Card account
+
+[INFO] ###### XLNWH_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: AMF_FRM15 1 9779 3 180 0 977.9
+[INFO] main.c:AMF_FRM15 opens a mortgage account
+
+[INFO] ###### AMF_FRM15's MORTGAGE acct with financed part: $9779 and downpayment: $977.9 is opened ######
+
+cmd: KVBR_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling KVBR_CC's Credit Card account
+
+[INFO] ###### KVBR_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: W_CC 1 500 7 0 0 0
+[INFO] main.c:Handling W_CC's Credit Card account
+
+[INFO] ###### W_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: UFTI_FRM30 1 55326536 4 360 0 5532653.6
+[INFO] main.c:UFTI_FRM30 opens a mortgage account
+
+[INFO] ###### UFTI_FRM30's MORTGAGE acct with financed part: $55326536 and downpayment: $5532653.6 is opened ######
+
+cmd: Y_CK 1 469348 0 0 0 0
+[INFO] main.c:Y_CK opens a CHECKING account
+
+cmd: MFLRY_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling MFLRY_CC's Credit Card account
+
+[INFO] ###### MFLRY_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: YIH_FRM30 1 1904 4 360 0 190.4
+[INFO] main.c:YIH_FRM30 opens a mortgage account
+
+[INFO] ###### YIH_FRM30's MORTGAGE acct with financed part: $1904 and downpayment: $190.4 is opened ######
+
+cmd: KGWSK_CD 1 96494770 1 1 3 0
+[INFO] main.c:KGWSK_CD opens a CD account
+
+cmd: AF_CD 1 45 1 1 3 0
+[INFO] main.c:AF_CD opens a CD account
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 1
+cmd: XMR_ARM51 1 48914.87 6 384 0 4891.487
+[INFO] main.c:XMR_ARM51 opens a mortgage account
+
+[INFO] ###### XMR_ARM51's MORTGAGE acct with financed part: $48914.87 and downpayment: $4891.487 is opened ######
+
+cmd: XA_ARM1 1 95038.47 5 420 0 9503.847
+[INFO] main.c:XA_ARM1 opens a mortgage account
+
+[INFO] ###### XA_ARM1's MORTGAGE acct with financed part: $95038.47 and downpayment: $9503.847 is opened ######
+
+cmd: NSUEH_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling NSUEH_CC's Credit Card account
+
+[INFO] ###### NSUEH_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: GEA_CC 1 500 7 0 0 0
+[INFO] main.c:Handling GEA_CC's Credit Card account
+
+[INFO] ###### GEA_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: XPBNE_CK 1 7910765.60 0 0 1 0
+[INFO] main.c:XPBNE_CK opens a CHECKING account
+
+cmd: CL_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling CL_CC's Credit Card account
+
+[INFO] ###### CL_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: S_ARM51 1 9994 6 468 0 999.4
+[INFO] main.c:S_ARM51 opens a mortgage account
+
+[INFO] ###### S_ARM51's MORTGAGE acct with financed part: $9994 and downpayment: $999.4 is opened ######
+
+cmd: DO_CK 1 74 0 0 7 0
+[INFO] main.c:DO_CK opens a CHECKING account
+
+cmd: VSOZ_CK 1 48 0 0 3 0
+[INFO] main.c:VSOZ_CK opens a CHECKING account
+
+cmd: WEVA_FRM15 1 507316.01 3 180 0 50731.601
+[INFO] main.c:WEVA_FRM15 opens a mortgage account
+
+[INFO] ###### WEVA_FRM15's MORTGAGE acct with financed part: $507316.01 and downpayment: $50731.601 is opened ######
+
+cmd: KDRC_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling KDRC_CC's Credit Card account
+
+[INFO] ###### KDRC_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: B_CK 1 631601.87 0 0 6 0
+[INFO] main.c:B_CK opens a CHECKING account
+
+cmd: YJ_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling YJ_CC's Credit Card account
+
+[INFO] ###### YJ_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: VH_CD 1 413 1 1 2 0
+[INFO] main.c:VH_CD opens a CD account
+
+cmd: TB_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling TB_CC's Credit Card account
+
+[INFO] ###### TB_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: ZEWZ_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling ZEWZ_CC's Credit Card account
+
+[INFO] ###### ZEWZ_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: ROTQ_CC 1 500 7 0 0 0
+[INFO] main.c:Handling ROTQ_CC's Credit Card account
+
+[INFO] ###### ROTQ_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: YXTE_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling YXTE_CC's Credit Card account
+
+[INFO] ###### YXTE_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: FSDXG_ARM1 1 7096 5 444 0 709.6
+[INFO] main.c:FSDXG_ARM1 opens a mortgage account
+
+[INFO] ###### FSDXG_ARM1's MORTGAGE acct with financed part: $7096 and downpayment: $709.6 is opened ######
+
+cmd: IBXIY_CK 1 12710.08 0 0 0 0
+[INFO] main.c:IBXIY_CK opens a CHECKING account
+
+cmd: CGFQ_ARM1 1 5423.19 5 336 0 542.319
+[INFO] main.c:CGFQ_ARM1 opens a mortgage account
+
+[INFO] ###### CGFQ_ARM1's MORTGAGE acct with financed part: $5423.19 and downpayment: $542.319 is opened ######
+
+cmd: STUP_ARM51 1 2502.83 6 240 0 250.283
+[INFO] main.c:STUP_ARM51 opens a mortgage account
+
+[INFO] ###### STUP_ARM51's MORTGAGE acct with financed part: $2502.83 and downpayment: $250.283 is opened ######
+
+cmd: C_FRM15 1 493495956 3 180 0 49349595.6
+[INFO] main.c:C_FRM15 opens a mortgage account
+
+[INFO] ###### C_FRM15's MORTGAGE acct with financed part: $493495956 and downpayment: $49349595.6 is opened ######
+
+cmd: DU_CK 1 309383.22 0 0 2 0
+[INFO] main.c:DU_CK opens a CHECKING account
+
+cmd: BF_CK 1 7 0 0 6 0
+[INFO] main.c:BF_CK opens a CHECKING account
+
+cmd: XLNWH_CC 5 8 7 0 31 0
+[INFO] main.c:Handling XLNWH_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to XLNWH_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 8 U.K. Sterling with CASH ADVANCE type has commited into XLNWH_CC's CREDIT CARD account ######
+cmd: WCIQU_FRM30 1 7124.47 4 360 0 712.447
+[INFO] main.c:WCIQU_FRM30 opens a mortgage account
+
+[INFO] ###### WCIQU_FRM30's MORTGAGE acct with financed part: $7124.47 and downpayment: $712.447 is opened ######
+
+cmd: VEN_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling VEN_CC's Credit Card account
+
+[INFO] ###### VEN_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: KA_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling KA_CC's Credit Card account
+
+[INFO] ###### KA_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: DTX_ARM1 1 9055561.73 5 360 0 905556.173
+[INFO] main.c:DTX_ARM1 opens a mortgage account
+
+[INFO] ###### DTX_ARM1's MORTGAGE acct with financed part: $9055561.73 and downpayment: $905556.173 is opened ######
+
+cmd: Y_CD 6 560 1 0 7 0
+[INFO] main.c:Withdrawl to Y_CD's CD account
+
+The original balance is 96840.06
+The unposted interest is 5.68
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 253.10
+[INFO] ##### Y_CD WITHDRAWL Singapore dollar 560 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $49.37 European euro
+
+cmd: PCIEB_CD 1 86340 1 3 8 0
+[INFO] main.c:PCIEB_CD opens a CD account
+
+cmd: ZMXB_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling ZMXB_CC's Credit Card account
+
+[INFO] ###### ZMXB_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: DU_CK 6 44488.17 0 0 6 0
+[INFO] main.c:Withdrawl to DU_CK's CHECKING account
+
+The original balance is 309383.22
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 23564.33
+[INFO] ##### DU_CK WITHDRAWL New Zealand dollar 44488.17 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 European euro
+
+cmd: KVBR_CC 5 3 7 0 0 0
+[INFO] main.c:Handling KVBR_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to KVBR_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 3 Australia dollar with PURCHASE type has commited into KVBR_CC's CREDIT CARD account ######
+cmd: HB_ARM1 1 5646621 5 468 0 564662.1
+[INFO] main.c:HB_ARM1 opens a mortgage account
+
+[INFO] ###### HB_ARM1's MORTGAGE acct with financed part: $5646621 and downpayment: $564662.1 is opened ######
+
+cmd: Y_CK 8 929.48 0 0 78 0
+[INFO] main.c:Y_CK performs Wire-transfer
+
+[INFO] ###### Y_CK wires 929.48 in Australia dollar to 23233 in New Taiwan dollar with process fee as 0 in Australia dollar ######
+
+cmd: DPXE_CD 1 6 1 1 7 0
+[INFO] main.c:DPXE_CD opens a CD account
+
+cmd: Q_CD 5 78 1 0 8 0
+[INFO] main.c:Deposit to Q_CD's CD account
+
+cmd: P_CK 5 693 0 0 7 0
+[INFO] main.c:Deposit to P_CK's CHECKING account
+
+cmd: QOQHL_CK 1 7 0 0 3 0
+[INFO] main.c:QOQHL_CK opens a CHECKING account
+
+cmd: VUZA_CD 5 697.74 1 0 8 0
+[INFO] main.c:Deposit to VUZA_CD's CD account
+
+cmd: FU_CK 1 51632.07 0 0 8 0
+[INFO] main.c:FU_CK opens a CHECKING account
+
+cmd: XPBNE_CK 5 2 0 0 7 0
+[INFO] main.c:Deposit to XPBNE_CK's CHECKING account
+
+cmd: PA_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling PA_CC's Credit Card account
+
+[INFO] ###### PA_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: W_CC 5 5 7 0 21 0
+[INFO] main.c:Handling W_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to W_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 5 European euro with CASH ADVANCE type has commited into W_CC's CREDIT CARD account ######
+cmd: NTLWH_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling NTLWH_CC's Credit Card account
+
+[INFO] ###### NTLWH_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: PCIEB_CD 5 896 1 0 1 0
+[INFO] main.c:Deposit to PCIEB_CD's CD account
+
+cmd: X_ARM1 1 8378701.28 5 252 0 837870.128
+[INFO] main.c:X_ARM1 opens a mortgage account
+
+[INFO] ###### X_ARM1's MORTGAGE acct with financed part: $8378701.28 and downpayment: $837870.128 is opened ######
+
+cmd: OIH_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling OIH_CC's Credit Card account
+
+[INFO] ###### OIH_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: U_FRM30 1 1907302 4 360 0 190730.2
+[INFO] main.c:U_FRM30 opens a mortgage account
+
+[INFO] ###### U_FRM30's MORTGAGE acct with financed part: $1907302 and downpayment: $190730.2 is opened ######
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 2
+cmd: LDCR_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling LDCR_CC's Credit Card account
+
+[INFO] ###### LDCR_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: OCWTL_CK 1 74 0 0 2 0
+[INFO] main.c:OCWTL_CK opens a CHECKING account
+
+cmd: Y_CK 5 51616 0 0 5 0
+[INFO] main.c:Deposit to Y_CK's CHECKING account
+
+cmd: D_CD 5 2 1 0 2 0
+[INFO] main.c:Deposit to D_CD's CD account
+
+cmd: WSDU_CK 1 7361124.42 0 0 3 0
+[INFO] main.c:WSDU_CK opens a CHECKING account
+
+cmd: DOQ_CK 1 9471.62 0 0 1 0
+[INFO] main.c:DOQ_CK opens a CHECKING account
+
+cmd: MRLOL_CC 5 4515 7 0 70 0
+[INFO] main.c:Handling MRLOL_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to MRLOL_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 4515 Singapore dollar with PURCHASE type has commited into MRLOL_CC's CREDIT CARD account ######
+cmd: SZEB_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling SZEB_CC's Credit Card account
+
+[INFO] ###### SZEB_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: DPXE_CD 5 4078 1 0 6 0
+[INFO] main.c:Deposit to DPXE_CD's CD account
+
+cmd: Q_CD 6 627635.60 1 0 6 0
+[INFO] main.c:Withdrawl to Q_CD's CD account
+
+The original balance is 136277201
+The unposted interest is 9236.72
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 14431614
+[INFO] ##### Q_CD WITHDRAWL New Zealand dollar 627635.60 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $27287 New Taiwan dollar
+
+cmd: PCIEB_CD 5 898507.02 1 0 7 0
+[INFO] main.c:Deposit to PCIEB_CD's CD account
+
+cmd: HDQ_FRM30 1 5102820.72 4 360 0 510282.072
+[INFO] main.c:HDQ_FRM30 opens a mortgage account
+
+[INFO] ###### HDQ_FRM30's MORTGAGE acct with financed part: $5102820.72 and downpayment: $510282.072 is opened ######
+
+cmd: KFNK_ARM51 1 38301700 6 372 0 3830170
+[INFO] main.c:KFNK_ARM51 opens a mortgage account
+
+[INFO] ###### KFNK_ARM51's MORTGAGE acct with financed part: $38301700 and downpayment: $3830170 is opened ######
+
+cmd: ISK_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling ISK_CC's Credit Card account
+
+[INFO] ###### ISK_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: H_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling H_CC's Credit Card account
+
+[INFO] ###### H_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: ZEWZ_CC 5 8852.76 7 0 51 0
+[INFO] main.c:Handling ZEWZ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ZEWZ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 8852.76 Japan yen with CASH ADVANCE type has commited into ZEWZ_CC's CREDIT CARD account ######
+cmd: USZJ_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling USZJ_CC's Credit Card account
+
+[INFO] ###### USZJ_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: NSUEH_CC 5 6911 7 0 0 0
+[INFO] main.c:Handling NSUEH_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to NSUEH_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 6911 Australia dollar with PURCHASE type has commited into NSUEH_CC's CREDIT CARD account ######
+cmd: JYI_CD 1 948692 1 6 0 0
+[INFO] main.c:JYI_CD opens a CD account
+
+cmd: QF_FRM15 1 559783852 3 180 0 55978385.2
+[INFO] main.c:QF_FRM15 opens a mortgage account
+
+[INFO] ###### QF_FRM15's MORTGAGE acct with financed part: $559783852 and downpayment: $55978385.2 is opened ######
+
+cmd: EGTI_FRM15 1 7762 3 180 0 776.2
+[INFO] main.c:EGTI_FRM15 opens a mortgage account
+
+[INFO] ###### EGTI_FRM15's MORTGAGE acct with financed part: $7762 and downpayment: $776.2 is opened ######
+
+cmd: JJCJR_CK 8 36 0 0 36 0
+[INFO] main.c:JJCJR_CK performs Wire-transfer
+
+[INFO] ###### JJCJR_CK wires 36 in Hong Kong dollar to 6.4 in New Zealand dollar with process fee as 0 in Hong Kong dollar ######
+
+cmd: BTWF_ARM1 1 10457 5 336 0 1045.7
+[INFO] main.c:BTWF_ARM1 opens a mortgage account
+
+[INFO] ###### BTWF_ARM1's MORTGAGE acct with financed part: $10457 and downpayment: $1045.7 is opened ######
+
+cmd: IL_CK 1 7353 0 0 2 0
+[INFO] main.c:IL_CK opens a CHECKING account
+
+cmd: WSDU_CK 5 65 0 0 0 0
+[INFO] main.c:Deposit to WSDU_CK's CHECKING account
+
+cmd: W_CK 1 15909087 0 0 7 0
+[INFO] main.c:W_CK opens a CHECKING account
+
+cmd: LDCR_CC 5 6 7 0 60 0
+[INFO] main.c:Handling LDCR_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LDCR_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 6 New Zealand dollar with PURCHASE type has commited into LDCR_CC's CREDIT CARD account ######
+cmd: J_CK 1 983 0 0 0 0
+[INFO] main.c:J_CK opens a CHECKING account
+
+cmd: VHU_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling VHU_CC's Credit Card account
+
+[INFO] ###### VHU_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: IK_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling IK_CC's Credit Card account
+
+[INFO] ###### IK_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: ZTB_CK 1 50160.84 0 0 0 0
+[INFO] main.c:ZTB_CK opens a CHECKING account
+
+cmd: YMA_CD 1 20395 1 1 1 0
+[INFO] main.c:YMA_CD opens a CD account
+
+cmd: IJM_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling IJM_CC's Credit Card account
+
+[INFO] ###### IJM_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: PCIEB_CD 5 159 1 0 4 0
+[INFO] main.c:Deposit to PCIEB_CD's CD account
+
+cmd: Z_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling Z_CC's Credit Card account
+
+[INFO] ###### Z_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: XOV_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling XOV_CC's Credit Card account
+
+[INFO] ###### XOV_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: Q_ARM1 1 3510099.05 5 408 0 351009.905
+[INFO] main.c:Q_ARM1 opens a mortgage account
+
+[INFO] ###### Q_ARM1's MORTGAGE acct with financed part: $3510099.05 and downpayment: $351009.905 is opened ######
+
+cmd: KVBR_CC 5 42 7 0 71 0
+[INFO] main.c:Handling KVBR_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to KVBR_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 42 Singapore dollar with CASH ADVANCE type has commited into KVBR_CC's CREDIT CARD account ######
+cmd: G_FRM30 1 1348359.71 4 360 0 134835.971
+[INFO] main.c:G_FRM30 opens a mortgage account
+
+[INFO] ###### G_FRM30's MORTGAGE acct with financed part: $1348359.71 and downpayment: $134835.971 is opened ######
+
+cmd: AF_CD 5 68 1 0 3 0
+[INFO] main.c:Deposit to AF_CD's CD account
+
+cmd: JVF_ARM51 1 1045.75 6 420 0 104.575
+[INFO] main.c:JVF_ARM51 opens a mortgage account
+
+[INFO] ###### JVF_ARM51's MORTGAGE acct with financed part: $1045.75 and downpayment: $104.575 is opened ######
+
+cmd: ZEWZ_CC 5 29 7 0 71 0
+[INFO] main.c:Handling ZEWZ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ZEWZ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 29 Singapore dollar with CASH ADVANCE type has commited into ZEWZ_CC's CREDIT CARD account ######
+cmd: J_CK 8 2 0 0 15 0
+[INFO] main.c:J_CK performs Wire-transfer
+
+[INFO] ###### J_CK wires 2 in Australia dollar to 161 in Japan yen with process fee as 0 in Australia dollar ######
+
+cmd: DGHM_CD 1 3622.30 1 1 1 0
+[INFO] main.c:DGHM_CD opens a CD account
+
+cmd: JJCJR_CK 5 8 0 0 3 0
+[INFO] main.c:Deposit to JJCJR_CK's CHECKING account
+
+cmd: ISK_CC 5 1 7 0 40 0
+[INFO] main.c:Handling ISK_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ISK_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 1 Hong Kong dollar with PURCHASE type has commited into ISK_CC's CREDIT CARD account ######
+cmd: VUZA_CD 5 1063 1 0 1 0
+[INFO] main.c:Deposit to VUZA_CD's CD account
+
+cmd: R_FRM30 1 65688.15 4 360 0 6568.815
+[INFO] main.c:R_FRM30 opens a mortgage account
+
+[INFO] ###### R_FRM30's MORTGAGE acct with financed part: $65688.15 and downpayment: $6568.815 is opened ######
+
+cmd: Y_CK 6 875.56 0 0 8 0
+[INFO] main.c:Withdrawl to Y_CK's CHECKING account
+
+The original balance is 469068.50
+The unposted interest is 6.51
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 35.05
+[INFO] ##### Y_CK WITHDRAWL New Taiwan dollar 875.56 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: YMA_CD 5 697 1 0 4 0
+[INFO] main.c:Deposit to YMA_CD's CD account
+
+cmd: PCIEB_CD 6 5509 1 0 0 0
+[INFO] main.c:Withdrawl to PCIEB_CD's CD account
+
+The original balance is 17704559
+The unposted interest is 3.09
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 137718
+[INFO] ##### PCIEB_CD WITHDRAWL Australia dollar 5509 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $3571 New Taiwan dollar
+
+cmd: VZ_ARM1 1 773376.24 5 288 0 77337.624
+[INFO] main.c:VZ_ARM1 opens a mortgage account
+
+[INFO] ###### VZ_ARM1's MORTGAGE acct with financed part: $773376.24 and downpayment: $77337.624 is opened ######
+
+cmd: EDKN_CC 1 500 7 0 0 0
+[INFO] main.c:Handling EDKN_CC's Credit Card account
+
+[INFO] ###### EDKN_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: ANEHN_ARM51 1 157494.34 6 336 0 15749.434
+[INFO] main.c:ANEHN_ARM51 opens a mortgage account
+
+[INFO] ###### ANEHN_ARM51's MORTGAGE acct with financed part: $157494.34 and downpayment: $15749.434 is opened ######
+
+cmd: AF_CD 6 1524 1 0 8 0
+[INFO] main.c:Withdrawl to AF_CD's CD account
+
+The original balance is 113
+The unposted interest is 0.02
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 24.84
+[INFO] ##### AF_CD WITHDRAWL New Taiwan dollar 1524 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $30.02 U.K. Sterling
+
+cmd: DEHI_CK 1 411238279 0 0 5 0
+[INFO] main.c:DEHI_CK opens a CHECKING account
+
+cmd: NON_CUSTOMER 8 47 0 0 4 0
+[INFO] main.c:NON_CUSTOMER performs Wire-transfer
+
+[INFO] ###### Non-customer wires 47 in Australia dollar to 285.7 in Hong Kong dollar with process fee as 0.94 in Australia dollar ######
+
+cmd: DU_CK 8 48 0 0 65 0
+[INFO] main.c:DU_CK performs Wire-transfer
+
+[INFO] ###### DU_CK wires 48 in European euro to 6680 in Japan yen with process fee as 0 in European euro ######
+
+cmd: BWVO_ARM1 1 414904.37 5 288 0 41490.437
+[INFO] main.c:BWVO_ARM1 opens a mortgage account
+
+[INFO] ###### BWVO_ARM1's MORTGAGE acct with financed part: $414904.37 and downpayment: $41490.437 is opened ######
+
+cmd: YR_CK 1 7243 0 0 7 0
+[INFO] main.c:YR_CK opens a CHECKING account
+
+cmd: JJCJR_CK 5 641684.66 0 0 1 0
+[INFO] main.c:Deposit to JJCJR_CK's CHECKING account
+
+cmd: RWU_CD 1 4928219.67 1 3 6 0
+[INFO] main.c:RWU_CD opens a CD account
+
+cmd: WYM_CK 1 4920 0 0 4 0
+[INFO] main.c:WYM_CK opens a CHECKING account
+
+cmd: PG_CC 1 500 7 0 0 0
+[INFO] main.c:Handling PG_CC's Credit Card account
+
+[INFO] ###### PG_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: P_CK 6 93 0 0 8 0
+[INFO] main.c:Withdrawl to P_CK's CHECKING account
+
+The original balance is 318.21
+The unposted interest is 0.00
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 2.15
+[INFO] ##### P_CK WITHDRAWL New Taiwan dollar 93 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 European euro
+
+cmd: FU_CK 5 8 0 0 2 0
+[INFO] main.c:Deposit to FU_CK's CHECKING account
+
+cmd: ZXJSC_FRM15 1 1540.83 3 180 0 154.083
+[INFO] main.c:ZXJSC_FRM15 opens a mortgage account
+
+[INFO] ###### ZXJSC_FRM15's MORTGAGE acct with financed part: $1540.83 and downpayment: $154.083 is opened ######
+
+cmd: HKK_CK 1 81988.24 0 0 4 0
+[INFO] main.c:HKK_CK opens a CHECKING account
+
+cmd: TOBGJ_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling TOBGJ_CC's Credit Card account
+
+[INFO] ###### TOBGJ_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: AONF_CK 1 187090950 0 0 5 0
+[INFO] main.c:AONF_CK opens a CHECKING account
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 3
+cmd: WIMSA_CK 1 8 0 0 0 0
+[INFO] main.c:WIMSA_CK opens a CHECKING account
+
+cmd: NUM_ARM1 1 1692 5 360 0 169.2
+[INFO] main.c:NUM_ARM1 opens a mortgage account
+
+[INFO] ###### NUM_ARM1's MORTGAGE acct with financed part: $1692 and downpayment: $169.2 is opened ######
+
+cmd: YR_CK 8 1058.45 0 0 26 0
+[INFO] main.c:YR_CK performs Wire-transfer
+
+[INFO] ###### YR_CK wires 1058.45 in Singapore dollar to 905.6 in New Zealand dollar with process fee as 0 in Singapore dollar ######
+
+cmd: JJCJR_CK 6 3217 0 0 0 0
+[INFO] main.c:Withdrawl to JJCJR_CK's CHECKING account
+
+The original balance is 612421.7
+The unposted interest is 8.51
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 19464.7
+[INFO] ##### JJCJR_CK WITHDRAWL Australia dollar 3217 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Hong Kong dollar
+
+cmd: OZKXM_FRM15 1 5033 3 180 0 503.3
+[INFO] main.c:OZKXM_FRM15 opens a mortgage account
+
+[INFO] ###### OZKXM_FRM15's MORTGAGE acct with financed part: $5033 and downpayment: $503.3 is opened ######
+
+cmd: TBIFE_ARM1 1 343.35 5 468 0 34.335
+[INFO] main.c:TBIFE_ARM1 opens a mortgage account
+
+[INFO] ###### TBIFE_ARM1's MORTGAGE acct with financed part: $343.35 and downpayment: $34.335 is opened ######
+
+cmd: OCWTL_CK 6 2 0 0 2 0
+[INFO] main.c:Withdrawl to OCWTL_CK's CHECKING account
+
+The original balance is 74
+The unposted interest is 0.00
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 2
+[INFO] ##### OCWTL_CK WITHDRAWL European euro 2 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 European euro
+
+cmd: S_CD 1 1776 1 1 6 0
+[INFO] main.c:S_CD opens a CD account
+
+cmd: Y_CK 5 23 0 0 1 0
+[INFO] main.c:Deposit to Y_CK's CHECKING account
+
+cmd: LMOWV_ARM1 1 343812 5 384 0 34381.2
+[INFO] main.c:LMOWV_ARM1 opens a mortgage account
+
+[INFO] ###### LMOWV_ARM1's MORTGAGE acct with financed part: $343812 and downpayment: $34381.2 is opened ######
+
+cmd: LDCR_CC 5 8 7 0 40 0
+[INFO] main.c:Handling LDCR_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LDCR_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 8 Hong Kong dollar with PURCHASE type has commited into LDCR_CC's CREDIT CARD account ######
+cmd: PAM_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling PAM_CC's Credit Card account
+
+[INFO] ###### PAM_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: IVRDT_FRM30 1 903142.92 4 360 0 90314.292
+[INFO] main.c:IVRDT_FRM30 opens a mortgage account
+
+[INFO] ###### IVRDT_FRM30's MORTGAGE acct with financed part: $903142.92 and downpayment: $90314.292 is opened ######
+
+cmd: WYM_CK 8 586.48 0 0 33 0
+[INFO] main.c:WYM_CK performs Wire-transfer
+
+[INFO] ###### WYM_CK wires 586.48 in Hong Kong dollar to 39.61 in U.K. Sterling with process fee as 0 in Hong Kong dollar ######
+
+cmd: SJH_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling SJH_CC's Credit Card account
+
+[INFO] ###### SJH_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: BXQ_FRM30 1 9156854 4 360 0 915685.4
+[INFO] main.c:BXQ_FRM30 opens a mortgage account
+
+[INFO] ###### BXQ_FRM30's MORTGAGE acct with financed part: $9156854 and downpayment: $915685.4 is opened ######
+
+cmd: YJ_CC 5 4 7 0 50 0
+[INFO] main.c:Handling YJ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to YJ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 4 Japan yen with PURCHASE type has commited into YJ_CC's CREDIT CARD account ######
+cmd: HNKT_CK 1 312344661 0 0 8 0
+[INFO] main.c:HNKT_CK opens a CHECKING account
+
+cmd: V_CC 1 500 7 0 0 0
+[INFO] main.c:Handling V_CC's Credit Card account
+
+[INFO] ###### V_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: HFJRO_CD 1 210.79 1 3 0 0
+[INFO] main.c:HFJRO_CD opens a CD account
+
+cmd: LU_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling LU_CC's Credit Card account
+
+[INFO] ###### LU_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: WJO_CK 1 88 0 0 2 0
+[INFO] main.c:WJO_CK opens a CHECKING account
+
+cmd: K_CK 1 7944 0 0 3 0
+[INFO] main.c:K_CK opens a CHECKING account
+
+cmd: RWU_CD 6 6294 1 0 4 0
+[INFO] main.c:Withdrawl to RWU_CD's CD account
+
+The original balance is 4928219.67
+The unposted interest is 958.26
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 1134.9
+[INFO] ##### RWU_CD WITHDRAWL Hong Kong dollar 6294 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $1015.8 New Zealand dollar
+
+cmd: IVVQF_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling IVVQF_CC's Credit Card account
+
+[INFO] ###### IVVQF_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: DEHI_CK 8 64355.19 0 0 42 0
+[INFO] main.c:DEHI_CK performs Wire-transfer
+
+[INFO] ###### DEHI_CK wires 64355.19 in Japan yen to 465.43 in European euro with process fee as 0 in Japan yen ######
+
+cmd: FN_CK 1 5630.77 0 0 2 0
+[INFO] main.c:FN_CK opens a CHECKING account
+
+cmd: PIAYV_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling PIAYV_CC's Credit Card account
+
+[INFO] ###### PIAYV_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: SX_CD 1 2 1 3 5 0
+[INFO] main.c:SX_CD opens a CD account
+
+cmd: MLIM_CC 1 500 7 0 0 0
+[INFO] main.c:Handling MLIM_CC's Credit Card account
+
+[INFO] ###### MLIM_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: JMNRH_CK 1 7614 0 0 5 0
+[INFO] main.c:JMNRH_CK opens a CHECKING account
+
+cmd: AC_CK 1 481031 0 0 4 0
+[INFO] main.c:AC_CK opens a CHECKING account
+
+cmd: TAAL_CD 1 3949383.69 1 3 5 0
+[INFO] main.c:TAAL_CD opens a CD account
+
+cmd: HNKT_CK 6 54 0 0 6 0
+[INFO] main.c:Withdrawl to HNKT_CK's CHECKING account
+
+The original balance is 312344661
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 1227
+[INFO] ##### HNKT_CK WITHDRAWL New Zealand dollar 54 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 New Taiwan dollar
+
+cmd: EL_FRM30 1 379206020 4 360 0 37920602
+[INFO] main.c:EL_FRM30 opens a mortgage account
+
+[INFO] ###### EL_FRM30's MORTGAGE acct with financed part: $379206020 and downpayment: $37920602 is opened ######
+
+cmd: CPSR_FRM15 1 701205548 3 180 0 70120554.8
+[INFO] main.c:CPSR_FRM15 opens a mortgage account
+
+[INFO] ###### CPSR_FRM15's MORTGAGE acct with financed part: $701205548 and downpayment: $70120554.8 is opened ######
+
+cmd: RDP_CK 1 208 0 0 0 0
+[INFO] main.c:RDP_CK opens a CHECKING account
+
+cmd: S_FRM15 1 64832226 3 180 0 6483222.6
+[INFO] main.c:S_FRM15 opens a mortgage account
+
+[INFO] ###### S_FRM15's MORTGAGE acct with financed part: $64832226 and downpayment: $6483222.6 is opened ######
+
+cmd: Q_CD 5 1 1 0 4 0
+[INFO] main.c:Deposit to Q_CD's CD account
+
+cmd: WPC_ARM1 1 5383784 5 408 0 538378.4
+[INFO] main.c:WPC_ARM1 opens a mortgage account
+
+[INFO] ###### WPC_ARM1's MORTGAGE acct with financed part: $5383784 and downpayment: $538378.4 is opened ######
+
+cmd: QFX_CD 1 16 1 1 1 0
+[INFO] main.c:QFX_CD opens a CD account
+
+cmd: PAVEL_ARM1 1 259110.19 5 360 0 25911.019
+[INFO] main.c:PAVEL_ARM1 opens a mortgage account
+
+[INFO] ###### PAVEL_ARM1's MORTGAGE acct with financed part: $259110.19 and downpayment: $25911.019 is opened ######
+
+cmd: ET_CK 1 90 0 0 0 0
+[INFO] main.c:ET_CK opens a CHECKING account
+
+cmd: N_ARM51 1 63312 6 300 0 6331.2
+[INFO] main.c:N_ARM51 opens a mortgage account
+
+[INFO] ###### N_ARM51's MORTGAGE acct with financed part: $63312 and downpayment: $6331.2 is opened ######
+
+cmd: N_ARM1 1 447739 5 300 0 44773.9
+[INFO] main.c:N_ARM1 opens a mortgage account
+
+[INFO] ###### N_ARM1's MORTGAGE acct with financed part: $447739 and downpayment: $44773.9 is opened ######
+
+cmd: LU_CC 5 718.56 7 0 31 0
+[INFO] main.c:Handling LU_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LU_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 718.56 U.K. Sterling with CASH ADVANCE type has commited into LU_CC's CREDIT CARD account ######
+cmd: S_CK 1 954153642 0 0 4 0
+[INFO] main.c:S_CK opens a CHECKING account
+
+cmd: R_ARM1 1 77903890 5 456 0 7790389
+[INFO] main.c:R_ARM1 opens a mortgage account
+
+[INFO] ###### R_ARM1's MORTGAGE acct with financed part: $77903890 and downpayment: $7790389 is opened ######
+
+cmd: VSOZ_CK 5 148 0 0 5 0
+[INFO] main.c:Deposit to VSOZ_CK's CHECKING account
+
+cmd: NFVL_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling NFVL_CC's Credit Card account
+
+[INFO] ###### NFVL_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: SJH_CC 5 773485.86 7 0 51 0
+[INFO] main.c:Handling SJH_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to SJH_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 773485.86 Japan yen with CASH ADVANCE type has commited into SJH_CC's CREDIT CARD account ######
+cmd: HHJQJ_CK 1 60 0 0 6 0
+[INFO] main.c:HHJQJ_CK opens a CHECKING account
+
+cmd: ET_CK 6 23 0 0 6 0
+[INFO] main.c:Withdrawl to ET_CK's CHECKING account
+
+The original balance is 90
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 21.10
+[INFO] ##### ET_CK WITHDRAWL New Zealand dollar 23 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: FIRKX_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling FIRKX_CC's Credit Card account
+
+[INFO] ###### FIRKX_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: AC_CK 8 3 0 0 28 0
+[INFO] main.c:AC_CK performs Wire-transfer
+
+[INFO] ###### AC_CK wires 3 in Hong Kong dollar to 12 in New Taiwan dollar with process fee as 0 in Hong Kong dollar ######
+
+cmd: YMH_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling YMH_CC's Credit Card account
+
+[INFO] ###### YMH_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: TIF_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling TIF_CC's Credit Card account
+
+[INFO] ###### TIF_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: T_FRM30 1 2670272 4 360 0 267027.2
+[INFO] main.c:T_FRM30 opens a mortgage account
+
+[INFO] ###### T_FRM30's MORTGAGE acct with financed part: $2670272 and downpayment: $267027.2 is opened ######
+
+cmd: UFKFV_CD 1 580.95 1 1 7 0
+[INFO] main.c:UFKFV_CD opens a CD account
+
+cmd: RJPTD_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling RJPTD_CC's Credit Card account
+
+[INFO] ###### RJPTD_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: ODS_ARM51 1 68185 6 432 0 6818.5
+[INFO] main.c:ODS_ARM51 opens a mortgage account
+
+[INFO] ###### ODS_ARM51's MORTGAGE acct with financed part: $68185 and downpayment: $6818.5 is opened ######
+
+cmd: NOLS_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling NOLS_CC's Credit Card account
+
+[INFO] ###### NOLS_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: HNKT_CK 8 32 0 0 75 0
+[INFO] main.c:HNKT_CK performs Wire-transfer
+
+[INFO] ###### HNKT_CK wires 32 in New Taiwan dollar to 103 in Japan yen with process fee as 0 in New Taiwan dollar ######
+
+cmd: Y_CK 6 574.39 0 0 5 0
+[INFO] main.c:Withdrawl to Y_CK's CHECKING account
+
+The original balance is 469043.55
+The unposted interest is 6.51
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 7.20
+[INFO] ##### Y_CK WITHDRAWL Japan yen 574.39 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: AU_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling AU_CC's Credit Card account
+
+[INFO] ###### AU_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: WYM_CK 5 9 0 0 0 0
+[INFO] main.c:Deposit to WYM_CK's CHECKING account
+
+cmd: V_FRM15 1 466157.81 3 180 0 46615.781
+[INFO] main.c:V_FRM15 opens a mortgage account
+
+[INFO] ###### V_FRM15's MORTGAGE acct with financed part: $466157.81 and downpayment: $46615.781 is opened ######
+
+cmd: BCSGI_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling BCSGI_CC's Credit Card account
+
+[INFO] ###### BCSGI_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: NON_CUSTOMER 8 1838 0 0 80 0
+[INFO] main.c:NON_CUSTOMER performs Wire-transfer
+
+[INFO] ###### Non-customer wires 1838 in New Taiwan dollar to 74.25 in Australia dollar with process fee as 36.76 in New Taiwan dollar ######
+
+cmd: ROTQ_CC 5 2 7 0 80 0
+[INFO] main.c:Handling ROTQ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ROTQ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 2 New Taiwan dollar with PURCHASE type has commited into ROTQ_CC's CREDIT CARD account ######
+cmd: FFLEE_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling FFLEE_CC's Credit Card account
+
+[INFO] ###### FFLEE_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: U_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling U_CC's Credit Card account
+
+[INFO] ###### U_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: AONF_CK 8 627 0 0 72 0
+[INFO] main.c:AONF_CK performs Wire-transfer
+
+[INFO] ###### AONF_CK wires 627 in Japan yen to 4.53 in European euro with process fee as 0 in Japan yen ######
+
+cmd: FMQY_CD 1 30 1 1 6 0
+[INFO] main.c:FMQY_CD opens a CD account
+
+cmd: U_CD 1 7291102.02 1 3 2 0
+[INFO] main.c:U_CD opens a CD account
+
+cmd: ZWW_ARM51 1 1355987 6 372 0 135598.7
+[INFO] main.c:ZWW_ARM51 opens a mortgage account
+
+[INFO] ###### ZWW_ARM51's MORTGAGE acct with financed part: $1355987 and downpayment: $135598.7 is opened ######
+
+cmd: BH_CK 1 2108 0 0 6 0
+[INFO] main.c:BH_CK opens a CHECKING account
+
+cmd: CIO_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling CIO_CC's Credit Card account
+
+[INFO] ###### CIO_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: AONF_CK 8 74220339 0 0 2 0
+[INFO] main.c:AONF_CK performs Wire-transfer
+
+[INFO] ###### AONF_CK wires 74220339 in Japan yen to 536774.96 in European euro with process fee as 0 in Japan yen ######
+
+cmd: SWHO_CC 1 500 7 0 0 0
+[INFO] main.c:Handling SWHO_CC's Credit Card account
+
+[INFO] ###### SWHO_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: AIF_CD 1 7827 1 3 7 0
+[INFO] main.c:AIF_CD opens a CD account
+
+cmd: VLFB_CD 1 27449 1 1 2 0
+[INFO] main.c:VLFB_CD opens a CD account
+
+cmd: XPBNE_CK 5 516241 0 0 2 0
+[INFO] main.c:Deposit to XPBNE_CK's CHECKING account
+
+cmd: HKK_CK 6 9 0 0 7 0
+[INFO] main.c:Withdrawl to HKK_CK's CHECKING account
+
+The original balance is 81988.24
+The unposted interest is 1.14
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 42.7
+[INFO] ##### HKK_CK WITHDRAWL Singapore dollar 9 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Hong Kong dollar
+
+cmd: MFLRY_CC 5 343 7 0 21 0
+[INFO] main.c:Handling MFLRY_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to MFLRY_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 343 European euro with CASH ADVANCE type has commited into MFLRY_CC's CREDIT CARD account ######
+cmd: YH_ARM1 1 74551.81 5 276 0 7455.181
+[INFO] main.c:YH_ARM1 opens a mortgage account
+
+[INFO] ###### YH_ARM1's MORTGAGE acct with financed part: $74551.81 and downpayment: $7455.181 is opened ######
+
+cmd: QFS_FRM30 1 77507850 4 360 0 7750785
+[INFO] main.c:QFS_FRM30 opens a mortgage account
+
+[INFO] ###### QFS_FRM30's MORTGAGE acct with financed part: $77507850 and downpayment: $7750785 is opened ######
+
+cmd: VHU_CC 5 717.41 7 0 10 0
+[INFO] main.c:Handling VHU_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to VHU_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 717.41 Chinese yuan with PURCHASE type has commited into VHU_CC's CREDIT CARD account ######
+cmd: W_CK 5 34 0 0 2 0
+[INFO] main.c:Deposit to W_CK's CHECKING account
+
+cmd: EFQ_CD 1 7026372 1 1 4 0
+[INFO] main.c:EFQ_CD opens a CD account
+
+cmd: IL_CK 5 7151599.15 0 0 6 0
+[INFO] main.c:Deposit to IL_CK's CHECKING account
+
+cmd: WW_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling WW_CC's Credit Card account
+
+[INFO] ###### WW_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: VAZL_CK 1 61745 0 0 6 0
+[INFO] main.c:VAZL_CK opens a CHECKING account
+
+cmd: RHK_CK 1 770 0 0 7 0
+[INFO] main.c:RHK_CK opens a CHECKING account
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 4
+cmd: J_CK 5 3699785.24 0 0 6 0
+[INFO] main.c:Deposit to J_CK's CHECKING account
+
+cmd: UQXU_CK 1 3010763 0 0 2 0
+[INFO] main.c:UQXU_CK opens a CHECKING account
+
+cmd: PQI_CK 1 3528826 0 0 8 0
+[INFO] main.c:PQI_CK opens a CHECKING account
+
+cmd: IHGH_CD 1 5422.78 1 1 3 0
+[INFO] main.c:IHGH_CD opens a CD account
+
+cmd: GDMP_CD 1 125758.06 1 1 6 0
+[INFO] main.c:GDMP_CD opens a CD account
+
+cmd: RDG_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling RDG_CC's Credit Card account
+
+[INFO] ###### RDG_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: Y_CK 6 7 0 0 0 0
+[INFO] main.c:Withdrawl to Y_CK's CHECKING account
+
+The original balance is 469042.85
+The unposted interest is 6.51
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 7
+[INFO] ##### Y_CK WITHDRAWL Australia dollar 7 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: FIRKX_CC 5 9 7 0 71 0
+[INFO] main.c:Handling FIRKX_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to FIRKX_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 9 Singapore dollar with CASH ADVANCE type has commited into FIRKX_CC's CREDIT CARD account ######
+cmd: MFDD_CD 1 82033632 1 3 4 0
+[INFO] main.c:MFDD_CD opens a CD account
+
+cmd: WYM_CK 5 5372.27 0 0 4 0
+[INFO] main.c:Deposit to WYM_CK's CHECKING account
+
+cmd: P_CK 5 736738.07 0 0 7 0
+[INFO] main.c:Deposit to P_CK's CHECKING account
+
+cmd: Z_ARM1 1 223147 5 276 0 22314.7
+[INFO] main.c:Z_ARM1 opens a mortgage account
+
+[INFO] ###### Z_ARM1's MORTGAGE acct with financed part: $223147 and downpayment: $22314.7 is opened ######
+
+cmd: KBPUL_CD 1 3063526 1 6 1 0
+[INFO] main.c:KBPUL_CD opens a CD account
+
+cmd: UOQ_FRM30 1 1089484 4 360 0 108948.4
+[INFO] main.c:UOQ_FRM30 opens a mortgage account
+
+[INFO] ###### UOQ_FRM30's MORTGAGE acct with financed part: $1089484 and downpayment: $108948.4 is opened ######
+
+cmd: LS_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling LS_CC's Credit Card account
+
+[INFO] ###### LS_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: BH_CK 5 9056192.35 0 0 0 0
+[INFO] main.c:Deposit to BH_CK's CHECKING account
+
+cmd: HLFQ_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling HLFQ_CC's Credit Card account
+
+[INFO] ###### HLFQ_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: PZ_ARM51 1 264846 6 276 0 26484.6
+[INFO] main.c:PZ_ARM51 opens a mortgage account
+
+[INFO] ###### PZ_ARM51's MORTGAGE acct with financed part: $264846 and downpayment: $26484.6 is opened ######
+
+cmd: FAL_ARM1 1 3996 5 312 0 399.6
+[INFO] main.c:FAL_ARM1 opens a mortgage account
+
+[INFO] ###### FAL_ARM1's MORTGAGE acct with financed part: $3996 and downpayment: $399.6 is opened ######
+
+cmd: XEBZ_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling XEBZ_CC's Credit Card account
+
+[INFO] ###### XEBZ_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: UQP_FRM30 1 2681 4 360 0 268.1
+[INFO] main.c:UQP_FRM30 opens a mortgage account
+
+[INFO] ###### UQP_FRM30's MORTGAGE acct with financed part: $2681 and downpayment: $268.1 is opened ######
+
+cmd: NFVL_CC 5 6625 7 0 0 0
+[INFO] main.c:Handling NFVL_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to NFVL_CC Credit Card account
+
+[INFO] Your debt is over the credit limit, but this transaction is allowed with fee
+
+[INFO] ###### New Transaction is posted: 6625 Australia dollar with PURCHASE type has commited into NFVL_CC's CREDIT CARD account ######
+cmd: ZEIVV_CD 1 306585748 1 6 2 0
+[INFO] main.c:ZEIVV_CD opens a CD account
+
+cmd: SIWO_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling SIWO_CC's Credit Card account
+
+[INFO] ###### SIWO_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: IJM_CC 5 358 7 0 11 0
+[INFO] main.c:Handling IJM_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to IJM_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 358 Chinese yuan with CASH ADVANCE type has commited into IJM_CC's CREDIT CARD account ######
+cmd: LVQQ_CC 1 500 7 0 0 0
+[INFO] main.c:Handling LVQQ_CC's Credit Card account
+
+[INFO] ###### LVQQ_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: B_CD 1 41612 1 1 3 0
+[INFO] main.c:B_CD opens a CD account
+
+cmd: YXD_FRM30 1 2956 4 360 0 295.6
+[INFO] main.c:YXD_FRM30 opens a mortgage account
+
+[INFO] ###### YXD_FRM30's MORTGAGE acct with financed part: $2956 and downpayment: $295.6 is opened ######
+
+cmd: AONF_CK 5 47 0 0 3 0
+[INFO] main.c:Deposit to AONF_CK's CHECKING account
+
+cmd: JYI_CD 5 9 1 0 3 0
+[INFO] main.c:Deposit to JYI_CD's CD account
+
+cmd: XPBNE_CK 8 324.27 0 0 88 0
+[INFO] main.c:XPBNE_CK performs Wire-transfer
+
+[INFO] ###### XPBNE_CK wires 324.27 in Chinese yuan to 1248 in New Taiwan dollar with process fee as 0 in Chinese yuan ######
+
+cmd: HKK_CK 5 5733 0 0 4 0
+[INFO] main.c:Deposit to HKK_CK's CHECKING account
+
+cmd: LHG_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling LHG_CC's Credit Card account
+
+[INFO] ###### LHG_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: WD_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling WD_CC's Credit Card account
+
+[INFO] ###### WD_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: RHK_CK 5 3971 0 0 7 0
+[INFO] main.c:Deposit to RHK_CK's CHECKING account
+
+cmd: AS_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling AS_CC's Credit Card account
+
+[INFO] ###### AS_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: W_CK 6 38 0 0 8 0
+[INFO] main.c:Withdrawl to W_CK's CHECKING account
+
+The original balance is 15909162.10
+The unposted interest is 441.92
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 1.95
+[INFO] ##### W_CK WITHDRAWL New Taiwan dollar 38 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Singapore dollar
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 5
+cmd: MFLRY_CC 5 41751.75 7 0 70 0
+[INFO] main.c:Handling MFLRY_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to MFLRY_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 41751.75 Singapore dollar with PURCHASE type has commited into MFLRY_CC's CREDIT CARD account ######
+cmd: JRZA_FRM30 1 2027 4 360 0 202.7
+[INFO] main.c:JRZA_FRM30 opens a mortgage account
+
+[INFO] ###### JRZA_FRM30's MORTGAGE acct with financed part: $2027 and downpayment: $202.7 is opened ######
+
+cmd: J_CK 5 784 0 0 6 0
+[INFO] main.c:Deposit to J_CK's CHECKING account
+
+cmd: LDCR_CC 5 66 7 0 40 0
+[INFO] main.c:Handling LDCR_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LDCR_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 66 Hong Kong dollar with PURCHASE type has commited into LDCR_CC's CREDIT CARD account ######
+cmd: D_CD 5 781115311 1 0 3 0
+[INFO] main.c:Deposit to D_CD's CD account
+
+cmd: FDP_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling FDP_CC's Credit Card account
+
+[INFO] ###### FDP_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: IK_CC 5 4307.93 7 0 1 0
+[INFO] main.c:Handling IK_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to IK_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 4307.93 Australia dollar with CASH ADVANCE type has commited into IK_CC's CREDIT CARD account ######
+cmd: NON_CUSTOMER 8 3276909 0 0 75 0
+[INFO] main.c:NON_CUSTOMER performs Wire-transfer
+
+[INFO] ###### Non-customer wires 3276909 in Singapore dollar to 207273997 in Japan yen with process fee as 65538.18 in Singapore dollar ######
+
+cmd: YR_CK 8 99 0 0 4 0
+[INFO] main.c:YR_CK performs Wire-transfer
+
+[INFO] ###### YR_CK wires 99 in Singapore dollar to 468.5 in Hong Kong dollar with process fee as 0 in Singapore dollar ######
+
+cmd: SIWO_CC 5 9 7 0 0 0
+[INFO] main.c:Handling SIWO_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to SIWO_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 9 Australia dollar with PURCHASE type has commited into SIWO_CC's CREDIT CARD account ######
+cmd: SSYKY_CD 1 965852036 1 6 3 0
+[INFO] main.c:SSYKY_CD opens a CD account
+
+cmd: TNWNN_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling TNWNN_CC's Credit Card account
+
+[INFO] ###### TNWNN_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: D_ARM1 1 8939.78 5 252 0 893.978
+[INFO] main.c:D_ARM1 opens a mortgage account
+
+[INFO] ###### D_ARM1's MORTGAGE acct with financed part: $8939.78 and downpayment: $893.978 is opened ######
+
+cmd: Y_CD 6 633 1 0 8 0
+[INFO] main.c:Withdrawl to Y_CD's CD account
+
+The original balance is 96543.27
+The unposted interest is 22.64
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 15.02
+[INFO] ##### Y_CD WITHDRAWL New Taiwan dollar 633 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $49.31 European euro
+
+cmd: JJCJR_CK 5 7589195.59 0 0 2 0
+[INFO] main.c:Deposit to JJCJR_CK's CHECKING account
+
+cmd: UQEBQ_ARM1 1 929.64 5 348 0 92.964
+[INFO] main.c:UQEBQ_ARM1 opens a mortgage account
+
+[INFO] ###### UQEBQ_ARM1's MORTGAGE acct with financed part: $929.64 and downpayment: $92.964 is opened ######
+
+cmd: FJDYQ_FRM30 1 117507.98 4 360 0 11750.798
+[INFO] main.c:FJDYQ_FRM30 opens a mortgage account
+
+[INFO] ###### FJDYQ_FRM30's MORTGAGE acct with financed part: $117507.98 and downpayment: $11750.798 is opened ######
+
+cmd: ET_CK 6 8 0 0 6 0
+[INFO] main.c:Withdrawl to ET_CK's CHECKING account
+
+The original balance is 68.90
+The unposted interest is 0.00
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 7.30
+[INFO] ##### ET_CK WITHDRAWL New Zealand dollar 8 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: KBPUL_CD 5 977676 1 0 5 0
+[INFO] main.c:Deposit to KBPUL_CD's CD account
+
+cmd: AC_CK 5 558656.33 0 0 0 0
+[INFO] main.c:Deposit to AC_CK's CHECKING account
+
+cmd: LVQQ_CC 5 397 7 0 31 0
+[INFO] main.c:Handling LVQQ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LVQQ_CC Credit Card account
+
+[INFO] Your debt is over the credit limit, but this transaction is allowed with fee
+
+[INFO] ###### New Transaction is posted: 397 U.K. Sterling with CASH ADVANCE type has commited into LVQQ_CC's CREDIT CARD account ######
+cmd: ILN_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling ILN_CC's Credit Card account
+
+[INFO] ###### ILN_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: WZPE_CD 1 5 1 6 2 0
+[INFO] main.c:WZPE_CD opens a CD account
+
+cmd: TAAL_CD 5 3 1 0 6 0
+[INFO] main.c:Deposit to TAAL_CD's CD account
+
+cmd: BDPW_CD 1 58858.94 1 6 1 0
+[INFO] main.c:BDPW_CD opens a CD account
+
+cmd: HNKT_CK 6 769 0 0 3 0
+[INFO] main.c:Withdrawl to HNKT_CK's CHECKING account
+
+The original balance is 312343402
+The unposted interest is 8676.26
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 46255
+[INFO] ##### HNKT_CK WITHDRAWL U.K. Sterling 769 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 New Taiwan dollar
+
+cmd: RWU_CD 5 8916 1 0 1 0
+[INFO] main.c:Deposit to RWU_CD's CD account
+
+cmd: PUS_FRM15 1 426579089 3 180 0 42657908.9
+[INFO] main.c:PUS_FRM15 opens a mortgage account
+
+[INFO] ###### PUS_FRM15's MORTGAGE acct with financed part: $426579089 and downpayment: $42657908.9 is opened ######
+
+cmd: AF_CD 6 61 1 0 6 0
+[INFO] main.c:Withdrawl to AF_CD's CD account
+
+The original balance is 58.16
+The unposted interest is 0.03
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 22.66
+[INFO] ##### AF_CD WITHDRAWL New Zealand dollar 61 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $30.01 U.K. Sterling
+
+cmd: M_CK 1 86 0 0 7 0
+[INFO] main.c:M_CK opens a CHECKING account
+
+cmd: OXVF_CK 1 7690147 0 0 0 0
+[INFO] main.c:OXVF_CK opens a CHECKING account
+
+cmd: DZ_CD 1 27333 1 3 6 0
+[INFO] main.c:DZ_CD opens a CD account
+
+cmd: Z_CK 1 4738 0 0 4 0
+[INFO] main.c:Z_CK opens a CHECKING account
+
+cmd: BDPW_CD 6 285 1 0 5 0
+[INFO] main.c:Withdrawl to BDPW_CD's CD account
+
+The original balance is 58858.94
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 22.7
+[INFO] ##### BDPW_CD WITHDRAWL Japan yen 285 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $41.8 Chinese yuan
+
+cmd: QXA_CD 1 685 1 1 6 0
+[INFO] main.c:QXA_CD opens a CD account
+
+cmd: Q_ARM51 1 403492 6 324 0 40349.2
+[INFO] main.c:Q_ARM51 opens a mortgage account
+
+[INFO] ###### Q_ARM51's MORTGAGE acct with financed part: $403492 and downpayment: $40349.2 is opened ######
+
+cmd: BN_CK 1 98 0 0 2 0
+[INFO] main.c:BN_CK opens a CHECKING account
+
+cmd: MCHF_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling MCHF_CC's Credit Card account
+
+[INFO] ###### MCHF_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: WZQ_CC 1 5000 7 0 0 0
+[INFO] main.c:Handling WZQ_CC's Credit Card account
+
+[INFO] ###### WZQ_CC opens a CREDIT CARD account with credit limit as $5000######
+
+cmd: AE_CK 1 6 0 0 4 0
+[INFO] main.c:AE_CK opens a CHECKING account
+
+cmd: WBM_ARM1 1 883088917 5 312 0 88308891.7
+[INFO] main.c:WBM_ARM1 opens a mortgage account
+
+[INFO] ###### WBM_ARM1's MORTGAGE acct with financed part: $883088917 and downpayment: $88308891.7 is opened ######
+
+cmd: XSB_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling XSB_CC's Credit Card account
+
+[INFO] ###### XSB_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: WIMSA_CK 5 7017 0 0 8 0
+[INFO] main.c:Deposit to WIMSA_CK's CHECKING account
+
+cmd: XYFTP_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling XYFTP_CC's Credit Card account
+
+[INFO] ###### XYFTP_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: BT_CD 1 44920 1 6 2 0
+[INFO] main.c:BT_CD opens a CD account
+
+cmd: GOWBC_CK 1 635896 0 0 2 0
+[INFO] main.c:GOWBC_CK opens a CHECKING account
+
+cmd: UCVGI_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling UCVGI_CC's Credit Card account
+
+[INFO] ###### UCVGI_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: UGTVK_CD 1 509 1 1 8 0
+[INFO] main.c:UGTVK_CD opens a CD account
+
+cmd: WIMSA_CK 5 400 0 0 4 0
+[INFO] main.c:Deposit to WIMSA_CK's CHECKING account
+
+cmd: FFLEE_CC 5 7 7 0 11 0
+[INFO] main.c:Handling FFLEE_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to FFLEE_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 7 Chinese yuan with CASH ADVANCE type has commited into FFLEE_CC's CREDIT CARD account ######
+cmd: FN_CK 5 517135.01 0 0 0 0
+[INFO] main.c:Deposit to FN_CK's CHECKING account
+
+cmd: YR_CK 6 8 0 0 3 0
+[INFO] main.c:Withdrawl to YR_CK's CHECKING account
+
+The original balance is 6085.83
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 24.85
+[INFO] ##### YR_CK WITHDRAWL U.K. Sterling 8 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Singapore dollar
+
+cmd: JJCJR_CK 8 7 0 0 58 0
+[INFO] main.c:JJCJR_CK performs Wire-transfer
+
+[INFO] ###### JJCJR_CK wires 7 in Hong Kong dollar to 29 in New Taiwan dollar with process fee as 0 in Hong Kong dollar ######
+
+cmd: HHJQJ_CK 5 417 0 0 8 0
+[INFO] main.c:Deposit to HHJQJ_CK's CHECKING account
+
+cmd: BZ_FRM30 1 759754.08 4 360 0 75975.408
+[INFO] main.c:BZ_FRM30 opens a mortgage account
+
+[INFO] ###### BZ_FRM30's MORTGAGE acct with financed part: $759754.08 and downpayment: $75975.408 is opened ######
+
+cmd: SSYKY_CD 5 8031.30 1 0 1 0
+[INFO] main.c:Deposit to SSYKY_CD's CD account
+
+cmd: JJQVF_FRM15 1 78193 3 180 0 7819.3
+[INFO] main.c:JJQVF_FRM15 opens a mortgage account
+
+[INFO] ###### JJQVF_FRM15's MORTGAGE acct with financed part: $78193 and downpayment: $7819.3 is opened ######
+
+cmd: ET_CK 5 829263584 0 0 4 0
+[INFO] main.c:Deposit to ET_CK's CHECKING account
+
+cmd: UHR_ARM51 1 1399982.01 6 252 0 139998.201
+[INFO] main.c:UHR_ARM51 opens a mortgage account
+
+[INFO] ###### UHR_ARM51's MORTGAGE acct with financed part: $1399982.01 and downpayment: $139998.201 is opened ######
+
+cmd: VDNDN_CD 1 14 1 3 7 0
+[INFO] main.c:VDNDN_CD opens a CD account
+
+cmd: AC_CK 5 7 0 0 5 0
+[INFO] main.c:Deposit to AC_CK's CHECKING account
+
+cmd: HNKT_CK 8 7 0 0 70 0
+[INFO] main.c:HNKT_CK performs Wire-transfer
+
+[INFO] ###### HNKT_CK wires 7 in New Taiwan dollar to 0.30 in Australia dollar with process fee as 0 in New Taiwan dollar ######
+
+cmd: LIL_CD 1 690214.80 1 1 1 0
+[INFO] main.c:LIL_CD opens a CD account
+
+cmd: PGL_CD 1 7923805.13 1 1 0 0
+[INFO] main.c:PGL_CD opens a CD account
+
+cmd: N_FRM30 1 6538 4 360 0 653.8
+[INFO] main.c:N_FRM30 opens a mortgage account
+
+[INFO] ###### N_FRM30's MORTGAGE acct with financed part: $6538 and downpayment: $653.8 is opened ######
+
+cmd: AQXX_CK 1 509758999 0 0 3 0
+[INFO] main.c:AQXX_CK opens a CHECKING account
+
+cmd: YMA_CD 6 8009.04 1 0 1 0
+[INFO] main.c:Withdrawl to YMA_CD's CD account
+
+The original balance is 21137.8
+The unposted interest is 1.14
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 8009.04
+[INFO] ##### YMA_CD WITHDRAWL Chinese yuan 8009.04 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $34.2 Chinese yuan
+
+cmd: LUUXT_CD 1 301312.29 1 1 3 0
+[INFO] main.c:LUUXT_CD opens a CD account
+
+cmd: P_CK 6 75 0 0 6 0
+[INFO] main.c:Withdrawl to P_CK's CHECKING account
+
+The original balance is 336815.43
+The unposted interest is 4.68
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 39.58
+[INFO] ##### P_CK WITHDRAWL New Zealand dollar 75 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 European euro
+
+cmd: HMV_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling HMV_CC's Credit Card account
+
+[INFO] ###### HMV_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: PGL_CD 6 6430 1 0 8 0
+[INFO] main.c:Withdrawl to PGL_CD's CD account
+
+The original balance is 7923805.13
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 264.50
+[INFO] ##### PGL_CD WITHDRAWL New Taiwan dollar 6430 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $1614.75 Australia dollar
+
+cmd: OXVF_CK 5 9704 0 0 6 0
+[INFO] main.c:Deposit to OXVF_CK's CHECKING account
+
+cmd: C_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling C_CC's Credit Card account
+
+[INFO] ###### C_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: DJC_CD 1 64 1 6 5 0
+[INFO] main.c:DJC_CD opens a CD account
+
+cmd: DFO_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling DFO_CC's Credit Card account
+
+[INFO] ###### DFO_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: ZY_CC 1 3000 7 0 0 0
+[INFO] main.c:Handling ZY_CC's Credit Card account
+
+[INFO] ###### ZY_CC opens a CREDIT CARD account with credit limit as $3000######
+
+cmd: BH_CK 8 1 0 0 45 0
+[INFO] main.c:BH_CK performs Wire-transfer
+
+[INFO] ###### BH_CK wires 1 in New Zealand dollar to 73 in Japan yen with process fee as 0 in New Zealand dollar ######
+
+cmd: SWRS_CK 1 83 0 0 5 0
+[INFO] main.c:SWRS_CK opens a CHECKING account
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 6
+cmd: MFLRY_CC 5 69 7 0 21 0
+[INFO] main.c:Handling MFLRY_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to MFLRY_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 69 European euro with CASH ADVANCE type has commited into MFLRY_CC's CREDIT CARD account ######
+cmd: D_CD 6 775304743 1 0 7 0
+[INFO] main.c:Withdrawl to D_CD's CD account
+
+The original balance is 46983850137
+The unposted interest is 1592247.10
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 15060686162
+[INFO] ##### D_CD WITHDRAWL Singapore dollar 775304743 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $9397118 New Taiwan dollar
+
+cmd: J_CK 8 258762 0 0 46 0
+[INFO] main.c:J_CK performs Wire-transfer
+
+[INFO] ###### J_CK wires 258762 in Australia dollar to 282522.6 in New Zealand dollar with process fee as 0 in Australia dollar ######
+
+cmd: LDCR_CC 5 20 7 0 70 0
+[INFO] main.c:Handling LDCR_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LDCR_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 20 Singapore dollar with PURCHASE type has commited into LDCR_CC's CREDIT CARD account ######
+cmd: MFDD_CD 6 634 1 0 4 0
+[INFO] main.c:Withdrawl to MFDD_CD's CD account
+
+The original balance is 82033632
+The unposted interest is 3919.43
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 634
+[INFO] ##### MFDD_CD WITHDRAWL Hong Kong dollar 634 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $16437.5 Hong Kong dollar
+
+cmd: KPS_CD 1 4263587.69 1 1 0 0
+[INFO] main.c:KPS_CD opens a CD account
+
+cmd: TD_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling TD_CC's Credit Card account
+
+[INFO] ###### TD_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: LJU_FRM30 1 2758.19 4 360 0 275.819
+[INFO] main.c:LJU_FRM30 opens a mortgage account
+
+[INFO] ###### LJU_FRM30's MORTGAGE acct with financed part: $2758.19 and downpayment: $275.819 is opened ######
+
+cmd: GOWBC_CK 5 32434.84 0 0 3 0
+[INFO] main.c:Deposit to GOWBC_CK's CHECKING account
+
+cmd: VH_CD 6 38 1 0 4 0
+[INFO] main.c:Withdrawl to VH_CD's CD account
+
+The original balance is 413
+The unposted interest is 0.10
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 3.70
+[INFO] ##### VH_CD WITHDRAWL Hong Kong dollar 38 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $30.08 European euro
+
+cmd: JAFW_CD 1 171974418 1 1 0 0
+[INFO] main.c:JAFW_CD opens a CD account
+
+cmd: MO_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling MO_CC's Credit Card account
+
+[INFO] ###### MO_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: ROD_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling ROD_CC's Credit Card account
+
+[INFO] ###### ROD_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: AU_CC 5 3260 7 0 41 0
+[INFO] main.c:Handling AU_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to AU_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 3260 Hong Kong dollar with CASH ADVANCE type has commited into AU_CC's CREDIT CARD account ######
+cmd: KPS_CD 6 474547.21 1 0 0 0
+[INFO] main.c:Withdrawl to KPS_CD's CD account
+
+The original balance is 4263587.69
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 474547.21
+[INFO] ##### KPS_CD WITHDRAWL Australia dollar 474547.21 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $882.70 Australia dollar
+
+cmd: VIFD_CK 1 6253 0 0 5 0
+[INFO] main.c:VIFD_CK opens a CHECKING account
+
+cmd: VH_CD 6 3 1 0 6 0
+[INFO] main.c:Withdrawl to VH_CD's CD account
+
+The original balance is 379.32
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 1.59
+[INFO] ##### VH_CD WITHDRAWL New Zealand dollar 3 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $30.08 European euro
+
+cmd: SSYKY_CD 6 168852.87 1 0 3 0
+[INFO] main.c:Withdrawl to SSYKY_CD's CD account
+
+The original balance is 965852552.02
+The unposted interest is 125024.25
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 168852.87
+[INFO] ##### SSYKY_CD WITHDRAWL U.K. Sterling 168852.87 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $193225.52 U.K. Sterling
+
+cmd: TMR_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling TMR_CC's Credit Card account
+
+[INFO] ###### TMR_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: AC_CK 5 3062065.42 0 0 3 0
+[INFO] main.c:Deposit to AC_CK's CHECKING account
+
+cmd: BHGAK_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling BHGAK_CC's Credit Card account
+
+[INFO] ###### BHGAK_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: HNKT_CK 6 32623 0 0 1 0
+[INFO] main.c:Withdrawl to HNKT_CK's CHECKING account
+
+The original balance is 312305816
+The unposted interest is 4337.58
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 126514
+[INFO] ##### HNKT_CK WITHDRAWL Chinese yuan 32623 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 New Taiwan dollar
+
+cmd: Y_CD 5 7510151.20 1 0 7 0
+[INFO] main.c:Deposit to Y_CD's CD account
+
+cmd: F_CK 1 354834902 0 0 7 0
+[INFO] main.c:F_CK opens a CHECKING account
+
+cmd: AQXX_CK 6 1404 0 0 5 0
+[INFO] main.c:Withdrawl to AQXX_CK's CHECKING account
+
+The original balance is 509758999
+The unposted interest is 7079.99
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 7.13
+[INFO] ##### AQXX_CK WITHDRAWL Japan yen 1404 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 U.K. Sterling
+
+cmd: RFK_ARM51 1 8672.42 6 264 0 867.242
+[INFO] main.c:RFK_ARM51 opens a mortgage account
+
+[INFO] ###### RFK_ARM51's MORTGAGE acct with financed part: $8672.42 and downpayment: $867.242 is opened ######
+
+cmd: UCF_ARM51 1 5377302.83 6 396 0 537730.283
+[INFO] main.c:UCF_ARM51 opens a mortgage account
+
+[INFO] ###### UCF_ARM51's MORTGAGE acct with financed part: $5377302.83 and downpayment: $537730.283 is opened ######
+
+cmd: Z_FRM15 1 605.64 3 180 0 60.564
+[INFO] main.c:Z_FRM15 opens a mortgage account
+
+[INFO] ###### Z_FRM15's MORTGAGE acct with financed part: $605.64 and downpayment: $60.564 is opened ######
+
+cmd: P_CK 5 87214658 0 0 3 0
+[INFO] main.c:Deposit to P_CK's CHECKING account
+
+cmd: KBPUL_CD 5 3 1 0 0 0
+[INFO] main.c:Deposit to KBPUL_CD's CD account
+
+cmd: G_FRM15 1 159013825 3 180 0 15901382.5
+[INFO] main.c:G_FRM15 opens a mortgage account
+
+[INFO] ###### G_FRM15's MORTGAGE acct with financed part: $159013825 and downpayment: $15901382.5 is opened ######
+
+cmd: SURR_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling SURR_CC's Credit Card account
+
+[INFO] ###### SURR_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: YFQKK_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling YFQKK_CC's Credit Card account
+
+[INFO] ###### YFQKK_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: OXVF_CK 5 4331.79 0 0 1 0
+[INFO] main.c:Deposit to OXVF_CK's CHECKING account
+
+cmd: GXF_CD 1 17410.16 1 1 1 0
+[INFO] main.c:GXF_CD opens a CD account
+
+cmd: FU_CK 6 4477 0 0 1 0
+[INFO] main.c:Withdrawl to FU_CK's CHECKING account
+
+The original balance is 51979
+The unposted interest is 3.60
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 17362
+[INFO] ##### FU_CK WITHDRAWL Chinese yuan 4477 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 New Taiwan dollar
+
+cmd: AHU_CD 1 264850601 1 1 3 0
+[INFO] main.c:AHU_CD opens a CD account
+
+cmd: BH_CK 6 6973139 0 0 8 0
+[INFO] main.c:Withdrawl to BH_CK's CHECKING account
+
+The original balance is 9881459.57
+The unposted interest is 137.24
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 312223.1
+[INFO] ##### BH_CK WITHDRAWL New Taiwan dollar 6973139 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 New Zealand dollar
+
+cmd: JYI_CD 6 3640 1 0 3 0
+[INFO] main.c:Withdrawl to JYI_CD's CD account
+
+The original balance is 948714.15
+The unposted interest is 421.72
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 8977.20
+[INFO] ##### JYI_CD WITHDRAWL U.K. Sterling 3640 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $219.85 Australia dollar
+
+cmd: CZ_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling CZ_CC's Credit Card account
+
+[INFO] ###### CZ_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: VWJPB_ARM1 1 6916.25 5 240 0 691.625
+[INFO] main.c:VWJPB_ARM1 opens a mortgage account
+
+[INFO] ###### VWJPB_ARM1's MORTGAGE acct with financed part: $6916.25 and downpayment: $691.625 is opened ######
+
+cmd: JUSN_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling JUSN_CC's Credit Card account
+
+[INFO] ###### JUSN_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: AONF_CK 5 2586 0 0 7 0
+[INFO] main.c:Deposit to AONF_CK's CHECKING account
+
+cmd: XPBNE_CK 8 5319375 0 0 68 0
+[INFO] main.c:XPBNE_CK performs Wire-transfer
+
+[INFO] ###### XPBNE_CK wires 5319375 in Chinese yuan to 20628802 in New Taiwan dollar with process fee as 0 in Chinese yuan ######
+
+cmd: JMQ_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling JMQ_CC's Credit Card account
+
+[INFO] ###### JMQ_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: DH_CK 1 84 0 0 7 0
+[INFO] main.c:DH_CK opens a CHECKING account
+
+cmd: B_CK 5 13252.66 0 0 2 0
+[INFO] main.c:Deposit to B_CK's CHECKING account
+
+cmd: WAF_CK 1 6982236.89 0 0 8 0
+[INFO] main.c:WAF_CK opens a CHECKING account
+
+cmd: PQI_CK 5 150 0 0 3 0
+[INFO] main.c:Deposit to PQI_CK's CHECKING account
+
+cmd: TFB_FRM30 1 6023 4 360 0 602.3
+[INFO] main.c:TFB_FRM30 opens a mortgage account
+
+[INFO] ###### TFB_FRM30's MORTGAGE acct with financed part: $6023 and downpayment: $602.3 is opened ######
+
+cmd: KUM_FRM30 1 726.48 4 360 0 72.648
+[INFO] main.c:KUM_FRM30 opens a mortgage account
+
+[INFO] ###### KUM_FRM30's MORTGAGE acct with financed part: $726.48 and downpayment: $72.648 is opened ######
+
+cmd: VC_CD 1 96 1 3 5 0
+[INFO] main.c:VC_CD opens a CD account
+
+cmd: DDT_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling DDT_CC's Credit Card account
+
+[INFO] ###### DDT_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: TIF_CC 5 79 7 0 61 0
+[INFO] main.c:Handling TIF_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to TIF_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 79 New Zealand dollar with CASH ADVANCE type has commited into TIF_CC's CREDIT CARD account ######
+cmd: H_FRM15 1 1834.68 3 180 0 183.468
+[INFO] main.c:H_FRM15 opens a mortgage account
+
+[INFO] ###### H_FRM15's MORTGAGE acct with financed part: $1834.68 and downpayment: $183.468 is opened ######
+
+cmd: A_CK 1 191.89 0 0 0 0
+[INFO] main.c:A_CK opens a CHECKING account
+
+cmd: TOTAW_ARM51 1 21129308 6 240 0 2112930.8
+[INFO] main.c:TOTAW_ARM51 opens a mortgage account
+
+[INFO] ###### TOTAW_ARM51's MORTGAGE acct with financed part: $21129308 and downpayment: $2112930.8 is opened ######
+
+cmd: XJU_CK 1 49544 0 0 5 0
+[INFO] main.c:XJU_CK opens a CHECKING account
+
+cmd: XKJ_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling XKJ_CC's Credit Card account
+
+[INFO] ###### XKJ_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: V_CK 1 4471370 0 0 5 0
+[INFO] main.c:V_CK opens a CHECKING account
+
+cmd: AQXX_CK 8 1866811.06 0 0 21 0
+[INFO] main.c:AQXX_CK performs Wire-transfer
+
+[INFO] ###### AQXX_CK wires 1866811.06 in U.K. Sterling to 29008087.3 in Chinese yuan with process fee as 0 in U.K. Sterling ######
+
+cmd: UBEBR_ARM51 1 2024 6 336 0 202.4
+[INFO] main.c:UBEBR_ARM51 opens a mortgage account
+
+[INFO] ###### UBEBR_ARM51's MORTGAGE acct with financed part: $2024 and downpayment: $202.4 is opened ######
+
+cmd: P_CK 5 37210330 0 0 1 0
+[INFO] main.c:Deposit to P_CK's CHECKING account
+
+cmd: YFLCI_CD 1 5641899.99 1 1 4 0
+[INFO] main.c:YFLCI_CD opens a CD account
+
+cmd: OXVF_CK 6 37957.36 0 0 1 0
+[INFO] main.c:Withdrawl to OXVF_CK's CHECKING account
+
+The original balance is 7699714.30
+The unposted interest is 106.93
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 6040.50
+[INFO] ##### OXVF_CK WITHDRAWL Chinese yuan 37957.36 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: UGTVK_CD 5 95 1 0 6 0
+[INFO] main.c:Deposit to UGTVK_CD's CD account
+
+cmd: BJRE_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling BJRE_CC's Credit Card account
+
+[INFO] ###### BJRE_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: DDVG_FRM30 1 872578.48 4 360 0 87257.848
+[INFO] main.c:DDVG_FRM30 opens a mortgage account
+
+[INFO] ###### DDVG_FRM30's MORTGAGE acct with financed part: $872578.48 and downpayment: $87257.848 is opened ######
+
+cmd: FHYYL_FRM30 1 9329 4 360 0 932.9
+[INFO] main.c:FHYYL_FRM30 opens a mortgage account
+
+[INFO] ###### FHYYL_FRM30's MORTGAGE acct with financed part: $9329 and downpayment: $932.9 is opened ######
+
+cmd: UFESC_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling UFESC_CC's Credit Card account
+
+[INFO] ###### UFESC_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: ISK_CC 5 25 7 0 10 0
+[INFO] main.c:Handling ISK_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ISK_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 25 Chinese yuan with PURCHASE type has commited into ISK_CC's CREDIT CARD account ######
+cmd: JAFW_CD 5 77173.74 1 0 0 0
+[INFO] main.c:Deposit to JAFW_CD's CD account
+
+cmd: KPS_CD 5 9863291.13 1 0 5 0
+[INFO] main.c:Deposit to KPS_CD's CD account
+
+cmd: FU_CK 8 2 0 0 81 0
+[INFO] main.c:FU_CK performs Wire-transfer
+
+[INFO] ###### FU_CK wires 2 in New Taiwan dollar to 0.5 in Chinese yuan with process fee as 0 in New Taiwan dollar ######
+
+cmd: KJGZH_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling KJGZH_CC's Credit Card account
+
+[INFO] ###### KJGZH_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: O_CD 1 374958485 1 1 2 0
+[INFO] main.c:O_CD opens a CD account
+
+cmd: DZ_CD 5 2350 1 0 0 0
+[INFO] main.c:Deposit to DZ_CD's CD account
+
+cmd: A_ARM1 1 3799.66 5 288 0 379.966
+[INFO] main.c:A_ARM1 opens a mortgage account
+
+[INFO] ###### A_ARM1's MORTGAGE acct with financed part: $3799.66 and downpayment: $379.966 is opened ######
+
+cmd: K_ARM51 1 8436327.56 6 468 0 843632.756
+[INFO] main.c:K_ARM51 opens a mortgage account
+
+[INFO] ###### K_ARM51's MORTGAGE acct with financed part: $8436327.56 and downpayment: $843632.756 is opened ######
+
+cmd: BH_CK 5 6906 0 0 8 0
+[INFO] main.c:Deposit to BH_CK's CHECKING account
+
+cmd: JP_CK 1 304.87 0 0 0 0
+[INFO] main.c:JP_CK opens a CHECKING account
+
+cmd: ATTE_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling ATTE_CC's Credit Card account
+
+[INFO] ###### ATTE_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: YZKWQ_CC 1 30000 7 0 0 0
+[INFO] main.c:Handling YZKWQ_CC's Credit Card account
+
+[INFO] ###### YZKWQ_CC opens a CREDIT CARD account with credit limit as $30000######
+
+cmd: RWU_CD 6 5 1 0 3 0
+[INFO] main.c:Withdrawl to RWU_CD's CD account
+
+The original balance is 4928570.8
+The unposted interest is 2874.96
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 13.5
+[INFO] ##### RWU_CD WITHDRAWL U.K. Sterling 5 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $1016.3 New Zealand dollar
+
+cmd: WL_CC 1 10000 7 0 0 0
+[INFO] main.c:Handling WL_CC's Credit Card account
+
+[INFO] ###### WL_CC opens a CREDIT CARD account with credit limit as $10000######
+
+cmd: XLNWH_CC 5 165.62 7 0 20 0
+[INFO] main.c:Handling XLNWH_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to XLNWH_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 165.62 European euro with PURCHASE type has commited into XLNWH_CC's CREDIT CARD account ######
+cmd: GOWBC_CK 8 6 0 0 83 0
+[INFO] main.c:GOWBC_CK performs Wire-transfer
+
+[INFO] ###### GOWBC_CK wires 6 in European euro to 4.22 in U.K. Sterling with process fee as 0 in European euro ######
+
+cmd: HFJ_CD 1 125793.92 1 3 6 0
+[INFO] main.c:HFJ_CD opens a CD account
+
+cmd: OE_CK 1 1 0 0 2 0
+[INFO] main.c:OE_CK opens a CHECKING account
+
+cmd: JJCJR_CK 5 9867.00 0 0 8 0
+[INFO] main.c:Deposit to JJCJR_CK's CHECKING account
+
+cmd: WG_CD 1 1047 1 1 5 0
+[INFO] main.c:WG_CD opens a CD account
+
+cmd: VEN_CC 5 875 7 0 71 0
+[INFO] main.c:Handling VEN_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to VEN_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 875 Singapore dollar with CASH ADVANCE type has commited into VEN_CC's CREDIT CARD account ######
+cmd: XKD_CC 1 1000 7 0 0 0
+[INFO] main.c:Handling XKD_CC's Credit Card account
+
+[INFO] ###### XKD_CC opens a CREDIT CARD account with credit limit as $1000######
+
+cmd: SKCFD_CC 1 2000 7 0 0 0
+[INFO] main.c:Handling SKCFD_CC's Credit Card account
+
+[INFO] ###### SKCFD_CC opens a CREDIT CARD account with credit limit as $2000######
+
+cmd: SJH_CC 5 642 7 0 40 0
+[INFO] main.c:Handling SJH_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to SJH_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 642 Hong Kong dollar with PURCHASE type has commited into SJH_CC's CREDIT CARD account ######
+cmd: JFWG_CK 1 4 0 0 8 0
+[INFO] main.c:JFWG_CK opens a CHECKING account
+
+cmd: HUU_FRM15 1 1736763 3 180 0 173676.3
+[INFO] main.c:HUU_FRM15 opens a mortgage account
+
+[INFO] ###### HUU_FRM15's MORTGAGE acct with financed part: $1736763 and downpayment: $173676.3 is opened ######
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 7
+cmd: LW_ARM51 1 8401.54 6 468 0 840.154
+[INFO] main.c:LW_ARM51 opens a mortgage account
+
+[INFO] ###### LW_ARM51's MORTGAGE acct with financed part: $8401.54 and downpayment: $840.154 is opened ######
+
+cmd: POLDO_FRM15 1 83312294 3 180 0 8331229.4
+[INFO] main.c:POLDO_FRM15 opens a mortgage account
+
+[INFO] ###### POLDO_FRM15's MORTGAGE acct with financed part: $83312294 and downpayment: $8331229.4 is opened ######
+
+cmd: D_CC 1 20000 7 0 0 0
+[INFO] main.c:Handling D_CC's Credit Card account
+
+[INFO] ###### D_CC opens a CREDIT CARD account with credit limit as $20000######
+
+cmd: YEA_CD 5 20513346 1 0 8 0
+[INFO] main.c:Deposit to YEA_CD's CD account
+
+cmd: D_CD 5 94050 1 0 2 0
+[INFO] main.c:Deposit to D_CD's CD account
+
+cmd: ZE_CC 1 500 7 0 0 0
+[INFO] main.c:Handling ZE_CC's Credit Card account
+
+[INFO] ###### ZE_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: MFDD_CD 6 3532.43 1 0 3 0
+[INFO] main.c:Withdrawl to MFDD_CD's CD account
+
+The original balance is 82020479.9
+The unposted interest is 1959.38
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 51444.3
+[INFO] ##### MFDD_CD WITHDRAWL U.K. Sterling 3532.43 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $16434.5 Hong Kong dollar
+
+cmd: J_CK 8 104 0 0 83 0
+[INFO] main.c:J_CK performs Wire-transfer
+
+[INFO] ###### J_CK wires 104 in Australia dollar to 42.13 in U.K. Sterling with process fee as 0 in Australia dollar ######
+
+cmd: JX_CK 1 3960020.41 0 0 1 0
+[INFO] main.c:JX_CK opens a CHECKING account
+
+cmd: EFQ_CD 5 18812.74 1 0 7 0
+[INFO] main.c:Deposit to EFQ_CD's CD account
+
+cmd: XRQ_CK 1 928 0 0 0 0
+[INFO] main.c:XRQ_CK opens a CHECKING account
+
+cmd: XJNX_CD 1 55 1 6 4 0
+[INFO] main.c:XJNX_CD opens a CD account
+
+cmd: UF_CD 1 5406 1 3 6 0
+[INFO] main.c:UF_CD opens a CD account
+
+cmd: VTZ_ARM1 1 726535635 5 456 0 72653563.5
+[INFO] main.c:VTZ_ARM1 opens a mortgage account
+
+[INFO] ###### VTZ_ARM1's MORTGAGE acct with financed part: $726535635 and downpayment: $72653563.5 is opened ######
+
+cmd: NY_CD 1 9022 1 1 7 0
+[INFO] main.c:NY_CD opens a CD account
+
+cmd: XJU_CK 6 279.94 0 0 0 0
+[INFO] main.c:Withdrawl to XJU_CK's CHECKING account
+
+The original balance is 49544
+The unposted interest is 0.69
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 22218
+[INFO] ##### XJU_CK WITHDRAWL Australia dollar 279.94 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Japan yen
+
+cmd: PCIEB_CD 5 3394.53 1 0 2 0
+[INFO] main.c:Deposit to PCIEB_CD's CD account
+
+cmd: Y_CK 6 18 0 0 4 0
+[INFO] main.c:Withdrawl to Y_CK's CHECKING account
+
+The original balance is 469042.35
+The unposted interest is 19.53
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 3.05
+[INFO] ##### Y_CK WITHDRAWL Hong Kong dollar 18 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 8
+cmd: ZYQ_CD 1 5491940.71 1 6 0 0
+[INFO] main.c:ZYQ_CD opens a CD account
+
+cmd: J_CK 5 2 0 0 1 0
+[INFO] main.c:Deposit to J_CK's CHECKING account
+
+cmd: YEA_CD 5 3864 1 0 1 0
+[INFO] main.c:Deposit to YEA_CD's CD account
+
+cmd: DUW_ARM51 1 117110 6 276 0 11711
+[INFO] main.c:DUW_ARM51 opens a mortgage account
+
+[INFO] ###### DUW_ARM51's MORTGAGE acct with financed part: $117110 and downpayment: $11711 is opened ######
+
+cmd: ME_CC 1 500 7 0 0 0
+[INFO] main.c:Handling ME_CC's Credit Card account
+
+[INFO] ###### ME_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: YE_CK 1 72185 0 0 8 0
+[INFO] main.c:YE_CK opens a CHECKING account
+
+cmd: D_CD 6 748.46 1 0 5 0
+[INFO] main.c:Withdrawl to D_CD's CD account
+
+The original balance is 31919288484
+The unposted interest is 2163321.93
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 229
+[INFO] ##### D_CD WITHDRAWL Japan yen 748.46 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $6384320 New Taiwan dollar
+
+cmd: P_CD 1 2620 1 1 0 0
+[INFO] main.c:P_CD opens a CD account
+
+cmd: SKD_CK 1 130714.33 0 0 7 0
+[INFO] main.c:SKD_CK opens a CHECKING account
+
+cmd: JCRCH_CK 1 9684 0 0 6 0
+[INFO] main.c:JCRCH_CK opens a CHECKING account
+
+cmd: VIFD_CK 5 28894632 0 0 1 0
+[INFO] main.c:Deposit to VIFD_CK's CHECKING account
+
+cmd: LDYF_CK 1 916 0 0 0 0
+[INFO] main.c:LDYF_CK opens a CHECKING account
+
+cmd: L_CK 1 14107.32 0 0 7 0
+[INFO] main.c:L_CK opens a CHECKING account
+
+cmd: BWOJG_CD 1 59 1 1 3 0
+[INFO] main.c:BWOJG_CD opens a CD account
+
+cmd: U_CD 5 34 1 0 4 0
+[INFO] main.c:Deposit to U_CD's CD account
+
+cmd: HWT_CD 1 694.71 1 1 4 0
+[INFO] main.c:HWT_CD opens a CD account
+
+cmd: YE_CK 8 81 0 0 21 0
+[INFO] main.c:YE_CK performs Wire-transfer
+
+[INFO] ###### YE_CK wires 81 in New Taiwan dollar to 21.0 in Chinese yuan with process fee as 0 in New Taiwan dollar ######
+
+cmd: WDCEI_ARM1 1 531 5 372 0 53.1
+[INFO] main.c:WDCEI_ARM1 opens a mortgage account
+
+[INFO] ###### WDCEI_ARM1's MORTGAGE acct with financed part: $531 and downpayment: $53.1 is opened ######
+
+cmd: XJNX_CD 5 39234 1 0 8 0
+[INFO] main.c:Deposit to XJNX_CD's CD account
+
+cmd: DZB_ARM1 1 3176.76 5 348 0 317.676
+[INFO] main.c:DZB_ARM1 opens a mortgage account
+
+[INFO] ###### DZB_ARM1's MORTGAGE acct with financed part: $3176.76 and downpayment: $317.676 is opened ######
+
+cmd: UFESC_CC 5 96 7 0 10 0
+[INFO] main.c:Handling UFESC_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to UFESC_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 96 Chinese yuan with PURCHASE type has commited into UFESC_CC's CREDIT CARD account ######
+cmd: IXNYE_CK 1 25 0 0 0 0
+[INFO] main.c:IXNYE_CK opens a CHECKING account
+
+cmd: ISK_CC 5 1500.12 7 0 70 0
+[INFO] main.c:Handling ISK_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ISK_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 1500.12 Singapore dollar with PURCHASE type has commited into ISK_CC's CREDIT CARD account ######
+cmd: RRAFB_CC 1 500 7 0 0 0
+[INFO] main.c:Handling RRAFB_CC's Credit Card account
+
+[INFO] ###### RRAFB_CC opens a CREDIT CARD account with credit limit as $500######
+
+cmd: ZEIVV_CD 5 8044997 1 0 8 0
+[INFO] main.c:Deposit to ZEIVV_CD's CD account
+
+cmd: OA_FRM15 1 3546 3 180 0 354.6
+[INFO] main.c:OA_FRM15 opens a mortgage account
+
+[INFO] ###### OA_FRM15's MORTGAGE acct with financed part: $3546 and downpayment: $354.6 is opened ######
+
+cmd: ZTB_CK 6 6888 0 0 7 0
+[INFO] main.c:Withdrawl to ZTB_CK's CHECKING account
+
+The original balance is 50160.84
+The unposted interest is 4.20
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 5515.00
+[INFO] ##### ZTB_CK WITHDRAWL Singapore dollar 6888 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: DJC_CD 5 225.57 1 0 8 0
+[INFO] main.c:Deposit to DJC_CD's CD account
+
+cmd: NEHIQ_FRM15 1 764363 3 180 0 76436.3
+[INFO] main.c:NEHIQ_FRM15 opens a mortgage account
+
+[INFO] ###### NEHIQ_FRM15's MORTGAGE acct with financed part: $764363 and downpayment: $76436.3 is opened ######
+
+cmd: J_CD 5 904551.65 1 0 1 0
+[INFO] main.c:Deposit to J_CD's CD account
+
+cmd: AIF_CD 5 26 1 0 0 0
+[INFO] main.c:Deposit to AIF_CD's CD account
+
+cmd: VDNDN_CD 5 281004627 1 0 5 0
+[INFO] main.c:Deposit to VDNDN_CD's CD account
+
+cmd: K_CK 8 114.19 0 0 0 0
+[INFO] main.c:K_CK performs Wire-transfer
+
+[INFO] ###### K_CK wires 114.19 in U.K. Sterling to 282.25 in Australia dollar with process fee as 0 in U.K. Sterling ######
+
+cmd: DEHI_CK 8 812652 0 0 24 0
+[INFO] main.c:DEHI_CK performs Wire-transfer
+
+[INFO] ###### DEHI_CK wires 812652 in Japan yen to 60416.1 in Hong Kong dollar with process fee as 0 in Japan yen ######
+
+cmd: SK_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling SK_CC's Credit Card account
+
+[INFO] ###### SK_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: DU_CK 5 802 0 0 1 0
+[INFO] main.c:Deposit to DU_CK's CHECKING account
+
+cmd: G_CK 1 407.25 0 0 1 0
+[INFO] main.c:G_CK opens a CHECKING account
+
+cmd: F_CK 8 4 0 0 37 0
+[INFO] main.c:F_CK performs Wire-transfer
+
+[INFO] ###### F_CK wires 4 in Singapore dollar to 4 in Singapore dollar with process fee as 0 in Singapore dollar ######
+
+cmd: YZKWQ_CC 5 6 7 0 60 0
+[INFO] main.c:Handling YZKWQ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to YZKWQ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 6 New Zealand dollar with PURCHASE type has commited into YZKWQ_CC's CREDIT CARD account ######
+cmd: V_CK 6 3 0 0 6 0
+[INFO] main.c:Withdrawl to V_CK's CHECKING account
+
+The original balance is 4471370
+The unposted interest is 124.20
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 218
+[INFO] ##### V_CK WITHDRAWL New Zealand dollar 3 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Japan yen
+
+cmd: LJJK_ARM51 1 40710 6 372 0 4071
+[INFO] main.c:LJJK_ARM51 opens a mortgage account
+
+[INFO] ###### LJJK_ARM51's MORTGAGE acct with financed part: $40710 and downpayment: $4071 is opened ######
+
+cmd: S_CD 5 3578 1 0 1 0
+[INFO] main.c:Deposit to S_CD's CD account
+
+cmd: AQXX_CK 6 390849 0 0 4 0
+[INFO] main.c:Withdrawl to AQXX_CK's CHECKING account
+
+The original balance is 507899260.80
+The unposted interest is 14108.41
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 26828.91
+[INFO] ##### AQXX_CK WITHDRAWL Hong Kong dollar 390849 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 U.K. Sterling
+
+cmd: TFO_CD 1 30449 1 1 3 0
+[INFO] main.c:TFO_CD opens a CD account
+
+cmd: P_CK 5 73 0 0 2 0
+[INFO] main.c:Deposit to P_CK's CHECKING account
+
+cmd: WOJ_FRM15 1 38176 3 180 0 3817.6
+[INFO] main.c:WOJ_FRM15 opens a mortgage account
+
+[INFO] ###### WOJ_FRM15's MORTGAGE acct with financed part: $38176 and downpayment: $3817.6 is opened ######
+
+cmd: OXVF_CK 6 258467 0 0 6 0
+[INFO] main.c:Withdrawl to OXVF_CK's CHECKING account
+
+The original balance is 7693780.75
+The unposted interest is 213.72
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 237124.80
+[INFO] ##### OXVF_CK WITHDRAWL New Zealand dollar 258467 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: ZERZ_CK 1 555.69 0 0 8 0
+[INFO] main.c:ZERZ_CK opens a CHECKING account
+
+cmd: J_CD 5 45605 1 0 8 0
+[INFO] main.c:Deposit to J_CD's CD account
+
+cmd: AIF_CD 5 1 1 0 6 0
+[INFO] main.c:Deposit to AIF_CD's CD account
+
+cmd: VDNDN_CD 6 19 1 0 8 0
+[INFO] main.c:Withdrawl to VDNDN_CD's CD account
+
+The original balance is 4425112.00
+The unposted interest is 0.00
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 1.00
+[INFO] ##### VDNDN_CD WITHDRAWL New Taiwan dollar 19 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $915.00 Singapore dollar
+
+cmd: S_CK 8 1 0 0 13 0
+[INFO] main.c:S_CK performs Wire-transfer
+
+[INFO] ###### S_CK wires 1 in Hong Kong dollar to 0.07 in U.K. Sterling with process fee as 0 in Hong Kong dollar ######
+
+cmd: GTJHD_FRM15 1 5877 3 180 0 587.7
+[INFO] main.c:GTJHD_FRM15 opens a mortgage account
+
+[INFO] ###### GTJHD_FRM15's MORTGAGE acct with financed part: $5877 and downpayment: $587.7 is opened ######
+
+cmd: QBJDP_ARM1 1 66935 5 432 0 6693.5
+[INFO] main.c:QBJDP_ARM1 opens a mortgage account
+
+[INFO] ###### QBJDP_ARM1's MORTGAGE acct with financed part: $66935 and downpayment: $6693.5 is opened ######
+
+cmd: ID_CC 1 50000 7 0 0 0
+[INFO] main.c:Handling ID_CC's Credit Card account
+
+[INFO] ###### ID_CC opens a CREDIT CARD account with credit limit as $50000######
+
+cmd: QOQHL_CK 6 111 0 0 8 0
+[INFO] main.c:Withdrawl to QOQHL_CK's CHECKING account
+
+The original balance is 7
+The unposted interest is 0.00
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 1.85
+[INFO] ##### QOQHL_CK WITHDRAWL New Taiwan dollar 111 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 U.K. Sterling
+
+cmd: SK_CC 5 9 7 0 31 0
+[INFO] main.c:Handling SK_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to SK_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 9 U.K. Sterling with CASH ADVANCE type has commited into SK_CC's CREDIT CARD account ######
+cmd: RYIDB_CD 1 3729265.24 1 1 6 0
+[INFO] main.c:RYIDB_CD opens a CD account
+
+cmd: NY_CD 6 965 1 0 3 0
+[INFO] main.c:Withdrawl to NY_CD's CD account
+
+The original balance is 9022
+The unposted interest is 0.11
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 2980.50
+[INFO] ##### NY_CD WITHDRAWL U.K. Sterling 965 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $31.80 Singapore dollar
+
+cmd: BF_CK 5 615154827 0 0 0 0
+[INFO] main.c:Deposit to BF_CK's CHECKING account
+
+cmd: QMV_CK 1 4382033 0 0 5 0
+[INFO] main.c:QMV_CK opens a CHECKING account
+
+cmd: GXPB_CD 1 3708104 1 3 3 0
+[INFO] main.c:GXPB_CD opens a CD account
+
+cmd: YZKWQ_CC 5 796 7 0 81 0
+[INFO] main.c:Handling YZKWQ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to YZKWQ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 796 New Taiwan dollar with CASH ADVANCE type has commited into YZKWQ_CC's CREDIT CARD account ######
+cmd: BWOJG_CD 5 801391.31 1 0 6 0
+[INFO] main.c:Deposit to BWOJG_CD's CD account
+
+cmd: WYB_ARM51 1 3872843 6 336 0 387284.3
+[INFO] main.c:WYB_ARM51 opens a mortgage account
+
+[INFO] ###### WYB_ARM51's MORTGAGE acct with financed part: $3872843 and downpayment: $387284.3 is opened ######
+
+cmd: IXNYE_CK 8 5 0 0 23 0
+[INFO] main.c:IXNYE_CK performs Wire-transfer
+
+[INFO] ###### IXNYE_CK wires 5 in Australia dollar to 2.03 in U.K. Sterling with process fee as 0 in Australia dollar ######
+
+cmd: U_CD 5 204852.02 1 0 5 0
+[INFO] main.c:Deposit to U_CD's CD account
+
+cmd: M_CK 5 9024326 0 0 0 0
+[INFO] main.c:Deposit to M_CK's CHECKING account
+
+cmd: CV_CD 1 518 1 1 5 0
+[INFO] main.c:CV_CD opens a CD account
+
+cmd: WEMI_FRM30 1 4779955.86 4 360 0 477995.586
+[INFO] main.c:WEMI_FRM30 opens a mortgage account
+
+[INFO] ###### WEMI_FRM30's MORTGAGE acct with financed part: $4779955.86 and downpayment: $477995.586 is opened ######
+
+cmd: SUHS_CK 1 55142362 0 0 1 0
+[INFO] main.c:SUHS_CK opens a CHECKING account
+
+cmd: R_CD 1 561.84 1 1 8 0
+[INFO] main.c:R_CD opens a CD account
+
+cmd: OQR_CK 1 965 0 0 5 0
+[INFO] main.c:OQR_CK opens a CHECKING account
+
+cmd: J_CK 8 2330.42 0 0 25 0
+[INFO] main.c:J_CK performs Wire-transfer
+
+[INFO] ###### J_CK wires 2330.42 in Australia dollar to 185098 in Japan yen with process fee as 0 in Australia dollar ######
+
+cmd: A_CK 6 3 0 0 2 0
+[INFO] main.c:Withdrawl to A_CK's CHECKING account
+
+The original balance is 191.89
+The unposted interest is 0.00
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 5.20
+[INFO] ##### A_CK WITHDRAWL European euro 3 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: LU_CC 5 7 7 0 70 0
+[INFO] main.c:Handling LU_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to LU_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 7 Singapore dollar with PURCHASE type has commited into LU_CC's CREDIT CARD account ######
+cmd: AE_CK 5 9407 0 0 5 0
+[INFO] main.c:Deposit to AE_CK's CHECKING account
+
+cmd: WC_ARM51 1 63067.05 6 432 0 6306.705
+[INFO] main.c:WC_ARM51 opens a mortgage account
+
+[INFO] ###### WC_ARM51's MORTGAGE acct with financed part: $63067.05 and downpayment: $6306.705 is opened ######
+
+cmd: GDMP_CD 6 457.85 1 0 7 0
+[INFO] main.c:Withdrawl to GDMP_CD's CD account
+
+The original balance is 125758.06
+The unposted interest is 94.34
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 399.9
+[INFO] ##### GDMP_CD WITHDRAWL Singapore dollar 457.85 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $55.2 New Zealand dollar
+
+cmd: GOWBC_CK 6 1 0 0 4 0
+[INFO] main.c:Withdrawl to GOWBC_CK's CHECKING account
+
+The original balance is 682068.67
+The unposted interest is 18.94
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 0.10
+[INFO] ##### GOWBC_CK WITHDRAWL Hong Kong dollar 1 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 European euro
+
+cmd: L_CK 6 47 0 0 7 0
+[INFO] main.c:Withdrawl to L_CK's CHECKING account
+
+The original balance is 14107.32
+The unposted interest is 0
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 47
+[INFO] ##### L_CK WITHDRAWL Singapore dollar 47 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Singapore dollar
+
+cmd: IHGH_CD 5 47 1 0 1 0
+[INFO] main.c:Deposit to IHGH_CD's CD account
+
+cmd: FN_CK 5 6 0 0 8 0
+[INFO] main.c:Deposit to FN_CK's CHECKING account
+
+cmd: CJHVC_CD 1 851554560 1 3 8 0
+[INFO] main.c:CJHVC_CD opens a CD account
+
+cmd: VH_CD 5 58 1 0 1 0
+[INFO] main.c:Deposit to VH_CD's CD account
+
+cmd: OE_CK 8 1 0 0 15 0
+[INFO] main.c:OE_CK performs Wire-transfer
+
+[INFO] deposit.c:OE_CK's account will have zero balance after this wire transfer
+
+[INFO] ###### OE_CK wires 1 in European euro to 137 in Japan yen with process fee as 0 in European euro ######
+
+cmd: SSYKY_CD 6 7963 1 0 8 0
+[INFO] main.c:Withdrawl to SSYKY_CD's CD account
+
+The original balance is 965615497.88
+The unposted interest is 250003.30
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 133.03
+[INFO] ##### SSYKY_CD WITHDRAWL New Taiwan dollar 7963 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $193203.10 U.K. Sterling
+
+cmd: Y_CD 5 92539306 1 0 3 0
+[INFO] main.c:Deposit to Y_CD's CD account
+
+cmd: KBPUL_CD 5 299626.19 1 0 8 0
+[INFO] main.c:Deposit to KBPUL_CD's CD account
+
+cmd: COEEX_CD 5 914 1 0 2 0
+[INFO] main.c:Deposit to COEEX_CD's CD account
+
+cmd: ISK_CC 5 771 7 0 71 0
+[INFO] main.c:Handling ISK_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to ISK_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 771 Singapore dollar with CASH ADVANCE type has commited into ISK_CC's CREDIT CARD account ######
+cmd: KGWSK_CD 6 68910.37 1 0 6 0
+[INFO] main.c:Withdrawl to KGWSK_CD's CD account
+
+The original balance is 96494770
+The unposted interest is 102546.53
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 25588.71
+[INFO] ##### KGWSK_CD WITHDRAWL New Zealand dollar 68910.37 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $19349.46 U.K. Sterling
+
+cmd: RFDJV_CK 1 991336 0 0 1 0
+[INFO] main.c:RFDJV_CK opens a CHECKING account
+
+cmd: B_CD 5 656 1 0 8 0
+[INFO] main.c:Deposit to B_CD's CD account
+
+cmd: JMQ_CC 5 698.25 7 0 71 0
+[INFO] main.c:Handling JMQ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to JMQ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 698.25 Singapore dollar with CASH ADVANCE type has commited into JMQ_CC's CREDIT CARD account ######
+cmd: JFWG_CK 5 67 0 0 7 0
+[INFO] main.c:Deposit to JFWG_CK's CHECKING account
+
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 9
+cmd: NXJT_CD 1 9772.29 1 1 0 0
+[INFO] main.c:NXJT_CD opens a CD account
+
+cmd: KPS_CK 1 3452 0 0 1 0
+[INFO] main.c:KPS_CK opens a CHECKING account
+
+cmd: MFLRY_CC 5 4 7 0 11 0
+[INFO] main.c:Handling MFLRY_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to MFLRY_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 4 Chinese yuan with CASH ADVANCE type has commited into MFLRY_CC's CREDIT CARD account ######
+cmd: IL_CK 5 855229.83 0 0 7 0
+[INFO] main.c:Deposit to IL_CK's CHECKING account
+
+cmd: S_CD 5 9 1 0 4 0
+[INFO] main.c:Deposit to S_CD's CD account
+
+cmd: RFDJV_CK 6 9020.61 0 0 3 0
+[INFO] main.c:Withdrawl to RFDJV_CK's CHECKING account
+
+The original balance is 991336
+The unposted interest is 13.77
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 139818.5
+[INFO] ##### RFDJV_CK WITHDRAWL U.K. Sterling 9020.61 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Chinese yuan
+
+cmd: LDYF_CK 6 8 0 0 8 0
+[INFO] main.c:Withdrawl to LDYF_CK's CHECKING account
+
+The original balance is 916
+The unposted interest is 0.01
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 0.35
+[INFO] ##### LDYF_CK WITHDRAWL New Taiwan dollar 8 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: JFWG_CK 5 4979 0 0 2 0
+[INFO] main.c:Deposit to JFWG_CK's CHECKING account
+
+cmd: VLFB_CD 5 922 1 0 4 0
+[INFO] main.c:Deposit to VLFB_CD's CD account
+
+cmd: DSO_CD 1 700 1 1 2 0
+[INFO] main.c:DSO_CD opens a CD account
+
+cmd: SUHS_CK 6 6 0 0 6 0
+[INFO] main.c:Withdrawl to SUHS_CK's CHECKING account
+
+The original balance is 55142362
+The unposted interest is 765.87
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 34.5
+[INFO] ##### SUHS_CK WITHDRAWL New Zealand dollar 6 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Chinese yuan
+
+cmd: SR_CD 1 460373.86 1 3 3 0
+[INFO] main.c:SR_CD opens a CD account
+
+cmd: E_CD 1 20228 1 1 1 0
+[INFO] main.c:E_CD opens a CD account
+
+cmd: GXPB_CD 5 6049877.56 1 0 1 0
+[INFO] main.c:Deposit to GXPB_CD's CD account
+
+cmd: ZERZ_CK 5 904780.38 0 0 3 0
+[INFO] main.c:Deposit to ZERZ_CK's CHECKING account
+
+cmd: S_CK 5 509 0 0 2 0
+[INFO] main.c:Deposit to S_CK's CHECKING account
+
+cmd: DRF_CK 1 162112373 0 0 3 0
+[INFO] main.c:DRF_CK opens a CHECKING account
+
+cmd: BWOJG_CD 6 802.17 1 0 1 0
+[INFO] main.c:Withdrawl to BWOJG_CD's CD account
+
+The original balance is 297642.17
+The unposted interest is 37.62
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 51.91
+[INFO] ##### BWOJG_CD WITHDRAWL Chinese yuan 802.17 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $89.54 U.K. Sterling
+
+cmd: U_CD 5 884 1 0 5 0
+[INFO] main.c:Deposit to U_CD's CD account
+
+cmd: QFX_CD 5 482314023 1 0 6 0
+[INFO] main.c:Deposit to QFX_CD's CD account
+
+cmd: KPS_CK 5 9404357 0 0 8 0
+[INFO] main.c:Deposit to KPS_CK's CHECKING account
+
+cmd: LDYF_CK 8 53 0 0 62 0
+[INFO] main.c:LDYF_CK performs Wire-transfer
+
+[INFO] ###### LDYF_CK wires 53 in Australia dollar to 30.71 in European euro with process fee as 0 in Australia dollar ######
+
+cmd: UF_CK 1 8581041 0 0 2 0
+[INFO] main.c:UF_CK opens a CHECKING account
+
+cmd: BT_CD 6 89974.36 1 0 7 0
+[INFO] main.c:Withdrawl to BT_CD's CD account
+
+The original balance is 44920
+The unposted interest is 10.52
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 41784.98
+[INFO] ##### BT_CD WITHDRAWL Singapore dollar 89974.36 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $38.99 European euro
+
+cmd: KZA_CD 1 978 1 1 2 0
+[INFO] main.c:KZA_CD opens a CD account
+
+cmd: IBXIY_CK 6 70 0 0 6 0
+[INFO] main.c:Withdrawl to IBXIY_CK's CHECKING account
+
+The original balance is 12710.08
+The unposted interest is 1.44
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 64.25
+[INFO] ##### IBXIY_CK WITHDRAWL New Zealand dollar 70 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Australia dollar
+
+cmd: TAAL_CD 6 6676 1 0 2 0
+[INFO] main.c:Withdrawl to TAAL_CD's CD account
+
+The original balance is 3949602
+The unposted interest is 18.60
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 913962
+[INFO] ##### TAAL_CD WITHDRAWL European euro 6676 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $820 Japan yen
+
+cmd: Q_CD 5 1677 1 0 1 0
+[INFO] main.c:Deposit to Q_CD's CD account
+
+cmd: XYHGJ_CK 1 392.42 0 0 8 0
+[INFO] main.c:XYHGJ_CK opens a CHECKING account
+
+cmd: XPBNE_CK 6 1212.00 0 0 7 0
+[INFO] main.c:Withdrawl to XPBNE_CK's CHECKING account
+
+The original balance is 8354960.03
+The unposted interest is 348.12
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 6088.2
+[INFO] ##### XPBNE_CK WITHDRAWL Singapore dollar 1212.00 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Chinese yuan
+
+cmd: HKK_CK 5 3 0 0 7 0
+[INFO] main.c:Deposit to HKK_CK's CHECKING account
+
+cmd: W_CK 6 7.70 0 0 8 0
+[INFO] main.c:Withdrawl to W_CK's CHECKING account
+
+The original balance is 15909602.05
+The unposted interest is 1104.87
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 0.40
+[INFO] ##### W_CK WITHDRAWL New Taiwan dollar 7.70 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 Singapore dollar
+
+cmd: LELO_CD 1 61931.47 1 1 7 0
+[INFO] main.c:LELO_CD opens a CD account
+
+cmd: KPS_CK 8 370 0 0 84 0
+[INFO] main.c:KPS_CK performs Wire-transfer
+
+[INFO] ###### KPS_CK wires 370 in Chinese yuan to 348.8 in Hong Kong dollar with process fee as 0 in Chinese yuan ######
+
+cmd: NON_CUSTOMER 8 7918839 0 0 28 0
+[INFO] main.c:NON_CUSTOMER performs Wire-transfer
+
+[INFO] ###### Non-customer wires 7918839 in European euro to 331074891 in New Taiwan dollar with process fee as 158376.78 in European euro ######
+
+cmd: PFJMA_CD 1 5 1 3 3 0
+[INFO] main.c:PFJMA_CD opens a CD account
+
+cmd: IL_CK 5 6884 0 0 3 0
+[INFO] main.c:Deposit to IL_CK's CHECKING account
+
+cmd: TOBGJ_CC 5 8603 7 0 51 0
+[INFO] main.c:Handling TOBGJ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to TOBGJ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 8603 Japan yen with CASH ADVANCE type has commited into TOBGJ_CC's CREDIT CARD account ######
+cmd: RFDJV_CK 5 354616.97 0 0 2 0
+[INFO] main.c:Deposit to RFDJV_CK's CHECKING account
+
+cmd: BWOJG_CD 5 79 1 0 8 0
+[INFO] main.c:Deposit to BWOJG_CD's CD account
+
+cmd: XEBZ_CC 5 872242.59 7 0 51 0
+[INFO] main.c:Handling XEBZ_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to XEBZ_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 872242.59 Japan yen with CASH ADVANCE type has commited into XEBZ_CC's CREDIT CARD account ######
+cmd: U_CD 6 53169 1 0 5 0
+[INFO] main.c:Withdrawl to U_CD's CD account
+
+The original balance is 7292608.77
+The unposted interest is 2597.32
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 388.59
+[INFO] ##### U_CD WITHDRAWL Japan yen 53169 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $1489.04 European euro
+
+cmd: LDYF_CK 5 966 0 0 6 0
+[INFO] main.c:Deposit to LDYF_CK's CHECKING account
+
+cmd: JFWG_CK 5 483009.51 0 0 0 0
+[INFO] main.c:Deposit to JFWG_CK's CHECKING account
+
+cmd: WSDU_CK 5 7631.14 0 0 6 0
+[INFO] main.c:Deposit to WSDU_CK's CHECKING account
+
+cmd: VLFB_CD 6 262 1 0 0 0
+[INFO] main.c:Withdrawl to VLFB_CD's CD account
+
+The original balance is 27539.69
+The unposted interest is 9.66
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 151.80
+[INFO] ##### VLFB_CD WITHDRAWL Australia dollar 262 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $35.51 European euro
+
+cmd: TKSK_CK 1 10502 0 0 3 0
+[INFO] main.c:TKSK_CK opens a CHECKING account
+
+cmd: NIL_CK 1 889 0 0 4 0
+[INFO] main.c:NIL_CK opens a CHECKING account
+
+cmd: AE_CK 5 52 0 0 8 0
+[INFO] main.c:Deposit to AE_CK's CHECKING account
+
+cmd: PLCXT_CD 1 2 1 1 8 0
+[INFO] main.c:PLCXT_CD opens a CD account
+
+cmd: KU_CD 1 777087346 1 6 7 0
+[INFO] main.c:KU_CD opens a CD account
+
+cmd: JDUXA_CK 1 6839 0 0 2 0
+[INFO] main.c:JDUXA_CK opens a CHECKING account
+
+cmd: SWRS_CK 5 1514 0 0 4 0
+[INFO] main.c:Deposit to SWRS_CK's CHECKING account
+
+cmd: NXJT_CD 5 29171469 1 0 5 0
+[INFO] main.c:Deposit to NXJT_CD's CD account
+
+cmd: HO_CD 1 107 1 3 3 0
+[INFO] main.c:HO_CD opens a CD account
+
+cmd: WD_CC 5 419539.29 7 0 51 0
+[INFO] main.c:Handling WD_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to WD_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 419539.29 Japan yen with CASH ADVANCE type has commited into WD_CC's CREDIT CARD account ######
+cmd: HL_CD 1 94 1 1 3 0
+[INFO] main.c:HL_CD opens a CD account
+
+cmd: KRT_CK 1 8965 0 0 6 0
+[INFO] main.c:KRT_CK opens a CHECKING account
+
+cmd: LIL_CD 6 480 1 0 2 0
+[INFO] main.c:Withdrawl to LIL_CD's CD account
+
+The original balance is 690214.80
+The unposted interest is 49.08
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 5193.4
+[INFO] ##### LIL_CD WITHDRAWL European euro 480 from its CD account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $168.1 Chinese yuan
+
+cmd: MP_CD 1 2317 1 1 6 0
+[INFO] main.c:MP_CD opens a CD account
+
+cmd: KPS_CK 5 6023 0 0 1 0
+[INFO] main.c:Deposit to KPS_CK's CHECKING account
+
+cmd: VDLE_CK 1 6013396.63 0 0 6 0
+[INFO] main.c:VDLE_CK opens a CHECKING account
+
+cmd: ZTB_CK 5 57 0 0 5 0
+[INFO] main.c:Deposit to ZTB_CK's CHECKING account
+
+cmd: JUSN_CC 5 264.96 7 0 81 0
+[INFO] main.c:Handling JUSN_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to JUSN_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 264.96 New Taiwan dollar with CASH ADVANCE type has commited into JUSN_CC's CREDIT CARD account ######
+cmd: FRU_CK 1 7681165 0 0 5 0
+[INFO] main.c:FRU_CK opens a CHECKING account
+
+cmd: WIMSA_CK 5 93.69 0 0 1 0
+[INFO] main.c:Deposit to WIMSA_CK's CHECKING account
+
+cmd: FN_CK 6 9217 0 0 1 0
+[INFO] main.c:Withdrawl to FN_CK's CHECKING account
+
+The original balance is 304116.81
+The unposted interest is 17.04
+[INFO] deposit.c:Unposted interest goes into current balance immediately
+
+The converted amount is 854.40
+[INFO] ##### FN_CK WITHDRAWL Chinese yuan 9217 from its Checking account #####
+
+[INFO] deposit.c:Total withdrawl penalty (fixed surcharge: $30) is $0 European euro
+
+cmd: YR_CK 8 6 0 0 2 0
+[INFO] main.c:YR_CK performs Wire-transfer
+
+[INFO] ###### YR_CK wires 6 in Singapore dollar to 2.79 in European euro with process fee as 0 in Singapore dollar ######
+
+cmd: SJH_CC 5 5 7 0 70 0
+[INFO] main.c:Handling SJH_CC's Credit Card account
+
+[INFO] main.c:A transaction is posted to SJH_CC Credit Card account
+
+[INFO] ###### New Transaction is posted: 5 Singapore dollar with PURCHASE type has commited into SJH_CC's CREDIT CARD account ######
+cmd: 0 0 0 0 0 0 0
+[INFO] main.c:Processing Deposit Accounts
+
+[INFO] main.c:Updating Prime Rate Table
+
+[INFO] main.c:Updating Currency Conversion Rate Table
+
+[INFO] main.c:Updating CD Rate Table
+
+[INFO] main.c:Updating Mortgage Rate Table
+
+[INFO] main.c:Updating TCM Rate Table
+
+[INFO] main.c:Processing Mortgage Accounts
+
+[INFO] main.c:Processing Credit Card Accounts
+
+End of Day 10
+The number of CD accounts: 79
+The active CD accounts includes:
+VC_CD, ZYQ_CD, YEA_CD, D_CD, MFDD_CD, CV_CD, EFQ_CD, HL_CD, LIL_CD, DPXE_CD, KZA_CD, WZPE_CD, TAAL_CD, Q_CD, QXA_CD, FMQY_CD, DGHM_CD, LUUXT_CD, GXF_CD, PGL_CD, VUZA_CD, YMA_CD, RYIDB_CD, PLCXT_CD, NY_CD, PCIEB_CD, HFJ_CD, UF_CD, E_CD, BT_CD, GXPB_CD, PFJMA_CD, BWOJG_CD, U_CD, QFX_CD, SX_CD, MP_CD, R_CD, WG_CD, GDMP_CD, IHGH_CD, HFJRO_CD, UFKFV_CD, P_CD, O_CD, DZ_CD, BDPW_CD, RWU_CD, HWT_CD, XJNX_CD, AF_CD, ZEIVV_CD, TFO_CD, DJC_CD, J_CD, AIF_CD, KU_CD, VDNDN_CD, NXJT_CD, S_CD, VLFB_CD, YFLCI_CD, UGTVK_CD, JAFW_CD, KPS_CD, CJHVC_CD, VH_CD, SSYKY_CD, Y_CD, KBPUL_CD, COEEX_CD, SR_CD, DSO_CD, HO_CD, KGWSK_CD, LELO_CD, B_CD, AHU_CD, JYI_CD, 
+The number of Checking accounts: 82
+The active Checking accounts includes:DOQ_CK, OQR_CK, J_CK, A_CK, NIL_CK, AE_CK, JP_CK, GOWBC_CK, FRU_CK, L_CK, WIMSA_CK, FN_CK, YR_CK, OE_CK, JJCJR_CK, HHJQJ_CK, ET_CK, JX_CK, JCRCH_CK, VIFD_CK, AC_CK, HNKT_CK, SKD_CK, VAZL_CK, JDUXA_CK, SWRS_CK, OCWTL_CK, WAF_CK, TKSK_CK, PQI_CK, XRQ_CK, XJU_CK, Y_CK, WYM_CK, G_CK, F_CK, V_CK, DRF_CK, AQXX_CK, P_CK, OXVF_CK, FU_CK, BH_CK, AONF_CK, XYHGJ_CK, XPBNE_CK, HKK_CK, RHK_CK, W_CK, KRT_CK, KPS_CK, IL_CK, RFDJV_CK, LDYF_CK, JFWG_CK, WSDU_CK, SUHS_CK, ZERZ_CK, S_CK, VSOZ_CK, WJO_CK, QOQHL_CK, DO_CK, UF_CK, IBXIY_CK, BN_CK, UQXU_CK, Z_CK, DH_CK, B_CK, BF_CK, YE_CK, QMV_CK, IXNYE_CK, VDLE_CK, ZTB_CK, M_CK, RDP_CK, K_CK, DEHI_CK, DU_CK, JMNRH_CK, 
+The number of Mortgage accounts: 100
+The active Mortgage accounts includes:BTWF_ARM1, UOQ_FRM30, V_FRM15, H_FRM15, OA_FRM15, N_ARM1, WEMI_FRM30, BZ_FRM30, FHYYL_FRM30, N_ARM51, Q_ARM1, R_ARM1, WDCEI_ARM1, UQEBQ_ARM1, Z_FRM15, WPC_ARM1, HB_ARM1, UHR_ARM51, YXD_FRM30, NEHIQ_FRM15, LW_ARM51, D_ARM1, VWJPB_ARM1, TOTAW_ARM51, ZWW_ARM51, AMF_FRM15, XA_ARM1, QBJDP_ARM1, EGTI_FRM15, FJDYQ_FRM30, ITN_ARM1, DZB_ARM1, YIH_FRM30, DTX_ARM1, BWVO_ARM1, DDVG_FRM30, TFB_FRM30, ANEHN_ARM51, S_ARM51, WYB_ARM51, UCF_ARM51, VTZ_ARM1, G_FRM30, JRZA_FRM30, N_FRM30, CPSR_FRM15, T_FRM30, S_FRM15, WCIQU_FRM30, XMR_ARM51, OZKXM_FRM15, C_FRM15, DZIP_ARM51, WC_ARM51, BXQ_FRM30, PZ_ARM51, UFTI_FRM30, RFK_ARM51, LJU_FRM30, YH_ARM1, FSDXG_ARM1, QFS_FRM30, A_ARM1, EL_FRM30, HUU_FRM15, VZ_ARM1, IVRDT_FRM30, CGFQ_ARM1, GXSD_FRM15, WOJ_FRM15, R_FRM30, FAL_ARM1, UQP_FRM30, ODS_ARM51, JVF_ARM51, TBIFE_ARM1, HDQ_FRM30, Q_ARM51, G_FRM15, WEVA_FRM15, PAVEL_ARM1, JJQVF_FRM15, X_ARM1, K_ARM51, NUM_ARM1, POLDO_FRM15, KUM_FRM30, LMOWV_ARM1, KFNK_ARM51, ZXJSC_FRM15, Z_ARM1, QF_FRM15, PUS_FRM15, GTJHD_FRM15, LJJK_ARM51, DUW_ARM51, WBM_ARM1, U_FRM30, STUP_ARM51, UBEBR_ARM51, 
+The number of Credit Card accounts: 100
+The active Credit Card accounts includes:SWHO_CC, MFLRY_CC, XSB_CC, SURR_CC, LDCR_CC, GEA_CC, XYFTP_CC, VHU_CC, AS_CC, FDP_CC, TD_CC, ZY_CC, LS_CC, IK_CC, SIWO_CC, XKD_CC, YFQKK_CC, IJM_CC, TOBGJ_CC, XEBZ_CC, MRLOL_CC, D_CC, NFVL_CC, WD_CC, JUSN_CC, SKCFD_CC, BHGAK_CC, SJH_CC, TNWNN_CC, LVQQ_CC, LHG_CC, HMV_CC, NOLS_CC, CIO_CC, MLIM_CC, KA_CC, YJ_CC, SZEB_CC, Z_CC, UCVGI_CC, ZE_CC, FFLEE_CC, DDT_CC, TIF_CC, BCSGI_CC, V_CC, ROTQ_CC, WW_CC, YXTE_CC, DFO_CC, WL_CC, XLNWH_CC, YMH_CC, VEN_CC, IVVQF_CC, USZJ_CC, NSUEH_CC, ATTE_CC, PAM_CC, PG_CC, RDG_CC, FIRKX_CC, ZMXB_CC, XOV_CC, KVBR_CC, ROD_CC, AU_CC, H_CC, ID_CC, SK_CC, YZKWQ_CC, ME_CC, LU_CC, ZEWZ_CC, UFESC_CC, ISK_CC, KDRC_CC, JMQ_CC, ILN_CC, PA_CC, C_CC, TB_CC, OIH_CC, MO_CC, RRAFB_CC, HLFQ_CC, BJRE_CC, XKJ_CC, W_CC, EDKN_CC, MCHF_CC, KJGZH_CC, U_CC, CL_CC, NTLWH_CC, CZ_CC, TMR_CC, RJPTD_CC, WZQ_CC, PIAYV_CC, 
+End of the Banking benchmark

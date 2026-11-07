@@ -1,0 +1,61 @@
+go-decimal128-app-benchmark
+===========================
+
+Go implementations of the UW-Madison decimal floating-point application
+benchmarks, for measuring Go decimal128 libraries.
+
+This repository is licensed under the GNU General Public License v3.0 or later
+(see LICENSE). The GPL obligation comes entirely from the benchmark workloads
+described below. The decimal libraries it measures are external Go module
+dependencies under their own licenses; they are not copied into this
+repository, and this repository does not change their terms.
+
+
+Attribution and provenance of the benchmark workloads
+------------------------------------------------------
+
+* Banking, Tax Preparation, Risk Management, Euro Conversion
+    Source: University of Wisconsin-Madison, MESA Lab.
+      Decimal Floating-Point (DFP) Benchmark suite, v1.0.
+    Papers:
+      Liang-Kai Wang, Michael J. Schulte, et al.,
+        "Benchmarks and Performance Analysis of Decimal Floating-Point
+         Applications," IEEE International Conference on Computer Design
+         (ICCD), October 2007.
+      Mike Anderson, Charles Tsen, Liang-Kai Wang, Katherine Compton,
+        Michael J. Schulte,
+        "Performance Analysis of Decimal Floating-Point Libraries and Its
+         Impact on Decimal Hardware and Software Solutions," IEEE ICCD,
+         October 2009.
+    License: GNU General Public License v3.0 (see the suite's source headers,
+             e.g. arith.def / operator.h).
+    The Tax Preparation benchmark is itself derived from OpenTaxSolver
+      (http://opentaxsolver.sourceforge.net/), also GPL-licensed.
+    The original suite is published in
+      https://github.com/migueldecimal128/decimal128-resources
+      (UW-Madison/DFPBenchmarksv1.0/).
+
+The input data and the euro conversion and banking reference outputs under
+data/ are the suite's own files, unchanged and likewise GPLv3. The tax
+preparation and risk management reference outputs were regenerated in
+decimal128-app-benchmark (see data/README.md).
+
+The Go programs under apps/ are translations of those GPL-licensed C programs,
+made in https://github.com/migueldecimal128/decimal128-app-benchmark. They are
+DERIVATIVE WORKS and are therefore GPLv3 (per-file header
+SPDX-License-Identifier: GPL-3.0-or-later).
+
+
+Files under other licenses
+--------------------------
+
+* internal/harness/ — MIT (SPDX-License-Identifier: MIT). Benchmark plumbing
+  (environment handling, BID record decoding, timing, result markers); not
+  derived from the UW-Madison sources.
+
+
+Dependencies (not copied into this repository)
+----------------------------------------------
+
+* decimal128-go — https://github.com/migueldecimal128/decimal128-go
+    MIT License. Fetched by the Go toolchain at the version pinned in go.mod.
