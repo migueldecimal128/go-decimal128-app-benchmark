@@ -4,7 +4,7 @@
 // Library miguel-decimal128-go: github.com/migueldecimal128/decimal128-go.
 // Built with -tags miguel_decimal128_go.
 
-package dec
+package decimal
 
 import lib "github.com/migueldecimal128/decimal128-go"
 

@@ -26,7 +26,7 @@ are in [`results/data/`](results/data/).
   (commit `da7019d`), unchanged apart from module and import paths. All pass
   their gates: euro, banking and tax (fed/ca/nc) byte-exact, risk 20/20.
 - **Library adapter:** the apps reach a decimal library only through
-  [`internal/dec`](internal/dec/doc.go), the Go counterpart of the C suite's
+  [`internal/decimal`](internal/decimal/doc.go), the Go counterpart of the C suite's
   `operator.h`. The library is chosen at compile time by a build tag, with no
   interface or dispatch on the measured path. Its documentation states the
   contract every library must meet and what the layer costs.
@@ -54,7 +54,7 @@ apps/tax_preparation/cmd/tax-{fed,ca,nc}/
 apps/tax_preparation/internal/tax/       the three tax forms
 apps/banking/cmd/banking/                banking
 apps/telco/cmd/telco/                    telco (MIT)
-internal/dec/                            the library adapter (MIT)
+internal/decimal/                            the library adapter (MIT)
 internal/harness/                        shared timing and I/O helpers (MIT)
 cmd/bench/                               the runner (MIT)
 baseline/noop/                           startup baseline program (MIT)
@@ -102,12 +102,12 @@ tag the build fails on purpose.
 
 ## Libraries
 
-Each decimal library has one adapter file, `internal/dec/lib_<name>.go`, chosen
+Each decimal library has one adapter file, `internal/decimal/lib_<name>.go`, chosen
 at compile time by a build tag; the apps are the same for every library. The
 runner builds the apps once per library, interleaves their runs, and reports
 one row per library. Every program prints the library it was compiled with,
 and the runner checks it, so results cannot be recorded under the wrong name.
-[`internal/dec/README.md`](internal/dec/README.md) lists the libraries and
+[`internal/decimal/README.md`](internal/decimal/README.md) lists the libraries and
 explains how to run each and how to add one.
 
 ## Licensing
@@ -126,7 +126,7 @@ program here is MIT. See [NOTICE](NOTICE) for attribution.
   library's license notice.
 - **Code flows one way.** Nothing from this repository goes into the libraries
   it measures; library changes are made in the library's own repository.
-- **`internal/dec`, `internal/harness`, the runner and the baseline are MIT.**
+- **`internal/decimal`, `internal/harness`, the runner and the baseline are MIT.**
   They are benchmark plumbing, not derived from the UW-Madison sources.
 - **Any library added later must be GPLv3-compatible** (MIT, BSD and Apache-2.0
   are).

@@ -26,7 +26,7 @@ import (
 	"strconv"
 	"strings"
 
-	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 	harness "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/harness"
 )
 

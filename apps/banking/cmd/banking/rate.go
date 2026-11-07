@@ -6,7 +6,7 @@
 // print "Use the old … rate"). Reads the BID-encoded .bid128 variants.
 package main
 
-import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 
 func (bk *bank) initCoin() {
 	for i := 0; i <= 8; i++ {

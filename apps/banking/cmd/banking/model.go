@@ -6,7 +6,7 @@
 // for decimal128-go is bit-identical to parse("0") (= the C ZERO64 clears).
 package main
 
-import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 
 type dec = d.Decimal128
 

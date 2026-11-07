@@ -1,4 +1,4 @@
-# internal/dec: the decimal library adapter
+# internal/decimal: the decimal library adapter
 
 Every app reaches a decimal library only through this package (the Go
 counterpart of the C suite's `operator.h`). Each library has one file here,
@@ -50,7 +50,7 @@ go run ./cmd/bench -lib all                 # every library, runs interleaved
 go run ./cmd/bench -lib <name>[,<name>...]  # these libraries
 go run ./cmd/bench -app banking -lib <name> # one app, one library
 
-go test -tags <tag> ./internal/dec          # contract and inlining tests
+go test -tags <tag> ./internal/decimal          # contract and inlining tests
 go build -tags <tag> -o bin/<name>/ ./apps/...
 ```
 
@@ -67,7 +67,7 @@ table.
 2. Add `!<tag>` to the `//go:build` line of `nolib.go`, so it compiles only
    when no library tag is given.
 3. Add the module to `go.mod` (`go get <module>@<version>`).
-4. `go test -tags <tag> ./internal/dec` checks the contract, that every
+4. `go test -tags <tag> ./internal/decimal` checks the contract, that every
    wrapper inlines (or is listed, with its cost, in `inline_test.go`), and
    that no app bypasses the adapter.
 5. Add `{name, tag, module, unsupported}` to the runner's `libraries` table

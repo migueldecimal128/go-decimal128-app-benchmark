@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-package dec
+package decimal
 
 import (
 	"go/ast"

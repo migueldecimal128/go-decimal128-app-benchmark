@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 
-// Package dec is the only way the benchmark apps reach a decimal library: the
+// Package decimal is the only way the benchmark apps reach a decimal library: the
 // Go counterpart of the C suite's operator.h. Every app imports it as
 //
-//	import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+//	import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 //
 // and uses only the names below. The library behind them is chosen when the
 // program is compiled, by a build tag; there is no interface, no generic type
@@ -18,7 +18,7 @@
 // with a message saying so. README.md lists the libraries, how each is
 // identified and run, and the steps to add one: a new lib_<name>.go starting
 // with //go:build <tag>, and !<tag> added to nolib.go's build line.
-// go test -tags <tag> ./internal/dec then
+// go test -tags <tag> ./internal/decimal then
 // checks the contract (contract_test.go) and that every wrapper inlines
 // (inline_test.go). A library that does not pass the contract tests will not
 // pass the gates either; the tests point at the operation that differs.
@@ -84,4 +84,4 @@
 // Two wrapper layers do not fit the budget. Keep app code calling these names
 // directly rather than through helpers of its own (banking's helpers were
 // removed for this reason).
-package dec
+package decimal

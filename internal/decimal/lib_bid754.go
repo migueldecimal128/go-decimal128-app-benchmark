@@ -17,7 +17,7 @@
 // value of Decimal128 is 0E-6176, not +0E+0; euro and tax always start from
 // an explicit zero.
 
-package dec
+package decimal
 
 import (
 	"encoding/binary"

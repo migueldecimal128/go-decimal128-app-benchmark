@@ -29,7 +29,7 @@ import (
 	"strconv"
 	"time"
 
-	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 	harness "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/harness"
 )
 
@@ -150,8 +150,8 @@ type bank struct {
 var zeroD = d.MustParse("0") // ZERO64 == +0E+0
 
 // --- decimal helpers --------------------------------------------------------
-// Arithmetic calls the adapter (internal/dec) directly: a helper layer of its
-// own on top would no longer inline (see internal/dec, "Cost").
+// Arithmetic calls the adapter (internal/decimal) directly: a helper layer of its
+// own on top would no longer inline (see internal/decimal, "Cost").
 
 func gt(x, y dec) bool { return y.Less(x) }
 func lt(x, y dec) bool { return x.Less(y) }

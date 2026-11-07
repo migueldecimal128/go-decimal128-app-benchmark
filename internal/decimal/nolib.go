@@ -6,6 +6,6 @@
 // build must name one, e.g. go build -tags miguel_decimal128_go ./apps/...
 // This file exists to make a build without a tag fail with a clear message.
 
-package dec
+package decimal
 
 var _ = noLibrarySelected_buildWithTags_miguel_decimal128_go_or_bid754

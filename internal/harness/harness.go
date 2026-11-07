@@ -4,7 +4,7 @@
 // handling, splitting a BID record into its 64-bit halves, the best-of-N
 // compute clock, and the COMPUTE_* markers the runner parses. It contains no
 // decimal arithmetic; the apps reach a decimal library only through
-// internal/dec.
+// internal/decimal.
 package harness
 
 import (
@@ -17,7 +17,7 @@ import (
 )
 
 // AnnounceLibrary prints LIBRARY=<name> on stdout: the decimal library the
-// program was compiled with (pass internal/dec's Name). Every app calls it
+// program was compiled with (pass internal/decimal's Name). Every app calls it
 // first. The runner compares it with the library it meant to build, so a
 // libraries-table entry with another library's build tag cannot record that
 // library's results under the wrong name.

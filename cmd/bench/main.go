@@ -31,7 +31,7 @@ import (
 )
 
 // library is one decimal library the apps can be built against. Its adapter
-// file in internal/dec is selected by the build tag; the module path gives the
+// file in internal/decimal is selected by the build tag; the module path gives the
 // version go.mod pins.
 type library struct {
 	name        string            // shown in the report
@@ -215,7 +215,7 @@ func build(root, bin string, libs []library, info runInfo) {
 
 // verifyLibraries launches every built program once, without arguments, and
 // checks the LIBRARY=<name> line it prints first against the library it was
-// built for. (An unknown tag already fails to compile, via internal/dec's
+// built for. (An unknown tag already fails to compile, via internal/decimal's
 // nolib.go; this catches a table entry carrying another library's tag, which
 // would record that library's results under the wrong name.) The launch also
 // absorbs a newly built program's slow first start.

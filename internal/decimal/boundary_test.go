@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-package dec
+package decimal
 
 import (
 	"go/parser"
@@ -34,7 +34,7 @@ func TestAppsUseOnlyTheAdapter(t *testing.T) {
 			ip, _ := strconv.Unquote(imp.Path.Value)
 			first := strings.SplitN(ip, "/", 2)[0]
 			if strings.Contains(first, ".") && !strings.HasPrefix(ip, modulePath+"/") {
-				t.Errorf("%s imports %s; apps must reach a decimal library only through internal/dec", path, ip)
+				t.Errorf("%s imports %s; apps must reach a decimal library only through internal/decimal", path, ip)
 			}
 		}
 		return nil

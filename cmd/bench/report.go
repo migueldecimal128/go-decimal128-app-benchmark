@@ -24,7 +24,7 @@ var appMeta = map[string]string{
 }
 
 // libraryNote describes each library and what its adapter adds to its
-// measured time (internal/dec/lib_<name>.go has the details).
+// measured time (internal/decimal/lib_<name>.go has the details).
 var libraryNote = map[string]string{
 	"miguel-decimal128-go": "[decimal128-go](https://github.com/migueldecimal128/decimal128-go), pure Go. " +
 		"Two adapter wrappers are real calls: FromBID128 (input decoding only) and quantize with a rounding " +

@@ -11,7 +11,7 @@ package main
 import (
 	"strconv"
 
-	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 )
 
 const mortLOC = "mortgage.c"

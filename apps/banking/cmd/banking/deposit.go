@@ -6,7 +6,7 @@
 // daily_deposit_* aggregation is excluded; DEBUG is ON (the verbose transcript).
 package main
 
-import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 
 const (
 	depLOC           = "deposit.c"

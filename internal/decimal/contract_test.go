@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 
-package dec
+package decimal
 
 import "testing"
 
 // The contract (doc.go) as tests. They use only this package's API, so they
-// apply unchanged to every library's adapter: go test -tags <lib> ./internal/dec.
+// apply unchanged to every library's adapter: go test -tags <lib> ./internal/decimal.
 // Each case is a property the benchmark goldens depend on; a library that
 // fails one would fail a gate.
 

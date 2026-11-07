@@ -8,7 +8,7 @@
 // (0=PURCHASE, 1=CASH_ADVANCE, 2=BALANCE_TRANSFER) with value/apr accessors.
 package main
 
-import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 
 const ccLOC = "credit_card.c"
 

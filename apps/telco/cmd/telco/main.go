@@ -20,7 +20,7 @@
 // the preloaded input, formatting into memory, N times after the gated pass.
 //
 // Based on the telco program in decimal128-go (benchmark/telco, MIT), changed
-// to call the library through internal/dec. Cowlishaw's benchmark is freely
+// to call the library through internal/decimal. Cowlishaw's benchmark is freely
 // distributable; this program is not derived from the UW-Madison suite.
 package main
 
@@ -29,7 +29,7 @@ import (
 	"fmt"
 	"os"
 
-	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
 	harness "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/harness"
 )
 
