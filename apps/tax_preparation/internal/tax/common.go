@@ -151,6 +151,7 @@ func (o *out) flush() { os.Stderr.Write(o.buf.Bytes()) }
 
 // parseArgs checks `<input> <outname> <loop>` and returns (input path, loop).
 func parseArgs(prog string) (string, int, bool) {
+	harness.AnnounceLibrary(d.Name)
 	if len(os.Args) == 4 {
 		if loop, err := strconv.Atoi(os.Args[3]); err == nil {
 			return os.Args[1], loop, true

@@ -11,20 +11,17 @@
 // exactly what the library's own call costs, provided the compiler inlines the
 // wrapper. TestWrappersInline checks that it does.
 //
-// # Adding a library
+// # Libraries
 //
-// Add one file, e.g. apd.go, starting with //go:build apd, that defines every
-// name in the contract below for that library, and add !apd to the build
-// constraint of every other library file (decimal128go.go is the default and
-// is built when no library tag is given). Then:
-//
-//   - go test -tags apd ./internal/dec checks the contract (contract_test.go)
-//     and that every wrapper inlines (inline_test.go);
-//   - add the library to the runner's table (cmd/bench), which builds the apps
-//     once per library and gates every run against the goldens.
-//
-// A library that does not pass the contract tests will not pass the gates
-// either; the tests point at the operation that differs.
+// Each library has one file, lib_<name>.go, selected by its build tag. There
+// is no default: a build without a library tag compiles nolib.go, which fails
+// with a message saying so. README.md lists the libraries, how each is
+// identified and run, and the steps to add one: a new lib_<name>.go starting
+// with //go:build <tag>, and !<tag> added to nolib.go's build line.
+// go test -tags <tag> ./internal/dec then
+// checks the contract (contract_test.go) and that every wrapper inlines
+// (inline_test.go). A library that does not pass the contract tests will not
+// pass the gates either; the tests point at the operation that differs.
 //
 // # Contract
 //
@@ -63,7 +60,7 @@
 // # Cost
 //
 // Every library is called through exactly one wrapper layer, so comparisons
-// between libraries are like for like. Measured for decimal128-go against the
+// between libraries are like for like. Measured for miguel-decimal128-go against the
 // same apps calling the library directly (alternating runs, same machine):
 //
 //   - The machine code makes the same calls, to the same library functions,

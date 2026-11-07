@@ -70,6 +70,7 @@ func bill(in, out []byte) ([]byte, totals) {
 }
 
 func main() {
+	harness.AnnounceLibrary(d.Name)
 	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, "usage: telco <input>")
 		os.Exit(2)

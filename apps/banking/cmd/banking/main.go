@@ -667,6 +667,7 @@ func main() { os.Exit((&bank{emitEnabled: true, decodedRateFiles: map[string][]d
 
 // run is main.c's top level.
 func (bk *bank) run() int {
+	harness.AnnounceLibrary(d.Name)
 	if len(os.Args) != 2 {
 		bk.emit("[USAGE] cmd cmd_file\n")
 		bk.flushAndExit(255)

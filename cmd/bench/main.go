@@ -4,9 +4,9 @@
 // appends one record per row to results/data/<app>.jsonl, and writes
 // results/RESULTS.md. Run it from the repository root:
 //
-//	go run ./cmd/bench               # every app
-//	go run ./cmd/bench -app banking  # one app
-//	go run ./cmd/bench -report-only  # rewrite RESULTS.md from the records
+//	go run ./cmd/bench -lib all                                  # every library, every app
+//	go run ./cmd/bench -lib miguel-decimal128-go -app banking    # one library, one app
+//	go run ./cmd/bench -report-only                              # rewrite RESULTS.md from the records
 //
 // Two clocks per row. whole: process spawn -> exit for one gated run (fastest
 // of -iters). compute: the program's own timed loop (D128_COMPUTE_ITERS /
@@ -35,12 +35,12 @@ import (
 // version go.mod pins.
 type library struct {
 	name   string // shown in the report
-	tag    string // go build tag that selects its adapter ("" = the default)
+	tag    string // go build tag that selects its adapter (there is no default)
 	module string
 }
 
 var libraries = []library{
-	{name: "decimal128-go", tag: "", module: "github.com/migueldecimal128/decimal128-go"},
+	{name: "miguel-decimal128-go", tag: "miguel_decimal128_go", module: "github.com/migueldecimal128/decimal128-go"},
 }
 
 // suite is one row's workload: a program, its arguments, and how to gate it.
@@ -108,7 +108,7 @@ type runInfo struct {
 
 func main() {
 	app := flag.String("app", "", "only this app (euro_conversion, risk_management, tax_preparation, banking, telco)")
-	libName := flag.String("lib", "", "only this library (default: every library)")
+	libName := flag.String("lib", "", "libraries to run: comma-separated names, or all (required)")
 	iters := flag.Int("iters", 9, "whole runs per row (fastest kept; every run is gated)")
 	reportOnly := flag.Bool("report-only", false, "rewrite results/RESULTS.md from the records only")
 	flag.Parse()
@@ -119,14 +119,24 @@ func main() {
 		fatal("run from the repository root (go run ./cmd/bench)")
 	}
 	if !*reportOnly {
-		var libs []library
+		var names []string
 		for _, l := range libraries {
-			if (*libName == "") || (*libName == l.name) {
-				libs = append(libs, l)
-			}
+			names = append(names, l.name)
 		}
-		if len(libs) == 0 {
-			fatal("unknown library " + *libName)
+		if *libName == "" {
+			fatal("name the libraries to run: -lib <name>[,<name>...] or -lib all; libraries: " + strings.Join(names, ", "))
+		}
+		var libs []library
+		for _, want := range strings.Split(*libName, ",") {
+			found := false
+			for _, l := range libraries {
+				if (want == "all") || (want == l.name) {
+					libs, found = append(libs, l), true
+				}
+			}
+			if !found {
+				fatal("unknown library " + want + "; libraries: " + strings.Join(names, ", "))
+			}
 		}
 		info := runInfo{ts: utcNow(), arch: archName(), cpu: cpuModel(),
 			goVersion: goEnv("GOVERSION"), libVersions: map[string]string{}}
@@ -141,7 +151,8 @@ func main() {
 		}
 		fmt.Printf("[build] %s, bench %.7s%s\n", info.goVersion, info.benchCommit, dirty)
 		build(root, bin, libs, info)
-		measureStartup(root, bin, *iters, info)
+		verifyLibraries(root, bin, libs)
+		st := &startup{exe: filepath.Join(bin, "noop"), dir: root, env: baseEnv()}
 		ran := false
 		for _, a := range appOrder {
 			if (*app != "") && (*app != a) {
@@ -156,6 +167,7 @@ func main() {
 					jobs = append(jobs, newJob(func(run runFunc) { measureRow(root, bin, s, l, *iters, info, run) }))
 				}
 			}
+			jobs = append(jobs, newJob(func(run runFunc) { st.measure(*iters, run) }))
 			fmt.Printf("[measure] %s\n", a)
 			interleave(jobs)
 			ran = true
@@ -163,6 +175,7 @@ func main() {
 		if !ran {
 			fatal("unknown app " + *app)
 		}
+		st.record(root, info)
 	}
 	check(writeReport(root))
 	fmt.Println("[report] results/RESULTS.md")
@@ -187,6 +200,32 @@ func build(root, bin string, libs []library, info runInfo) {
 		fmt.Printf("[build] %s %s\n", l.module, info.libVersions[l.name])
 		goBuild(filepath.Join(bin, l.name), l.tag, "./apps/...")
 	}
+}
+
+// verifyLibraries launches every built program once, without arguments, and
+// checks the LIBRARY=<name> line it prints first against the library it was
+// built for. (An unknown tag already fails to compile, via internal/dec's
+// nolib.go; this catches a table entry carrying another library's tag, which
+// would record that library's results under the wrong name.) The launch also
+// absorbs a newly built program's slow first start.
+func verifyLibraries(root, bin string, libs []library) {
+	seen := map[string]bool{}
+	for _, l := range libs {
+		for _, s := range suites() {
+			exe := filepath.Join(bin, l.name, s.exe)
+			if seen[exe] {
+				continue
+			}
+			seen[exe] = true
+			p := runProc(root, baseEnv(), exe)
+			got, _ := marker(p.stdout, "LIBRARY")
+			if got != l.name {
+				fatal(fmt.Sprintf("%s was built for library %q (build tag %q) but reports LIBRARY=%q: "+
+					"check the tag in the libraries table and the adapter file's //go:build line", exe, l.name, l.tag, got))
+			}
+		}
+	}
+	fmt.Printf("[build] verified: every program reports the library it was built for\n")
 }
 
 // --- interleaving ----------------------------------------------------------
@@ -376,6 +415,17 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 		return n
 	}
 
+	// Warm-up: one untimed, ungated run first. The first launch of a newly
+	// built program is much slower (140-250 ms on macOS: a one-time check of
+	// the new file), and it also brings the input into the file cache.
+	stamped("warmup", func() any {
+		runProc(dir, env, exe, s.args...)
+		if s.files {
+			gateFiles()
+		}
+		return nil
+	})
+
 	// Whole clock: spawn -> exit of one gated run, fastest of iters.
 	type wholeRes struct {
 		wall int64
@@ -479,27 +529,41 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 			}
 		}
 	}
-	fmt.Printf("  %-18s whole %13.1f  %-16s compute %s\n", label, rec.WholeNsPerRecord, gate, comp)
+	fmt.Printf("  %-26s whole %13.1f  %-16s compute %s\n", label, rec.WholeNsPerRecord, gate, comp)
 }
 
-// measureStartup times a do-nothing Go program launched the same way as the
-// apps, so `whole - startup` is a program's own work.
-func measureStartup(root, bin string, iters int, info runInfo) {
-	exe := filepath.Join(bin, "noop")
-	env := baseEnv()
-	best := int64(-1)
-	var runs []int64
+// startup times the do-nothing baseline program, launched the same way as the
+// apps, so `whole - startup` is a program's own work. It runs as one more job
+// in every app's interleaved measurement: after one untimed warm-up launch,
+// each round launches it once beside each row's whole run, so the baseline is
+// taken under the same conditions as the times it is subtracted from (on this
+// machine, back-to-back launches get faster and an idle pause undoes that).
+// All launches of the run are pooled into one record.
+type startup struct {
+	exe, dir string
+	env      []string
+	runs     []int64
+}
+
+func (st *startup) measure(iters int, run runFunc) {
+	run(func() any { runProc(st.dir, st.env, st.exe); return nil }) // untimed warm-up
 	for i := 0; i < iters; i++ {
-		p := runProc(root, env, exe)
-		runs = append(runs, p.wallNs)
-		if (best < 0) || (p.wallNs < best) {
-			best = p.wallNs
-		}
+		st.runs = append(st.runs, run(func() any { return runProc(st.dir, st.env, st.exe).wallNs }).(int64))
 	}
-	appendRecord(root, "startup", startupRecord{StartupNs: best, StartupRunsNs: runs,
-		Iterations: iters, Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion,
+}
+
+func (st *startup) record(root string, info runInfo) {
+	if len(st.runs) == 0 {
+		return
+	}
+	best := st.runs[0]
+	for _, v := range st.runs {
+		best = min(best, v)
+	}
+	appendRecord(root, "startup", startupRecord{StartupNs: best, StartupRunsNs: st.runs,
+		Iterations: len(st.runs), Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion,
 		BenchCommit: info.benchCommit, BenchDirty: info.benchDirty, TimestampUTC: info.ts})
-	fmt.Printf("[measure] startup baseline %.2f ms\n", float64(best)/1e6)
+	fmt.Printf("[measure] startup baseline %.2f ms (fastest of %d launches)\n", float64(best)/1e6, len(st.runs))
 }
 
 // --- records and environment ------------------------------------------------

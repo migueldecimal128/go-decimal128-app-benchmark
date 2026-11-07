@@ -221,6 +221,7 @@ func generateOutput(s *setup, ticker *company, sb *strings.Builder) {
 func main() { os.Exit(run()) }
 
 func run() int {
+	harness.AnnounceLibrary(d.Name)
 	if len(os.Args) != 3 {
 		os.Stderr.WriteString("[USAGE] cmd loop strname\n")
 		return 1

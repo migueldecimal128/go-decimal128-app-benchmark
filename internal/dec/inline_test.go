@@ -16,11 +16,11 @@ import (
 // notInlined lists the wrappers that exceed Go's inlining budget (80), each
 // with where it runs and what that costs. Any other wrapper must inline.
 var notInlined = map[string]string{
-	// decimal128-go: cost 81. Used only to decode input: risk while preloading
+	// miguel-decimal128-go: cost 81. Used only to decode input: risk while preloading
 	// its series, tax while capturing its rows, banking at open and in
 	// prepare(), euro in Decode() before the clock starts. No timed cost.
 	"FromBID128": "setup only",
-	// decimal128-go: cost 82 (its own 3-argument method already costs 77).
+	// miguel-decimal128-go: cost 82 (its own 3-argument method already costs 77).
 	// Telco truncates its taxes with it, 1-2 calls per call record, inside the
 	// timed loop: measured +0.9% fastest sample, +1.2% median (about 0.8 ns
 	// per call record, alternating A/B against direct library calls).

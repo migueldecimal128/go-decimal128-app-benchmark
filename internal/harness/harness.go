@@ -16,6 +16,13 @@ import (
 	"time"
 )
 
+// AnnounceLibrary prints LIBRARY=<name> on stdout: the decimal library the
+// program was compiled with (pass internal/dec's Name). Every app calls it
+// first. The runner compares it with the library it meant to build, so a
+// libraries-table entry with another library's build tag cannot record that
+// library's results under the wrong name.
+func AnnounceLibrary(name string) { fmt.Printf("LIBRARY=%s\n", name) }
+
 // ComputeIters returns D128_COMPUTE_ITERS (the runner's compute-mode switch),
 // or 0 when unset/invalid — 0 means "whole mode: run the gated pass only".
 func ComputeIters() int {

@@ -108,6 +108,7 @@ func roundToAvailableCoin(a, bcoin d.Decimal128) d.Decimal128 {
 func main() { os.Exit(run()) }
 
 func run() int {
+	harness.AnnounceLibrary(d.Name)
 	if len(os.Args) < 2 {
 		os.Stderr.WriteString("euro: usage: euro <input> [output]\n")
 		return 1

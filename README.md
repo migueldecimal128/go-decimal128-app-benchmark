@@ -21,11 +21,12 @@ only counts when the output is right.
   `operator.h`. The library is chosen at compile time by a build tag, with no
   interface or dispatch on the measured path. Its documentation states the
   contract every library must meet and what the layer costs.
-- **Libraries:** [decimal128-go](https://github.com/migueldecimal128/decimal128-go).
+- **Libraries:** `miguel-decimal128-go`
+  ([decimal128-go](https://github.com/migueldecimal128/decimal128-go)).
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
 - **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
   (9.3 MB, with provenance and SHA-256 checksums).
-- **Runner:** `go run ./cmd/bench` builds, gates and times every app; results
+- **Runner:** `go run ./cmd/bench -lib all` builds, gates and times every app; results
   are in [`results/RESULTS.md`](results/RESULTS.md).
 - **Next:** other Go decimal128 libraries.
 
@@ -64,11 +65,13 @@ folder.
 Requires Go 1.26.4 or later. From the repository root:
 
 ```
-go run ./cmd/bench                 # build, gate and time every app
-go run ./cmd/bench -app banking    # one app
-go run ./cmd/bench -lib decimal128-go   # one library
-go run ./cmd/bench -report-only    # rewrite results/RESULTS.md from the records
+go run ./cmd/bench -lib all                                 # every library, every app
+go run ./cmd/bench -lib miguel-decimal128-go                # one library
+go run ./cmd/bench -lib miguel-decimal128-go -app banking   # one library, one app
+go run ./cmd/bench -report-only                             # rewrite results/RESULTS.md
 ```
+
+`-lib` is required: there is no default library (see Libraries below).
 
 Each run appends one record per row to `results/data/<app>.jsonl` and rewrites
 `results/RESULTS.md`, which explains its columns. In short:
@@ -81,18 +84,19 @@ Each run appends one record per row to `results/data/<app>.jsonl` and rewrites
 - **whole:** one run from process start to exit, fastest of 9; **startup** is a
   do-nothing Go program launched the same way.
 
-To build the programs only: `go build -trimpath -o bin/ ./apps/...` (add
-`-tags <library>` for a library other than the default).
+To build the programs only, name the library's build tag:
+`go build -tags miguel_decimal128_go -trimpath -o bin/ ./apps/...`. Without a
+tag the build fails on purpose.
 
-## Adding a library
+## Libraries
 
-1. Add its adapter file to `internal/dec` (see the package documentation).
-2. `go test -tags <library> ./internal/dec` checks the contract, that every
-   wrapper inlines, and that no app bypasses the adapter.
-3. Add it to the `libraries` table in `cmd/bench/main.go` and run the
-   benchmark; every run is gated against the goldens.
-
-The library must have a GPLv3-compatible license (see below).
+Each decimal library has one adapter file, `internal/dec/lib_<name>.go`, chosen
+at compile time by a build tag; the apps are the same for every library. The
+runner builds the apps once per library, interleaves their runs, and reports
+one row per library. Every program prints the library it was compiled with,
+and the runner checks it, so results cannot be recorded under the wrong name.
+[`internal/dec/README.md`](internal/dec/README.md) lists the libraries and
+explains how to run each and how to add one.
 
 ## Licensing
 

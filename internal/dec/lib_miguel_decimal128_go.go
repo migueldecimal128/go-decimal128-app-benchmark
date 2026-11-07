@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
+//go:build miguel_decimal128_go
 
-// The default library: decimal128-go. Built when no library tag is given; a
-// second library's file adds its tag here as !<tag>.
+// Library miguel-decimal128-go: github.com/migueldecimal128/decimal128-go.
+// Built with -tags miguel_decimal128_go.
 
 package dec
 
@@ -9,9 +10,9 @@ import lib "github.com/migueldecimal128/decimal128-go"
 
 // Library identity, recorded with the results.
 const (
-	Name     = "decimal128-go"
+	Name     = "miguel-decimal128-go"
 	Module   = "github.com/migueldecimal128/decimal128-go"
-	BuildTag = "" // the go build tag that selects this file ("" = default)
+	BuildTag = "miguel_decimal128_go" // the go build tag that selects this file
 )
 
 // Decimal128 is a decimal128 value. It is a distinct type over the library's
