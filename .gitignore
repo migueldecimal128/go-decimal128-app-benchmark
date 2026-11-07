@@ -1,5 +1,5 @@
 .DS_Store
-bin/
+/bin/
 *.test
 *.out
 data/risk_management/testGen/result/
