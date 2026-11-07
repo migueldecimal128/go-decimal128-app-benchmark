@@ -110,7 +110,7 @@ func writeReport(root string) error {
 		})
 		st, hasStart := startup[arch]
 		fmt.Fprintf(&b, "## %s\n\n", arch)
-		fmt.Fprintf(&b, "%s · %s · %s\n\n", rows[0].CPU, rows[0].GoVersion, runStamps(rows))
+		fmt.Fprintf(&b, "%s · %s · %s · benchmark code %s\n\n", rows[0].CPU, rows[0].GoVersion, runStamps(rows), benchCommits(rows))
 		if hasStart {
 			fmt.Fprintf(&b, "Startup baseline: **%.2f ms** (fastest of %d, measured %s).\n\n",
 				float64(st.StartupNs)/1e6, st.Iterations, stamp(st.TimestampUTC))
@@ -202,6 +202,24 @@ func runStamps(rows []record) string {
 	}
 	ts := sortedKeys(seen)
 	return fmt.Sprintf("rows from %d runs, %s to %s", len(ts), stamp(ts[0]), stamp(ts[len(ts)-1]))
+}
+
+// benchCommits names the benchmark code the rows were measured with.
+func benchCommits(rows []record) string {
+	seen := map[string]bool{}
+	for _, r := range rows {
+		c := r.BenchCommit
+		if c == "" {
+			c = "unrecorded"
+		} else if len(c) > 7 {
+			c = c[:7]
+		}
+		if r.BenchDirty {
+			c += " + uncommitted changes"
+		}
+		seen["`"+c+"`"] = true
+	}
+	return strings.Join(sortedKeys(seen), ", ")
 }
 
 func stamp(ts string) string {

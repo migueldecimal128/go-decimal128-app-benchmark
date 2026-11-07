@@ -82,6 +82,8 @@ func baseEnv() []string {
 // runInfo is what every record of one invocation shares.
 type runInfo struct {
 	ts, arch, cpu, goVersion, libVersion string
+	benchCommit                          string // this repository's HEAD
+	benchDirty                           bool   // uncommitted changes outside results/
 }
 
 func main() {
@@ -98,8 +100,13 @@ func main() {
 	if !*reportOnly {
 		info := runInfo{ts: utcNow(), arch: archName(), cpu: cpuModel(),
 			goVersion: goEnv("GOVERSION"), libVersion: libVersion()}
+		info.benchCommit, info.benchDirty = benchStamp(root)
 		bin := filepath.Join(root, "results", ".build")
-		fmt.Printf("[build] %s, %s %s\n", info.goVersion, libModule, info.libVersion)
+		dirty := ""
+		if info.benchDirty {
+			dirty = " + uncommitted changes"
+		}
+		fmt.Printf("[build] %s, %s %s, bench %.7s%s\n", info.goVersion, libModule, info.libVersion, info.benchCommit, dirty)
 		build(root, bin)
 		measureStartup(root, bin, *iters, info)
 		ran := false
@@ -200,6 +207,7 @@ type record struct {
 	GoldenTotal        *int       `json:"golden_total,omitempty"`
 	WholeNs            int64      `json:"whole_ns"`
 	WholeNsPerRecord   float64    `json:"whole_ns_per_record"`
+	WholeRunsNs        []int64    `json:"whole_runs_ns"`
 	ComputeNsPerRecord *float64   `json:"compute_ns_per_record"`
 	ComputeP10         *float64   `json:"compute_p10"`
 	ComputeMedian      *float64   `json:"compute_median"`
@@ -219,6 +227,8 @@ type record struct {
 	Arch               string     `json:"arch"`
 	CPU                string     `json:"cpu"`
 	GoVersion          string     `json:"go_version"`
+	BenchCommit        string     `json:"bench_commit"`
+	BenchDirty         bool       `json:"bench_dirty"`
 	TimestampUTC       string     `json:"timestamp_utc"`
 	RunLog             []logEntry `json:"run_log"`
 	WrittenUTC         string     `json:"written_utc"`
@@ -226,12 +236,15 @@ type record struct {
 
 // startupRecord is one startup-baseline measurement.
 type startupRecord struct {
-	StartupNs    int64  `json:"startup_ns"`
-	Iterations   int    `json:"iterations"`
-	Arch         string `json:"arch"`
-	CPU          string `json:"cpu"`
-	GoVersion    string `json:"go_version"`
-	TimestampUTC string `json:"timestamp_utc"`
+	StartupNs     int64   `json:"startup_ns"`
+	StartupRunsNs []int64 `json:"startup_runs_ns"`
+	Iterations    int     `json:"iterations"`
+	Arch          string  `json:"arch"`
+	CPU           string  `json:"cpu"`
+	GoVersion     string  `json:"go_version"`
+	BenchCommit   string  `json:"bench_commit"`
+	BenchDirty    bool    `json:"bench_dirty"`
+	TimestampUTC  string  `json:"timestamp_utc"`
 }
 
 func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc) {
@@ -285,6 +298,7 @@ func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc)
 		pass int // units matched (1 for a transcript)
 	}
 	best := int64(-1)
+	var wholeRuns []int64
 	minPass, allRuns := len(stocks), 0
 	for i := 0; i < iters; i++ {
 		w := stamped("whole", func() any {
@@ -298,6 +312,7 @@ func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc)
 			}
 			return wholeRes{p.wallNs, ok}
 		}).(wholeRes)
+		wholeRuns = append(wholeRuns, w.wall)
 		if (best < 0) || (w.wall < best) {
 			best = w.wall
 		}
@@ -332,9 +347,10 @@ func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc)
 		App: s.app, Impl: "decimal128-go", Library: libModule, LibraryVersion: info.libVersion,
 		Dataset: s.dataset, Records: s.records, Correct: allRuns == iters,
 		GateRunsPassed: allRuns, GateRuns: iters,
-		WholeNs: best, WholeNsPerRecord: float64(best) / float64(s.records),
+		WholeNs: best, WholeNsPerRecord: float64(best) / float64(s.records), WholeRunsNs: wholeRuns,
 		ComputeStatus: "ok", XcheckLimit: limit, Iterations: iters,
-		Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion, TimestampUTC: info.ts,
+		Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion,
+		BenchCommit: info.benchCommit, BenchDirty: info.benchDirty, TimestampUTC: info.ts,
 	}
 	if s.sub != "" {
 		sub := s.sub
@@ -388,14 +404,17 @@ func measureStartup(root, bin string, iters int, info runInfo) {
 	exe := filepath.Join(bin, "noop")
 	env := baseEnv()
 	best := int64(-1)
+	var runs []int64
 	for i := 0; i < iters; i++ {
 		p := runProc(root, env, exe)
+		runs = append(runs, p.wallNs)
 		if (best < 0) || (p.wallNs < best) {
 			best = p.wallNs
 		}
 	}
-	appendRecord(root, "startup", startupRecord{StartupNs: best, Iterations: iters,
-		Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion, TimestampUTC: info.ts})
+	appendRecord(root, "startup", startupRecord{StartupNs: best, StartupRunsNs: runs,
+		Iterations: iters, Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion,
+		BenchCommit: info.benchCommit, BenchDirty: info.benchDirty, TimestampUTC: info.ts})
 	fmt.Printf("[measure] startup baseline %.2f ms\n", float64(best)/1e6)
 }
 
@@ -440,6 +459,17 @@ func cpuModel() string {
 		}
 	}
 	return "unknown"
+}
+
+// benchStamp is this repository's HEAD commit, and whether anything outside
+// results/ differs from it (the run itself writes results/).
+func benchStamp(root string) (string, bool) {
+	out, err := exec.Command("git", "-C", root, "rev-parse", "HEAD").Output()
+	if err != nil {
+		return "unknown", false
+	}
+	st, err := exec.Command("git", "-C", root, "status", "--porcelain", "--", ".", ":(exclude)results").Output()
+	return strings.TrimSpace(string(out)), (err == nil) && (len(bytes.TrimSpace(st)) > 0)
 }
 
 func goEnv(key string) string {
