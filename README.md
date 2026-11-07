@@ -22,7 +22,10 @@ only counts when the output is right.
   interface or dispatch on the measured path. Its documentation states the
   contract every library must meet and what the layer costs.
 - **Libraries:** `miguel-decimal128-go`
-  ([decimal128-go](https://github.com/migueldecimal128/decimal128-go)).
+  ([decimal128-go](https://github.com/migueldecimal128/decimal128-go)), all five
+  apps; `bid754` ([bid754](https://github.com/sky1core/bid754), a pure-Go port
+  of Intel's libbid), euro and the three tax forms (it has no power, logarithm
+  or directed quantize).
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
 - **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
   (9.3 MB, with provenance and SHA-256 checksums).

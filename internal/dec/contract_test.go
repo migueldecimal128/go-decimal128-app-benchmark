@@ -11,6 +11,26 @@ import "testing"
 
 func p(s string) Decimal128 { return MustParse(s) }
 
+// skipUnsupported skips a check of an operation the library declares it lacks.
+func skipUnsupported(t *testing.T, op string) bool {
+	t.Helper()
+	if why, ok := unsupported[op]; ok {
+		t.Logf("%s: not supported by %s (%s)", op, Name, why)
+		return true
+	}
+	return false
+}
+
+// deviates reports a contract property the library declares it does not meet.
+func deviates(t *testing.T, prop string) bool {
+	t.Helper()
+	if why, ok := deviations[prop]; ok {
+		t.Logf("%s: %s deviates: %s", prop, Name, why)
+		return true
+	}
+	return false
+}
+
 func TestString(t *testing.T) {
 	// The to-scientific-string form, round-tripped through MustParse.
 	for _, s := range []string{
@@ -123,6 +143,9 @@ func TestArithmetic(t *testing.T) {
 		{TowardNegative, "1.239", "0.01", "1.23"},
 		{TiesToAway, "1.245", "0.01", "1.25"},
 	} {
+		if (c.r != TiesToEven) && skipUnsupported(t, "Rounding.Quantize") {
+			continue
+		}
 		if got := c.r.Quantize(p(c.x), p(c.q)).String(); got != c.want {
 			t.Errorf("Quantize(%s, %s) in direction %v = %s, want %s", c.x, c.q, c.r, got, c.want)
 		}
@@ -164,8 +187,17 @@ func TestComparisons(t *testing.T) {
 	if got := Maximum(p("2"), p("-3")).String(); got != "2" {
 		t.Errorf("Maximum(2, -3) = %s", got)
 	}
-	if !Minimum(nan, z).IsNaN() || !Maximum(z, nan).IsNaN() {
+	if (!Minimum(nan, z).IsNaN() || !Maximum(z, nan).IsNaN()) && !deviates(t, "MinMaxNaN") {
 		t.Error("Minimum / Maximum with a NaN operand must be NaN")
+	}
+}
+
+// TestZeroValue: the Go zero value of Decimal128 should be +0E+0, so code that
+// relies on it (banking's model structs) behaves as with an explicit zero.
+func TestZeroValue(t *testing.T) {
+	var z Decimal128
+	if got := z.String(); got != "0" && !deviates(t, "ZeroValue") {
+		t.Errorf("zero value = %s, want 0", got)
 	}
 }
 
@@ -210,19 +242,24 @@ func TestRounding(t *testing.T) {
 
 func TestPowers(t *testing.T) {
 	for _, c := range []struct {
-		name, got, want string
+		op, name string
+		f        func() Decimal128
+		want     string
 	}{
-		{"PowInt(2, 10)", p("2").PowInt(10).String(), "1024"},
-		{"PowInt(1.05, 2)", p("1.05").PowInt(2).String(), "1.1025"},
-		{"PowInt(2, -2)", p("2").PowInt(-2).String(), "0.25"},
-		{"Pow(2, 0.5)", p("2").Pow(p("0.5")).String(), "1.414213562373095048801688724209698"},
-		{"Compound(0.05, 2)", p("0.05").Compound(2).String(), "1.1025"},
-		{"Compound(0.5, -1)", p("0.5").Compound(-1).String(), "0.6666666666666666666666666666666667"},
-		{"Log10(1000)", p("1000").Log10().String(), "3"},
-		{"Log10(2)", p("2").Log10().String(), "0.3010299956639811952137388947244930"},
+		{"Decimal128.PowInt", "PowInt(2, 10)", func() Decimal128 { return p("2").PowInt(10) }, "1024"},
+		{"Decimal128.PowInt", "PowInt(1.05, 2)", func() Decimal128 { return p("1.05").PowInt(2) }, "1.1025"},
+		{"Decimal128.PowInt", "PowInt(2, -2)", func() Decimal128 { return p("2").PowInt(-2) }, "0.25"},
+		{"Decimal128.Pow", "Pow(2, 0.5)", func() Decimal128 { return p("2").Pow(p("0.5")) }, "1.414213562373095048801688724209698"},
+		{"Decimal128.Compound", "Compound(0.05, 2)", func() Decimal128 { return p("0.05").Compound(2) }, "1.1025"},
+		{"Decimal128.Compound", "Compound(0.5, -1)", func() Decimal128 { return p("0.5").Compound(-1) }, "0.6666666666666666666666666666666667"},
+		{"Decimal128.Log10", "Log10(1000)", func() Decimal128 { return p("1000").Log10() }, "3"},
+		{"Decimal128.Log10", "Log10(2)", func() Decimal128 { return p("2").Log10() }, "0.3010299956639811952137388947244930"},
 	} {
-		if c.got != c.want {
-			t.Errorf("%s = %s, want %s", c.name, c.got, c.want)
+		if skipUnsupported(t, c.op) {
+			continue
+		}
+		if got := c.f().String(); got != c.want {
+			t.Errorf("%s = %s, want %s", c.name, got, c.want)
 		}
 	}
 }

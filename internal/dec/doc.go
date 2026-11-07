@@ -23,6 +23,12 @@
 // (inline_test.go). A library that does not pass the contract tests will not
 // pass the gates either; the tests point at the operation that differs.
 //
+// Each library file also declares what it cannot do: unsupported (operations
+// it lacks; they panic, the tests skip them, and the runner does not run the
+// apps that need them), deviations (contract properties it does not meet, and
+// why its apps cannot reach them) and notInlined (wrappers over the inlining
+// budget, with their cost).
+//
 // # Contract
 //
 // Decimal128 is an IEEE 754-2019 decimal128 value: 34 significant digits,

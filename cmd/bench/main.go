@@ -34,13 +34,20 @@ import (
 // file in internal/dec is selected by the build tag; the module path gives the
 // version go.mod pins.
 type library struct {
-	name   string // shown in the report
-	tag    string // go build tag that selects its adapter (there is no default)
-	module string
+	name        string            // shown in the report
+	tag         string            // go build tag that selects its adapter (there is no default)
+	module      string            // Go module path
+	unsupported map[string]string // apps it cannot run, with why (see its adapter file)
 }
 
 var libraries = []library{
 	{name: "miguel-decimal128-go", tag: "miguel_decimal128_go", module: "github.com/migueldecimal128/decimal128-go"},
+	{name: "bid754", tag: "bid754", module: "github.com/sky1core/bid754/bid754-go",
+		unsupported: map[string]string{
+			"risk_management": "bid754 has no power function",
+			"banking":         "bid754 has no logarithm or compound",
+			"telco":           "bid754 quantizes ties-to-even only; telco truncates its taxes",
+		}},
 }
 
 // suite is one row's workload: a program, its arguments, and how to gate it.
@@ -158,17 +165,21 @@ func main() {
 			if (*app != "") && (*app != a) {
 				continue
 			}
+			fmt.Printf("[measure] %s\n", a)
 			var jobs []*job
 			for _, s := range suites() {
 				if s.app != a {
 					continue
 				}
 				for _, l := range libs {
+					if why, ok := l.unsupported[s.app]; ok {
+						recordUnsupported(root, s, l, why, info)
+						continue
+					}
 					jobs = append(jobs, newJob(func(run runFunc) { measureRow(root, bin, s, l, *iters, info, run) }))
 				}
 			}
 			jobs = append(jobs, newJob(func(run runFunc) { st.measure(*iters, run) }))
-			fmt.Printf("[measure] %s\n", a)
 			interleave(jobs)
 			ran = true
 		}
@@ -530,6 +541,28 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 		}
 	}
 	fmt.Printf("  %-26s whole %13.1f  %-16s compute %s\n", label, rec.WholeNsPerRecord, gate, comp)
+}
+
+// recordUnsupported writes a row a library cannot run, so the report shows
+// it as not supported (with why) instead of leaving it out.
+func recordUnsupported(root string, s suite, lib library, why string, info runInfo) {
+	rec := record{
+		App: s.app, Impl: lib.name, Library: lib.module, LibraryVersion: info.libVersions[lib.name],
+		Dataset: s.dataset, Records: s.records, ComputeStatus: "unsupported", ComputeError: why,
+		Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion,
+		BenchCommit: info.benchCommit, BenchDirty: info.benchDirty, TimestampUTC: info.ts,
+		WrittenUTC: utcNow(),
+	}
+	if s.sub != "" {
+		sub := s.sub
+		rec.Sub = &sub
+	}
+	appendRecord(root, s.app, rec)
+	label := lib.name
+	if s.sub != "" {
+		label += "/" + s.sub
+	}
+	fmt.Printf("  %-26s not supported (%s)\n", label, why)
 }
 
 // startup times the do-nothing baseline program, launched the same way as the

@@ -75,3 +75,9 @@ Dependencies (not copied into this repository)
 
 * decimal128-go — https://github.com/migueldecimal128/decimal128-go
     MIT License. Fetched by the Go toolchain at the version pinned in go.mod.
+
+* bid754 — https://github.com/sky1core/bid754 (module bid754-go)
+    MIT License; its port of the Intel Decimal Floating-Point Math Library
+    v20U4 is a derivative of Intel's BSD 3-Clause sources (see its
+    THIRD_PARTY_NOTICES.md). Fetched by the Go toolchain at the version pinned
+    in go.mod.

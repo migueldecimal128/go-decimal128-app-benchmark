@@ -23,6 +23,18 @@ var appMeta = map[string]string{
 	"telco":           "1,000,000 calls: Mike Cowlishaw's telephone billing run; the 1,000,000-line output matches the reference (SHA-256) and the control totals 1004737.58 / 57628.30 / 25042.17 match his published values. Its timed loop includes decoding each record and formatting each line, as the benchmark defines.",
 }
 
+// libraryNote describes each library and what its adapter adds to its
+// measured time (internal/dec/lib_<name>.go has the details).
+var libraryNote = map[string]string{
+	"miguel-decimal128-go": "[decimal128-go](https://github.com/migueldecimal128/decimal128-go), pure Go. " +
+		"Two adapter wrappers are real calls: FromBID128 (input decoding only) and quantize with a rounding " +
+		"direction (telco: +0.9% fastest sample, +1.2% median).",
+	"bid754": "[bid754](https://github.com/sky1core/bid754), a pure-Go port of Intel's libbid v20U4. " +
+		"Its adapter re-lays Intel's string form (\"+150E-2\") into decNumber's (\"1.50\"), about 20 ns per string, " +
+		"and reaches its per-direction round-to-integral methods through a table (about 34 ns against 26 ns direct); " +
+		"both are part of its time. It has no power, logarithm or directed quantize, so risk, banking and telco do not run with it.",
+}
+
 // loadRecords reads every record of one kind from results/data/<name>.jsonl.
 func loadRecords[T any](root, name string) ([]T, error) {
 	f, err := os.Open(filepath.Join(root, "results", "data", name+".jsonl"))
@@ -136,8 +148,13 @@ func writeReport(root string) error {
 						xc += " ⚠"
 					}
 				}
-			} else if r.ComputeError != "" {
+			} else if r.ComputeStatus == "failed" {
 				notes = append(notes, fmt.Sprintf("FAILED %s: %s", name, r.ComputeError))
+			}
+			if r.ComputeStatus == "unsupported" {
+				fmt.Fprintf(&b, "| %s | %s | not supported | — | — | — | — | — | — |\n", name, lib)
+				notes = append(notes, fmt.Sprintf("%s does not run %s: %s.", r.Impl, name, r.ComputeError))
+				continue
 			}
 			startCell := "—"
 			if hasStart {
@@ -153,6 +170,19 @@ func writeReport(root string) error {
 		if len(notes) > 0 {
 			b.WriteString("\n")
 		}
+		var libsSeen []string
+		seenLib := map[string]bool{}
+		for _, r := range rows {
+			if !seenLib[r.Impl] {
+				seenLib[r.Impl] = true
+				libsSeen = append(libsSeen, r.Impl)
+			}
+		}
+		b.WriteString("Libraries:\n\n")
+		for _, l := range libsSeen {
+			fmt.Fprintf(&b, "- **%s**: %s\n", l, libraryNote[l])
+		}
+		b.WriteString("\n")
 		b.WriteString("Workloads:\n\n")
 		for _, app := range appOrder {
 			fmt.Fprintf(&b, "- **%s**: %s\n", app, appMeta[app])
