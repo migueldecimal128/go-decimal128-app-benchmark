@@ -20,6 +20,7 @@ var appMeta = map[string]string{
 	"risk_management": "20 stocks: per-stock CAPM prediction; **correct** counts the per-stock output files that match the golden.",
 	"tax_preparation": "1 return per form (fed / ca / nc); stderr transcript byte-identical to the golden. One return per process, so **whole** is mostly startup.",
 	"banking":         "643 records: deposits, mortgages, credit cards; stderr transcript (3,326 lines) byte-identical to the golden.",
+	"telco":           "1,000,000 calls: Mike Cowlishaw's telephone billing run; the 1,000,000-line output matches the reference (SHA-256) and the control totals 1004737.58 / 57628.30 / 25042.17 match his published values. Its timed loop includes decoding each record and formatting each line, as the benchmark defines.",
 }
 
 // loadRecords reads every record of one kind from results/data/<name>.jsonl.

@@ -14,6 +14,17 @@ repository, and this repository does not change their terms.
 Attribution and provenance of the benchmark workloads
 ------------------------------------------------------
 
+* Telco
+    Author: Mike Cowlishaw (IBM).
+    Source: https://speleotrove.com/decimal/telco.html
+            https://speleotrove.com/decimal/telcoSpec.html
+    Freely distributable; imposes no GPL obligation. The input data and the
+    10-call example under data/telco/ are his published files, from
+    https://github.com/migueldecimal128/decimal128-resources (telco/), not the
+    UW-Madison suite's modified version. apps/telco/ is MIT: it is based on
+    the telco program in decimal128-go (MIT) and is not derived from the
+    UW-Madison suite.
+
 * Banking, Tax Preparation, Risk Management, Euro Conversion
     Source: University of Wisconsin-Madison, MESA Lab.
       Decimal Floating-Point (DFP) Benchmark suite, v1.0.

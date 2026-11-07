@@ -16,6 +16,8 @@ package main
 
 import (
 	"bytes"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -47,7 +49,8 @@ type suite struct {
 	dir               string   // working directory, relative to the repo root
 	exe               string   // program name under the build dir
 	args              []string // arguments, relative to dir
-	golden            string   // stderr golden, relative to dir ("" = file-gated)
+	golden            string   // stderr golden, relative to dir ("" = file-gated); a .sha256 file holds its digest
+	totals            string   // lines that must appear in stdout (telco's control totals)
 	files             bool     // risk: gate one output file per stock
 	records           int
 	xcheckMax         float64
@@ -73,10 +76,15 @@ func suites() []suite {
 		{app: "banking", dataset: "Banking.bin.BID128", dir: "data/banking",
 			exe: "banking", args: []string{"testGen/bin/Banking.bin.BID128"},
 			golden: "golden/Banking.output.DECNUMBER_FIXED128", records: 643, xcheckMax: 2.5},
+		// telco's expected output is 6 MB, so the golden is its SHA-256; the
+		// control totals are Cowlishaw's published values.
+		{app: "telco", dataset: "expon180.1e6b", dir: "data/telco", exe: "telco",
+			args: []string{"expon180.1e6b"}, golden: "golden/expon180.1e6.expected.sha256",
+			totals: "golden/expon180.1e6.totals", records: 1_000_000},
 	}
 }
 
-var appOrder = []string{"euro_conversion", "risk_management", "tax_preparation", "banking"}
+var appOrder = []string{"euro_conversion", "risk_management", "tax_preparation", "banking", "telco"}
 
 // env is the inherited environment without any compute-mode variables, so a
 // whole run is never accidentally a compute run.
@@ -99,7 +107,7 @@ type runInfo struct {
 }
 
 func main() {
-	app := flag.String("app", "", "only this app (euro_conversion, risk_management, tax_preparation, banking)")
+	app := flag.String("app", "", "only this app (euro_conversion, risk_management, tax_preparation, banking, telco)")
 	libName := flag.String("lib", "", "only this library (default: every library)")
 	iters := flag.Int("iters", 9, "whole runs per row (fastest kept; every run is gated)")
 	reportOnly := flag.Bool("report-only", false, "rewrite results/RESULTS.md from the records only")
@@ -311,10 +319,45 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 		defer os.RemoveAll(resultDir)
 	}
 	var golden []byte
+	var goldenSum string // hex SHA-256, when the golden is a digest
 	if !s.files {
 		var err error
 		golden, err = os.ReadFile(filepath.Join(dir, s.golden))
 		check(err)
+		if strings.HasSuffix(s.golden, ".sha256") {
+			goldenSum, golden = strings.Fields(string(golden))[0], nil
+		}
+	}
+	var wantLines []string
+	if s.totals != "" {
+		b, err := os.ReadFile(filepath.Join(dir, s.totals))
+		check(err)
+		wantLines = strings.Fields(string(b))
+	}
+	// gateTranscript: a clean exit, stderr matching the golden (or its
+	// digest), and every required line present in stdout.
+	gateTranscript := func(p procResult) bool {
+		if (p.code != 0) || (p.err != nil) {
+			return false
+		}
+		if goldenSum != "" {
+			sum := sha256.Sum256(p.stderr)
+			if hex.EncodeToString(sum[:]) != goldenSum {
+				return false
+			}
+		} else if !bytes.Equal(p.stderr, golden) {
+			return false
+		}
+		have := map[string]bool{}
+		for _, ln := range strings.Split(string(p.stdout), "\n") {
+			have[strings.TrimSpace(ln)] = true
+		}
+		for _, w := range wantLines {
+			if !have[w] {
+				return false
+			}
+		}
+		return true
 	}
 
 	// Gate one run. Risk writes testGen/result/<stock>.log_0_<suffix>; each file
@@ -348,7 +391,7 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 				return wholeRes{p.wallNs, gateFiles()}
 			}
 			ok := 0
-			if (p.code == 0) && (p.err == nil) && bytes.Equal(p.stderr, golden) {
+			if gateTranscript(p) {
 				ok = 1
 			}
 			return wholeRes{p.wallNs, ok}

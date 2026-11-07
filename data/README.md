@@ -10,8 +10,13 @@ folder as the working directory:
 | banking | `data/banking` | `testGen/bin/Banking.bin.BID128` + rate tables in `datafile/bin/` | `golden/Banking.output.DECNUMBER_FIXED128` (stderr) |
 | tax_preparation | `data/tax_preparation` | `testGen/bin/Tax.{FED,CA,NC}.bin.BID128` | `golden/Tax.{FED,CA,NC}.stderr.golden` (stderr) |
 | risk_management | `data/risk_management` | `testGen/bin/*.csv.bid128` | `golden/<stock>.golden` vs `testGen/result/<stock>.log_<loop>_<suffix>` |
+| telco | `data/telco` | `expon180.1e6b` (1,000,000 big-endian uint64 durations) | `golden/expon180.1e6.expected.sha256` (stderr digest) and `golden/expon180.1e6.totals` (lines in stdout) |
 
-Only the BID-encoded inputs are included; the Go programs read no others.
+Only the BID-encoded inputs are included for the UW-Madison apps, and only the
+binary encoding for telco; the Go programs read no others. Telco's expected
+output is 6 MB, so only its SHA-256 is kept. The 10-call worked example
+(`telco.testb`, `golden/telco.expected`, `golden/telco.totals`) is used by the
+telco program's own test.
 
 ## Provenance
 
@@ -28,6 +33,15 @@ Only the BID-encoded inputs are included; the Go programs read no others.
     implementations (see that repo's `apps/tax_preparation/README.md`).
   - Risk: decNumber's per-stock output, which is correctly rounded on every
     stock.
+
+- **Telco:** Mike Cowlishaw's telco benchmark
+  (https://speleotrove.com/decimal/telco.html), freely distributable. The input
+  and the 10-call example are his published files, unchanged, from
+  decimal128-resources commit `5053fe3` (`telco/`). The expected output
+  (`expon180.1e6.expected`, digest kept here) was generated there and validated
+  two ways: its control totals match the published ones, and seven
+  independent implementations produce it byte for byte. The control totals are
+  from his specification (https://speleotrove.com/decimal/telcoSpec.html).
 
 ## SHA-256
 
@@ -118,4 +132,10 @@ fb7d02874ae6713403f22fc0b4a853f38c50d230d846363930793b1c16a98576  ./tax_preparat
 1f564e955424c2d4c949fde9adf8e661b12ca38272637aa7315aad82e230ce2c  ./tax_preparation/testGen/bin/Tax.CA.bin.BID128
 57a8ba8d94524976bc8e237084dc20e9cdccd722d1a30f82fafd9098a4a7bff5  ./tax_preparation/testGen/bin/Tax.FED.bin.BID128
 4356fd96fe842f7ef90987c1ea9b24369fb1041f1ab66e6d022767279e8b7ffe  ./tax_preparation/testGen/bin/Tax.NC.bin.BID128
+3200d753026fbebd73c6857f572a3d0c374b91ee052d9f6a49748b35590c6bd7  ./telco/expon180.1e6b
+7799d03c1a8d6eabcbcd3e5a33ca77e1cc25726cdc717487bac6d97c3f3f026b  ./telco/golden/expon180.1e6.expected.sha256
+0030550cf263943528c21edde3a9253a8f033e1ec6fb8fafa2d166933078a5c7  ./telco/golden/expon180.1e6.totals
+2e4e41b768021a1762955a61090a134539dea67a27a5514d624b933e088116c9  ./telco/golden/telco.expected
+2dff39a0c62c3e58eb8e431bc8e079ffd21f654aaae799f080f2f7fc8d82a669  ./telco/golden/telco.totals
+3bad5462fe3a3be00db1ae6a4c0cb2b2e976d170d0dc5177ee5beeeafb849970  ./telco/telco.testb
 ```

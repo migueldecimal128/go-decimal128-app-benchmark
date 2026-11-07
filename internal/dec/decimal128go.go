@@ -117,3 +117,8 @@ func (x Decimal128) Compound(n int) Decimal128 { return Decimal128(lib.Decimal12
 
 // Log10 is the base-10 logarithm.
 func (x Decimal128) Log10() Decimal128 { return Decimal128(lib.Decimal128(x).Log10()) }
+
+// Quantize rounds x in direction r to the exponent of q.
+func (r Rounding) Quantize(x, q Decimal128) Decimal128 {
+	return Decimal128(lib.Rounding(r).Quantize(lib.Decimal128(x), lib.Decimal128(q)))
+}

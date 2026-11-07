@@ -36,7 +36,8 @@
 // ties-to-even.
 //
 //   - Arithmetic: Add, Sub, Mul, Quo, Neg. Neg flips the sign, also of zero.
-//   - Quantize(q): x rounded (ties-to-even) to the exponent of q.
+//   - Quantize(q): x rounded (ties-to-even) to the exponent of q;
+//     r.Quantize(x, q) rounds in direction r instead.
 //   - Comparisons: Less and Equal compare numerically; any NaN gives false;
 //     -0 equals +0. Signbit reports the sign bit (true for -0). IsZero, IsNaN,
 //     IsInf classify.
@@ -66,9 +67,11 @@
 // same apps calling the library directly (alternating runs, same machine):
 //
 //   - The machine code makes the same calls, to the same library functions,
-//     except FromBID128, which costs 81 against Go's inlining budget of 80 and
-//     so is a real call; it runs only while decoding input, outside the timed
-//     loops (see setupOnly in inline_test.go).
+//     except for two wrappers over Go's inlining budget of 80, which are real
+//     calls (see notInlined in inline_test.go): FromBID128 (81), used only to
+//     decode input outside the timed loops, and Rounding.Quantize (82), which
+//     telco calls 1-2 times per record: +0.9% on telco's fastest sample,
+//     +1.2% on its median.
 //   - Each inlined wrapper leaves one position marker at its call site (a NOP
 //     the compiler keeps for stack traces): tax fed gains about 400.
 //   - Compute time: within noise for euro, risk, banking and tax ca / nc; tax

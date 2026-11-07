@@ -1,13 +1,14 @@
 # go-decimal128-app-benchmark
 
-Go implementations of the four UW-Madison decimal floating-point application
-benchmarks (euro conversion, risk management, tax preparation, banking), for
-measuring Go decimal128 libraries on whole applications rather than single
-operations.
+Go implementations of the UW-Madison decimal floating-point application
+benchmarks (euro conversion, risk management, tax preparation, banking) and of
+Mike Cowlishaw's telco benchmark, for measuring Go decimal128 libraries on
+whole applications rather than single operations.
 
-Each program reproduces the original C program's output **byte for byte**, so a
-timing only counts when the output matches the reference ("golden") output
-produced with decNumber.
+Each program reproduces the reference output **byte for byte** (the UW-Madison
+apps: the original C program's output, produced with decNumber; telco: its
+1,000,000-line output and Cowlishaw's published control totals), so a timing
+only counts when the output is right.
 
 ## Status
 
@@ -21,8 +22,9 @@ produced with decNumber.
   interface or dispatch on the measured path. Its documentation states the
   contract every library must meet and what the layer costs.
 - **Libraries:** [decimal128-go](https://github.com/migueldecimal128/decimal128-go).
-- **Data:** inputs and goldens for all four apps are in [`data/`](data/README.md)
-  (1.7 MB, with provenance and SHA-256 checksums).
+- **Telco:** added after the copy, based on decimal128-go's own telco program.
+- **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
+  (9.3 MB, with provenance and SHA-256 checksums).
 - **Runner:** `go run ./cmd/bench` builds, gates and times every app; results
   are in [`results/RESULTS.md`](results/RESULTS.md).
 - **Next:** other Go decimal128 libraries.
@@ -38,6 +40,7 @@ apps/risk_management/cmd/risk/           risk management (CAPM)
 apps/tax_preparation/cmd/tax-{fed,ca,nc}/
 apps/tax_preparation/internal/tax/       the three tax forms
 apps/banking/cmd/banking/                banking
+apps/telco/cmd/telco/                    telco (MIT)
 internal/dec/                            the library adapter (MIT)
 internal/harness/                        shared timing and I/O helpers (MIT)
 cmd/bench/                               the runner (MIT)
@@ -83,9 +86,10 @@ The library must have a GPLv3-compatible license (see below).
 
 ## Licensing
 
-This repository is **GPL-3.0-or-later** because the four applications are
+This repository is **GPL-3.0-or-later** because four of the applications are
 translations of the GPL-licensed UW-Madison suite (tax preparation also derives
-from OpenTaxSolver). See [NOTICE](NOTICE) for attribution.
+from OpenTaxSolver). Telco is Mike Cowlishaw's, freely distributable, and its
+program here is MIT. See [NOTICE](NOTICE) for attribution.
 
 - **The libraries it measures keep their own licenses.** decimal128-go (MIT) is
   an ordinary Go module dependency pinned in `go.mod`; it is fetched by the Go

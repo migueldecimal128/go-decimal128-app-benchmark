@@ -111,6 +111,22 @@ func TestArithmetic(t *testing.T) {
 			t.Errorf("%s(%s, %s) = %s, want %s", c.op, c.x, c.y, got, c.want)
 		}
 	}
+	for _, c := range []struct {
+		r          Rounding
+		x, q, want string
+	}{
+		{TowardZero, "1.239", "0.01", "1.23"},
+		{TowardZero, "-1.239", "0.01", "-1.23"},
+		{TowardZero, "0.0675", "0.01", "0.06"},
+		{TiesToEven, "1.235", "0.01", "1.24"},
+		{TowardPositive, "1.231", "0.01", "1.24"},
+		{TowardNegative, "1.239", "0.01", "1.23"},
+		{TiesToAway, "1.245", "0.01", "1.25"},
+	} {
+		if got := c.r.Quantize(p(c.x), p(c.q)).String(); got != c.want {
+			t.Errorf("Quantize(%s, %s) in direction %v = %s, want %s", c.x, c.q, c.r, got, c.want)
+		}
+	}
 	if got := p("0").Neg().String(); got != "-0" {
 		t.Errorf("Neg(0) = %s, want -0", got)
 	}
