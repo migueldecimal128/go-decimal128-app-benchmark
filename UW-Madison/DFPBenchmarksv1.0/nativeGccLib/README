@@ -1,0 +1,2 @@
+dfp-round.h should be linked in the benchmark directory in order to run with 
+native gcc types. 

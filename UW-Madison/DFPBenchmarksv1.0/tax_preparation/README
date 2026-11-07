@@ -1,0 +1,86 @@
+-- Prelude
+Immediately after checking out this repository, type this command: 'source link.sh'
+to link important files from ../decNumber  and ../IntelRDFPMathLib1.0 that are 
+necessary for compilation.  (Note, this is done for you by using ../make_benchmarks.sh)
+
+-- Introduction
+This is the Tax Preparation benchmark, part of the decimal floating-point benchmark suite.
+This benchmark was modified from the Open Tax Solver from Sourceforge 
+(http://opentaxsolver.sourceforge.net/).
+The code follows the instructions provided in IRS documents 1040, Schedules A, B, C, and D. 
+The code was modified to incorporate DFP arithmetic. For details, please check the paper Wang
+et al. "Benchmarks and Performance Analysis of Decimal Floating-Point 
+Applications" from IEEE International Conference on Computer Design, Oct 2007.
+
+There are three microbenchmarks in this benchmark, namely Federal Tax, CA State Tax, 
+and NC State Tax.
+
+To run this benchmark using the decNumber library, you need to have your decNumber 
+library setup correctly and have the libraries, LINUXDecFloats.a or LINUXDecNum.a, generated.
+
+To run this benchmark using the Intel Decimal Floating-Point Math library, you will
+need to have this library set up correctly and have the library libbid.a generated.
+
+To run this benchmark using native gcc BID types, you must have at least gcc4.3 
+installed with decimal floating-point types enabled. For instructions on this 
+please refer to http://gcc.gnu.org/. You will also need to link dfp-round.h,
+which is located in the nativeGccLib directory.
+
+Please refer to the README file in the decNumber, IntelRDFPMathLib10U1, and 
+nativeGccLib directories for more details on using the dfp libraries.
+
+Also provide symbolic link to all *.c and *.h files of the decNumber
+library if you want to use this with Intel VTune or gprof.  A script, link.sh
+is provided to help with this task.
+
+Please refer to the testGen directory to find out how to generate directed pseudo-random 
+tests to be used in this benchmark
+
+-- Macro definition:
+DEC_ClassID = [FED|CA|NC]
+TEST_INPUT = input file name
+TEST_OUTPUT = output file name prefix
+NO_RETURN = the number of tax return in $TEST_INPUT
+DEC_DATATYPE = [DECNUMBER_ARBITRARY|DECNUMBER_FIXED|BID|NATIVE_GCC_BID]
+BITWIDTH = [64|128]
+
+-- Compilation
+To compile this benchmark, there are several options you can use
+1) To compile this benchmark in Linux to print no debugging information:
+	make clean; make OS=LINUX
+2) To compile this benchmark in Linux to print debugging information (-g) 
+	make clean; make OS=LINUX DEBUG=-g
+3) To compile this benchmark in Linux to print debugging information (-g) and 
+   verbose output :
+	make clean; make OS=LINUX DEBUG="-g -D DEBUG"
+4) To compile this benchmark using a specific dfp library:
+	make clean; 
+	make OS=LINUX DEC_DATATYPE=[DECNUMBER_ARBITRARY|DECNUMBER_FIXED|BID|NATIVE_GCC_BID] WIDTH=[BITWIDTH]
+5) To compile this benchmark with PROFILING information, first, you need to create symbolic link for
+   all files in the decNumber library in this directory. The default files you see in this 
+   directory links to the old decNumber library, not the latest decFloat library
+
+
+-- Execution
+To execute this program, run
+	`Tax.$TAX_ClassID.LINUX.$DEC_DATATYPE $TEST_INPUT $TEST_OUTPUT $NO_RETURN'
+
+-- SimpleScalar 
+To run this benchmark with SimpleScalar and evaluate the decNumber library
+1) make clean; make OS=SW
+2) run with `./sim-outorder-SW-$TAX_ClassID Tax.$TAX_ClassID.SW.$DEC_ClassID 
+	      $TEST_INPUT $TEST_OUTPUT $NO_RETURN >& sim.report'
+3) Run `perl ../parse_sim_outorder_output.pl sim.report 1' to convert SimpleScalar 
+	    report to a format that can be processed by Excel (space delimited). It generates
+            three outputs, sim.respot_dec.txt gives statistics about decimal function,
+ 	    sim.report_sig.txt shows the number of multiplier digits for all decimal multiplication
+            in this benchmark run, sim.report.txt convert typical simplescalar output to a 
+            Excel friendly format.
+
+To run this benchmark with SimpleScalar and evaluate the decimal hardware instructions
+1) make clean; make OS=HW
+2) Run with `./sim-outorder-HW-$TAX_ClassID Tax.$TAX_ClassID.HW.$DEC_ClassID
+	     $TEST_INPUT $TEST_OUTPUT $NO_RETURN >& sim.report'
+	Run `perl decOperation.pl sim.report' to convert SimpleScalar 
+	report to *.csv format
+3) You can also add DEBUG="-D DEBUG" if you want verbose output

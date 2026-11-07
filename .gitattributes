@@ -1,3 +1,5 @@
 # Benchmark inputs and goldens are compared byte for byte: never convert line
 # endings or otherwise touch them.
 data/** -text
+# The original UW-Madison suite, kept exactly as distributed.
+UW-Madison/** -text

@@ -1,0 +1,81 @@
+// =============================================================================
+//  arith.def
+//  opcodes for operations when interfacing to simplescalar
+// =============================================================================
+//  Original Author : Liang-Kai Wang, 5/2007
+//  Maintainer:      Mike Anderson 1/2009 
+// =============================================================================
+//  This file defines operations for an interface with simplescalar(make OS=HW).
+//  DEFOP(OP, NUM, ADDRESS) is defined in simplesim-3.0/sim-outorder.c, which
+//  includes this file to define arithmetic operations.
+//  Please see the README for more info.
+//
+//  For details about the benchmark, please refer to the following paper:
+//
+//      Wang, Tsen, Jhalani, Schulte  "Benchmarks and Performance Analysis
+//      of Decimal Floating-Point Applications" from IEEE International
+//      Conference on Computer Design, Oct 2007.
+//
+// =============================================================================
+//  Copyright (C) 2008 MESA LAB - University of Wisconsin
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// =============================================================================
+// VERSION AND CVS INFO
+// Id: $Id: arith.def,v 1.2 2009-02-02 22:44:37 stsen Exp $
+// Date: $Date: 2009-02-02 22:44:37 $
+// Author: $Author: stsen $
+// =============================================================================
+
+DEFOP("DECCONTEXTDEFAULT", 0, 0x0040fc90)
+DEFOP("DECCONTEXTSETSTATUS", 1, 0x004104c8)
+DEFOP("DECCONTEXTSETSTATUSFROMSTRING", 2, 0x004100a0)
+DEFOP("DECCONTEXTSTATUSTOSTRING", 3, 0x0040fe78)
+DEFOP("DECIMAL64FROMNUMBER", 4, 0x00410550)
+DEFOP("DECIMAL64FROMSTRING", 5, 0x00410df0)
+DEFOP("DECIMAL64TOENGSTRING", 6, 0x00410d80)
+DEFOP("DECIMAL64TONUMBER", 7, 0x00410a20)
+DEFOP("DECIMAL64TOSTRING", 8, 0x00410d10)
+DEFOP("DECNUMBERABS", 9, 0x00402470)
+DEFOP("DECNUMBERADD", 10, 0x00402588)
+DEFOP("DECNUMBERCOMPARE", 11, 0x00402638)
+DEFOP("DECNUMBERCOPY", 12, 0x00405778)
+DEFOP("DECNUMBERDIVIDE", 13, 0x004026f0)
+DEFOP("DECNUMBERDIVIDEINTEGER", 14, 0x004027a8)
+DEFOP("DECNUMBEREXP", 15, 0x00402860)
+DEFOP("DECNUMBERFROMSTRING", 16, 0x00401ad0)
+DEFOP("DECNUMBERLN", 17, 0x00402958)
+DEFOP("DECNUMBERLOG10", 18, 0x00402a50)
+DEFOP("DECNUMBERMAX", 19, 0x00403050)
+DEFOP("DECNUMBERMIN", 20, 0x00403108)
+DEFOP("DECNUMBERMINUS", 21, 0x004031c0)
+DEFOP("DECNUMBERMULTIPLY", 22, 0x004033d8)
+DEFOP("DECNUMBERNORMALIZE", 23, 0x00403480)
+DEFOP("DECNUMBERPLUS", 24, 0x004032d0)
+DEFOP("DECNUMBERPOWER", 25, 0x004035f0)
+DEFOP("DECNUMBERQUANTIZE", 26, 0x004042d8)
+DEFOP("DECNUMBERREMAINDER", 27, 0x00404440)
+DEFOP("DECNUMBERREMAINDERNEAR", 28, 0x004044f8)
+DEFOP("DECNUMBERRESCALE", 29, 0x00404390)
+DEFOP("DECNUMBERSAMEQUANTUM", 30, 0x004045b0)
+DEFOP("DECNUMBERSQUAREROOT", 31, 0x004046c8)
+DEFOP("DECNUMBERSUBTRACT", 32, 0x00405468)
+DEFOP("DECNUMBERTOENGSTRING", 33, 0x00401a78)
+DEFOP("DECNUMBERTOINTEGRALVALUE", 34, 0x00405520)
+DEFOP("DECNUMBERTOSTRING", 35, 0x00401a20)
+DEFOP("DECNUMBERTRIM", 36, 0x00405880)
+DEFOP("DECNUMBERVERSION", 37, 0x004058c0)
+DEFOP("DECNUMBERZERO", 38, 0x004058d8)
+DEFOP("EXIT", 39, 0x00412460)
+DEFOP("DECARI", 40, 0x0)

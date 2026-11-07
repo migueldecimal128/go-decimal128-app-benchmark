@@ -1,0 +1,40 @@
+#################################################################
+## Condor Submit file
+## Liang-Kai Wang
+## Department of Electrical and Computer Engineering
+## University of Wisconsin-Madison
+## $Revision: 1.1.1.1 $
+#################################################################
+Universe = vanilla
+Getenv = true
+
+Executable = Tax.NC.LINUX.DEC64
+initialdir = .
+Arguments =  new_100k_NC.b64 0 100000
+Error = result/new_test100k_NC_ss_linux.err
+Queue
+
+Executable = sim-outorder-NC
+initialdir = .
+Arguments = Tax.NC.HW.DEC64  new_100k_NC.b64 1 100000
+Error = result/new_test100k_NC_ss_hw_fast.err
+Queue
+
+Executable = sim-outorder-NC
+initialdir = .
+Arguments = -oplat:dfpadd 100 -isslat:dfpadd 99 -oplat:dfpcmp 75 -isslat:dfpcmp 74 -oplat:dfpmpy 150  -isslat:dfpmpy 149 -oplat:dfpdiv 350 -isslat:dfpdiv 349 -oplat:dfpsqrt 350 -isslat:dfpsqrt 349 Tax.NC.HW.DEC64  new_100k_NC.b64 2 100000
+Error = result/new_test100k_NC_ss_hw_medium.err
+Queue
+
+Executable = sim-outorder-NC
+initialdir = .
+Arguments = -oplat:dfpadd 150 -isslat:dfpadd 149 -oplat:dfpcmp 113 -isslat:dfpcmp 112 -oplat:dfpmpy 200 -isslat:dfpmpy 199 -oplat:dfpdiv 400 -isslat:dfpdiv 399 -oplat:dfpsqrt 400 -isslat:dfpsqrt 399 Tax.NC.HW.DEC64  new_100k_NC.b64 3 100000
+Error = result/new_test100k_NC_ss_hw_slow.err
+Queue
+
+
+Executable = sim-outorder-NC
+initialdir = .
+Arguments = Tax.NC.SW.DEC64  new_100k_NC.b64 4 100000
+Error = result/new_test100k_NC_ss_sw.err
+Queue

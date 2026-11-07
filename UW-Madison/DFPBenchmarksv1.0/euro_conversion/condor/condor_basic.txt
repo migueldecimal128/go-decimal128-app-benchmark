@@ -1,0 +1,38 @@
+#################################################################
+## Condor Submit file
+## Liang-Kai Wang
+## Department of Electrical and Computer Engineering
+## University of Wisconsin-Madison
+## $Revision: 1.1.1.1 $
+#################################################################
+Universe = vanilla
+Getenv = true
+#Executable = Euro.LINUX.DEC64
+#initialdir = .
+#Arguments = 100k_test.in 100k_test.LINUX.in 
+#Output = result/ss_linux.log
+#Error = result/ss_linux.err
+#Queue
+
+#Executable = sim-outorder-non-aggressive-mode 
+#initialdir = .
+#Arguments = -config new_basic_config.txt Euro.HW.DEC64 100k_test.in
+#Error = result/ss_hw.fast.basic.err
+#Queue
+
+#Executable = sim-outorder-non-aggressive-mode 
+#initialdir = .
+#Arguments = -config new_basic_config.txt -oplat:dfpadd 100 -isslat:dfpadd 99 -oplat:dfpcmp 75 -isslat:dfpcmp 74 -oplat:dfpmpy 150 -isslat:dfpmpy 149 -oplat:dfpdiv 350 -isslat:dfpdiv 349 -oplat:dfpsqrt 350 -isslat:dfpsqrt 349 Euro.HW.DEC64 100k_test.in
+#Error = result/ss_hw_medium.basic.err
+#Queue
+
+#Executable = sim-outorder-non-aggressive-mode 
+#Arguments = -config new_basic_config.txt -oplat:dfpadd 150 -isslat:dfpadd 149 -oplat:dfpcmp 113 -isslat:dfpcmp 112 -oplat:dfpmpy 200 -isslat:dfpmpy 199 -oplat:dfpdiv 400 -isslat:dfpdiv 399 -oplat:dfpsqrt 400 -isslat:dfpsqrt 399 Euro.HW.DEC64 100k_test.in
+#Error = result/ss_hw_slow.basic.err
+#Queue
+
+Executable = sim-outorder-non-aggressive-mode 
+initialdir = .
+Arguments = -config new_basic_config.txt Euro.SW.DEC64 100k_test.in
+Error = result/ss_sw.basic.err
+Queue

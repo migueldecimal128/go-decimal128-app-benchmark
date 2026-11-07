@@ -1,0 +1,32 @@
+#################################################################
+## Condor Submit file
+## Liang-Kai Wang
+## Department of Electrical and Computer Engineering
+## University of Wisconsin-Madison
+## $Revision: 1.1.1.1 $
+#################################################################
+Universe = vanilla
+Getenv = true
+
+Executable = sim-outorder
+initialdir = .
+Arguments = -config perfect_alu.txt Risk.HW.DEC64 50 FAST
+Error = result/ss_hw.fast.alu.err
+Queue
+
+Executable = sim-outorder
+initialdir = .
+Arguments = -config perfect_alu.txt -oplat:dfpadd 100 -isslat:dfpadd 99 -oplat:dfpcmp 75 -isslat:dfpcmp 74 -oplat:dfpmpy 150 -isslat:dfpmpy 149 -oplat:dfpdiv 350 -isslat:dfpdiv 349 -oplat:dfpsqrt 350 -isslat:dfpsqrt 349 Risk.HW.DEC64 50 MEDIUM
+Error = result/ss_hw_medium.alu.err
+Queue
+
+Executable = sim-outorder 
+Arguments = -config perfect_alu.txt -oplat:dfpadd 150 -isslat:dfpadd 149 -oplat:dfpcmp 113 -isslat:dfpcmp 112 -oplat:dfpmpy 200 -isslat:dfpmpy 199 -oplat:dfpdiv 400 -isslat:dfpdiv 399 -oplat:dfpsqrt 400 -isslat:dfpsqrt 399 Risk.HW.DEC64 50 SLOW
+Error = result/ss_hw_slow.alu.err
+Queue
+
+Executable = sim-outorder
+initialdir = .
+Argument = -config perfect_alu.txt Risk.SW.DEC64 50 SW
+Error = result/ss_sw.alu.err
+Queue

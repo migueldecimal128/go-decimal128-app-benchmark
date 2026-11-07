@@ -21,7 +21,7 @@ telco program's own test.
 ## Provenance
 
 - **Inputs, and the euro and banking goldens:** the UW-Madison DFP Benchmark
-  suite v1.0 (GPLv3), unchanged, from
+  suite v1.0 (GPLv3), unchanged (the suite's archive is in `../UW-Madison/`), from
   [decimal128-resources](https://github.com/migueldecimal128/decimal128-resources)
   commit `5053fe3` (`UW-Madison/DFPBenchmarksv1.0/<app>/`). The euro and
   banking goldens are the suite's `testGen/expected_output/` files.

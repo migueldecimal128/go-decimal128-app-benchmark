@@ -47,7 +47,17 @@ cmd/bench/                               the runner (MIT)
 baseline/noop/                           startup baseline program (MIT)
 results/                                 records and RESULTS.md
 data/<app>/                              inputs and goldens (see data/README.md)
+UW-Madison/                              the original UW-Madison suite (see below)
 ```
+
+## The original suite
+
+[`UW-Madison/`](UW-Madison/README.md) holds the UW-Madison suite v1.0 so its C
+programs can be compared with the Go translations: the original archive
+(`DFPBenchmarksv1.0.gz`, complete), its C sources, build files, scripts and
+READMEs extracted alongside, and the two papers that describe it. The test data
+is left extracted only in the archive. Nothing in the benchmark reads this
+folder.
 
 ## Running
 

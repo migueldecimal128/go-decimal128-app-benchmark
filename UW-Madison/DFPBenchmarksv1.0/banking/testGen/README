@@ -1,0 +1,25 @@
+This directory contains a test generator which is capable of generating
+pseudo-directed random tests using similar structure as the benchmark program
+
+To run this test generator, 
+First, 
+
+sh link.sh
+make clean; make OS=LINUX DEC_DATATYPE=$DEC_DATATYPE WIDTH=$BITWIDTH
+
+Then followed by
+
+./LINUX.Banking.TestGen.DEC64 $OUTPUT_FILE $MAX_ACCT $MAX_TX $MIN_TX $NO_DAYS
+
+$OUTPUT_FILE is the output filename
+$MAX_ACCT is the maximum number of accounts (in all categories) that can be
+active at any given day
+$MAX_TX is the maximum transaction per day
+$MIN_TX is the minimum transaction per day
+$NO_DAYS is the number of days' transaction that should be generated
+
+When you run this program, it will generate the ascii version of this file called 
+$OUTPUT_FILE.txt and located in the ascii/ folder. It will also generate a binary 
+version of it called $OUTPUT_FILE.$DEC_DATATYPE in the bin/ directory. 
+Use the binary file for the benchmark simulation and ascii output file
+for your reference.

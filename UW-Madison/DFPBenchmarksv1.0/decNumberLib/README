@@ -1,0 +1,29 @@
+-- Introduction --
+
+This directory should contain the IBM decNumber library.  decNumber can be
+downloaded for free at:
+
+       http://www.alphaworks.ibm.com/tech/decnumber
+
+The source should be compiled to two files named 'LINUXDecNum.a' and
+'LINUXDecFloats.a', then either copied or linked in each benchmark's directory.
+We have included a Makefile that will compile the library correctly.
+
+
+-- Compilation --
+
+To compile, please download all source files into this directory. We have provided
+a Makefile that archives and names the library to what the benchmarks expect.
+
+To make the library type:
+
+make clean
+make
+
+
+-- <DEC_DATATYPE> Support --
+
+The decNumber library provides support for the following <DEC_DATATYPE> options:
+
+   (1) DECNUMBER_ARBITRARY - arbitrary precision decNumber library
+   (2) DECNUMBER_FIXED - fixed precision decNumber library

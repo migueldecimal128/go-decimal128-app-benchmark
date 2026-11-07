@@ -42,9 +42,10 @@ Attribution and provenance of the benchmark workloads
              e.g. arith.def / operator.h).
     The Tax Preparation benchmark is itself derived from OpenTaxSolver
       (http://opentaxsolver.sourceforge.net/), also GPL-licensed.
-    The original suite is published in
-      https://github.com/migueldecimal128/decimal128-resources
-      (UW-Madison/DFPBenchmarksv1.0/).
+    The original suite is included in UW-Madison/: its archive as
+      distributed, the C sources, build files, scripts and READMEs extracted
+      from it unchanged, and the two papers above (copied from
+      https://github.com/migueldecimal128/decimal128-resources, UW-Madison/).
 
 The input data and the euro conversion and banking reference outputs under
 data/ are the suite's own files, unchanged and likewise GPLv3. The tax

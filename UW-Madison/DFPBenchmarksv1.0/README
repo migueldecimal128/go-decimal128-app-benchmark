@@ -1,0 +1,69 @@
+Decimal Floating-Point (DFP) Benchmarks
+
+For more details, please refer to the following papers:
+
+      Wang, Tsen, Jhalani, Schulte  "Benchmarks and Performance Analysis
+      of Decimal Floating-Point Applications" from IEEE International
+      Conference on Computer Design, Oct 2007.
+
+      Anderson, Tsen, Wang, Compton, Schulte "Performance Analysis of Decimal
+      Floating-Point Libraries and Its Impact on Decimal Hardware and Software
+      Solutions" from IEEE International Conference on Computer Design, 
+      Oct 2009.
+
+Commercial benchmarks have been created to measure the performance benefits of 
+various decimal floating point implementations. Our benchmark suite includes 
+the following applications:
+
+    * Banking
+    * Tax Solver
+    * Telco
+    * Risk Management
+    * Currency Conversion
+
+-- Libraries
+
+The benchmarks require support for DFP in an underlying module.  Currently the
+benchmarks are compatible with three underlying modules.  To run the benchmarks
+using decimal floating-point types, please download one of the three supported
+dfp modules:
+
+   * IBM DecNumber: 			
+        http://www.alphaworks.ibm.com/tech/decnumber
+        Should be compiled to files named 'LINUXDecNum.a' and 
+        'LINUXDecFloats.a', then either copied or linked in each benchmark's 
+        directory. We have included a Makefile that should compile the
+        library correctly. 
+
+        See $BENCHMARK_ROOT/decNumberLib/README for more information.
+        
+
+   * Intel Decimal Floating-Point Math: 
+        http://softwareblogs.intel.com/2008/03/06/intel-decimal-floating-point-math-library/
+        Should be compiled to a file called 'libbid.a' and either copied 
+        or linked in each benchmark's directory. We have included a script
+        called make_for_benchmarks.sh that should compile this library
+        with the correct parameters.
+
+	See $BENCHMARK_ROOT/IntelRDFPMathLib1.0/README for more information
+
+
+   * GCC 4.3 or above: 			
+        http://gcc.gnu.org/
+        Gcc should be compiled with decimal floating-point enabled.
+
+Note: It is also possible to run the benchmarks with binary floating-point (BFP)
+support.  This does not require downloading any modules, however the benchmarks are
+intended DFP rather than for BFP.
+
+-- Compiling the Benchmarks
+
+To compile the benchmarks, follow the instructions in each 
+benchmark's README file. 
+
+
+-- SimpleScalar
+
+It is possible to cross-compile the benchmarks for SimpleScalar, however this
+feature has not been actively maintained. The README files for each benchmark
+have instructions for cross-compilation.

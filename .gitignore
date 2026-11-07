@@ -1,6 +1,6 @@
 .DS_Store
 /bin/
-*.test
-*.out
+/*.test
+/*.out
 data/risk_management/testGen/result/
 results/.build/

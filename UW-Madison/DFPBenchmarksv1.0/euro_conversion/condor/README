@@ -1,0 +1,2 @@
+This directory contains the condor scripts. These scripts are not required to run the benchmark.
+However, if you have condor installed in your system, it can run parallel jobs.

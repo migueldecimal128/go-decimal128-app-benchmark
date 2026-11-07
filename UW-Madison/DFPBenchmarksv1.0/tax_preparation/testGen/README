@@ -1,0 +1,27 @@
+This directory contains a test generator which is capable of generating
+pseudo-directed random tests using similar structure as the benchmark program
+
+To run this test generator, 
+First, 
+
+cd ..
+source link.sh
+cd testGen
+make clean; make DEC_DATATYPE=$DEC_DATATYPE WIDTH=$BITWIDTH
+
+Then followed by
+
+./TEST_GEN_ASCII.$TAX_LOC $PREFIX $NUM_RETURNS
+ ** Edit inputs.txt with $PREFIX.txt **
+./CONVERTER.$DEC_DATATYPE 
+
+$PREFIX is the name of your test file
+$NUM_RETURNS is the number of tax returns to be contained
+in the test file
+$TAX_LOC is the type of tax return (CA, NC, or FED)
+
+When you run this program, it will generate the ascii version of this file called 
+$PREFIX.txt and located in the ascii/ folder. It will also generate a binary 
+version of it called $PREFIX.$DEC_DATATYPE in the bin/ directory. 
+Use the binary file for the benchmark simulation and ascii output file
+for your reference.
