@@ -6,13 +6,15 @@
 // print "Use the old … rate"). Reads the BID-encoded .bid128 variants.
 package main
 
+import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+
 func (bk *bank) initCoin() {
 	for i := 0; i <= 8; i++ {
 		bk.conversionRate[i][1] = bk.CENT // COPY64 CENT
 	}
 	coins := [...]string{"0.05", "0.1", "0.01", "0.01", "0.1", "1", "0.1", "0.05", "1"} // AUD..TWD
 	for i, c := range coins {
-		bk.conversionRate[9+i][1] = fromString(c)
+		bk.conversionRate[9+i][1] = d.MustParse(c)
 	}
 }
 

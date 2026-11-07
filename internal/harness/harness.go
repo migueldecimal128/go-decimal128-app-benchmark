@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: MIT
 //
-// Package harness holds the small helpers shared by every Go app harness in
-// decimal128-app-benchmark: env/arg handling, BID record decoding, the
-// best-of-N compute clock, and the COMPUTE_NS_PER_RECORD marker the runner
-// parses. There is deliberately no decimal "backend" interface: the Go arm is
-// d128-only, and the apps call decimal128-go directly so no dynamic dispatch
-// sits on the measured path (see workorder AppBenchGoArmWorkOrder.md §2).
+// Package harness holds the small helpers shared by every app: env/arg
+// handling, splitting a BID record into its 64-bit halves, the best-of-N
+// compute clock, and the COMPUTE_* markers the runner parses. It contains no
+// decimal arithmetic; the apps reach a decimal library only through
+// internal/dec.
 package harness
 
 import (

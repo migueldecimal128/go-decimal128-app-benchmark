@@ -8,43 +8,47 @@
 // NEW_FEATURES off, DEBUG on.
 package main
 
-import "strconv"
+import (
+	"strconv"
+
+	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+)
 
 const mortLOC = "mortgage.c"
 
 // closingCostFcn: title-insurance / closing-cost breakdown.
 func (bk *bank) closingCostFcn(principal, downPayment dec) dec {
 	mc := bk.mortConst
-	sales := add(downPayment, principal)
-	temp := sub(sales, mc.hundredThousand)
-	temp = mul(temp, mc.title_insurance_rate_1)
-	temp = mul(temp, mc.title_insurance_rate_2)
-	titleInsurancePolicy := add(temp, mc.title_insurance_base)
-	temp = mul(principal, mc.documentary_stamp_tax_on_note_rate_1)
-	docStamp := mul(temp, mc.documentary_stamp_tax_on_note_rate_2)
-	intangible := mul(mc.intagible_tax_on_note, principal)
+	sales := downPayment.Add(principal)
+	temp := sales.Sub(mc.hundredThousand)
+	temp = temp.Mul(mc.title_insurance_rate_1)
+	temp = temp.Mul(mc.title_insurance_rate_2)
+	titleInsurancePolicy := temp.Add(mc.title_insurance_base)
+	temp = principal.Mul(mc.documentary_stamp_tax_on_note_rate_1)
+	docStamp := temp.Mul(mc.documentary_stamp_tax_on_note_rate_2)
+	intangible := mc.intagible_tax_on_note.Mul(principal)
 	lenderPolicy, alta, endorsement := zeroD, zeroD, zeroD
 	if !isZero(principal) {
 		lenderPolicy = mc.lender_title_insurance_policy
 		alta = mc.alta_title_endorsements
-		temp = add(titleInsurancePolicy, mc.title_endorsement_extra)
-		endorsement = mul(temp, mc.title_endorsement_rate)
+		temp = titleInsurancePolicy.Add(mc.title_endorsement_extra)
+		endorsement = temp.Mul(mc.title_endorsement_rate)
 	}
 	temp = titleInsurancePolicy
-	temp = add(temp, lenderPolicy)
-	temp = add(temp, endorsement)
-	temp = add(temp, alta)
-	temp = add(temp, mc.title_search)
-	temp = add(temp, mc.title_examination)
-	temp = add(temp, mc.closing)
-	temp = add(temp, docStamp)
-	temp = add(temp, intangible)
-	return add(temp, mc.recording)
+	temp = temp.Add(lenderPolicy)
+	temp = temp.Add(endorsement)
+	temp = temp.Add(alta)
+	temp = temp.Add(mc.title_search)
+	temp = temp.Add(mc.title_examination)
+	temp = temp.Add(mc.closing)
+	temp = temp.Add(docStamp)
+	temp = temp.Add(intangible)
+	return temp.Add(mc.recording)
 }
 
 func (bk *bank) closingCost(a *mortAcct) {
 	cc := bk.closingCostFcn(a.loan, a.downPayment)
-	a.closingCost = add(cc, a.downPayment)
+	a.closingCost = cc.Add(a.downPayment)
 	a.closingCost = bk.roundToAvailableCoin(a.closingCost, bk.CENT)
 }
 
@@ -62,7 +66,7 @@ func (bk *bank) closePenalty(a *mortAcct) dec {
 	case 3:
 		rate = mc.premature_close_penalty_year_3
 	}
-	return bk.roundToAvailableCoin(mul(a.loan, rate), bk.CENT)
+	return bk.roundToAvailableCoin(a.loan.Mul(rate), bk.CENT)
 }
 
 func (bk *bank) mortgageAcctClose(t *htab, acctNo string) int {
@@ -76,10 +80,10 @@ func (bk *bank) mortgageAcctClose(t *htab, acctNo string) int {
 	bk.errorPrint(mortLOC, INFO_CODE, INFO_CODE, "Remaining Principal: "+toStr(a.remaining_principal)+"\n")
 	if a.overdue == 0 {
 		bk.errorPrint(mortLOC, INFO_CODE, INFO_CODE, "The Closing Cost: "+toStr(a.closingCost)+"\n")
-		closingCost := add(penalty, a.closingCost)
-		a.remaining_principal = add(closingCost, a.remaining_principal)
+		closingCost := penalty.Add(a.closingCost)
+		a.remaining_principal = closingCost.Add(a.remaining_principal)
 	} else {
-		a.remaining_principal = add(a.remaining_principal, penalty)
+		a.remaining_principal = a.remaining_principal.Add(penalty)
 	}
 	bk.errorPrint(mortLOC, INFO_CODE, INFO_CODE, "The total payment is "+toStr(a.remaining_principal)+"\n")
 	t.hdel()
@@ -89,29 +93,29 @@ func (bk *bank) mortgageAcctClose(t *htab, acctNo string) int {
 // termPayment: monthly = principal*r / (1 - (1+r)^-number).
 func (bk *bank) termPayment(totalTerm int, rate, loan dec) dec {
 	temp1 := fromInt(-totalTerm) // -number
-	rPlus := add(rate, bk.ONE)   // 1+r
+	rPlus := rate.Add(bk.ONE)    // 1+r
 	temp2 := power(rPlus, temp1) // (1+r)^-number
-	temp2 = sub(bk.ONE, temp2)   // 1 - (1+r)^-number
-	temp3 := mul(loan, rate)     // principal*r
-	monthly := divv(temp3, temp2)
+	temp2 = bk.ONE.Sub(temp2)    // 1 - (1+r)^-number
+	temp3 := loan.Mul(rate)      // principal*r
+	monthly := temp3.Quo(temp2)
 	return bk.roundToAvailableCoin(monthly, bk.CENT)
 }
 
 // termComputation: number of months to pay off (given monthly); log10 + the
 // toward-positive to-integral. Unused by the dispatch, ported for completeness.
 func (bk *bank) termComputation(rate, loan, monthly dec) int {
-	rPlus := add(rate, bk.ONE)
-	temp2 := log10(rPlus)
-	temp1 := mul(rate, loan)
-	temp1 = sub(monthly, temp1)
+	rPlus := rate.Add(bk.ONE)
+	temp2 := rPlus.Log10()
+	temp1 := rate.Mul(loan)
+	temp1 = monthly.Sub(temp1)
 	if isNeg(temp1) {
 		bk.errorPrint(mortLOC, WARNING_CODE, NOT_ENOUGH_BALANCE,
 			"monthly payment is not enough to pay the interest. Illegal operation in non-negative mortgage\n")
 		return NOT_ENOUGH_BALANCE
 	}
-	temp1 = divv(monthly, temp1)
-	temp1 = log10(temp1)
-	temp1 = divv(temp1, temp2)
+	temp1 = monthly.Quo(temp1)
+	temp1 = temp1.Log10()
+	temp1 = temp1.Quo(temp2)
 	bk.currentRound = rpi
 	temp1 = bk.toIntegral(temp1)
 	bk.currentRound = rne
@@ -137,37 +141,37 @@ func (bk *bank) scheduleTable(loan dec, year int, mr *mortRate, acctType int) in
 		bk.errorPrint(mortLOC, ERROR_CODE, MORT_TYPE_WRONG, "No this mortgage type!\n")
 		rate = zeroD
 	}
-	newR := divv(rate, bk.HUNDRED)
+	newR := rate.Quo(bk.HUNDRED)
 	if (bk.checkGEZero(loan) == 0) || (bk.checkGEZero(newR) == 0) || (bk.checkLEOne(newR) == 0) || (year <= 0) {
 		bk.errorPrint(mortLOC, ERROR_CODE, BAD_INPUT, "Bad Inputs in Schduling Table")
 	}
-	temp1 := fromInt(-number)  // -number
-	r := divv(newR, bk.TWELVE) // rate/12
-	rPlus := add(r, bk.ONE)    // 1+r
+	temp1 := fromInt(-number) // -number
+	r := newR.Quo(bk.TWELVE)  // rate/12
+	rPlus := r.Add(bk.ONE)    // 1+r
 	temp2 := power(rPlus, temp1)
-	temp2 = sub(bk.ONE, temp2)
-	temp3 := mul(loan, r)
-	monthly := divv(temp3, temp2)
+	temp2 = bk.ONE.Sub(temp2)
+	temp3 := loan.Mul(r)
+	monthly := temp3.Quo(temp2)
 	monthly = bk.roundToAvailableCoin(monthly, bk.CENT)
 	totalInterest, totalPayment := zeroD, zeroD
 	for months := 1; months <= number; months++ {
 		t3 := fromInt(-number + months)
 		t3 = power(rPlus, t3)
-		t3 = sub(bk.ONE, t3)
+		t3 = bk.ONE.Sub(t3)
 		i := months - 1
-		remaining[i] = mul(loan, t3)
-		remaining[i] = divv(remaining[i], temp2)
+		remaining[i] = loan.Mul(t3)
+		remaining[i] = remaining[i].Quo(temp2)
 		remaining[i] = bk.roundToAvailableCoin(remaining[i], temp1)
 		if months > 1 {
-			interestPay[i] = mul(remaining[i-1], r)
+			interestPay[i] = remaining[i-1].Mul(r)
 		} else {
-			interestPay[0] = mul(loan, r)
+			interestPay[0] = loan.Mul(r)
 		}
 		interestPay[i] = bk.roundToAvailableCoin(interestPay[i], temp1)
-		principalPay[i] = sub(monthly, interestPay[i])
+		principalPay[i] = monthly.Sub(interestPay[i])
 		principalPay[i] = bk.roundToAvailableCoin(principalPay[i], temp1)
-		totalInterest = add(totalInterest, interestPay[i])
-		totalPayment = add(totalPayment, monthly)
+		totalInterest = totalInterest.Add(interestPay[i])
+		totalPayment = totalPayment.Add(monthly)
 	}
 	_, _ = totalInterest, totalPayment
 	bk.errorPrint(mortLOC, INFO_CODE, INFO_CODE_NO_LINE,
@@ -181,7 +185,7 @@ func (bk *bank) scheduleTable(loan dec, year int, mr *mortRate, acctType int) in
 }
 
 func (bk *bank) interestPaid(a *mortAcct) dec {
-	return bk.roundToAvailableCoin(mul(a.remaining_principal, a.rate), bk.CENT)
+	return bk.roundToAvailableCoin(a.remaining_principal.Mul(a.rate), bk.CENT)
 }
 
 func (bk *bank) mortgageAcctInit(a *mortAcct, period int, loan, downPayment dec, autoPay int, acctNo string) int {
@@ -255,10 +259,10 @@ func (bk *bank) mortgageAcctInquiry(t *htab, acctNo string) int {
 	bk.emit("Account Overdue: " + flag(a.overdue, "Yes", "No") + "\n")
 	bk.emit("Account Debt Paid? " + flag(a.debt_paid, "Yes", "Not Yet") + "\n")
 	bk.emit("Account auto-pay from " + a.acct_no + " Checking account? " + flag(a.auto_pay, "Yes", "No") + "\n")
-	rate := mul(a.rate, bk.HUNDRED)
+	rate := a.rate.Mul(bk.HUNDRED)
 	if a.overdue == 0 {
 		bk.emit("Account Mortgage Rate (monthly rate): " + toStr(rate) + " (in percentage)\n")
-		rate = mul(a.start_rate, bk.HUNDRED)
+		rate = a.start_rate.Mul(bk.HUNDRED)
 		bk.emit("Account Starting Mortgage Rate (monthly rate): " + toStr(rate) + " (in percentage)\n")
 	} else {
 		bk.emit("Account Penalty Rate (daily rate): " + toStr(rate) + " (in percentage)\n")
@@ -313,10 +317,10 @@ func (bk *bank) getMortgageRate(a *mortAcct, mr *mortRate) {
 	default:
 		bk.errorPrint(mortLOC, ERROR_CODE, MORT_TYPE_WRONG, "No this mortgage type!\n")
 	}
-	a.rate = divv(divv(a.rate, bk.TWELVE), bk.HUNDRED)
-	a.start_rate = divv(divv(a.start_rate, bk.TWELVE), bk.HUNDRED)
-	a.point = divv(a.point, bk.HUNDRED)
-	a.margin = divv(a.margin, bk.HUNDRED)
+	a.rate = a.rate.Quo(bk.TWELVE).Quo(bk.HUNDRED)
+	a.start_rate = a.start_rate.Quo(bk.TWELVE).Quo(bk.HUNDRED)
+	a.point = a.point.Quo(bk.HUNDRED)
+	a.margin = a.margin.Quo(bk.HUNDRED)
 }
 
 func (bk *bank) noChecking(acctNo string) int {
@@ -368,11 +372,11 @@ func (bk *bank) mortgageAcctRefinance(t, checking *htab, mr *mortRate, period in
 
 func (bk *bank) penaltyOverdue(a *mortAcct, mr *mortRate) int {
 	mc := bk.mortConst
-	surcharge := bk.roundToAvailableCoin(mul(a.loan, mc.overdue_surcharge_rate), bk.CENT)
-	a.remaining_principal = add(a.remaining_principal, surcharge)
-	minRate := divv(divv(mc.min_overdue_yr_penalty_rate, bk.YEAR), bk.HUNDRED)
-	minPoint := divv(mc.min_overdue_yr_penalty_point, bk.HUNDRED)
-	minMargin := divv(mc.min_overdue_yr_penalty_margin, bk.HUNDRED)
+	surcharge := bk.roundToAvailableCoin(a.loan.Mul(mc.overdue_surcharge_rate), bk.CENT)
+	a.remaining_principal = a.remaining_principal.Add(surcharge)
+	minRate := mc.min_overdue_yr_penalty_rate.Quo(bk.YEAR).Quo(bk.HUNDRED)
+	minPoint := mc.min_overdue_yr_penalty_point.Quo(bk.HUNDRED)
+	minMargin := mc.min_overdue_yr_penalty_margin.Quo(bk.HUNDRED)
 	rate, point, margin := zeroD, zeroD, zeroD
 	switch a.acct_type {
 	case FRM15YEAR:
@@ -384,18 +388,18 @@ func (bk *bank) penaltyOverdue(a *mortAcct, mr *mortRate) int {
 	case ARM51YEAR:
 		rate, point, margin = mr.arm51, mr.arm51Point, mr.arm51Margin
 	}
-	rate = divv(divv(rate, bk.YEAR), bk.HUNDRED)
-	point = divv(divv(point, bk.YEAR), bk.HUNDRED)
-	margin = divv(divv(margin, bk.YEAR), bk.HUNDRED)
-	dailyRate := divv(a.rate, bk.MONTH)
-	rate = maxv(rate, dailyRate)
-	rate = maxv(rate, minRate)
+	rate = rate.Quo(bk.YEAR).Quo(bk.HUNDRED)
+	point = point.Quo(bk.YEAR).Quo(bk.HUNDRED)
+	margin = margin.Quo(bk.YEAR).Quo(bk.HUNDRED)
+	dailyRate := a.rate.Quo(bk.MONTH)
+	rate = d.Maximum(rate, dailyRate)
+	rate = d.Maximum(rate, minRate)
 	a.rate = rate
 	if (a.acct_type == ARM1YEAR) || (a.acct_type == ARM51YEAR) {
-		point = maxv(point, a.point)
-		a.point = maxv(point, minPoint)
-		margin = maxv(margin, a.margin)
-		a.margin = maxv(margin, minMargin)
+		point = d.Maximum(point, a.point)
+		a.point = d.Maximum(point, minPoint)
+		margin = d.Maximum(margin, a.margin)
+		a.margin = d.Maximum(margin, minMargin)
 	}
 	return 0
 }
@@ -411,8 +415,8 @@ func (bk *bank) endOfTheDayMortgage(t, checking *htab, tcmRate dec) int {
 		a := t.hstuff().(*mortAcct)
 		if a.overdue != 0 {
 			bk.errorPrint(mortLOC, INFO_CODE, INFO_CODE_NO_LINE, "Account is in the overdue status\n")
-			temp := add(bk.ONE, a.rate)
-			a.remaining_principal = mul(a.remaining_principal, temp)
+			temp := bk.ONE.Add(a.rate)
+			a.remaining_principal = a.remaining_principal.Mul(temp)
 			a.remaining_principal = bk.roundToAvailableCoin(a.remaining_principal, bk.CENT)
 		} else if ((bk.counter-a.open_date)%a.pay_date == 0) && (bk.counter != a.open_date) {
 			if a.auto_pay != 0 {
@@ -422,7 +426,7 @@ func (bk *bank) endOfTheDayMortgage(t, checking *htab, tcmRate dec) int {
 				} else {
 					var ret int
 					if a.currentTerm == a.totalTerm-1 {
-						temp := mul(a.remaining_principal, add(bk.ONE, a.rate))
+						temp := a.remaining_principal.Mul(bk.ONE.Add(a.rate))
 						ret = bk.moneyWithdrawl(checking, a.acct_no, COUNTRIES, temp, bk.depositRate)
 					} else {
 						ret = bk.moneyWithdrawl(checking, a.acct_no, COUNTRIES, a.monthly, bk.depositRate)
@@ -443,7 +447,7 @@ func (bk *bank) endOfTheDayMortgage(t, checking *htab, tcmRate dec) int {
 			a.currentTerm++
 			currentInterest := bk.interestPaid(a)
 			bk.remainingPrincipalFcn(a)
-			a.accu_interest = add(a.accu_interest, currentInterest)
+			a.accu_interest = a.accu_interest.Add(currentInterest)
 			a.debt_paid = 0
 			if bk.counter == a.maturity_date {
 				bk.errorPrint(mortLOC, INFO_CODE, INFO_CODE,
@@ -462,9 +466,9 @@ func (bk *bank) endOfTheDayMortgage(t, checking *htab, tcmRate dec) int {
 }
 
 func (bk *bank) remainingPrincipalFcn(a *mortAcct) int {
-	monthlyInterest := mul(a.remaining_principal, a.rate)
-	temp := sub(a.monthly, monthlyInterest)
-	a.remaining_principal = sub(a.remaining_principal, temp)
+	monthlyInterest := a.remaining_principal.Mul(a.rate)
+	temp := a.monthly.Sub(monthlyInterest)
+	a.remaining_principal = a.remaining_principal.Sub(temp)
 	a.remaining_principal = bk.roundToAvailableCoin(a.remaining_principal, bk.CENT)
 	return 0
 }
@@ -474,18 +478,18 @@ func (bk *bank) determineNewRate(a *mortAcct, tcmRate dec) int {
 		(a.acct_type == FRM15YEAR) || (a.acct_type == FRM30YEAR) {
 		return 0
 	}
-	six := add(bk.TEN, bk.MFOUR) // 10 + (-4) = 6
-	temp1 := mul(a.margin, bk.HUNDRED)
-	temp1 = add(tcmRate, temp1)
-	temp2 := mul(bk.HUNDRED, a.rate)
-	temp2 = mul(bk.TWELVE, temp2)
-	temp2 = add(temp2, bk.TWO)
-	temp1 = minv(temp1, temp2)
-	temp2 = mul(bk.HUNDRED, a.start_rate)
-	temp2 = mul(temp2, bk.TWELVE)
-	temp2 = add(temp2, six)
-	a.rate = minv(temp1, temp2)
-	a.rate = divv(a.rate, bk.TWELVE)
-	a.rate = divv(a.rate, bk.HUNDRED)
+	six := bk.TEN.Add(bk.MFOUR) // 10 + (-4) = 6
+	temp1 := a.margin.Mul(bk.HUNDRED)
+	temp1 = tcmRate.Add(temp1)
+	temp2 := bk.HUNDRED.Mul(a.rate)
+	temp2 = bk.TWELVE.Mul(temp2)
+	temp2 = temp2.Add(bk.TWO)
+	temp1 = d.Minimum(temp1, temp2)
+	temp2 = bk.HUNDRED.Mul(a.start_rate)
+	temp2 = temp2.Mul(bk.TWELVE)
+	temp2 = temp2.Add(six)
+	a.rate = d.Minimum(temp1, temp2)
+	a.rate = a.rate.Quo(bk.TWELVE)
+	a.rate = a.rate.Quo(bk.HUNDRED)
 	return 0
 }

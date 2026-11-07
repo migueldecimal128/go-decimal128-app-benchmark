@@ -29,7 +29,7 @@ import (
 	"strconv"
 	"time"
 
-	d "github.com/migueldecimal128/decimal128-go"
+	d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
 	harness "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/harness"
 )
 
@@ -149,24 +149,18 @@ type bank struct {
 
 var zeroD = d.MustParse("0") // ZERO64 == +0E+0
 
-// --- decimal op helpers (the decAsm *64 / operator.h DEC_D128 macros) ---------
+// --- decimal helpers --------------------------------------------------------
+// Arithmetic calls the adapter (internal/dec) directly: a helper layer of its
+// own on top would no longer inline (see internal/dec, "Cost").
 
-func add(x, y dec) dec      { return x.Add(y) }
-func sub(x, y dec) dec      { return x.Sub(y) }
-func mul(x, y dec) dec      { return x.Mul(y) }
-func divv(x, y dec) dec     { return x.Quo(y) }
-func gt(x, y dec) bool      { return y.Less(x) }
-func lt(x, y dec) bool      { return x.Less(y) }
-func eq(x, y dec) bool      { return x.Equal(y) }
-func maxv(x, y dec) dec     { return d.Maximum(x, y) }
-func minv(x, y dec) dec     { return d.Minimum(x, y) }
-func minus(x dec) dec       { return x.Neg() }
-func log10(x dec) dec       { return x.Log10() }
-func quantize(x, y dec) dec { return x.Quantize(y) }
-func fromInt(n int) dec     { return d.FromInt64(int64(n)) }
-func fromString(s string) dec {
-	return d.MustParse(s)
-}
+func gt(x, y dec) bool { return y.Less(x) }
+func lt(x, y dec) bool { return x.Less(y) }
+func eq(x, y dec) bool { return x.Equal(y) }
+
+func minus(x dec) dec { return x.Neg() }
+
+func fromInt(n int) dec { return d.FromInt64(int64(n)) }
+
 func toStr(x dec) string { return x.String() }
 func isNeg(x dec) bool   { return x.Signbit() }
 func isZero(x dec) bool  { return x.IsZero() }
@@ -285,21 +279,21 @@ func (bk *bank) roundToAvailableCoin(inputAmt, minUnit dec) dec {
 		tempGT := gt(minUnit, bk.ONE)
 		temp := inputAmt
 		if tempGT {
-			temp = divv(inputAmt, bk.TEN)
+			temp = inputAmt.Quo(bk.TEN)
 		}
 		bk.currentRound = rni
 		newInput := bk.toIntegral(temp)
 		bk.currentRound = rne
-		temp = sub(temp, newInput)
+		temp = temp.Sub(newInput)
 		if !isZero(temp) {
 			if tempGT {
-				temp = mul(temp, bk.TEN)
-				newInput = mul(newInput, bk.TEN)
+				temp = temp.Mul(bk.TEN)
+				newInput = newInput.Mul(bk.TEN)
 			}
-			temp = divv(temp, minUnit)
+			temp = temp.Quo(minUnit)
 			temp = bk.toIntegral(temp)
-			temp = mul(temp, minUnit)
-			converted = add(temp, newInput)
+			temp = temp.Mul(minUnit)
+			converted = temp.Add(newInput)
 		} else {
 			converted = inputAmt
 		}
@@ -326,7 +320,7 @@ func (bk *bank) checkLEOne(v dec) int {
 
 // constdef (basic_fcn.c): set the shared constants + mort_const + tables.
 func (bk *bank) constdef() {
-	p := fromString
+	p := d.MustParse
 	bk.ONE, bk.TWO, bk.ZEROCONST = p("1.0"), p("2.0"), p("0.0")
 	bk.TWELVE, bk.MTWO, bk.ETWO = p("12"), p("-2"), p("1E-2")
 	bk.MTHREE, bk.MFOUR, bk.MFIVE = p("-3"), p("-4"), p("-5")

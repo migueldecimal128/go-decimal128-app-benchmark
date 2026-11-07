@@ -52,6 +52,8 @@ Files under other licenses
 * internal/harness/ — MIT (SPDX-License-Identifier: MIT). Benchmark plumbing
   (environment handling, BID record decoding, timing, result markers); not
   derived from the UW-Madison sources.
+* internal/dec/ — MIT. The library adapter (the Go counterpart of the suite's
+  operator.h); not derived from the UW-Madison sources.
 * cmd/bench/ and baseline/ — MIT. The runner and the startup baseline program;
   not derived from the UW-Madison sources.
 

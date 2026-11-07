@@ -28,7 +28,18 @@ import (
 	"time"
 )
 
-const libModule = "github.com/migueldecimal128/decimal128-go"
+// library is one decimal library the apps can be built against. Its adapter
+// file in internal/dec is selected by the build tag; the module path gives the
+// version go.mod pins.
+type library struct {
+	name   string // shown in the report
+	tag    string // go build tag that selects its adapter ("" = the default)
+	module string
+}
+
+var libraries = []library{
+	{name: "decimal128-go", tag: "", module: "github.com/migueldecimal128/decimal128-go"},
+}
 
 // suite is one row's workload: a program, its arguments, and how to gate it.
 type suite struct {
@@ -46,21 +57,21 @@ func suites() []suite {
 	tax := func(sub string) suite {
 		u := strings.ToUpper(sub)
 		return suite{app: "tax_preparation", sub: sub, dataset: "Tax." + u + ".bin.BID128",
-			dir: "data/tax_preparation", exe: "tax-" + sub + "-d128",
+			dir: "data/tax_preparation", exe: "tax-" + sub,
 			args:   []string{"testGen/bin/Tax." + u + ".bin.BID128", "/tmp/abtax_" + sub, "1"},
 			golden: "golden/Tax." + u + ".stderr.golden", records: 1}
 	}
 	return []suite{
 		{app: "euro_conversion", dataset: "Euro.bin.BID128", dir: "data/euro_conversion",
-			exe: "euro-d128", args: []string{"testGen/bin/Euro.bin.BID128", "euro_run.out"},
+			exe: "euro", args: []string{"testGen/bin/Euro.bin.BID128", "euro_run.out"},
 			golden: "golden/Euro.output.DECNUMBER_FIXED128", records: 100},
 		{app: "risk_management", dataset: "sp500 + 20 tickers", dir: "data/risk_management",
-			exe: "risk-d128", args: []string{"1", "bench"}, files: true, records: 20},
+			exe: "risk", args: []string{"1", "bench"}, files: true, records: 20},
 		tax("fed"), tax("ca"), tax("nc"),
 		// banking rebuilds its accounts between passes outside the timed region,
 		// which the runner's clock sees, so its cross-check limit is wider.
 		{app: "banking", dataset: "Banking.bin.BID128", dir: "data/banking",
-			exe: "banking-d128", args: []string{"testGen/bin/Banking.bin.BID128"},
+			exe: "banking", args: []string{"testGen/bin/Banking.bin.BID128"},
 			golden: "golden/Banking.output.DECNUMBER_FIXED128", records: 643, xcheckMax: 2.5},
 	}
 }
@@ -81,13 +92,15 @@ func baseEnv() []string {
 
 // runInfo is what every record of one invocation shares.
 type runInfo struct {
-	ts, arch, cpu, goVersion, libVersion string
-	benchCommit                          string // this repository's HEAD
-	benchDirty                           bool   // uncommitted changes outside results/
+	ts, arch, cpu, goVersion string
+	libVersions              map[string]string // library name -> pinned version
+	benchCommit              string            // this repository's HEAD
+	benchDirty               bool              // uncommitted changes outside results/
 }
 
 func main() {
 	app := flag.String("app", "", "only this app (euro_conversion, risk_management, tax_preparation, banking)")
+	libName := flag.String("lib", "", "only this library (default: every library)")
 	iters := flag.Int("iters", 9, "whole runs per row (fastest kept; every run is gated)")
 	reportOnly := flag.Bool("report-only", false, "rewrite results/RESULTS.md from the records only")
 	flag.Parse()
@@ -98,16 +111,28 @@ func main() {
 		fatal("run from the repository root (go run ./cmd/bench)")
 	}
 	if !*reportOnly {
+		var libs []library
+		for _, l := range libraries {
+			if (*libName == "") || (*libName == l.name) {
+				libs = append(libs, l)
+			}
+		}
+		if len(libs) == 0 {
+			fatal("unknown library " + *libName)
+		}
 		info := runInfo{ts: utcNow(), arch: archName(), cpu: cpuModel(),
-			goVersion: goEnv("GOVERSION"), libVersion: libVersion()}
+			goVersion: goEnv("GOVERSION"), libVersions: map[string]string{}}
 		info.benchCommit, info.benchDirty = benchStamp(root)
+		for _, l := range libs {
+			info.libVersions[l.name] = moduleVersion(l.module)
+		}
 		bin := filepath.Join(root, "results", ".build")
 		dirty := ""
 		if info.benchDirty {
 			dirty = " + uncommitted changes"
 		}
-		fmt.Printf("[build] %s, %s %s, bench %.7s%s\n", info.goVersion, libModule, info.libVersion, info.benchCommit, dirty)
-		build(root, bin)
+		fmt.Printf("[build] %s, bench %.7s%s\n", info.goVersion, info.benchCommit, dirty)
+		build(root, bin, libs, info)
 		measureStartup(root, bin, *iters, info)
 		ran := false
 		for _, a := range appOrder {
@@ -116,8 +141,11 @@ func main() {
 			}
 			var jobs []*job
 			for _, s := range suites() {
-				if s.app == a {
-					jobs = append(jobs, newJob(func(run runFunc) { measureRow(root, bin, s, *iters, info, run) }))
+				if s.app != a {
+					continue
+				}
+				for _, l := range libs {
+					jobs = append(jobs, newJob(func(run runFunc) { measureRow(root, bin, s, l, *iters, info, run) }))
 				}
 			}
 			fmt.Printf("[measure] %s\n", a)
@@ -132,12 +160,25 @@ func main() {
 	fmt.Println("[report] results/RESULTS.md")
 }
 
-// build compiles every app and the startup baseline into bin.
-func build(root, bin string) {
-	check(os.MkdirAll(bin, 0o755))
-	cmd := exec.Command("go", "build", "-trimpath", "-o", bin+string(os.PathSeparator), "./apps/...", "./baseline/noop")
-	cmd.Dir, cmd.Stdout, cmd.Stderr = root, os.Stdout, os.Stderr
-	check(cmd.Run())
+// build compiles the startup baseline into bin, and every app once per
+// library into bin/<library>/.
+func build(root, bin string, libs []library, info runInfo) {
+	goBuild := func(out string, tags string, pkgs ...string) {
+		check(os.MkdirAll(out, 0o755))
+		args := []string{"build", "-trimpath"}
+		if tags != "" {
+			args = append(args, "-tags", tags)
+		}
+		args = append(append(args, "-o", out+string(os.PathSeparator)), pkgs...)
+		cmd := exec.Command("go", args...)
+		cmd.Dir, cmd.Stdout, cmd.Stderr = root, os.Stdout, os.Stderr
+		check(cmd.Run())
+	}
+	goBuild(bin, "", "./baseline/noop")
+	for _, l := range libs {
+		fmt.Printf("[build] %s %s\n", l.module, info.libVersions[l.name])
+		goBuild(filepath.Join(bin, l.name), l.tag, "./apps/...")
+	}
 }
 
 // --- interleaving ----------------------------------------------------------
@@ -247,9 +288,9 @@ type startupRecord struct {
 	TimestampUTC  string  `json:"timestamp_utc"`
 }
 
-func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc) {
+func measureRow(root, bin string, s suite, lib library, iters int, info runInfo, run runFunc) {
 	dir := filepath.Join(root, s.dir)
-	exe := filepath.Join(bin, s.exe)
+	exe := filepath.Join(bin, lib.name, s.exe)
 	env := baseEnv()
 	var log []logEntry
 	stamped := func(kind string, fn func() any) any {
@@ -344,7 +385,7 @@ func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc)
 		limit = xcheckMaxDefault
 	}
 	rec := record{
-		App: s.app, Impl: "decimal128-go", Library: libModule, LibraryVersion: info.libVersion,
+		App: s.app, Impl: lib.name, Library: lib.module, LibraryVersion: info.libVersions[lib.name],
 		Dataset: s.dataset, Records: s.records, Correct: allRuns == iters,
 		GateRunsPassed: allRuns, GateRuns: iters,
 		WholeNs: best, WholeNsPerRecord: float64(best) / float64(s.records), WholeRunsNs: wholeRuns,
@@ -375,7 +416,7 @@ func measureRow(root, bin string, s suite, iters int, info runInfo, run runFunc)
 	rec.WrittenUTC = utcNow()
 	appendRecord(root, s.app, rec)
 
-	label := "decimal128-go"
+	label := lib.name
 	if s.sub != "" {
 		label += "/" + s.sub
 	}
@@ -480,9 +521,9 @@ func goEnv(key string) string {
 	return strings.TrimSpace(string(out))
 }
 
-// libVersion is the decimal128-go version go.mod pins.
-func libVersion() string {
-	out, err := exec.Command("go", "list", "-m", "-f", "{{.Version}}", libModule).Output()
+// moduleVersion is the version go.mod pins for a module.
+func moduleVersion(module string) string {
+	out, err := exec.Command("go", "list", "-m", "-f", "{{.Version}}", module).Output()
 	if err != nil {
 		return "unknown"
 	}

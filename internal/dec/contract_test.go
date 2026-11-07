@@ -1,0 +1,212 @@
+// SPDX-License-Identifier: MIT
+
+package dec
+
+import "testing"
+
+// The contract (doc.go) as tests. They use only this package's API, so they
+// apply unchanged to every library's adapter: go test -tags <lib> ./internal/dec.
+// Each case is a property the benchmark goldens depend on; a library that
+// fails one would fail a gate.
+
+func p(s string) Decimal128 { return MustParse(s) }
+
+func TestString(t *testing.T) {
+	// The to-scientific-string form, round-tripped through MustParse.
+	for _, s := range []string{
+		"0", "-0", "1", "-5", "1.50", "0.000", "1000", "1E+3", "1.2E+3",
+		"0.0000012", // adjusted exponent -6: still plain
+		"1.2E-7",    // adjusted exponent -7: scientific
+		"1.23E-10", "9.999999999999999999999999999999999E+6144", "1E-6176",
+		"Infinity", "-Infinity", "NaN",
+	} {
+		if got := p(s).String(); got != s {
+			t.Errorf("MustParse(%q).String() = %q", s, got)
+		}
+	}
+	for _, c := range [][2]string{
+		{"0.00000012", "1.2E-7"}, {"123E-10", "1.23E-8"}, {"1e3", "1E+3"},
+		{"+7", "7"}, {".5", "0.5"},
+	} {
+		if got := p(c[0]).String(); got != c[1] {
+			t.Errorf("MustParse(%q).String() = %q, want %q", c[0], got, c[1])
+		}
+	}
+}
+
+func TestConversions(t *testing.T) {
+	if got := Zero().String(); got != "0" {
+		t.Errorf("Zero() = %s", got)
+	}
+	for _, c := range []struct {
+		n    int64
+		want string
+	}{{0, "0"}, {-5, "-5"}, {643, "643"}, {-9223372036854775808, "-9223372036854775808"}} {
+		if got := FromInt64(c.n).String(); got != c.want {
+			t.Errorf("FromInt64(%d) = %s", c.n, got)
+		}
+	}
+	// BID128: 1 is coefficient 1 with exponent 0 (biased 6176 = 0x3040 << 49 ...).
+	for _, c := range []struct {
+		hi, lo uint64
+		want   string
+	}{
+		{0x3040000000000000, 1, "1"},
+		{0xB040000000000000, 150, "-150"},
+		{0x303C000000000000, 150, "1.50"},
+		{0x3040000000000000, 0, "0"},
+		{0x7800000000000000, 0, "Infinity"},
+		{0x7C00000000000000, 0, "NaN"},
+	} {
+		if got := FromBID128(c.hi, c.lo).String(); got != c.want {
+			t.Errorf("FromBID128(%#x, %d) = %s, want %s", c.hi, c.lo, got, c.want)
+		}
+	}
+}
+
+func TestArithmetic(t *testing.T) {
+	for _, c := range []struct {
+		op         string
+		x, y, want string
+	}{
+		// Exponents are kept: the ideal exponent of a sum is the smaller one,
+		// of a product the sum of the two.
+		{"add", "1.50", "1", "2.50"},
+		{"add", "1", "-1", "0"},
+		{"add", "1.0", "-1.0", "0.0"},
+		{"sub", "2.50", "0.5", "2.00"},
+		{"mul", "1.50", "2", "3.00"},
+		{"mul", "0.05", "0.05", "0.0025"},
+		{"quo", "1", "8", "0.125"},
+		{"quo", "1.00", "2", "0.50"},
+		{"quo", "100", "4", "25"},
+		// 34 digits, ties-to-even.
+		{"quo", "2", "3", "0.6666666666666666666666666666666667"},
+		{"quo", "1", "3", "0.3333333333333333333333333333333333"},
+		{"add", "1E+34", "0.5", "1.000000000000000000000000000000000E+34"},
+		{"add", "1E+34", "1.5", "1.000000000000000000000000000000000E+34"},
+		{"add", "1E+34", "2.5", "1.000000000000000000000000000000000E+34"},
+		{"add", "1E+34", "3.5", "1.000000000000000000000000000000000E+34"},
+		{"quantize", "1.235", "0.01", "1.24"},
+		{"quantize", "1.245", "0.01", "1.24"},
+		{"quantize", "-1.235", "0.01", "-1.24"},
+		{"quantize", "2", "0.01", "2.00"},
+		{"quantize", "123.4567", "0.0001", "123.4567"},
+	} {
+		x, y := p(c.x), p(c.y)
+		var got Decimal128
+		switch c.op {
+		case "add":
+			got = x.Add(y)
+		case "sub":
+			got = x.Sub(y)
+		case "mul":
+			got = x.Mul(y)
+		case "quo":
+			got = x.Quo(y)
+		case "quantize":
+			got = x.Quantize(y)
+		}
+		if got.String() != c.want {
+			t.Errorf("%s(%s, %s) = %s, want %s", c.op, c.x, c.y, got, c.want)
+		}
+	}
+	if got := p("0").Neg().String(); got != "-0" {
+		t.Errorf("Neg(0) = %s, want -0", got)
+	}
+	if got := p("-1.50").Neg().String(); got != "1.50" {
+		t.Errorf("Neg(-1.50) = %s", got)
+	}
+}
+
+func TestComparisons(t *testing.T) {
+	nan, negz, z := p("NaN"), p("-0"), p("0")
+	if !p("1.5").Less(p("1.50001")) || p("1.50").Less(p("1.5")) || !p("-2").Less(p("1")) {
+		t.Error("Less: wrong order")
+	}
+	if negz.Less(z) || z.Less(negz) || !negz.Equal(z) {
+		t.Error("-0 and +0 must be equal")
+	}
+	if !p("1.50").Equal(p("1.5")) {
+		t.Error("Equal compares numerically: 1.50 == 1.5")
+	}
+	if nan.Less(z) || z.Less(nan) || nan.Equal(nan) {
+		t.Error("NaN must compare false")
+	}
+	if !negz.Signbit() || z.Signbit() || !p("-3").Signbit() {
+		t.Error("Signbit is the sign bit (true for -0)")
+	}
+	if !negz.IsZero() || !p("0.000").IsZero() || p("1E-6176").IsZero() {
+		t.Error("IsZero")
+	}
+	if !nan.IsNaN() || p("Infinity").IsNaN() || !p("-Infinity").IsInf() || p("1").IsInf() {
+		t.Error("IsNaN / IsInf")
+	}
+	if got := Minimum(p("2"), p("-3")).String(); got != "-3" {
+		t.Errorf("Minimum(2, -3) = %s", got)
+	}
+	if got := Maximum(p("2"), p("-3")).String(); got != "2" {
+		t.Errorf("Maximum(2, -3) = %s", got)
+	}
+	if !Minimum(nan, z).IsNaN() || !Maximum(z, nan).IsNaN() {
+		t.Error("Minimum / Maximum with a NaN operand must be NaN")
+	}
+}
+
+func TestRounding(t *testing.T) {
+	type row struct {
+		x                                string
+		even, away, zero, toward, downto string
+	}
+	for _, c := range []row{
+		{"2.5", "2", "3", "2", "3", "2"},
+		{"3.5", "4", "4", "3", "4", "3"},
+		{"-2.5", "-2", "-3", "-2", "-2", "-3"},
+		{"2.4", "2", "2", "2", "3", "2"},
+		{"-0.4", "-0", "-0", "-0", "-0", "-1"},
+		{"7", "7", "7", "7", "7", "7"},
+		{"1.2E+3", "1.2E+3", "1.2E+3", "1.2E+3", "1.2E+3", "1.2E+3"},
+	} {
+		x := p(c.x)
+		for _, m := range []struct {
+			r    Rounding
+			name string
+			want string
+		}{
+			{TiesToEven, "TiesToEven", c.even}, {TiesToAway, "TiesToAway", c.away},
+			{TowardZero, "TowardZero", c.zero}, {TowardPositive, "TowardPositive", c.toward},
+			{TowardNegative, "TowardNegative", c.downto},
+		} {
+			if got := m.r.RoundToIntegral(x).String(); got != m.want {
+				t.Errorf("%s.RoundToIntegral(%s) = %s, want %s", m.name, c.x, got, m.want)
+			}
+		}
+	}
+	for _, c := range []struct {
+		x    string
+		want int64
+	}{{"2.7", 2}, {"-2.7", -2}, {"643", 643}, {"1.2E+3", 1200}, {"-0.5", 0}} {
+		if got := TowardZero.ToInt64(p(c.x)); got != c.want {
+			t.Errorf("TowardZero.ToInt64(%s) = %d, want %d", c.x, got, c.want)
+		}
+	}
+}
+
+func TestPowers(t *testing.T) {
+	for _, c := range []struct {
+		name, got, want string
+	}{
+		{"PowInt(2, 10)", p("2").PowInt(10).String(), "1024"},
+		{"PowInt(1.05, 2)", p("1.05").PowInt(2).String(), "1.1025"},
+		{"PowInt(2, -2)", p("2").PowInt(-2).String(), "0.25"},
+		{"Pow(2, 0.5)", p("2").Pow(p("0.5")).String(), "1.414213562373095048801688724209698"},
+		{"Compound(0.05, 2)", p("0.05").Compound(2).String(), "1.1025"},
+		{"Compound(0.5, -1)", p("0.5").Compound(-1).String(), "0.6666666666666666666666666666666667"},
+		{"Log10(1000)", p("1000").Log10().String(), "3"},
+		{"Log10(2)", p("2").Log10().String(), "0.3010299956639811952137388947244930"},
+	} {
+		if c.got != c.want {
+			t.Errorf("%s = %s, want %s", c.name, c.got, c.want)
+		}
+	}
+}

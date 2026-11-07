@@ -6,6 +6,8 @@
 // daily_deposit_* aggregation is excluded; DEBUG is ON (the verbose transcript).
 package main
 
+import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/dec"
+
 const (
 	depLOC           = "deposit.c"
 	penaltyRate      = "0.02"
@@ -139,7 +141,7 @@ func (bk *bank) moneyDeposit(t *htab, acctNo string, fund dec, depositUnit int) 
 	if depositUnit != a.currency {
 		temp, _ = bk.conversionUS(depositUnit, a.currency, fund)
 	}
-	a.current_balance = add(a.current_balance, temp)
+	a.current_balance = a.current_balance.Add(temp)
 	bias := 0
 	if a.currency != COUNTRIES {
 		bias = COUNTRIES
@@ -161,8 +163,8 @@ func (bk *bank) moneyWithdrawl(t *htab, acctNo string, withdrawlUnit int, money 
 	bk.emit("The original balance is " + toStr(a.current_balance) + "\n")
 	bk.emit("The unposted interest is " + toStr(a.unposted_interest) + "\n")
 	bk.errorPrint(depLOC, INFO_CODE, INFO_CODE, "Unposted interest goes into current balance immediately\n")
-	tempBal := add(a.current_balance, a.unposted_interest)
-	tempBal = sub(tempBal, penalty)
+	tempBal := a.current_balance.Add(a.unposted_interest)
+	tempBal = tempBal.Sub(penalty)
 	fromStr := bk.checkName(withdrawlUnit)
 	toStrCur := bk.checkName(a.currency)
 	temp := money
@@ -170,7 +172,7 @@ func (bk *bank) moneyWithdrawl(t *htab, acctNo string, withdrawlUnit int, money 
 		temp, _ = bk.conversionUS(withdrawlUnit, a.currency, money)
 	}
 	bk.emit("The converted amount is " + toStr(temp) + "\n")
-	tempBal = sub(tempBal, temp)
+	tempBal = tempBal.Sub(temp)
 	kind := cdOrChecking(a.acct_type, "CD", "Checking")
 	if isNeg(tempBal) {
 		bk.errorPrint(depLOC, WARNING_CODE, NOT_ENOUGH_BALANCE, "Deposit account balance is not enough for withdrawl.\n")
@@ -210,7 +212,7 @@ func (bk *bank) endOfTheDayDeposit(cdTable, checkingTable *htab) {
 			} else if a.extend == 1 {
 				a.extend = 0
 				bk.getDepositRate(bk.depositRate[a.currency], a)
-				a.current_balance = add(a.current_balance, a.unposted_interest)
+				a.current_balance = a.current_balance.Add(a.unposted_interest)
 				a.unposted_interest = zeroD
 				a.open_date = bk.counter
 				a.maturity_date = bk.counter + a.period*30
@@ -218,7 +220,7 @@ func (bk *bank) endOfTheDayDeposit(cdTable, checkingTable *htab) {
 		} else if bk.counter == a.maturity_date+GRACE_PERIOD {
 			a.extend = 0
 			bk.getDepositRate(bk.depositRate[a.currency], a)
-			a.current_balance = add(a.current_balance, a.unposted_interest)
+			a.current_balance = a.current_balance.Add(a.unposted_interest)
 			a.unposted_interest = zeroD
 			a.open_date = bk.counter - GRACE_PERIOD
 			a.maturity_date = bk.counter - GRACE_PERIOD + a.period*30
@@ -234,14 +236,14 @@ func (bk *bank) wireTransfer(t *htab, fromUnit int, acctNo string, to int, inv d
 		}
 		a := t.hstuff().(*depositAcct)
 		from := a.currency
-		a.current_balance = add(a.current_balance, a.unposted_interest)
+		a.current_balance = a.current_balance.Add(a.unposted_interest)
 		a.unposted_interest = zeroD
 		if a.currency != to {
 			out, _ = bk.conversionUS(from, to, inv)
 		} else {
 			out = inv
 		}
-		temp2 := sub(a.current_balance, inv)
+		temp2 := a.current_balance.Sub(inv)
 		if isNeg(temp2) {
 			bk.errorPrint(depLOC, WARNING_CODE, CD_CK_NO_MONEY,
 				"###### This wire transfer cannot be made due to lack of money in "+a.acct_no+"'s account ######\n")
@@ -314,21 +316,21 @@ func (bk *bank) conversionUS(from, to int, moneyFrom dec) (dec, dec) {
 	var transaction, moneyTo dec
 	switch {
 	case from == COUNTRIES:
-		transaction = mul(moneyFrom, cr[to+COUNTRIES][0])
+		transaction = moneyFrom.Mul(cr[to+COUNTRIES][0])
 		moneyTo = bk.roundToAvailableCoin(transaction, cr[to+COUNTRIES][1])
 	case to == COUNTRIES:
-		transaction = mul(moneyFrom, cr[from][0])
+		transaction = moneyFrom.Mul(cr[from][0])
 		moneyTo = bk.roundToAvailableCoin(transaction, cr[from][1])
 	default:
-		transaction = mul(moneyFrom, cr[from][0])
-		transaction = mul(transaction, cr[to+COUNTRIES][0])
+		transaction = moneyFrom.Mul(cr[from][0])
+		transaction = transaction.Mul(cr[to+COUNTRIES][0])
 		moneyTo = bk.roundToAvailableCoin(transaction, cr[to+COUNTRIES][1])
 	}
 	return moneyTo, transaction
 }
 
 func (bk *bank) fixedExtraFee(inv dec, from int) dec {
-	out := mul(inv, bk.NON_CUSTOMER_FIXED_RATE)
+	out := inv.Mul(bk.NON_CUSTOMER_FIXED_RATE)
 	return bk.roundToAvailableCoin(out, bk.conversionRate[from][1])
 }
 
@@ -336,17 +338,17 @@ func (bk *bank) penaltyComputation(a *depositAcct, r *depositRate) dec {
 	var dailyRate dec
 	switch a.period {
 	case 1:
-		dailyRate = divv(r.one, bk.YEAR)
+		dailyRate = r.one.Quo(bk.YEAR)
 	case 3:
-		dailyRate = divv(r.three, bk.YEAR)
+		dailyRate = r.three.Quo(bk.YEAR)
 	default:
-		dailyRate = divv(r.six, bk.YEAR)
+		dailyRate = r.six.Quo(bk.YEAR)
 	}
-	penRate := maxv(fromString(penaltyRate), dailyRate)
-	temp := add(a.unposted_interest, a.current_balance)
-	penRate = divv(penRate, bk.HUNDRED)
-	penalty := mul(penRate, temp)
-	penalty = add(penalty, fromString(penaltySurcharge))
+	penRate := d.Maximum(d.MustParse(penaltyRate), dailyRate)
+	temp := a.unposted_interest.Add(a.current_balance)
+	penRate = penRate.Quo(bk.HUNDRED)
+	penalty := penRate.Mul(temp)
+	penalty = penalty.Add(d.MustParse(penaltySurcharge))
 	index := 0
 	if a.currency != COUNTRIES {
 		index = a.currency + COUNTRIES
@@ -355,17 +357,17 @@ func (bk *bank) penaltyComputation(a *depositAcct, r *depositRate) dec {
 }
 
 func (bk *bank) depositPayInterest(a *depositAcct) {
-	temp := add(a.current_balance, a.unposted_interest)
-	temp = mul(temp, a.rate)
-	temp = divv(temp, bk.HUNDRED)
-	a.unposted_interest = add(a.unposted_interest, temp)
+	temp := a.current_balance.Add(a.unposted_interest)
+	temp = temp.Mul(a.rate)
+	temp = temp.Quo(bk.HUNDRED)
+	a.unposted_interest = a.unposted_interest.Add(temp)
 	a.unposted_interest = bk.roundToAvailableCoin(a.unposted_interest, bk.CENT)
 	comp := (bk.counter - a.open_date) % a.pay_date
 	if (comp == 0) && (bk.counter != a.open_date) {
 		bk.errorPrint(depLOC, INFO_CODE, INFO_CODE_NO_LINE,
 			"####### Today is the interest pay day for "+a.acct_no+"\n")
-		a.interest = add(a.interest, a.unposted_interest)
-		a.current_balance = add(a.current_balance, a.unposted_interest)
+		a.interest = a.interest.Add(a.unposted_interest)
+		a.current_balance = a.current_balance.Add(a.unposted_interest)
 		a.unposted_interest = zeroD
 		a.last_statement = a.current_balance
 	}
@@ -375,13 +377,13 @@ func (bk *bank) getDepositRate(r *depositRate, a *depositAcct) {
 	var dailyRate dec
 	switch {
 	case a.acct_type == CHECKING:
-		dailyRate = divv(r.checking, bk.YEAR)
+		dailyRate = r.checking.Quo(bk.YEAR)
 	case a.period == 1:
-		dailyRate = divv(r.one, bk.YEAR)
+		dailyRate = r.one.Quo(bk.YEAR)
 	case a.period == 3:
-		dailyRate = divv(r.three, bk.YEAR)
+		dailyRate = r.three.Quo(bk.YEAR)
 	case a.period == 6:
-		dailyRate = divv(r.six, bk.YEAR)
+		dailyRate = r.six.Quo(bk.YEAR)
 	default:
 		bk.errorPrint(depLOC, ERROR_CODE, CD_BAD_PERIOD, f("Wrong CD period, CD period cannot be %d\n", a.period))
 		dailyRate = zeroD
