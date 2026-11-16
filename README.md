@@ -34,7 +34,9 @@ are in [`results/data/`](results/data/).
   ([decimal128-go](https://github.com/migueldecimal128/decimal128-go)), all five
   apps; `bid754` ([bid754](https://github.com/sky1core/bid754), a pure-Go port
   of Intel's libbid), euro and the three tax forms (it has no power, logarithm
-  or directed quantize).
+  or directed quantize); `go-decimal`, the built-in `decimal128` type proposed
+  in [golang/go#19787](https://go.dev/issue/19787), all five apps (it needs the
+  fork's go command; see [`internal/decimal`](internal/decimal/README.md)).
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
 - **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
   (9.3 MB, with provenance and SHA-256 checksums).

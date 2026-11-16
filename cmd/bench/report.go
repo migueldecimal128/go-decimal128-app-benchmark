@@ -33,6 +33,9 @@ var libraryNote = map[string]string{
 		"Its adapter re-lays Intel's string form (\"+150E-2\") into decNumber's (\"1.50\"), about 20 ns per string, " +
 		"and reaches its per-direction round-to-integral methods through a table (about 34 ns against 26 ns direct); " +
 		"both are part of its time. It has no power, logarithm or directed quantize, so risk, banking and telco do not run with it.",
+	"go-decimal": "The built-in decimal128 type of the Go decimal fork ([golang/go#19787](https://go.dev/issue/19787)), " +
+		"reached through its operators, math/decimal and strconv. Its adapter re-lays strconv's shortest form " +
+		"into the to-scientific-string, which is part of its time.",
 }
 
 // loadRecords reads every record of one kind from results/data/<name>.jsonl.

@@ -12,6 +12,21 @@ contract every library must meet and what the layer costs.
 |---|---|---|---|
 | miguel-decimal128-go | `lib_miguel_decimal128_go.go` | `miguel_decimal128_go` | `github.com/migueldecimal128/decimal128-go` |
 | bid754 | `lib_bid754.go` | `bid754` | `github.com/sky1core/bid754/bid754-go` |
+| go-decimal | `lib_go_decimal.go` | `go_decimal` | built-in (the Go decimal fork) |
+
+`go-decimal` is the built-in `decimal128` type proposed in
+[golang/go#19787](https://go.dev/issue/19787). It needs the go command of the
+fork at https://github.com/marcelocantos/go/tree/decimal, built with
+`./make.bash` in its `src` directory, first on `PATH`, and
+`GOEXPERIMENT=decimal`:
+
+```
+GOEXPERIMENT=decimal go test -tags go_decimal ./internal/decimal
+GOEXPERIMENT=decimal go run ./cmd/bench -lib go-decimal
+```
+
+`-lib all` includes it only when the go command has the experiment on, so a
+stock go command still runs the other libraries.
 
 Each library file also declares three lists, which the tests and the runner use:
 
@@ -29,7 +44,7 @@ Each library file also declares three lists, which the tests and the runner use:
 
 There is no default library. A build without a library tag compiles
 `nolib.go`, which fails with
-`undefined: noLibrarySelected_buildWithTags_miguel_decimal128_go_or_bid754` (the name lists the tags). (Build tags
+`undefined: noLibrarySelected_buildWithTags_miguel_decimal128_go_or_bid754_or_go_decimal` (the name lists the tags). (Build tags
 cannot contain hyphens, so a library's tag is its name with underscores.)
 
 The name ties everything together: the adapter's `Name` constant, the

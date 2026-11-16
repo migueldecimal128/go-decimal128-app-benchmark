@@ -38,6 +38,7 @@ type library struct {
 	tag         string            // go build tag that selects its adapter (there is no default)
 	module      string            // Go module path
 	unsupported map[string]string // apps it cannot run, with why (see its adapter file)
+	experiment  string            // GOEXPERIMENT the go command needs for it, or "" (see experimentOn)
 }
 
 var libraries = []library{
@@ -48,6 +49,9 @@ var libraries = []library{
 			"banking":         "bid754 has no logarithm or compound",
 			"telco":           "bid754 quantizes ties-to-even only; telco truncates its taxes",
 		}},
+	// The built-in decimal128 of the Go decimal fork (go.dev/issue/19787): it
+	// needs the fork's go command with GOEXPERIMENT=decimal.
+	{name: "go-decimal", tag: "go_decimal", module: "builtin", experiment: "decimal"},
 }
 
 // suite is one row's workload: a program, its arguments, and how to gate it.
@@ -137,7 +141,10 @@ func main() {
 		for _, want := range strings.Split(*libName, ",") {
 			found := false
 			for _, l := range libraries {
-				if (want == "all") || (want == l.name) {
+				if want == l.name && !experimentOn(l.experiment) {
+					fatal(l.name + " needs a go command with GOEXPERIMENT=" + l.experiment)
+				}
+				if (want == "all" && experimentOn(l.experiment)) || want == l.name {
 					libs, found = append(libs, l), true
 				}
 			}
@@ -149,7 +156,11 @@ func main() {
 			goVersion: goEnv("GOVERSION"), libVersions: map[string]string{}}
 		info.benchCommit, info.benchDirty = benchStamp(root)
 		for _, l := range libs {
-			info.libVersions[l.name] = moduleVersion(l.module)
+			if l.module == "builtin" {
+				info.libVersions[l.name] = info.goVersion
+			} else {
+				info.libVersions[l.name] = moduleVersion(l.module)
+			}
 		}
 		bin := filepath.Join(root, "results", ".build")
 		dirty := ""
@@ -659,6 +670,21 @@ func goEnv(key string) string {
 		return "unknown"
 	}
 	return strings.TrimSpace(string(out))
+}
+
+// experimentOn reports whether the go command has the named GOEXPERIMENT
+// on; "" is always on. With -lib all, a library whose experiment is off is
+// left out, so that a stock go command runs every other library.
+func experimentOn(name string) bool {
+	if name == "" {
+		return true
+	}
+	for _, e := range strings.Split(goEnv("GOEXPERIMENT"), ",") {
+		if e == name {
+			return true
+		}
+	}
+	return false
 }
 
 // moduleVersion is the version go.mod pins for a module.

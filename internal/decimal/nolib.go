@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-//go:build !miguel_decimal128_go && !bid754
+//go:build !miguel_decimal128_go && !bid754 && !go_decimal
 
 // Compiled only when no library's build tag is given (each library's tag is
 // listed on the line above as !<tag>). There is no default library: every
@@ -8,4 +8,4 @@
 
 package decimal
 
-var _ = noLibrarySelected_buildWithTags_miguel_decimal128_go_or_bid754
+var _ = noLibrarySelected_buildWithTags_miguel_decimal128_go_or_bid754_or_go_decimal
