@@ -92,6 +92,8 @@ var libraries = []library{
 	{name: "miguel-decimal128-go", tag: "miguel_decimal128_go", module: "github.com/migueldecimal128/decimal128-go"},
 	{name: "go-builtin-decimal128", tag: "go_builtin_decimal128", module: "std (GOEXPERIMENT=decimal, UBD)",
 		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal"},
+	{name: "go-builtin-decimal128-ubd-level1", tag: "go_builtin_decimal128_ubd_level1", module: "std (GOEXPERIMENT=decimal, UBD, -d=ubdlevel=1)",
+		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal", gcflags: "-d=ubdlevel=1"},
 	{name: "go-builtin-decimal128-ubd-level3", tag: "go_builtin_decimal128_ubd_level3", module: "std (GOEXPERIMENT=decimal, UBD, -d=ubdlevel=3)",
 		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal", gcflags: "-d=ubdlevel=3"},
 	{name: "go-builtin-decimal128-xorbid", tag: "go_builtin_decimal128_xorbid", module: "std (GOEXPERIMENT=decimal, XOR-BID)",
@@ -369,6 +371,7 @@ type record struct {
 	WholeNsPerRecord   float64    `json:"whole_ns_per_record"`
 	WholeRunsNs        []int64    `json:"whole_runs_ns"`
 	ComputeNsPerRecord *float64   `json:"compute_ns_per_record"`
+	CodeBytes          int64      `json:"code_bytes,omitempty"` // the program's own machine code (codeBytes)
 	ComputeP10         *float64   `json:"compute_p10"`
 	ComputeMedian      *float64   `json:"compute_median"`
 	ComputeP90         *float64   `json:"compute_p90"`
@@ -558,6 +561,8 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 		Arch: info.arch, CPU: info.cpu, GoVersion: info.goVersion,
 		BenchCommit: info.benchCommit, BenchDirty: info.benchDirty, TimestampUTC: info.ts,
 	}
+	goBin, goEnvs := lib.goCmd()
+	rec.CodeBytes = codeBytes(goBin, goEnvs, root, exe)
 	if s.sub != "" {
 		sub := s.sub
 		rec.Sub = &sub
