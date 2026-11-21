@@ -133,24 +133,28 @@ runner fetches the `decimal128-go` and `bid754` modules the first time).
 **2. Get the benchmark and both toolchains:**
 
 ```
-mkdir -p ~/decimal128 && cd ~/decimal128
+cd ~
 git clone https://github.com/migueldecimal128/go-decimal128-app-benchmark.git
 git clone --branch ubd128 https://github.com/migueldecimal128/go-decimal-ubd.git
-cd go-decimal-ubd
-git worktree add ../go-decimal-base 5032fd7754558a75aabd732083ef2c92bb8a0daa
+cd ~/go-decimal-ubd
+git worktree add ~/go-decimal-base 5032fd7754558a75aabd732083ef2c92bb8a0daa
 ```
+
+This puts the benchmark in `~/go-decimal128-app-benchmark` and the toolchains
+in `~/go-decimal-ubd` and `~/go-decimal-base`; the steps below use those
+paths. Anywhere else works too, with the paths changed to match.
 
 **3. Build both toolchains** (a few minutes each):
 
 ```
 export GOROOT_BOOTSTRAP=$(go env GOROOT)
-cd ~/decimal128/go-decimal-ubd/src  && ./make.bash
-cd ~/decimal128/go-decimal-base/src && ./make.bash
-~/decimal128/go-decimal-ubd/bin/go version    # go1.28-devel_<the ubd128 commit> ...
-~/decimal128/go-decimal-base/bin/go version   # go1.28-devel_5032fd7754 ...
+cd ~/go-decimal-ubd/src  && ./make.bash
+cd ~/go-decimal-base/src && ./make.bash
+~/go-decimal-ubd/bin/go version    # go1.28-devel_<the ubd128 commit> ...
+~/go-decimal-base/bin/go version   # go1.28-devel_5032fd7754 ...
 ```
 
-To pick up later changes to the fork, `git pull` in `go-decimal-ubd` and run
+To pick up later changes to the fork, `git pull` in `~/go-decimal-ubd` and run
 `./make.bash` again; the runner records the toolchain's commit with every row
 (`+dirty` if its tree has uncommitted changes).
 
@@ -159,9 +163,9 @@ applications, and on macOS keep it awake for the run (`caffeinate -dims &`,
 stopped afterwards). Then, from the benchmark's root:
 
 ```
-cd ~/decimal128/go-decimal128-app-benchmark
-export GO_DECIMAL_GOROOT=~/decimal128/go-decimal-ubd
-export GO_DECIMAL_XORBID_GOROOT=~/decimal128/go-decimal-base
+cd ~/go-decimal128-app-benchmark
+export GO_DECIMAL_GOROOT=~/go-decimal-ubd
+export GO_DECIMAL_XORBID_GOROOT=~/go-decimal-base
 export GOFLAGS=-ldflags=-funcalign=64
 
 go run ./cmd/bench -lib all                         # every library the runner can build
