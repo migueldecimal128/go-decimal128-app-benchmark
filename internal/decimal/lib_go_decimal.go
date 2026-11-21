@@ -38,6 +38,10 @@ var deviations = map[string]string{}
 var notInlined = map[string]string{
 	"MustParse":         "parsing and its error check exceed the budget; used for constants and input",
 	"Decimal128.String": "strconv's formatting and the re-layout to the to-scientific-string",
+	// Input decoding only. Where decimal128 is stored as UBD the BID
+	// conversion inlines into math/decimal.BID128frombits, which then
+	// exceeds the budget here: one call, as many as before.
+	"FromBID128": "input decoding only; UBD's BID conversion inlines into it",
 }
 
 // A defined type adds the benchmark's methods; arithmetic uses the built-in

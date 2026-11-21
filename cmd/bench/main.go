@@ -39,10 +39,63 @@ type library struct {
 	module      string            // Go module path
 	unsupported map[string]string // apps it cannot run, with why (see its adapter file)
 	experiment  string            // GOEXPERIMENT the go command needs for it, or "" (see experimentOn)
+	// A library that is part of a Go toolchain (the predeclared decimal
+	// types) is built with that toolchain: toolchainEnv names the
+	// environment variable that holds its GOROOT, and goexperiment the
+	// GOEXPERIMENT it needs. Its recorded version is the toolchain's commit.
+	toolchainEnv, goexperiment string
+	gcflags                    string // extra -gcflags for every package (toolchain libraries)
+}
+
+// goCmd is the go command that builds l, and the environment it runs in.
+func (l library) goCmd() (string, []string) {
+	if l.toolchainEnv == "" {
+		return "go", os.Environ()
+	}
+	goroot := os.Getenv(l.toolchainEnv)
+	if goroot == "" {
+		fatal(l.name + " is built with a Go toolchain of its own: set " + l.toolchainEnv + " to its GOROOT")
+	}
+	env := append(os.Environ(), "GOTOOLCHAIN=local", "GOEXPERIMENT="+l.goexperiment)
+	if l.gcflags != "" {
+		// Kept with any GOFLAGS of the caller's (-ldflags=-funcalign=64,
+		// say), which a second GOFLAGS entry would replace.
+		env = append(env, "GOFLAGS="+strings.TrimSpace(os.Getenv("GOFLAGS")+" -gcflags=all="+l.gcflags))
+	}
+	return filepath.Join(goroot, "bin", "go"), env
+}
+
+// version is the version of l that is measured: the pinned module version,
+// the go command's version for a library built into it, or for a toolchain
+// library the toolchain's commit (+dirty if it has uncommitted changes).
+func (l library) version() string {
+	if l.toolchainEnv == "" {
+		if l.module == "builtin" {
+			// Part of whichever go command runs the benchmark.
+			return goEnv("GOVERSION")
+		}
+		return moduleVersion(l.module)
+	}
+	goroot := os.Getenv(l.toolchainEnv)
+	out, err := exec.Command("git", "-C", goroot, "rev-parse", "--short=10", "HEAD").Output()
+	if err != nil {
+		return "unknown"
+	}
+	v := strings.TrimSpace(string(out))
+	if st, err := exec.Command("git", "-C", goroot, "status", "--porcelain").Output(); err == nil && len(bytes.TrimSpace(st)) > 0 {
+		v += "+dirty"
+	}
+	return v
 }
 
 var libraries = []library{
 	{name: "miguel-decimal128-go", tag: "miguel_decimal128_go", module: "github.com/migueldecimal128/decimal128-go"},
+	{name: "go-builtin-decimal128", tag: "go_builtin_decimal128", module: "std (GOEXPERIMENT=decimal, UBD)",
+		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal"},
+	{name: "go-builtin-decimal128-ubd-level-1", tag: "go_builtin_decimal128_ubd_level_1", module: "std (GOEXPERIMENT=decimal, UBD, -d=ubdlevel=-1)",
+		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal", gcflags: "-d=ubdlevel=-1"},
+	{name: "go-builtin-decimal128-xorbid", tag: "go_builtin_decimal128_xorbid", module: "std (GOEXPERIMENT=decimal, XOR-BID)",
+		toolchainEnv: "GO_DECIMAL_XORBID_GOROOT", goexperiment: "decimal"},
 	{name: "bid754", tag: "bid754", module: "github.com/sky1core/bid754/bid754-go",
 		unsupported: map[string]string{
 			"risk_management": "bid754 has no power function",
@@ -144,7 +197,7 @@ func main() {
 				if want == l.name && !experimentOn(l.experiment) {
 					fatal(l.name + " needs a go command with GOEXPERIMENT=" + l.experiment)
 				}
-				if (want == "all" && experimentOn(l.experiment)) || want == l.name {
+				if (want == "all" && l.available()) || want == l.name {
 					libs, found = append(libs, l), true
 				}
 			}
@@ -156,11 +209,7 @@ func main() {
 			goVersion: goEnv("GOVERSION"), libVersions: map[string]string{}}
 		info.benchCommit, info.benchDirty = benchStamp(root)
 		for _, l := range libs {
-			if l.module == "builtin" {
-				info.libVersions[l.name] = info.goVersion
-			} else {
-				info.libVersions[l.name] = moduleVersion(l.module)
-			}
+			info.libVersions[l.name] = l.version()
 		}
 		bin := filepath.Join(root, "results", ".build")
 		dirty := ""
@@ -206,21 +255,22 @@ func main() {
 // build compiles the startup baseline into bin, and every app once per
 // library into bin/<library>/.
 func build(root, bin string, libs []library, info runInfo) {
-	goBuild := func(out string, tags string, pkgs ...string) {
+	goBuild := func(l library, out string, tags string, pkgs ...string) {
 		check(os.MkdirAll(out, 0o755))
 		args := []string{"build", "-trimpath"}
 		if tags != "" {
 			args = append(args, "-tags", tags)
 		}
 		args = append(append(args, "-o", out+string(os.PathSeparator)), pkgs...)
-		cmd := exec.Command("go", args...)
-		cmd.Dir, cmd.Stdout, cmd.Stderr = root, os.Stdout, os.Stderr
+		goBin, env := l.goCmd()
+		cmd := exec.Command(goBin, args...)
+		cmd.Dir, cmd.Env, cmd.Stdout, cmd.Stderr = root, env, os.Stdout, os.Stderr
 		check(cmd.Run())
 	}
-	goBuild(bin, "", "./baseline/noop")
+	goBuild(library{}, bin, "", "./baseline/noop")
 	for _, l := range libs {
 		fmt.Printf("[build] %s %s\n", l.module, info.libVersions[l.name])
-		goBuild(filepath.Join(bin, l.name), l.tag, "./apps/...")
+		goBuild(l, filepath.Join(bin, l.name), l.tag, "./apps/...")
 	}
 }
 
@@ -670,6 +720,14 @@ func goEnv(key string) string {
 		return "unknown"
 	}
 	return strings.TrimSpace(string(out))
+}
+
+// available reports whether l can be built here, as -lib all asks: the go
+// command has the GOEXPERIMENT it needs, and its toolchain's GOROOT, if it
+// has a toolchain of its own, is set. A library named by -lib is built or
+// refused with a message.
+func (l library) available() bool {
+	return experimentOn(l.experiment) && (l.toolchainEnv == "" || os.Getenv(l.toolchainEnv) != "")
 }
 
 // experimentOn reports whether the go command has the named GOEXPERIMENT
