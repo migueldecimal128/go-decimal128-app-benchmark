@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-//go:build (go_builtin_decimal128 || go_builtin_decimal128_xorbid || go_builtin_decimal128_ubd_level_1) && go1.28
+//go:build (go_builtin_decimal128 || go_builtin_decimal128_xorbid || go_builtin_decimal128_ubd_level3) && go1.28
 
 // Libraries go-builtin-decimal128 and go-builtin-decimal128-xorbid: Go's
 // predeclared decimal128 type and the math/decimal and strconv functions on
@@ -14,10 +14,12 @@
 //   - go-builtin-decimal128-xorbid (-tags go_builtin_decimal128_xorbid):
 //     Marcelo Cantos's toolchain it was forked from, decimal128 stored as
 //     XOR-BID; the runner uses GO_DECIMAL_XORBID_GOROOT.
-//   - go-builtin-decimal128-ubd-level-1 (-tags
-//     go_builtin_decimal128_ubd_level_1): the ubd128 fork built with
-//     -gcflags=all=-d=ubdlevel=-1, its inline paths derived from the BID
-//     lowering instead of the small default ones; GO_DECIMAL_GOROOT.
+//   - go-builtin-decimal128-ubd-level3 (-tags
+//     go_builtin_decimal128_ubd_level3): the ubd128 fork built with
+//     -gcflags=all=-d=ubdlevel=3, its inline paths derived from the BID
+//     lowering instead of the small default ones (level 2);
+//     GO_DECIMAL_GOROOT. Before the fork renumbered its levels this was
+//     level -1, go-builtin-decimal128-ubd-level-1.
 //
 // Each library's identity (Name, Module, BuildTag) is in its own small file,
 // lib_go_builtin_decimal128_<name>.go. The runner records the toolchain's

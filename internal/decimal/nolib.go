@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-//go:build !miguel_decimal128_go && !bid754 && !go_decimal && !go_builtin_decimal128 && !go_builtin_decimal128_xorbid && !go_builtin_decimal128_ubd_level_1
+//go:build !miguel_decimal128_go && !bid754 && !go_decimal && !go_builtin_decimal128 && !go_builtin_decimal128_xorbid && !go_builtin_decimal128_ubd_level3
 
 // Compiled only when no library's build tag is given (each library's tag is
 // listed on the line above as !<tag>). There is no default library: every
