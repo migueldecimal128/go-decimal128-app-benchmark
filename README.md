@@ -37,6 +37,16 @@ are in [`results/data/`](results/data/).
   or directed quantize); `go-decimal`, the built-in `decimal128` type proposed
   in [golang/go#19787](https://go.dev/issue/19787), all five apps (it needs the
   fork's go command; see [`internal/decimal`](internal/decimal/README.md)).
+- **Go's built-in decimal128, pinned to toolchains:** four libraries are the
+  predeclared `decimal128` built by a toolchain of their own:
+  `go-builtin-decimal128-xorbid`, Marcelo Cantos's toolchain (decimal128 stored
+  as XOR-BID, the baseline), and the
+  [ubd128 fork](https://github.com/migueldecimal128/go-decimal-ubd/tree/ubd128)
+  (decimal128 stored as UBD) at each of its inline levels:
+  `go-builtin-decimal128-ubd-level1` (every operation a kernel call),
+  `go-builtin-decimal128` (level 2, the default) and
+  `go-builtin-decimal128-ubd-level3` (the BID-derived inline paths). See
+  [Running Go's built-in decimal128 from scratch](#running-gos-built-in-decimal128-from-scratch).
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
 - **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
   (9.3 MB, with provenance and SHA-256 checksums).
@@ -97,10 +107,81 @@ Each run appends one record per row to `results/data/<app>.jsonl` and rewrites
   processes, and cross-checks it against its own clock.
 - **whole:** one run from process start to exit, fastest of 9; **startup** is a
   do-nothing Go program launched the same way.
+- **code:** the program's own machine code in KB (its main package and this
+  repository's packages, where the library's operations are compiled and, for
+  the built-in types, inlined); the library itself and the runtime are not
+  counted. Each architecture ends with a summary per library: its compute time
+  against XOR-BID (geometric mean) and its total code.
 
 To build the programs only, name the library's build tag:
 `go build -tags miguel_decimal128_go -trimpath -o bin/ ./apps/...`. Without a
 tag the build fails on purpose.
+
+### Running Go's built-in decimal128 from scratch
+
+The `go-builtin-decimal128*` libraries are each built by a Go toolchain of
+their own, which you build once. Both come from one clone: the ubd128 fork's
+branch, and a second working tree at the commit it started from, Marcelo
+Cantos's XOR-BID toolchain (`5032fd77`). These steps work on macOS and Linux,
+on arm64 and x86_64.
+
+**1. Prerequisites:** Go 1.26.4 or later as `go` on your `PATH` (it builds the
+toolchains and runs the runner), git, a C toolchain (on macOS
+`xcode-select --install`), about 3 GB of disk, and a network connection (the
+runner fetches the `decimal128-go` and `bid754` modules the first time).
+
+**2. Get the benchmark and both toolchains:**
+
+```
+mkdir -p ~/decimal128 && cd ~/decimal128
+git clone https://github.com/migueldecimal128/go-decimal128-app-benchmark.git
+git clone --branch ubd128 https://github.com/migueldecimal128/go-decimal-ubd.git
+cd go-decimal-ubd
+git worktree add ../go-decimal-base 5032fd7754558a75aabd732083ef2c92bb8a0daa
+```
+
+**3. Build both toolchains** (a few minutes each):
+
+```
+export GOROOT_BOOTSTRAP=$(go env GOROOT)
+cd ~/decimal128/go-decimal-ubd/src  && ./make.bash
+cd ~/decimal128/go-decimal-base/src && ./make.bash
+~/decimal128/go-decimal-ubd/bin/go version    # go1.28-devel_<the ubd128 commit> ...
+~/decimal128/go-decimal-base/bin/go version   # go1.28-devel_5032fd7754 ...
+```
+
+To pick up later changes to the fork, `git pull` in `go-decimal-ubd` and run
+`./make.bash` again; the runner records the toolchain's commit with every row
+(`+dirty` if its tree has uncommitted changes).
+
+**4. Run.** Keep the machine quiet: plug in the power, close other
+applications, and on macOS keep it awake for the run (`caffeinate -dims &`,
+stopped afterwards). Then, from the benchmark's root:
+
+```
+cd ~/decimal128/go-decimal128-app-benchmark
+export GO_DECIMAL_GOROOT=~/decimal128/go-decimal-ubd
+export GO_DECIMAL_XORBID_GOROOT=~/decimal128/go-decimal-base
+export GOFLAGS=-ldflags=-funcalign=64
+
+go run ./cmd/bench -lib all                         # every library the runner can build
+go run ./cmd/bench -lib all -app telco -iters 1     # a smoke test, a few minutes
+go run ./cmd/bench -lib go-builtin-decimal128-xorbid,go-builtin-decimal128-ubd-level1,go-builtin-decimal128,go-builtin-decimal128-ubd-level3
+                                                    # the baseline and the three UBD levels
+```
+
+`-lib all` leaves out a toolchain library whose GOROOT variable is unset, and
+`go-decimal`, which needs a go command with `GOEXPERIMENT=decimal`.
+`-funcalign=64` aligns every function the same way in every build, so that the
+times do not depend on where the linker happened to place the hot code; keep it
+for runs you compare. A full run of all libraries takes about 40 minutes on an
+Apple M3 Pro, longer on older machines.
+
+Every row prints `GOLDEN OK` (risk: `GOLDEN 20/20`) when its output matches.
+`FLAG` marks a cross-check outside its limit, usually a sign that something
+else was running; run again, as the report keeps the latest record per app and
+library. Results go to the section of `results/RESULTS.md` for the machine's
+architecture.
 
 ## Libraries
 
