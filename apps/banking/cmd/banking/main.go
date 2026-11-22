@@ -48,7 +48,7 @@ const (
 type fileReader struct {
 	data []byte
 	pos  int
-	dec  []dec // rate files: every 16-byte record, decoded once at open
+	dec  []dec // rate files: every record, decoded once at open
 }
 
 func openReader(path string) *fileReader {
@@ -78,24 +78,24 @@ func (fr *fileReader) readInt32() (int, bool) {
 	return int(int32(binary.LittleEndian.Uint32(b))), true
 }
 
-// predecode decodes every 16-byte record of a rate file once, when it is opened
+// predecode decodes every record of a rate file once, when it is opened
 // (outside the timed region), so the timed pass's reads decode nothing.
 func (fr *fileReader) predecode() {
-	fr.dec = make([]dec, len(fr.data)/16)
+	fr.dec = make([]dec, len(fr.data)/decSize)
 	for i := range fr.dec {
-		fr.dec[i] = decodeD128(fr.data[16*i : 16*i+16])
+		fr.dec[i] = decodeD128(fr.data[decSize*i : decSize*i+decSize])
 	}
 }
 
-// readDec is fread of n 16-byte decimal128 records: the decoded values of the
+// readDec is fread of n decimal records: the decoded values of the
 // complete records read (0..n), mirroring fread's element count.
 func (fr *fileReader) readDec(n int) []dec {
-	i := fr.pos / 16
+	i := fr.pos / decSize
 	k := min(n, len(fr.dec)-i)
 	if k <= 0 {
 		return nil
 	}
-	fr.pos += 16 * k
+	fr.pos += decSize * k
 	return fr.dec[i : i+k]
 }
 
@@ -364,10 +364,20 @@ func (bk *bank) constdef() {
 	bk.ccConstInit(bk.ccConst) // credit_card.c
 }
 
-// decodeD128 decodes 16 little-endian BID bytes. The command + rate data files
-// read here are the BID-encoded .bid128 variants (value-equal to the DPD .b128
-// the C d128 arm reads), so the golden is identical.
+// decSize is the bytes of one decimal in the command and rate files: 16 for
+// a decimal128 library, 8 for a 64-bit one (Width 64).
+const decSize = d.Width / 8
+
+// rateSuffix names the rate files of the library's width: the BID-encoded
+// .bid128 variants (value-equal to the DPD .b128 the C d128 arm reads), or
+// .bid, the suite's BID decimal64 files.
+var rateSuffix = map[int]string{128: ".txt.bid128", 64: ".txt.bid"}[d.Width]
+
+// decodeD128 decodes one little-endian BID decimal of the library's width.
 func decodeD128(b []byte) dec {
+	if d.Width == 64 {
+		return d.FromBID64(harness.LE64(b, 0))
+	}
 	hi, lo := harness.BID128(b, 0)
 	return d.FromBID128(hi, lo)
 }
@@ -384,13 +394,13 @@ func (bk *bank) parseCmd(fr *fileReader, c *cmd) (int, bool) {
 		n = 15
 	}
 	c.acct_no = string(nameBytes[:n])
-	fb := fr.readBytes(16)
-	if len(fb) != 16 {
+	fb := fr.readBytes(decSize)
+	if len(fb) != decSize {
 		return 0, false
 	}
 	c.fund = decodeD128(fb)
-	sb := fr.readBytes(16)
-	if len(sb) != 16 {
+	sb := fr.readBytes(decSize)
+	if len(sb) != decSize {
 		return 0, false
 	}
 	c.str1 = decodeD128(sb)
@@ -691,8 +701,8 @@ func (bk *bank) run() int {
 			bk.errorPrint("main.c", ERROR_CODE, FILE_NOT_EXIST, "Error: file '"+os.Args[1]+"' not found\n")
 			return 0
 		}
-		bk.tcmRateFile = bk.openOrDie("datafile/bin/1YearTCM.txt.bid128", "main.c")
-		bk.primeRateFile = bk.openOrDie("datafile/bin/Prime_rate.txt.bid128", "main.c")
+		bk.tcmRateFile = bk.openOrDie("datafile/bin/1YearTCM"+rateSuffix, "main.c")
+		bk.primeRateFile = bk.openOrDie("datafile/bin/Prime_rate"+rateSuffix, "main.c")
 
 		bk.currentRound = rne // CONTEXTDEFAULT
 		bk.counter = 0

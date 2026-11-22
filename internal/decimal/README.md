@@ -28,6 +28,15 @@ GOEXPERIMENT=decimal go run ./cmd/bench -lib go-decimal
 `-lib all` includes it only when the go command has the experiment on, so a
 stock go command still runs the other libraries.
 
+`go-builtin-decimal64` (`lib_go_builtin_decimal64.go`, tag
+`go_builtin_decimal64`) is the predeclared `decimal64` under the type name the
+apps use, `Decimal128`, so the apps run unchanged at the other width. Its
+`Width` constant is 64 (every other library's is 128, in `width128.go`), and
+the apps read their 64-bit inputs by it, through `FromBID64`. It declares the
+`precision` deviation (16 digits, exponents [-398, 369]), for which the
+contract tests that need decimal128's precision or range skip; the apps'
+64-bit goldens check it instead.
+
 Each library file also declares three lists, which the tests and the runner use:
 
 - **`unsupported`**: operations the library lacks. They still exist (so every

@@ -12,6 +12,17 @@ folder as the working directory:
 | risk_management | `data/risk_management` | `testGen/bin/*.csv.bid128` | `golden/<stock>.golden` vs `testGen/result/<stock>.log_<loop>_<suffix>` |
 | telco | `data/telco` | `expon180.1e6b` (1,000,000 big-endian uint64 durations) | `golden/expon180.1e6.expected.sha256` (stderr digest) and `golden/expon180.1e6.totals` (lines in stdout) |
 
+A decimal64 library (`go-builtin-decimal64`) runs the same programs on 64-bit
+inputs, from the same folders:
+
+| app | 64-bit input | golden |
+|---|---|---|
+| euro_conversion | `testGen/bin/Euro.bin.BID` | `golden/Euro.output.DECNUMBER_FIXED` |
+| banking | `testGen/bin/Banking.bin.BID64` + rate tables `datafile/bin/*.txt.bid` | the 128-bit golden |
+| tax_preparation | `testGen/bin/Tax.{FED,CA,NC}.bin.BID` | the 128-bit goldens |
+| risk_management | `testGen/bin/*.csv.bid64` | `golden64/<stock>.golden` |
+| telco | the same input | the same golden |
+
 Only the BID-encoded inputs are included for the UW-Madison apps, and only the
 binary encoding for telco; the Go programs read no others. Telco's expected
 output is 6 MB, so only its SHA-256 is kept. The 10-call worked example
@@ -43,46 +54,103 @@ telco program's own test.
   independent implementations produce it byte for byte. The control totals are
   from his specification (https://speleotrove.com/decimal/telcoSpec.html).
 
+- **64-bit inputs and goldens:** the same UW-Madison suite's 64-bit files,
+  unchanged, from its archive (`../UW-Madison/DFPBenchmarksv1.0.gz`):
+  `Euro.bin.BID` and `Euro.output.DECNUMBER_FIXED`; `Tax.*.bin.BID`, the same
+  records as `Tax.*.bin.BID128`; the risk `*.csv.bid64` files, and as
+  `golden64/<stock>.golden` the suite's
+  `expected_output/DECNUMBER_FIXED/<stock>.log_0_DECNUMBER_FIXED`; the
+  banking rate tables `*.txt.bid`. Three apps are gated against their
+  128-bit goldens, which decimal64 reproduces byte for byte: tax (whose
+  shipped goldens can't be used, as above), telco and banking.
+  - Banking: `testGen/bin/Banking.bin.BID64` is not the suite's. The suite's
+    64-bit command file, `Banking.bin.BID`, holds 1238 other commands (only
+    the first 25 match), so it would time different work from the 128-bit
+    row. `Banking.bin.BID64` is the 643 commands of `Banking.bin.BID128` with
+    each amount re-encoded exactly as BID decimal64, written by
+    `go run testGen/bid64.go` in `data/banking`. Its transcript equals the
+    128-bit golden. (Run on its own commands, decimal64 matches the suite's
+    `Banking.output.DECNUMBER_FIXED` in every computed line; only the order
+    of the end-of-run account lists differs, because that golden was made
+    where C's `unsigned long`, the hash's word, is 32 bits.)
+
 ## SHA-256
 
 ```
+c9ef0bf6c1278406e44cc76a6dd3191a877425043ba10ed8572ab4db94d3be30  ./banking/datafile/bin/15YearFRM.txt.bid
 19c7a315615ca4d58028688b7079d0e1515fa5fe5232e3f1978657cfc9819a7c  ./banking/datafile/bin/15YearFRM.txt.bid128
+c2dbd228988f8e8abad4bce6dcfca02080012b135d9b9c72965ff1b06e19acea  ./banking/datafile/bin/1YearARM.txt.bid
 22bfb6ad8985b79723326c215bad70a7cfd23a77d7f80b867d0e4b55eab91e40  ./banking/datafile/bin/1YearARM.txt.bid128
+611c1898130c56c38f81072d3573b7a551876e802294722154acfe912e96040c  ./banking/datafile/bin/1YearTCM.txt.bid
 912faacf452c430e54ecee187d9de663d9fe58787deb6f5697031521e04fee6f  ./banking/datafile/bin/1YearTCM.txt.bid128
+1ae6ffc5b120ea71620759c13755d709a877b9b18f814ff9bd8abb9f3e83ae33  ./banking/datafile/bin/30YearFRM.txt.bid
 91d7433a1bbccb6c520ab15fec16625d0896f00096e59149b98655c78180402d  ./banking/datafile/bin/30YearFRM.txt.bid128
+d911f97c5737e9c2a97258806b21f46f5afcace4efe40db2720759934c2c46b5  ./banking/datafile/bin/51ARM.txt.bid
 a089413bfb34fd7f8864b611b13c43de0362f07e85be26bcfe52b3c140bf0b2c  ./banking/datafile/bin/51ARM.txt.bid128
+0b22de215d5051044e8663beeca034941a8ddf00eb6057eb91ffdf06ac403457  ./banking/datafile/bin/AUD_Interest_Rate.txt.bid
 9e6f6c53732c507a690ef1bdc36a71504d89bea7a0741b303c430b87f8dee24b  ./banking/datafile/bin/AUD_Interest_Rate.txt.bid128
+7905dea1a9475deea36db4cf002d23ec45cb68d190df109313ef0e0c2484efd9  ./banking/datafile/bin/AUD_USD.txt.bid
 c9e97b1c133f1b6cc20181ea35a1f23da55ebf34c96a3ea3fe712fc3f675e7eb  ./banking/datafile/bin/AUD_USD.txt.bid128
+11f8fa3050d0605a7f0c334d46e1fb94582c5cfbfdb1648aedb5c75eae2e2660  ./banking/datafile/bin/CNY_Interest_Rate.txt.bid
 44aaf6d8cca0710ee56ed8a73756726dfff87fe35b145625d8bc52dd3a2deccf  ./banking/datafile/bin/CNY_Interest_Rate.txt.bid128
+0268edb539a336396e8c235554e98fc14931dcfa0fb856713a5796bba797ab5d  ./banking/datafile/bin/CNY_USD.txt.bid
 573a414fac9b370425cb591cd010e163be92f46edc687f3fbf9acdb86c7cd08d  ./banking/datafile/bin/CNY_USD.txt.bid128
+a9649f7aa86b7c01a6f3874f3caa57489f60569662306c0f7f1824945074e9fe  ./banking/datafile/bin/EUR_Interest_Rate.txt.bid
 8c851525d047ce193d034d113e75bc4bd6b5bfe97a1488f4d07baf1c09d31b25  ./banking/datafile/bin/EUR_Interest_Rate.txt.bid128
+84de6fcbfea7f1faa3c3f9f7d7d317749df118577869e46bcd9bd047617da79f  ./banking/datafile/bin/EUR_USD.txt.bid
 50098baf33ce4c7c921f44e148759907582e852d8823dbf8776b0e0a15288b66  ./banking/datafile/bin/EUR_USD.txt.bid128
+9e1866be38dbcbfb25a0e0a34945bd553a10550f4db8a3d8b73fabdcf0e6e1da  ./banking/datafile/bin/GBP_Interest_Rate.txt.bid
 e30a4d15dbe19a50fb276b31d61de9a27aa9a632fdb89508def508ce17410407  ./banking/datafile/bin/GBP_Interest_Rate.txt.bid128
+ca82265b9081053c1624662ba7ce937ec047214ce41d9222c43ced07f1446dbb  ./banking/datafile/bin/GBP_USD.txt.bid
 c5fe4e7f4b8b58ac91b9a218315237ab23702d7c0f4a1f5f4089d9485955c4fc  ./banking/datafile/bin/GBP_USD.txt.bid128
+84214ae15ed1e70540d889c1b0c97029d94f79c3cbe97d19fbf91abd59e672a2  ./banking/datafile/bin/HKD_Interest_Rate.txt.bid
 5e9af177b9add049444e7b49abcaf94badc3abe7ee1ad44e08140029fc66acab  ./banking/datafile/bin/HKD_Interest_Rate.txt.bid128
+053ed48195ff3b68d8ca1b3b15a85139cc1e32273b5d83ca7cdcd50bd5c1e160  ./banking/datafile/bin/HKD_USD.txt.bid
 cfceda00c6de3d30acf71a4d4d7f6dd13976520339464ca1a701dd594b9f787d  ./banking/datafile/bin/HKD_USD.txt.bid128
+12257813a2c6648c65a49a2bfc3749d3ed2754e72147d4a20189fd8675e313e2  ./banking/datafile/bin/JPY_Interest_Rate.txt.bid
 6dc8add41248d1de81e4c780f308606bfcbfba15fbdc99d01345e040f10a72bb  ./banking/datafile/bin/JPY_Interest_Rate.txt.bid128
+7857aab7f16222a1287493156f939f4accd401eea48a7dfaa1f134204e8c3ebc  ./banking/datafile/bin/JPY_USD.txt.bid
 e5c5a717f4c2990db24b2688b6836ebea5355c8f5c53f724159580cd641c0495  ./banking/datafile/bin/JPY_USD.txt.bid128
+8788393b0f4df2946c942048583ae57d20d387802f7254c059c77e5c908c30a4  ./banking/datafile/bin/NZD_Interest_Rate.txt.bid
 7c5a217c22cd24c7ca8b0dcb396d62cf517f0409cf4a43cd3229eecbad6eb6ce  ./banking/datafile/bin/NZD_Interest_Rate.txt.bid128
+45b8207d5b32d7aa11b03e3c15305cf2fd256f38d7fedb98959e57b2a75573b4  ./banking/datafile/bin/NZD_USD.txt.bid
 67c555de150788ef0cc69027863e70994ca3f22e90b2af3a8426a02c88b526bb  ./banking/datafile/bin/NZD_USD.txt.bid128
+7a26b974b2cf6d7f5bf15cd3bec70d0ef6365a72ab6343a29432ad205aa856bf  ./banking/datafile/bin/Prime_rate.txt.bid
 5384e431787af9afc88f080e84ccc4538da5676e92282613f24868fabc657168  ./banking/datafile/bin/Prime_rate.txt.bid128
+2553ed451c7eab15ee23b89c15c25bd0a0c89a07dda8e489a4d48a64544155a3  ./banking/datafile/bin/SGD_Interest_Rate.txt.bid
 3e841b086d67d21bfb12cf61b701e8bc0ac57569b6c498259f0b2ed89b77700d  ./banking/datafile/bin/SGD_Interest_Rate.txt.bid128
+b3aa383b9f6941e1b2810d94f25d6e85ddc015a2932282b9bdba25b62ff7c5c6  ./banking/datafile/bin/SGD_USD.txt.bid
 1b9dbb72be3bcad4e6bf80bcd08ba5eb4f1988ba3182f261af289df16cb44035  ./banking/datafile/bin/SGD_USD.txt.bid128
+3206158e59202d5a7226424346e4593b10941e18b208954b932e0d895bef5f6f  ./banking/datafile/bin/TWD_Interest_Rate.txt.bid
 a337b540ada7ea5a92ddd865a83a8ea303a8d84e1198092838e16bda700f6869  ./banking/datafile/bin/TWD_Interest_Rate.txt.bid128
+9d9a768c9c16e542ccc097a215782297fe2131921051153894b541c94762ae0d  ./banking/datafile/bin/TWD_USD.txt.bid
 9e7018136781553936879defab975304d9c5bce44f99d30c07e328a0e5213634  ./banking/datafile/bin/TWD_USD.txt.bid128
+69548caf6b83dac23c165b06daa6cef368983368ea49ba45cfe5120996cede6b  ./banking/datafile/bin/USD_AUD.txt.bid
 00b4417e8c8cfd3568dcd5ba819186e36769dcd05c9e6fe7cc65af2ee19e326d  ./banking/datafile/bin/USD_AUD.txt.bid128
+ec05167132f407a9a07695d2998a8e7090efff9fb8484afa670a3a83375c1726  ./banking/datafile/bin/USD_CNY.txt.bid
 8ee72a2bdc872905057de28f594233476b60344ff87bd58bb7601a468b71628c  ./banking/datafile/bin/USD_CNY.txt.bid128
+eca5b7412eca96cb8aac061b65b31726f586a1a2f4e18451d8539268bd2e3f2c  ./banking/datafile/bin/USD_EUR.txt.bid
 bbccdbf9110c7239d1db993463a4d3419907461394079f82cb0af40519e60eab  ./banking/datafile/bin/USD_EUR.txt.bid128
+77ff268672fafa9a11566d97321ed100e410ff0999dde5b7dd1d7fc4f2a0b442  ./banking/datafile/bin/USD_GBP.txt.bid
 3354cafc2e0a2994d83c25eaa3baaf0a0fae5f57ca1968370ddffff0333cc0d2  ./banking/datafile/bin/USD_GBP.txt.bid128
+73b6fb160ee05fe25d65c7e2f8df879f010a01f750e472bfa47c5e822e5f3aba  ./banking/datafile/bin/USD_HKD.txt.bid
 1d10a22896d07545ba7ce45c2514ddce2c689e1d43ed9880c766735ecd775b6b  ./banking/datafile/bin/USD_HKD.txt.bid128
+fbc5a5f803376cbcffa755b0b5d205f92daf9686ee420da6b252185e3983de86  ./banking/datafile/bin/USD_Interest_Rate.txt.bid
 c6b5e5f3303b3f92c85632062a8e60e1b3ad8b47c139e30bb4328a6862e66e83  ./banking/datafile/bin/USD_Interest_Rate.txt.bid128
+105387b6c4757fd7a6946412831811dd7aff4d86de2e93366f14c9ea3e8e0deb  ./banking/datafile/bin/USD_JPY.txt.bid
 0ff6691cf6b334894cc2b2f87ea57f1f9dd4d9854ef77c1ec3a28506468124df  ./banking/datafile/bin/USD_JPY.txt.bid128
+5415a8bc32498e9e68c0e8465a8d489b1257340d1752b2fa7ccf1b5db1d57b13  ./banking/datafile/bin/USD_NZD.txt.bid
 26c1952449cfc665a8b9f53c7fe5949b974b2c4371d74368099dde2b7a3724a1  ./banking/datafile/bin/USD_NZD.txt.bid128
+c1ff3b797f3a798473292cbbd214c19bc4f31299b15bc9c1a3b17bfccda18b2d  ./banking/datafile/bin/USD_SGD.txt.bid
 e5dbbb12d53ff56455b2f1265af08141e36466f2bbd7e224bcd906355ce01eca  ./banking/datafile/bin/USD_SGD.txt.bid128
+e4fdbd5858716f0664fc4fc78bceaed5dafd305797f9574b8086c4ae05b56b84  ./banking/datafile/bin/USD_TWD.txt.bid
 cf37575eccf7ec3e761784b77d271eea896dfe4a93d69638f3583ff4ff383a23  ./banking/datafile/bin/USD_TWD.txt.bid128
 6681d1fd50a989bf12361f8d7ba61a9b694e25cfbe553158568512b5af9dc7e0  ./banking/golden/Banking.output.DECNUMBER_FIXED128
 949d4f76ecf07bae41e880178866e0e8290d1708357993b9d9929dad57e0a4f8  ./banking/testGen/bin/Banking.bin.BID128
+3071df0b04cf2989dadde25620aaf3df6a347d7fda93dd06e2245e35b4d06cbc  ./banking/testGen/bin/Banking.bin.BID64
+edeb9b2d5b2e5f390a4825f8a69268f2dd03f7d9ad0228a51bb0f41612cffa27  ./euro_conversion/golden/Euro.output.DECNUMBER_FIXED
 72e7a7a6c03fc5c86243d9a31ad2c21975ee9e9d38d8356cd7b537e4b8ae2f8a  ./euro_conversion/golden/Euro.output.DECNUMBER_FIXED128
+90f07f8f935fc5180ff05f48eae320e946485e6b9b55d55e7594605c78265d01  ./euro_conversion/testGen/bin/Euro.bin.BID
 100361e64e4250ca34732d47db54566693ed7fac1a91b0ed83f14f7f9690857b  ./euro_conversion/testGen/bin/Euro.bin.BID128
 77aa45e1583e228dcde287e098d658f3224c693cc011eeffa22b0af3721acbf9  ./risk_management/golden/aapl.golden
 b4d6f5b154a268cd40a1c45fc835eaf7c51874c8fe19ee3d287c5f4be84e010d  ./risk_management/golden/ace.golden
@@ -104,33 +172,78 @@ c6a91aba52b0283719a3476ddfd63eea4a780b1447e6d65213739e2e1af3f928  ./risk_managem
 a3a6e8e316de13748140ff6eaf95500e3d118b206b1198d0cf1193ff99671b27  ./risk_management/golden/msft.golden
 f1137e3c85308b49b76785e1de37233a222c673ff6cbba73218c9780e372056d  ./risk_management/golden/nipny.golden
 aa58f8a41479abe51c95c7d654ec1a8d80e80011a91f34bde797ae7b7c625983  ./risk_management/golden/odp.golden
+fc9462fe1eb99449a2eacdf7a4f7fae85976503e5a567d8c448cbb2bd32897f7  ./risk_management/golden64/aapl.golden
+ec23cd4d7ec0367d04f11ff97084724a129ce0802452f70c37cb68bfcb363db0  ./risk_management/golden64/ace.golden
+49def36b0586e98e8e10903b1b16d835e4b26c6a0b8f4a02c4c79d0c38b1f99a  ./risk_management/golden64/adbe.golden
+48ec764a50fadcf41fecd7e05658182b3ddfda384977dd0dc88514b9f9e96e43  ./risk_management/golden64/ba.golden
+1edca5bc61eb05a259c9a6afddcf32f1c53807f82c6da6c5e87d2e3ee8d65f51  ./risk_management/golden64/bac.golden
+c8e28dbaff5b5e7f60b764eff0d222bbf89a1c9cf8e3512afa364e0e0abbc0bd  ./risk_management/golden64/borl.golden
+953e728f18b40f17fb5b9cb456dfabfadd5ba5c22ab764d20a2c94fa9ff67666  ./risk_management/golden64/dell.golden
+da85a831ece53626e5601d3c3e8bf005d20f3595606290be283b339e9faec422  ./risk_management/golden64/etn.golden
+8e45002ac54c8a16580f8e207a220877b3fc967cf2f22a851bf6b7f7954e9984  ./risk_management/golden64/fdx.golden
+5c36b6ffa31a190494f88eba3484b62b55ce6fd814b791e1c75f4f94de01f65c  ./risk_management/golden64/ge.golden
+78089ac05312cf80fb88edd37a66563ffefa8814493dc71805cbf70b37534664  ./risk_management/golden64/ibm.golden
+335fccef7130549ceab0c80cc56b8633df37bf4e546307facfc22182f2bf5b79  ./risk_management/golden64/jnj.golden
+910497ea774f2420e5318adfd4789f73600d2cc0037fca334ee1ed8c866433fb  ./risk_management/golden64/jpm.golden
+2c193cd014056c5ea7efc154d9e296762e1e6e6bf554c9f929c925acc9c34df3  ./risk_management/golden64/ko.golden
+454b70e0d5ac25f879272f707601de036f110e336289904a553c23fb32528bd9  ./risk_management/golden64/kss.golden
+409c977a6e29b5c56ce1ffb67ce19c1122674123eced5cec041e43889bb871c0  ./risk_management/golden64/mmm.golden
+27b456592ab9383727ae92ef777152f6cb7b5b311ee4cacc70449ca41e7240b8  ./risk_management/golden64/mrk.golden
+68a814fa069410f628311a987b2e260d936122a655e7de5a25f69dec683cdf33  ./risk_management/golden64/msft.golden
+d72fd3e6987ba36dc49c14734d26de27c3b02a149721bcda882073c4e519741c  ./risk_management/golden64/nipny.golden
+3687e2e94f67934f1871e3fcc725000a1519c718afaaaa47d07dda78d0f66793  ./risk_management/golden64/odp.golden
 575ca5d194eb6987679c9682cd146c5052b7375523bf7872dcbb5f85514ba634  ./risk_management/testGen/bin/3month_tbill.csv.bid128
+26d1b835245b50d405e1e5f347e88f36dadb5ea8b8d0510b43d8b33934a7363d  ./risk_management/testGen/bin/3month_tbill.csv.bid64
 b7b829ffd9ca3805c3f7d8e84b2e886feb407538829e8ecc812e13f1cdd4184c  ./risk_management/testGen/bin/aapl.csv.bid128
+35cbac07ac4a36ab83bec033714bf20567919e82498a329e43eb0cd8788f6f18  ./risk_management/testGen/bin/aapl.csv.bid64
 bda2b0c48fd566bba5813cb8c38c1a703217b2a0f610e229887c0a970589d884  ./risk_management/testGen/bin/ace.csv.bid128
+8151126fdc0052850ee815009533a8641a6f85160c09f831eb4da5b6d64e8b15  ./risk_management/testGen/bin/ace.csv.bid64
 359f6529b2201c8f4f4b522e214acfc8a6ef47d343eb9ad5929827e467111a17  ./risk_management/testGen/bin/adbe.csv.bid128
+428d84be065d3dd031ff2e1032e4261396c069ac7cd3f4f285b0d2a18bee8725  ./risk_management/testGen/bin/adbe.csv.bid64
 9ca8b9985200431c7e2aeeeb26d6c6f92b0b1762c291c4fe726876e1d1fcd40d  ./risk_management/testGen/bin/ba.csv.bid128
+02f572b24439118c40983cc8dbbbf0b3687053ccdc81398392456dbb15c82356  ./risk_management/testGen/bin/ba.csv.bid64
 6219e29880a0a18b8c0068151b902b23843d897f82e25cf24dcb85720562d867  ./risk_management/testGen/bin/bac.csv.bid128
+d3a476f1fbf73eadc54323e032a3f92eff3a06efd09620a2b36c42bbca365d1b  ./risk_management/testGen/bin/bac.csv.bid64
 ac28e3293261a21054efb6dcc47f6773f9dce5f50876a19a072dbab2c2f48e8e  ./risk_management/testGen/bin/borl.csv.bid128
+d18f28c5cc347b908f9084c406ce9cc0191189dd3e7b3a84b485c2a8d5734ea6  ./risk_management/testGen/bin/borl.csv.bid64
 73c1f06b94d89e67b3588e8624469f55667a1f06a372bc982100e6b8676d0bbc  ./risk_management/testGen/bin/dell.csv.bid128
+bad32fe357833d61241243c873134830c814b1768f17e63244530b950b78cb58  ./risk_management/testGen/bin/dell.csv.bid64
 2abef41f080a44ddf553ffa449e98b06eea066579269690dc2d27d12c5640824  ./risk_management/testGen/bin/etn.csv.bid128
+ab64a90e25fddabb3d70bc328eae914afa866cde40d243adc5996d2e4bc3293b  ./risk_management/testGen/bin/etn.csv.bid64
 3428d891e0b760a9da5f20e12bbc5dce1a89cbbe88c8ce80724201a29556301b  ./risk_management/testGen/bin/fdx.csv.bid128
+aef41a5682d3ae8d3273cf42a53e5d443090ca4f06bdbb6f2e7539206ba4f055  ./risk_management/testGen/bin/fdx.csv.bid64
 6c2b8e6e9a64bcc5bb75807edf67d6b95dfb2d76cc04c279dec4eaae54276acd  ./risk_management/testGen/bin/ge.csv.bid128
+233f676d565395fead41c110693440845347ad390c6017e3f9fc068f341c06b8  ./risk_management/testGen/bin/ge.csv.bid64
 9e138046d7ab9c1f30ef9a95264b5011578eede62c15a7d85eb7a9b51ccb5547  ./risk_management/testGen/bin/ibm.csv.bid128
+5a2a5c783fcdb1554ff081cfea1263b8e151f092999a3bee51c4a4f5dc46f5ca  ./risk_management/testGen/bin/ibm.csv.bid64
 a3193643840da63da3edd9eb9732c78cb97da521eaaa0bb71cd6ef08015fa851  ./risk_management/testGen/bin/jnj.csv.bid128
+6224d15a2606ab761ac5ec6bad90b593b6a5b8ed346375f05741ccbf03b8ef53  ./risk_management/testGen/bin/jnj.csv.bid64
 dff001794f11191ddb1c3fe449caa84174fdbc7095f2d404acbeb95cdc228011  ./risk_management/testGen/bin/jpm.csv.bid128
+3f1869d8e4272e2858020243040b4ff6e6700c6c70e7ae30a563548f626edf5f  ./risk_management/testGen/bin/jpm.csv.bid64
 6f63113febeece3e67eb52cf1163dc6f48f792247450d6ac04d7a2affd39a544  ./risk_management/testGen/bin/ko.csv.bid128
+80ea1882057822c1b1a3b73eedf107e7bf41f1abaf0eee1c0b52610b0e84907b  ./risk_management/testGen/bin/ko.csv.bid64
 6f7c06590a65ce2c836e5a7f0268957d7bd195a69f170f6a68af532c9806a7bd  ./risk_management/testGen/bin/kss.csv.bid128
+b12ef1505e0a450abde3d2f52c7c654ab6d1cd8e3bb360155dd0a40f907d72a3  ./risk_management/testGen/bin/kss.csv.bid64
 46b30d00501be4f73f376e32b3f67417a39273515768edbd4343c37cb0d13a83  ./risk_management/testGen/bin/mmm.csv.bid128
+6d3dd3e1d711e68dbe8d7ce53d10eabe7970096052b98208db12ae8c5b6cb0c9  ./risk_management/testGen/bin/mmm.csv.bid64
 7779fa6fa84a4d35968f669884ab965f9877533c8abee119cf2f36eed5d6ea36  ./risk_management/testGen/bin/mrk.csv.bid128
+c4b25dbc623e0d0c646cf4c706fc04f81f1b2e7aa03e95caa861e3fe215bde76  ./risk_management/testGen/bin/mrk.csv.bid64
 adefb0556d93de894e3f237bf97bd411c8b46f5087a62097c683a8297057eacf  ./risk_management/testGen/bin/msft.csv.bid128
+0123fedfa662492a3d93de91621ec704e20d9e31f672ea05950f3a28a1acf7e5  ./risk_management/testGen/bin/msft.csv.bid64
 5dc7968626295b285940d696e8810121a83c38c661b4f3152ed130ac63c4ed99  ./risk_management/testGen/bin/nipny.csv.bid128
+e6302fa377d83b2bc68a7d615cde8d4d9ff3f16c179cfbade66cc4a85e36b833  ./risk_management/testGen/bin/nipny.csv.bid64
 7457fe64a3a8eed58fa61062d0bc0b93e23762cc0c01750a5802ce547799a5b2  ./risk_management/testGen/bin/odp.csv.bid128
+06fcde40fc0c4fbcf40c11592b09a50b03f01408154f0fde64843fdb2773be60  ./risk_management/testGen/bin/odp.csv.bid64
 833fbd6b32522a8fcee880b4e27039ca2eca230f598dc4816b1c5cfe63474381  ./risk_management/testGen/bin/sp500.csv.bid128
+1279dd4c4b37b74da2b5a6b0575c4d5531b93e282e324964cea7f3e4c075bdaf  ./risk_management/testGen/bin/sp500.csv.bid64
 f314a5d7533eefe51edc8139be023cf2f8d2fc028e90565cd3a5397bd7a2e94d  ./tax_preparation/golden/Tax.CA.stderr.golden
 a712182f3425f117539e59c902821220ae0a37b693eb429dea88c2f5332eb275  ./tax_preparation/golden/Tax.FED.stderr.golden
 fb7d02874ae6713403f22fc0b4a853f38c50d230d846363930793b1c16a98576  ./tax_preparation/golden/Tax.NC.stderr.golden
+13b7d49181fc01207efbd0d48cfcc23874ce7cbd058708628863f46da0847474  ./tax_preparation/testGen/bin/Tax.CA.bin.BID
 1f564e955424c2d4c949fde9adf8e661b12ca38272637aa7315aad82e230ce2c  ./tax_preparation/testGen/bin/Tax.CA.bin.BID128
+dee043c922d9bb4f90fbbc3250e64ce13123ce756d2ff48c046a62a4b052dce4  ./tax_preparation/testGen/bin/Tax.FED.bin.BID
 57a8ba8d94524976bc8e237084dc20e9cdccd722d1a30f82fafd9098a4a7bff5  ./tax_preparation/testGen/bin/Tax.FED.bin.BID128
+9a02f6226066a27cc9f71aa6bf5198bc03ddf83d8132ff0272aa3cdd58f4024f  ./tax_preparation/testGen/bin/Tax.NC.bin.BID
 4356fd96fe842f7ef90987c1ea9b24369fb1041f1ab66e6d022767279e8b7ffe  ./tax_preparation/testGen/bin/Tax.NC.bin.BID128
 3200d753026fbebd73c6857f572a3d0c374b91ee052d9f6a49748b35590c6bd7  ./telco/expon180.1e6b
 7799d03c1a8d6eabcbcd3e5a33ca77e1cc25726cdc717487bac6d97c3f3f026b  ./telco/golden/expon180.1e6.expected.sha256

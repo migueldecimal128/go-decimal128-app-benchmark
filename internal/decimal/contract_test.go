@@ -21,6 +21,16 @@ func skipUnsupported(t *testing.T, op string) bool {
 	return false
 }
 
+// skipNarrow skips a test whose cases use decimal128's 34 digits or exponent
+// range, for a library that declares the "precision" deviation (decimal64);
+// the apps' 64-bit goldens check such a library instead.
+func skipNarrow(t *testing.T) {
+	t.Helper()
+	if deviates(t, "precision") {
+		t.Skip("cases need decimal128's precision or range")
+	}
+}
+
 // deviates reports a contract property the library declares it does not meet.
 func deviates(t *testing.T, prop string) bool {
 	t.Helper()
@@ -32,6 +42,7 @@ func deviates(t *testing.T, prop string) bool {
 }
 
 func TestString(t *testing.T) {
+	skipNarrow(t)
 	// The to-scientific-string form, round-tripped through MustParse.
 	for _, s := range []string{
 		"0", "-0", "1", "-5", "1.50", "0.000", "1000", "1E+3", "1.2E+3",
@@ -55,6 +66,7 @@ func TestString(t *testing.T) {
 }
 
 func TestConversions(t *testing.T) {
+	skipNarrow(t)
 	if got := Zero().String(); got != "0" {
 		t.Errorf("Zero() = %s", got)
 	}
@@ -85,6 +97,7 @@ func TestConversions(t *testing.T) {
 }
 
 func TestArithmetic(t *testing.T) {
+	skipNarrow(t)
 	for _, c := range []struct {
 		op         string
 		x, y, want string
@@ -159,6 +172,7 @@ func TestArithmetic(t *testing.T) {
 }
 
 func TestComparisons(t *testing.T) {
+	skipNarrow(t)
 	nan, negz, z := p("NaN"), p("-0"), p("0")
 	if !p("1.5").Less(p("1.50001")) || p("1.50").Less(p("1.5")) || !p("-2").Less(p("1")) {
 		t.Error("Less: wrong order")
@@ -241,6 +255,7 @@ func TestRounding(t *testing.T) {
 }
 
 func TestPowers(t *testing.T) {
+	skipNarrow(t)
 	for _, c := range []struct {
 		op, name string
 		f        func() Decimal128

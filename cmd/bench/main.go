@@ -45,6 +45,7 @@ type library struct {
 	// GOEXPERIMENT it needs. Its recorded version is the toolchain's commit.
 	toolchainEnv, goexperiment string
 	gcflags                    string // extra -gcflags for every package (toolchain libraries)
+	width                      int    // 64 for a decimal64 library, which runs each suite's 64-bit variant; 0 is 128
 }
 
 // goCmd is the go command that builds l, and the environment it runs in.
@@ -96,6 +97,10 @@ var libraries = []library{
 		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal", gcflags: "-d=ubdlevel=1"},
 	{name: "go-builtin-decimal128-ubd-level3", tag: "go_builtin_decimal128_ubd_level3", module: "std (GOEXPERIMENT=decimal, UBD, -d=ubdlevel=3)",
 		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal", gcflags: "-d=ubdlevel=3"},
+	// decimal64 of the ubd128 toolchain (XOR-BID64), run on the suites' 64-bit
+	// inputs: the apps unchanged at the other width (lib_go_builtin_decimal64.go).
+	{name: "go-builtin-decimal64", tag: "go_builtin_decimal64", module: "std (GOEXPERIMENT=decimal, decimal64 XOR-BID64)",
+		toolchainEnv: "GO_DECIMAL_GOROOT", goexperiment: "decimal", width: 64},
 	{name: "go-builtin-decimal128-xorbid", tag: "go_builtin_decimal128_xorbid", module: "std (GOEXPERIMENT=decimal, XOR-BID)",
 		toolchainEnv: "GO_DECIMAL_XORBID_GOROOT", goexperiment: "decimal"},
 	{name: "bid754", tag: "bid754", module: "github.com/sky1core/bid754/bid754-go",
@@ -118,8 +123,35 @@ type suite struct {
 	golden            string   // stderr golden, relative to dir ("" = file-gated); a .sha256 file holds its digest
 	totals            string   // lines that must appear in stdout (telco's control totals)
 	files             bool     // risk: gate one output file per stock
+	goldenDir         string   // risk: the directory of its per-stock goldens, relative to dir
 	records           int
 	xcheckMax         float64
+	// The suite for a decimal64 library (library.width 64): its 64-bit
+	// input and the golden it is gated against. Empty fields keep the
+	// 128-bit suite's (telco's input is integers, and tax's, telco's and
+	// banking's 64-bit output equals their 128-bit golden).
+	dataset64, golden64, goldenDir64 string
+	args64                           []string
+}
+
+// at returns the suite as a library of the given width runs it.
+func (s suite) at(width int) suite {
+	if width != 64 {
+		return s
+	}
+	if s.dataset64 != "" {
+		s.dataset = s.dataset64
+	}
+	if s.golden64 != "" {
+		s.golden = s.golden64
+	}
+	if s.goldenDir64 != "" {
+		s.goldenDir = s.goldenDir64
+	}
+	if s.args64 != nil {
+		s.args = s.args64
+	}
+	return s
 }
 
 func suites() []suite {
@@ -127,21 +159,29 @@ func suites() []suite {
 		u := strings.ToUpper(sub)
 		return suite{app: "tax_preparation", sub: sub, dataset: "Tax." + u + ".bin.BID128",
 			dir: "data/tax_preparation", exe: "tax-" + sub,
-			args:   []string{"testGen/bin/Tax." + u + ".bin.BID128", "/tmp/abtax_" + sub, "1"},
-			golden: "golden/Tax." + u + ".stderr.golden", records: 1}
+			args:      []string{"testGen/bin/Tax." + u + ".bin.BID128", "/tmp/abtax_" + sub, "1"},
+			golden:    "golden/Tax." + u + ".stderr.golden", records: 1,
+			dataset64: "Tax." + u + ".bin.BID",
+			args64:    []string{"testGen/bin/Tax." + u + ".bin.BID", "/tmp/abtax_" + sub, "1"}}
 	}
 	return []suite{
 		{app: "euro_conversion", dataset: "Euro.bin.BID128", dir: "data/euro_conversion",
 			exe: "euro", args: []string{"testGen/bin/Euro.bin.BID128", "euro_run.out"},
-			golden: "golden/Euro.output.DECNUMBER_FIXED128", records: 100},
+			golden: "golden/Euro.output.DECNUMBER_FIXED128", records: 100,
+			dataset64: "Euro.bin.BID", args64: []string{"testGen/bin/Euro.bin.BID", "euro_run.out"},
+			golden64: "golden/Euro.output.DECNUMBER_FIXED"},
 		{app: "risk_management", dataset: "sp500 + 20 tickers", dir: "data/risk_management",
-			exe: "risk", args: []string{"1", "bench"}, files: true, records: 20},
+			exe: "risk", args: []string{"1", "bench"}, files: true, goldenDir: "golden", records: 20,
+			dataset64: "sp500 + 20 tickers (bid64)", goldenDir64: "golden64"},
 		tax("fed"), tax("ca"), tax("nc"),
 		// banking rebuilds its accounts between passes outside the timed region,
 		// which the runner's clock sees, so its cross-check limit is wider.
 		{app: "banking", dataset: "Banking.bin.BID128", dir: "data/banking",
 			exe: "banking", args: []string{"testGen/bin/Banking.bin.BID128"},
-			golden: "golden/Banking.output.DECNUMBER_FIXED128", records: 643, xcheckMax: 2.5},
+			golden: "golden/Banking.output.DECNUMBER_FIXED128", records: 643, xcheckMax: 2.5,
+			// The 643 commands at 64 bits (testGen/README.md); the rate
+			// tables are the suite's .txt.bid files.
+			dataset64: "Banking.bin.BID64", args64: []string{"testGen/bin/Banking.bin.BID64"}},
 		// telco's expected output is 6 MB, so the golden is its SHA-256; the
 		// control totals are Cowlishaw's published values.
 		{app: "telco", dataset: "expon180.1e6b", dir: "data/telco", exe: "telco",
@@ -234,6 +274,7 @@ func main() {
 					continue
 				}
 				for _, l := range libs {
+					s := s.at(l.width)
 					if why, ok := l.unsupported[s.app]; ok {
 						recordUnsupported(root, s, l, why, info)
 						continue
@@ -425,7 +466,7 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 	var stocks []string
 	resultDir := filepath.Join(dir, "testGen", "result")
 	if s.files {
-		gs, _ := filepath.Glob(filepath.Join(dir, "golden", "*.golden"))
+		gs, _ := filepath.Glob(filepath.Join(dir, s.goldenDir, "*.golden"))
 		for _, g := range gs {
 			stocks = append(stocks, strings.TrimSuffix(filepath.Base(g), ".golden"))
 		}
@@ -481,7 +522,7 @@ func measureRow(root, bin string, s suite, lib library, iters int, info runInfo,
 		for _, st := range stocks {
 			out := filepath.Join(resultDir, st+".log_0_"+s.args[1])
 			got, err1 := os.ReadFile(out)
-			want, err2 := os.ReadFile(filepath.Join(dir, "golden", st+".golden"))
+			want, err2 := os.ReadFile(filepath.Join(dir, s.goldenDir, st+".golden"))
 			if (err1 == nil) && (err2 == nil) && bytes.Equal(got, want) {
 				n++
 			}

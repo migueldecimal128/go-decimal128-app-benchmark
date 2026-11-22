@@ -8,7 +8,8 @@
 // Derivative work → GPL; lives only in this repo.
 //
 // Contract: reproduce the UW DEBUG stderr transcript BYTE-FOR-BYTE (the golden is
-// Euro.output.DECNUMBER_FIXED128). Values are formatted with Decimal128.String
+// Euro.output.DECNUMBER_FIXED128, or Euro.output.DECNUMBER_FIXED for a 64-bit
+// library, which reads Euro.bin.BID). Values are formatted with Decimal128.String
 // (= d128_format FORMAT_AUTO), matching the C TOSTRING64. Two quirks of the C are
 // reproduced deliberately:
 //  1. `while(!feof)` processes the LAST record TWICE (the stale-buffer feof bug):
@@ -156,10 +157,16 @@ func run() int {
 		} else {
 			eof = true
 		}
-		if pos+16 <= len(data) {
-			hi, lo := harness.BID128(data, pos)
-			s.inp = d.FromBID128(hi, lo)
-			pos += 16
+		if pos+d.Width/8 <= len(data) {
+			// The amount, a BID decimal128 (Euro.bin.BID128) or, for a 64-bit
+			// library, a BID decimal64 (Euro.bin.BID).
+			if d.Width == 64 {
+				s.inp = d.FromBID64(harness.LE64(data, pos))
+			} else {
+				hi, lo := harness.BID128(data, pos)
+				s.inp = d.FromBID128(hi, lo)
+			}
+			pos += d.Width / 8
 			realRecords++
 		} else {
 			eof = true

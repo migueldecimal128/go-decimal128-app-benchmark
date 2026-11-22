@@ -70,7 +70,17 @@ func readFile(path string) []byte {
 	return b
 }
 
+// size is the bytes of one value in the inputs: BID decimal128 (.csv.bid128)
+// or, for a 64-bit library, BID decimal64 (.csv.bid64).
+const size = d.Width / 8
+
+// input is the path of a ticker's input file at the library's width.
+func input(name string) string { return fmt.Sprintf("testGen/bin/%s.csv.bid%d", name, d.Width) }
+
 func decode(b []byte, off int) d.Decimal128 {
+	if d.Width == 64 {
+		return d.FromBID64(harness.LE64(b, off))
+	}
 	hi, lo := harness.BID128(b, off)
 	return d.FromBID128(hi, lo)
 }
@@ -81,7 +91,7 @@ func readTBill(path string) (current, avg d.Decimal128) {
 	accu := zero
 	var last d.Decimal128
 	for i := 0; i < term; i++ {
-		r := decode(b, i*16)
+		r := decode(b, i*size)
 		accu = accu.Add(r)
 		last = r
 	}
@@ -101,11 +111,11 @@ func readStock(path string) *rawStock {
 	p := 0
 	for i := 0; i < term; i++ {
 		r.index[i] = decode(b, p)
-		p += 32 // index, then skip volume
+		p += 2 * size // index, then skip volume
 		r.split[i] = decode(b, p)
-		p += 16
+		p += size
 		r.dividend[i] = decode(b, p)
-		p += 16
+		p += size
 	}
 	return r
 }
@@ -235,15 +245,15 @@ func run() int {
 
 	os.Stderr.WriteString("The program starts\n")
 	var s setup
-	s.currentRiskfree, s.riskfreeAvg = readTBill("testGen/bin/3month_tbill.csv.bid128")
-	computeCompany(readStock("testGen/bin/sp500.csv.bid128"), &s.market)
+	s.currentRiskfree, s.riskfreeAvg = readTBill(input("3month_tbill"))
+	computeCompany(readStock(input("sp500")), &s.market)
 
 	var ticker company
 	var sb strings.Builder
 	for loop := 0; loop < userLoop; loop++ {
 		fmt.Fprintf(os.Stderr, "in Loop %d\n", loop)
 		for _, stock := range stocks {
-			computeCompany(readStock("testGen/bin/"+stock+".csv.bid128"), &ticker)
+			computeCompany(readStock(input(stock)), &ticker)
 			sb.Reset()
 			generateOutput(&s, &ticker, &sb)
 			outPath := fmt.Sprintf("testGen/result/%s.log_%d_%s", stock, loop, str)
@@ -260,7 +270,7 @@ func run() int {
 	if citers := harness.ComputeIters(); citers > 0 {
 		raws := make([]*rawStock, len(stocks))
 		for i, stock := range stocks {
-			raws[i] = readStock("testGen/bin/" + stock + ".csv.bid128") // preload once
+			raws[i] = readStock(input(stock)) // preload once
 		}
 		sink := 0
 		best := harness.BestOf(citers, 1, func() { // pass >= ~250 us: no batching

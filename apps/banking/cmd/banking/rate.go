@@ -3,7 +3,7 @@
 // rate.c — currency-conversion / deposit / mortgage / TCM / prime rate tables
 // (via the Swift Rate.swift). The rate files are streams: each daily update
 // consumes the next row(s); at EOF the table keeps its previous value (some
-// print "Use the old … rate"). Reads the BID-encoded .bid128 variants.
+// print "Use the old … rate"). Reads the BID-encoded .bid128 variants (.bid for a 64-bit library).
 package main
 
 import d "github.com/migueldecimal128/go-decimal128-app-benchmark/internal/decimal"
@@ -23,21 +23,21 @@ func (bk *bank) openConversionRateFile() {
 		"NZD_USD", "SGD_USD", "TWD_USD", "USD_AUD", "USD_CNY", "USD_EUR",
 		"USD_GBP", "USD_HKD", "USD_JPY", "USD_NZD", "USD_SGD", "USD_TWD"}
 	for i, n := range names {
-		bk.conversionRateFiles[i] = bk.openOrDie("datafile/bin/"+n+".txt.bid128", "rate.c")
+		bk.conversionRateFiles[i] = bk.openOrDie("datafile/bin/"+n+rateSuffix, "rate.c")
 	}
 }
 
 func (bk *bank) openDepositRateFile() {
 	cur := [...]string{"AUD", "CNY", "EUR", "GBP", "HKD", "JPY", "NZD", "SGD", "TWD", "USD"}
 	for i, c := range cur {
-		bk.depositRateFiles[i] = bk.openOrDie("datafile/bin/"+c+"_Interest_Rate.txt.bid128", "rate.c")
+		bk.depositRateFiles[i] = bk.openOrDie("datafile/bin/"+c+"_Interest_Rate"+rateSuffix, "rate.c")
 	}
 }
 
 func (bk *bank) openMortgageRateFile() {
 	names := [...]string{"15YearFRM", "30YearFRM", "1YearARM", "51ARM"} // FRM15/30, ARM1, ARM51
 	for i, n := range names {
-		bk.mortRateFiles[i] = bk.openOrDie("datafile/bin/"+n+".txt.bid128", "rate.c")
+		bk.mortRateFiles[i] = bk.openOrDie("datafile/bin/"+n+rateSuffix, "rate.c")
 	}
 }
 

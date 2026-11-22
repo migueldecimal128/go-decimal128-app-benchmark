@@ -51,6 +51,9 @@ func ComputeBatch() int {
 // LE32 reads a little-endian int32 at b[off:].
 func LE32(b []byte, off int) int32 { return int32(binary.LittleEndian.Uint32(b[off:])) }
 
+// LE64 is the little-endian uint64 at b[off:], a BID decimal64.
+func LE64(b []byte, off int) uint64 { return binary.LittleEndian.Uint64(b[off:]) }
+
 // BID128 splits a 16-byte little-endian BID decimal128 at b[off:] into its
 // (hi, lo) 64-bit halves, the argument order decimal128.FromBID128 takes.
 func BID128(b []byte, off int) (hi, lo uint64) {

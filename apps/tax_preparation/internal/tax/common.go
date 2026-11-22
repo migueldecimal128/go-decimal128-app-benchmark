@@ -67,6 +67,14 @@ type input struct {
 	capIdx    int
 }
 
+// The C record is a 24-byte name and the amount, aligned to the amount's
+// size: 32 + 16 bytes for BID decimal128 (Tax.*.bin.BID128), 24 + 8 for BID
+// decimal64 (Tax.*.bin.BID), read by a 64-bit library.
+const (
+	recSize = 48 - (128-d.Width)/4 // 48 for decimal128, 32 for decimal64
+	amtOff  = recSize - d.Width/8
+)
+
 func openInput(path string) *input {
 	b, err := os.ReadFile(path)
 	if err != nil {
@@ -89,16 +97,22 @@ func (in *input) read() (r record, ok bool) {
 		in.capIdx++
 		return r, true
 	}
-	if in.pos+48 > len(in.data) {
+	if in.pos+recSize > len(in.data) {
 		return record{}, false
 	}
 	n := 0
-	for (n < 32) && (in.data[in.pos+n] != 0) {
+	for (n < amtOff) && (in.data[in.pos+n] != 0) {
 		n++
 	}
-	hi, lo := harness.BID128(in.data, in.pos+32)
-	r = record{string(in.data[in.pos : in.pos+n]), d.FromBID128(hi, lo)}
-	in.pos += 48
+	var amt d.Decimal128
+	if d.Width == 64 {
+		amt = d.FromBID64(harness.LE64(in.data, in.pos+amtOff))
+	} else {
+		hi, lo := harness.BID128(in.data, in.pos+amtOff)
+		amt = d.FromBID128(hi, lo)
+	}
+	r = record{string(in.data[in.pos : in.pos+n]), amt}
+	in.pos += recSize
 	if in.capturing {
 		in.cap = append(in.cap, r)
 	}

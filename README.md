@@ -47,9 +47,16 @@ are in [`results/data/`](results/data/).
   `go-builtin-decimal128` (level 2, the default) and
   `go-builtin-decimal128-ubd-level3` (the BID-derived inline paths). See
   [Running Go's built-in decimal128 from scratch](#running-gos-built-in-decimal128-from-scratch).
+- **Go's built-in decimal64:** `go-builtin-decimal64` is the ubd128 fork's
+  predeclared `decimal64` (stored as XOR-BID64), built by the same toolchain as
+  `go-builtin-decimal128`: the same five apps, unchanged but for reading
+  8-byte inputs, at 16 digits. It runs on the UW-Madison suite's 64-bit
+  inputs and is gated against its 64-bit goldens, or against the 128-bit
+  goldens where its output is the same (see [`data/`](data/README.md)), so
+  the two widths can be compared program for program.
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
 - **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
-  (9.3 MB, with provenance and SHA-256 checksums).
+  (10 MB with the 64-bit files, with provenance and SHA-256 checksums).
 - **Runner:** `go run ./cmd/bench -lib all` builds, gates and times every app; results
   are in [`results/RESULTS.md`](results/RESULTS.md).
 - **Next:** other Go decimal128 libraries.
@@ -172,6 +179,8 @@ go run ./cmd/bench -lib all                         # every library the runner c
 go run ./cmd/bench -lib all -app telco -iters 1     # a smoke test, a few minutes
 go run ./cmd/bench -lib go-builtin-decimal128-xorbid,go-builtin-decimal128-ubd-level1,go-builtin-decimal128,go-builtin-decimal128-ubd-level3
                                                     # the baseline and the three UBD levels
+go run ./cmd/bench -lib go-builtin-decimal64,go-builtin-decimal128
+                                                    # decimal64 against decimal128, one toolchain
 ```
 
 `-lib all` leaves out a toolchain library whose GOROOT variable is unset, and
