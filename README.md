@@ -55,6 +55,9 @@ are in [`results/data/`](results/data/).
   goldens where its output is the same (see [`data/`](data/README.md)), so
   the two widths can be compared program for program.
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
+- **Microbenchmarks:** [`microbench/`](microbench/README.md) times single
+  operations, slices, random lookups and sorting at both decimal widths, on
+  the same values, beside the apps' `go-builtin-decimal64` rows.
 - **Data:** inputs and goldens for all five apps are in [`data/`](data/README.md)
   (10 MB with the 64-bit files, with provenance and SHA-256 checksums).
 - **Runner:** `go run ./cmd/bench -lib all` builds, gates and times every app; results
