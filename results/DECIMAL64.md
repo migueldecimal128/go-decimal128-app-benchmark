@@ -23,6 +23,8 @@ Apple M3 Pro · go1.26.4 · all rows measured in one run, 2026-11-23 20:00 UTC �
 
 Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · all rows measured in one run, 2026-11-23 20:46 UTC · benchmark code `8b188f0 + uncommitted changes`
 
+Conditions: plugged in, kept awake with `caffeinate -dims`, no web browser or other GUI jobs running, for the runs at benchmark code 8b188f0 and ced0d3f (2026-11-23; ced0d3f, a confirming rerun, is within 0.4% of 8b188f0 in 34 of its 35 times). The earlier run at toolchain 447e9c0b4e was not under these conditions and measured about twice these times: compare runs on this machine by their ratios, not their times.
+
 | program | decimal64-XOR-BID `37b9ac04c0` | decimal128-XOR-BID `5032fd7754` | decimal128-UBD level 2 `37b9ac04c0` | decimal128-UBD level 3 `37b9ac04c0` | vs decimal128-XOR-BID | vs decimal128-UBD level 2 | vs decimal128-UBD level 3 |
 |---|--:|--:|--:|--:|--:|--:|--:|
 | euro_conversion | 1,647.2 | 1,948.5 | 1,547.4 | 1,522.1 | −15% | +6% | +8% |

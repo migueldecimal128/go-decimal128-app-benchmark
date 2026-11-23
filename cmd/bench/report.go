@@ -141,6 +141,7 @@ func writeReport(root string) error {
 		st, hasStart := startup[arch]
 		fmt.Fprintf(&b, "## %s\n\n", arch)
 		fmt.Fprintf(&b, "%s · %s · %s · benchmark code %s\n\n", rows[0].CPU, rows[0].GoVersion, runStamps(rows), benchCommits(rows))
+		writeConditions(&b, arch)
 		if hasStart {
 			fmt.Fprintf(&b, "Startup baseline: **%.2f ms** (fastest of %d launches between the whole runs, measured %s).\n\n",
 				float64(st.StartupNs)/1e6, st.Iterations, stamp(st.TimestampUTC))
@@ -303,6 +304,7 @@ func writeWidths(root string, byArch map[string][]record) error {
 		}
 		fmt.Fprintf(&b, "## %s\n\n", arch)
 		fmt.Fprintf(&b, "%s · %s · %s · benchmark code %s\n\n", first.CPU, first.GoVersion, runStamps(all), benchCommits(all))
+		writeConditions(&b, arch)
 		b.WriteString("| program | decimal64-XOR-BID `" + shortVersion(first.LibraryVersion) + "`")
 		for _, l := range width128Libs {
 			v := ""
@@ -416,6 +418,25 @@ func runStamps(rows []record) string {
 	}
 	ts := sortedKeys(seen)
 	return fmt.Sprintf("rows from %d runs, %s to %s", len(ts), stamp(ts[0]), stamp(ts[len(ts)-1]))
+}
+
+// archConditions records, by architecture, the state of the machine for
+// the runs a heading reports, as its operator described it: what the
+// records themselves do not hold.
+var archConditions = map[string]string{
+	"x86_64": "plugged in, kept awake with `caffeinate -dims`, no web browser or other GUI jobs running, " +
+		"for the runs at benchmark code 8b188f0 and ced0d3f (2026-11-23; ced0d3f, a confirming rerun, " +
+		"is within 0.4% of 8b188f0 in 34 of its 35 times). The earlier run at toolchain 447e9c0b4e " +
+		"was not under these conditions and measured about twice these times: compare runs on this " +
+		"machine by their ratios, not their times.",
+}
+
+// writeConditions writes arch's machine conditions, if recorded, after its
+// heading line.
+func writeConditions(b *strings.Builder, arch string) {
+	if c := archConditions[arch]; c != "" {
+		fmt.Fprintf(b, "Conditions: %s\n\n", c)
+	}
 }
 
 // benchCommits names the benchmark code the rows were measured with.

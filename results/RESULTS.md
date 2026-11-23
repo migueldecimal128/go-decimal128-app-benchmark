@@ -105,6 +105,8 @@ Workloads:
 
 Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · rows from 2 runs, 2026-11-21 22:51 UTC to 2026-11-23 20:46 UTC · benchmark code `6ee323c + uncommitted changes`, `8b188f0 + uncommitted changes`
 
+Conditions: plugged in, kept awake with `caffeinate -dims`, no web browser or other GUI jobs running, for the runs at benchmark code 8b188f0 and ced0d3f (2026-11-23; ced0d3f, a confirming rerun, is within 0.4% of 8b188f0 in 34 of its 35 times). The earlier run at toolchain 447e9c0b4e was not under these conditions and measured about twice these times: compare runs on this machine by their ratios, not their times.
+
 Startup baseline: **4.05 ms** (fastest of 45 launches between the whole runs, measured 2026-11-23 20:46 UTC).
 
 | app | library | code, KB | compute, ns | median, ns | p10–p90, ns | xcheck | whole, ns | startup, ns | correct |
