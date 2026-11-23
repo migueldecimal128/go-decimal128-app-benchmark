@@ -18,9 +18,9 @@ go test -run XXX -bench . -ldflags=-funcalign=64 .                    # decimal1
 go test -run XXX -bench . -ldflags=-funcalign=64 -gcflags=-d=ubdlevel=3 .
 ```
 
-`-d=ubdlevel` changes only `decimal128`'s code. Level 3 gives it inline paths
-derived from the BID lowering, the same kind as `decimal64`'s; level 2 inlines
-less. Rows are named `Op/Width/Class` (`BenchmarkOps`) or
+`-d=ubdlevel` changes only `decimal128`'s code. Level 3 runs level 2's inline
+paths first and, behind them, paths derived from the BID lowering, the same
+kind as `decimal64`'s; level 2 sends what its paths do not take to the kernel. Rows are named `Op/Width/Class` (`BenchmarkOps`) or
 `Op/Width/n=<values>` (the others).
 
 `width64.go` and `width128.go` are generated from `width.go.tmpl` by
@@ -58,7 +58,7 @@ cache level holds it.
 
 ## Results
 
-Apple M3 Pro (16 MB L2 per performance cluster), ubd128 fork at `04befab964`,
+Apple M3 Pro (16 MB L2 per performance cluster), ubd128 fork at `447e9c0b4e`,
 `-ldflags=-funcalign=64`, 2026-11-23. Medians of six runs for the operations,
 four for the rest. The ratios are `decimal128` time over `decimal64` time:
 below 1, `decimal128` is faster.
@@ -67,34 +67,34 @@ below 1, `decimal128` is faster.
 
 | row | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
 |---|--:|--:|--:|--:|--:|
-| Add/money | 0.83 | 0.88 | 1.01 | 1.07 | 1.22 |
-| Add/d16 | 9.40 | 12.21 | 7.80 | 1.30 | 0.83 |
-| Add/cents | 3.27 | 4.40 | 4.43 | 1.34 | 1.36 |
-| Add/cents-pos | 1.73 | 1.73 | 1.81 | 1.00 | 1.04 |
-| Add/nearby | 5.81 | 4.24 | 2.09 | 0.73 | 0.36 |
-| Sub/money | 1.32 | 1.21 | 1.50 | 0.91 | 1.13 |
-| Sub/cents | 3.54 | 4.06 | 4.56 | 1.15 | 1.29 |
-| Mul/money | 1.36 | 1.41 | 1.30 | 1.04 | 0.96 |
-| Mul/d16 | 10.86 | 2.18 | 3.44 | 0.20 | 0.32 |
-| Mul/cents | 4.62 | 2.17 | 3.31 | 0.47 | 0.72 |
-| Div/money | 7.60 | 10.93 | 10.91 | 1.44 | 1.44 |
-| Div/d16 | 10.84 | 19.09 | 19.06 | 1.76 | 1.76 |
-| Div/cents | 7.63 | 14.54 | 14.58 | 1.91 | 1.91 |
-| Less/money | 1.73 | 1.07 | 1.91 | 0.62 | 1.10 |
-| Less/cents | 2.71 | 4.05 | 3.45 | 1.50 | 1.27 |
-| Less/cents-pos | 2.70 | 1.86 | 2.57 | 0.69 | 0.95 |
-| Less/cents-half | 2.71 | 7.74 | 3.45 | 2.86 | 1.27 |
-| Equal/money | 1.73 | 0.80 | 1.91 | 0.46 | 1.10 |
-| Equal/cents | 2.70 | 3.92 | 3.43 | 1.45 | 1.27 |
-| Quantize/money | 0.94 | 1.33 | 0.91 | 1.41 | 0.97 |
-| Quantize/d16 | 7.53 | 8.04 | 5.69 | 1.07 | 0.76 |
-| MulQuantize/cents | 2.92 | 3.75 | 2.71 | 1.28 | 0.93 |
-| MulQuantizeRate/cents | 4.76 | 4.79 | 3.71 | 1.01 | 0.78 |
-| FMA/d16 | 21.30 | 14.40 | 14.21 | 0.68 | 0.67 |
-| Sqrt/money | 893.75 | 899.65 | 901.25 | 1.01 | 1.01 |
+| Add/money | 0.83 | 0.88 | 0.88 | 1.07 | 1.07 |
+| Add/d16 | 9.41 | 12.17 | 6.74 | 1.29 | 0.72 |
+| Add/cents | 3.28 | 4.39 | 3.23 | 1.34 | 0.98 |
+| Add/cents-pos | 1.73 | 1.73 | 1.73 | 1.00 | 1.00 |
+| Add/nearby | 5.80 | 4.24 | 2.22 | 0.73 | 0.38 |
+| Sub/money | 1.32 | 1.21 | 1.23 | 0.91 | 0.93 |
+| Sub/cents | 3.53 | 4.05 | 3.25 | 1.15 | 0.92 |
+| Mul/money | 1.36 | 1.41 | 1.41 | 1.04 | 1.04 |
+| Mul/d16 | 10.85 | 2.18 | 2.17 | 0.20 | 0.20 |
+| Mul/cents | 4.60 | 2.18 | 2.17 | 0.47 | 0.47 |
+| Div/money | 7.59 | 10.94 | 10.90 | 1.44 | 1.44 |
+| Div/d16 | 10.82 | 19.05 | 18.94 | 1.76 | 1.75 |
+| Div/cents | 7.62 | 14.50 | 14.52 | 1.90 | 1.90 |
+| Less/money | 1.73 | 1.07 | 1.07 | 0.62 | 0.62 |
+| Less/cents | 2.71 | 4.04 | 3.32 | 1.49 | 1.23 |
+| Less/cents-pos | 2.70 | 1.85 | 1.87 | 0.69 | 0.69 |
+| Less/cents-half | 2.70 | 7.73 | 5.79 | 2.86 | 2.14 |
+| Equal/money | 1.73 | 0.80 | 0.80 | 0.46 | 0.47 |
+| Equal/cents | 2.69 | 3.92 | 3.29 | 1.45 | 1.22 |
+| Quantize/money | 0.94 | 1.32 | 0.91 | 1.40 | 0.97 |
+| Quantize/d16 | 7.51 | 8.03 | 5.63 | 1.07 | 0.75 |
+| MulQuantize/cents | 2.92 | 3.75 | 2.85 | 1.28 | 0.98 |
+| MulQuantizeRate/cents | 4.75 | 4.80 | 3.79 | 1.01 | 0.80 |
+| FMA/d16 | 21.25 | 14.38 | 14.21 | 0.68 | 0.67 |
+| Sqrt/money | 896.55 | 896.50 | 904.05 | 1.00 | 1.01 |
 | FromInt/int | 2.91 | 0.25 | 0.25 | 0.09 | 0.08 |
-| Parse/d16 | 26.42 | 21.95 | 22.54 | 0.83 | 0.85 |
-| Format/d16 | 12.88 | 8.47 | 8.57 | 0.66 | 0.67 |
+| Parse/d16 | 26.28 | 21.95 | 22.48 | 0.84 | 0.86 |
+| Format/d16 | 12.93 | 8.48 | 8.46 | 0.66 | 0.65 |
 
 `go test -bench Ops` prints every row, including Sub, Less and Equal for each
 class and FMA on money.
@@ -103,13 +103,13 @@ class and FMA on money.
 
 | row | bytes, 64 / 128 | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
 |---|---|--:|--:|--:|--:|--:|
-| Sum, 1K values | 8 / 16 KB | 0.64 | 0.48 | 0.64 | 0.75 | 1.01 |
-| Sum, 1M values | 8 / 16 MB | 651 | 482 | 661 | 0.74 | 1.02 |
-| Sum, 16M values | 128 / 256 MB | 10,407 | 7,610 | 10,583 | 0.73 | 1.02 |
-| Max, 1K values | 8 / 16 KB | 1.36 | 1.59 | 1.25 | 1.16 | 0.91 |
-| Max, 16M values | 128 / 256 MB | 22,412 | 27,836 | 21,091 | 1.24 | 0.94 |
-| MulQuant, 1K values | 8 / 16 KB | 2.67 | 3.84 | 2.44 | 1.44 | 0.92 |
-| MulQuant, 16M values | 128 / 256 MB | 42,572 | 67,135 | 41,739 | 1.58 | 0.98 |
+| Sum, 1K values | 8 / 16 KB | 0.64 | 0.48 | 0.48 | 0.75 | 0.75 |
+| Sum, 1M values | 8 / 16 MB | 650 | 488 | 473 | 0.75 | 0.73 |
+| Sum, 16M values | 128 / 256 MB | 10,407 | 7,593 | 7,645 | 0.73 | 0.73 |
+| Max, 1K values | 8 / 16 KB | 1.36 | 1.59 | 0.82 | 1.16 | 0.60 |
+| Max, 16M values | 128 / 256 MB | 22,412 | 27,219 | 13,406 | 1.21 | 0.60 |
+| MulQuant, 1K values | 8 / 16 KB | 2.66 | 3.84 | 2.51 | 1.44 | 0.94 |
+| MulQuant, 16M values | 128 / 256 MB | 42,534 | 67,138 | 42,616 | 1.58 | 1.00 |
 
 Each ratio is the same from 1K values to 16M: these loops are bound by the
 arithmetic, not by memory traffic, and the 8 and 16 bytes per value do not
@@ -119,28 +119,27 @@ show.
 
 | table | bytes, 64 / 128 | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
 |---|---|--:|--:|--:|--:|--:|
-| 4K values | 32 / 64 KB | 564 | 607 | 717 | 1.08 | 1.27 |
-| 64K values | 0.5 / 1 MB | 1,036 | 886 | 1,208 | 0.86 | 1.17 |
-| 1M values | 8 / 16 MB | 1,158 | 1,328 | 1,656 | 1.15 | 1.43 |
-| 1.25M values | 10 / 20 MB | 1,173 | 1,856 | 2,413 | 1.58 | 2.06 |
-| 1.5M values | 12 / 24 MB | 1,188 | 3,277 | 4,315 | 2.76 | 3.63 |
-| 1.75M values | 14 / 28 MB | 1,248 | 3,800 | 5,186 | 3.05 | 4.16 |
-| 2M values | 16 / 32 MB | 1,484 | 4,108 | 5,880 | 2.77 | 3.96 |
-| 2.5M values | 20 / 40 MB | 2,031 | 4,397 | 6,602 | 2.17 | 3.25 |
-| 3M values | 24 / 48 MB | 3,591 | 4,584 | 6,861 | 1.28 | 1.91 |
-| 4M values | 32 / 64 MB | 4,748 | 4,955 | 7,414 | 1.04 | 1.56 |
-| 16M values | 128 / 256 MB | 6,209 | 5,534 | 8,306 | 0.89 | 1.34 |
+| 4K values | 32 / 64 KB | 569 | 604 | 612 | 1.06 | 1.08 |
+| 64K values | 0.5 / 1 MB | 1,036 | 889 | 887 | 0.86 | 0.86 |
+| 1M values | 8 / 16 MB | 1,157 | 1,319 | 1,336 | 1.14 | 1.15 |
+| 1.25M values | 10 / 20 MB | 1,177 | 1,956 | 1,974 | 1.66 | 1.68 |
+| 1.5M values | 12 / 24 MB | 1,191 | 3,310 | 3,288 | 2.78 | 2.76 |
+| 1.75M values | 14 / 28 MB | 1,236 | 3,773 | 3,799 | 3.05 | 3.07 |
+| 2M values | 16 / 32 MB | 1,442 | 4,085 | 4,133 | 2.83 | 2.87 |
+| 2.5M values | 20 / 40 MB | 2,219 | 4,398 | 4,395 | 1.98 | 1.98 |
+| 3M values | 24 / 48 MB | 3,670 | 4,589 | 4,592 | 1.25 | 1.25 |
+| 4M values | 32 / 64 MB | 4,727 | 4,935 | 4,934 | 1.04 | 1.04 |
+| 16M values | 128 / 256 MB | 6,438 | 5,701 | 5,540 | 0.89 | 0.86 |
 
 The difference made by the size of a value is the window where
 `decimal64`'s table still fits the 16 MB L2 and `decimal128`'s does not,
 about 12–20 MB of `decimal64` (1.5M–2.5M values): there `decimal64` is
-2.8–3.1 times as fast as `decimal128` at level 2, and 3.6–4.2 times at level 3. Outside the window
-the ratio is that of the adds alone: about 1 at level 2, and 1.2–1.6 at level
-3, whose add in this loop is slower (the same as `Sum` above).
+2.8–3.1 times as fast as `decimal128` at either level. Outside the window the
+two widths are within about 15% of each other.
 
 ### Sorting (µs per sort)
 
 | values | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
 |---|--:|--:|--:|--:|--:|
-| 1K | 48 | 91 | 45 | 1.90 | 0.95 |
-| 1M | 188,843 | 243,072 | 193,048 | 1.29 | 1.02 |
+| 1K | 49 | 90 | 45 | 1.85 | 0.91 |
+| 1M | 188,390 | 242,937 | 191,022 | 1.29 | 1.01 |
