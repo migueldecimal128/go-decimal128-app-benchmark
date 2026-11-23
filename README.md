@@ -18,6 +18,8 @@ Intel Core i9-9880H), with every library's time per record on each app, its
 spread, the runner's cross-check of the program's own timer, and whether every
 run matched the reference output. The records behind it, one per row per run,
 are in [`results/data/`](results/data/).
+**[results/DECIMAL64.md](results/DECIMAL64.md)**, generated with it, sets
+`decimal64` beside the `decimal128` builds of the same toolchains.
 
 ## Status
 
@@ -53,7 +55,8 @@ are in [`results/data/`](results/data/).
   8-byte inputs, at 16 digits. It runs on the UW-Madison suite's 64-bit
   inputs and is gated against its 64-bit goldens, or against the 128-bit
   goldens where its output is the same (see [`data/`](data/README.md)), so
-  the two widths can be compared program for program.
+  the two widths can be compared program for program, in
+  [`results/DECIMAL64.md`](results/DECIMAL64.md).
 - **Telco:** added after the copy, based on decimal128-go's own telco program.
 - **Microbenchmarks:** [`microbench/`](microbench/README.md) times single
   operations, slices, random lookups and sorting at both decimal widths, on
