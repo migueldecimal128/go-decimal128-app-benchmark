@@ -424,7 +424,8 @@ func runStamps(rows []record) string {
 // the runs a heading reports, as its operator described it: what the
 // records themselves do not hold.
 var archConditions = map[string]string{
-	"x86_64": "plugged in, kept awake with `caffeinate -dims`, no web browser or other GUI jobs running, " +
+	"x86_64": "plugged in, with no web browser or other GUI jobs running; kept awake by the operator's " +
+		"`caffeinate`, and during each run by the script's own `caffeinate -dims`; " +
 		"for the runs at benchmark code 8b188f0 and ced0d3f (2026-11-23; ced0d3f, a confirming rerun, " +
 		"is within 0.4% of 8b188f0 in 34 of its 35 times). The earlier run at toolchain 447e9c0b4e " +
 		"was not under these conditions and measured about twice these times: compare runs on this " +
