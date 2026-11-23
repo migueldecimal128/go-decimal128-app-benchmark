@@ -143,3 +143,81 @@ two widths are within about 15% of each other.
 |---|--:|--:|--:|--:|--:|
 | 1K | 49 | 90 | 45 | 1.85 | 0.91 |
 | 1M | 188,390 | 242,937 | 191,022 | 1.29 | 1.01 |
+
+## Results on x86_64
+
+Intel Core i9-9880H (256 KB L2 per core, 16 MB shared L3), macOS, the same toolchain (`447e9c0b4e`) and
+flags, 2026-11-23, by `scripts/run-toolchains.sh`; medians of four runs. The raw output is in
+[`results/`](results/). Ratios as above: `decimal128` time over `decimal64` time.
+
+### Operations, x86_64 (ns per operation)
+
+| row | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
+|---|--:|--:|--:|--:|--:|
+| Add/money | 3.09 | 2.51 | 2.51 | 0.81 | 0.81 |
+| Add/d16 | 25.11 | 27.45 | 15.61 | 1.09 | 0.62 |
+| Add/cents | 6.64 | 9.25 | 6.10 | 1.39 | 0.92 |
+| Add/cents-pos | 3.53 | 3.30 | 3.48 | 0.94 | 0.99 |
+| Add/nearby | 19.80 | 13.50 | 7.14 | 0.68 | 0.36 |
+| Sub/money | 5.02 | 3.86 | 3.86 | 0.77 | 0.77 |
+| Sub/cents | 8.40 | 9.54 | 7.26 | 1.14 | 0.86 |
+| Mul/money | 5.79 | 4.44 | 4.44 | 0.77 | 0.77 |
+| Mul/d16 | 23.89 | 5.98 | 5.97 | 0.25 | 0.25 |
+| Mul/cents | 10.86 | 5.98 | 5.98 | 0.55 | 0.55 |
+| Div/money | 56.36 | 70.72 | 70.89 | 1.25 | 1.26 |
+| Div/d16 | 62.33 | 108.65 | 108.65 | 1.74 | 1.74 |
+| Div/cents | 59.69 | 107.30 | 107.25 | 1.80 | 1.80 |
+| Less/money | 6.17 | 2.99 | 2.99 | 0.48 | 0.48 |
+| Less/cents | 6.68 | 8.92 | 6.59 | 1.33 | 0.99 |
+| Less/cents-pos | 6.64 | 3.83 | 3.83 | 0.58 | 0.58 |
+| Less/cents-half | 6.69 | 17.84 | 11.25 | 2.67 | 1.68 |
+| Equal/money | 6.56 | 2.41 | 2.51 | 0.37 | 0.38 |
+| Equal/cents | 6.64 | 8.67 | 6.02 | 1.30 | 0.91 |
+| Quantize/money | 5.02 | 3.86 | 3.09 | 0.77 | 0.62 |
+| Quantize/d16 | 22.36 | 20.39 | 15.96 | 0.91 | 0.71 |
+| MulQuantize/cents | 21.83 | 24.01 | 20.21 | 1.10 | 0.93 |
+| MulQuantizeRate/cents | 22.34 | 25.63 | 17.04 | 1.15 | 0.76 |
+| FMA/d16 | 51.72 | 38.20 | 38.16 | 0.74 | 0.74 |
+| Sqrt/money | 2572.00 | 2569.50 | 2562.50 | 1.00 | 1.00 |
+| FromInt/int | 9.97 | 0.64 | 0.51 | 0.06 | 0.05 |
+| Parse/d16 | 89.44 | 75.06 | 71.40 | 0.84 | 0.80 |
+| Format/d16 | 43.65 | 35.66 | 34.24 | 0.82 | 0.78 |
+
+### Slices, x86_64 (µs per pass)
+
+| row | bytes, 64 / 128 | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
+|---|---|--:|--:|--:|--:|--:|
+| Sum, 1K values | 8 / 16 KB | 2.00 | 1.50 | 1.27 | 0.75 | 0.64 |
+| Sum, 16M values | 128 / 256 MB | 35,438 | 31,612 | 23,884 | 0.89 | 0.67 |
+| Max, 1K values | 8 / 16 KB | 5.94 | 2.38 | 1.98 | 0.40 | 0.33 |
+| Max, 16M values | 128 / 256 MB | 99,647 | 45,344 | 35,770 | 0.46 | 0.36 |
+| MulQuant, 1K values | 8 / 16 KB | 22 | 24 | 17 | 1.13 | 0.81 |
+| MulQuant, 16M values | 128 / 256 MB | 358,536 | 406,487 | 204,535 | 1.13 | 0.57 |
+
+### Random lookups, x86_64 (µs per 1M lookups)
+
+| table | bytes, 64 / 128 | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
+|---|---|--:|--:|--:|--:|--:|
+| 4K values | 32 / 64 KB | 2,121 | 2,063 | 1,231 | 0.97 | 0.58 |
+| 64K values | 0.5 / 1 MB | 4,075 | 3,512 | 2,031 | 0.86 | 0.50 |
+| 256K values | 2 / 4 MB | 4,627 | 3,625 | 2,214 | 0.78 | 0.48 |
+| 1M values | 8 / 16 MB | 5,332 | 9,238 | 9,119 | 1.73 | 1.71 |
+| 1.25M values | 10 / 20 MB | 5,755 | 12,586 | 12,544 | 2.19 | 2.18 |
+| 1.5M values | 12 / 24 MB | 7,221 | 14,777 | 13,645 | 2.05 | 1.89 |
+| 1.75M values | 14 / 28 MB | 8,171 | 15,843 | 15,129 | 1.94 | 1.85 |
+| 2M values | 16 / 32 MB | 10,362 | 17,713 | 17,176 | 1.71 | 1.66 |
+| 2.5M values | 20 / 40 MB | 14,762 | 18,724 | 19,103 | 1.27 | 1.29 |
+| 3M values | 24 / 48 MB | 17,694 | 21,857 | 21,569 | 1.24 | 1.22 |
+| 4M values | 32 / 64 MB | 18,401 | 23,918 | 23,081 | 1.30 | 1.25 |
+| 16M values | 128 / 256 MB | 31,001 | 39,930 | 27,964 | 1.29 | 0.90 |
+
+On this CPU `decimal64`'s advantage in lookups is 1.7–2.2 times, where its
+table fits the 16 MB L3 and `decimal128`'s does not (8–16 MB of `decimal64`);
+with small tables `decimal128` at level 3 is the faster (0.48–0.58).
+
+### Sorting, x86_64 (µs per sort)
+
+| values | `decimal64` | `decimal128` L2 | `decimal128` L3 | L2 / 64 | L3 / 64 |
+|---|--:|--:|--:|--:|--:|
+| 1K | 241 | 320 | 142 | 1.33 | 0.59 |
+| 1M | 478,957 | 622,817 | 265,270 | 1.30 | 0.55 |
