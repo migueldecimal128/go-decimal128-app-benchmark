@@ -39,7 +39,7 @@ var libraryNote = map[string]string{
 	"go-builtin-decimal128": "The built-in decimal128 of the ubd128 fork, stored as UBD, at its default -d=ubdlevel=2: " +
 		"small narrowed inline paths for +, -, *, the comparisons and the tests against zero, every other operation a kernel call.",
 	"go-builtin-decimal64": "The built-in decimal64 of the ubd128 fork (stored as XOR-BID64), the same toolchain as go-builtin-decimal128: " +
-		"the apps at 16 digits on the suite's 64-bit inputs, gated against its 64-bit goldens or, where the output is the same, the 128-bit ones. " +
+		"the apps at 16 digits on the suite's 64-bit BID inputs, gated against its 64-bit goldens or, where the output is the same, the 128-bit ones. " +
 		"strconv formats decimal64 by widening it to decimal128, which is part of its time.",
 	"go-builtin-decimal128-ubd-level1": "The ubd128 fork at -d=ubdlevel=1: every decimal128 operation a kernel call, nothing inline; the smallest code.",
 	"go-builtin-decimal128-ubd-level3": "The ubd128 fork at -d=ubdlevel=3 (level -1 before the fork's 45ff73c327): " +
@@ -249,7 +249,7 @@ func writeWidths(root string, byArch map[string][]record) error {
 		"Marcelo Cantos's toolchain (XOR-BID, the baseline of RESULTS.md) and the ubd128 fork at its default inline level (2) and at level 3, " +
 		"whose inline paths are derived from the BID lowering, as `decimal64`'s are. " +
 		"`decimal64` and UBD come from the same toolchain, the ubd128 fork, where `decimal64` is stored as XOR-BID64 (the decimal64-XOR-BID column).\n\n")
-	b.WriteString("Each program is the same source at both widths; at `decimal64` it reads the UW-Madison suite's 64-bit inputs, " +
+	b.WriteString("Each program is the same source at both widths; at `decimal64` it reads the UW-Madison suite's 64-bit BID inputs, " +
 		"and every row passed its gate against the suite's 64-bit golden or, where `decimal64`'s output is the same, the 128-bit one " +
 		"(see [data/README.md](../data/README.md)). " +
 		"A percentage is `decimal64`'s time against that column's: + means `decimal64` is slower, − faster. " +
