@@ -42,8 +42,9 @@ var libraryNote = map[string]string{
 		"the apps at 16 digits on the suite's 64-bit BID inputs, gated against its 64-bit goldens or, where the output is the same, the 128-bit ones. " +
 		"strconv formats decimal64 by widening it to decimal128, which is part of its time.",
 	"go-builtin-decimal128-ubd-level1": "The ubd128 fork at -d=ubdlevel=1: every decimal128 operation a kernel call, nothing inline; the smallest code.",
-	"go-builtin-decimal128-ubd-level3": "The ubd128 fork at -d=ubdlevel=3 (level -1 before the fork's 45ff73c327): " +
-		"the large inline paths derived from the BID lowering, the same kernel calls behind them; the most UBD code.",
+	"go-builtin-decimal128-ubd-level3": "The ubd128 fork at -d=ubdlevel=3: level 2's inline paths, then the kernel's own first paths " +
+		"promoted inline behind them (since the fork's 0493529123; at 447e9c0b4e and before, level 3 was the inline paths derived " +
+		"from the BID lowering, and level -1 before 45ff73c327); the most UBD code.",
 	"go-decimal": "The built-in decimal128 type of the Go decimal fork ([golang/go#19787](https://go.dev/issue/19787)), " +
 		"reached through its operators, math/decimal and strconv. Its adapter re-lays strconv's shortest form " +
 		"into the to-scientific-string, which is part of its time.",
@@ -247,7 +248,8 @@ func writeWidths(root string, byArch map[string][]record) error {
 	b.WriteString("Generated with [RESULTS.md](RESULTS.md), from the same records: each program's **compute** time, ns per record, " +
 		"with Go's built-in `decimal64` (" + width64Lib + ") and with three builds of `decimal128`: " +
 		"Marcelo Cantos's toolchain (XOR-BID, the baseline of RESULTS.md) and the ubd128 fork at its default inline level (2) and at level 3, " +
-		"whose inline paths are derived from the BID lowering, as `decimal64`'s are. " +
+		"which adds the kernel's own first paths inline behind level 2's (since the fork's 0493529123; in runs at 447e9c0b4e and " +
+		"before, level 3 was the inline paths derived from the BID lowering, as `decimal64`'s are). " +
 		"`decimal64` and UBD come from the same toolchain, the ubd128 fork, where `decimal64` is stored as XOR-BID64 (the decimal64-XOR-BID column).\n\n")
 	b.WriteString("Each program is the same source at both widths; at `decimal64` it reads the UW-Madison suite's 64-bit BID inputs, " +
 		"and every row passed its gate against the suite's 64-bit golden or, where `decimal64`'s output is the same, the 128-bit one " +
