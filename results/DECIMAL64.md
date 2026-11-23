@@ -21,16 +21,16 @@ Apple M3 Pro · go1.26.4 · all rows measured in one run, 2026-11-23 20:00 UTC �
 
 ## x86_64
 
-Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · all rows measured in one run, 2026-11-23 20:27 UTC · benchmark code `d5852f4 + uncommitted changes`
+Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · all rows measured in one run, 2026-11-23 20:46 UTC · benchmark code `8b188f0 + uncommitted changes`
 
 | program | decimal64-XOR-BID `37b9ac04c0` | decimal128-XOR-BID `5032fd7754` | decimal128-UBD level 2 `37b9ac04c0` | decimal128-UBD level 3 `37b9ac04c0` | vs decimal128-XOR-BID | vs decimal128-UBD level 2 | vs decimal128-UBD level 3 |
 |---|--:|--:|--:|--:|--:|--:|--:|
-| euro_conversion | 1,643.2 | 1,949.0 | 1,550.3 | 1,522.2 | −16% | +6% | +8% |
-| risk_management | 14,488.4 | 15,318.3 | 15,051.0 | 14,670.8 | −5% | −4% | −1% |
-| tax_preparation fed | 5,479.0 | 5,063.1 | 4,426.0 | 4,124.6 | +8% | +24% | +33% |
-| tax_preparation ca | 1,250.6 | 1,120.7 | 1,016.5 | 1,010.6 | +12% | +23% | +24% |
-| tax_preparation nc | 1,879.5 | 1,741.5 | 1,502.6 | 1,434.9 | +8% | +25% | +31% |
-| banking | 1,369.3 | 1,451.4 | 1,366.5 | 1,345.0 | −6% | 0% | +2% |
-| telco | 85.3 | 78.1 | 65.9 | 66.3 | +9% | +29% | +29% |
-| geometric mean | | | | | **+1.0%** | **+14.1%** | **+17.0%** |
+| euro_conversion | 1,647.2 | 1,948.5 | 1,547.4 | 1,522.1 | −15% | +6% | +8% |
+| risk_management | 14,461.4 | 15,328.5 | 15,048.7 | 14,694.8 | −6% | −4% | −2% |
+| tax_preparation fed | 5,477.0 | 5,070.1 | 4,433.3 | 4,132.4 | +8% | +24% | +33% |
+| tax_preparation ca | 1,250.6 | 1,121.5 | 1,016.9 | 1,011.7 | +12% | +23% | +24% |
+| tax_preparation nc | 1,879.4 | 1,749.2 | 1,501.1 | 1,433.5 | +7% | +25% | +31% |
+| banking | 1,357.6 | 1,451.8 | 1,365.4 | 1,350.1 | −6% | −1% | +1% |
+| telco | 85.1 | 78.3 | 65.7 | 66.0 | +9% | +30% | +29% |
+| geometric mean | | | | | **+0.7%** | **+14.0%** | **+16.8%** |
 

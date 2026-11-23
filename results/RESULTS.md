@@ -103,60 +103,60 @@ Workloads:
 
 ## x86_64
 
-Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · rows from 2 runs, 2026-11-21 22:51 UTC to 2026-11-23 20:27 UTC · benchmark code `6ee323c + uncommitted changes`, `d5852f4 + uncommitted changes`
+Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · rows from 2 runs, 2026-11-21 22:51 UTC to 2026-11-23 20:46 UTC · benchmark code `6ee323c + uncommitted changes`, `8b188f0 + uncommitted changes`
 
-Startup baseline: **4.11 ms** (fastest of 45 launches between the whole runs, measured 2026-11-23 20:27 UTC).
+Startup baseline: **4.05 ms** (fastest of 45 launches between the whole runs, measured 2026-11-23 20:46 UTC).
 
 | app | library | code, KB | compute, ns | median, ns | p10–p90, ns | xcheck | whole, ns | startup, ns | correct |
 |---|---|--:|--:|--:|--:|--:|--:|--:|:--:|
-| euro_conversion | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 11.5 | 1,522.2 | 1,546.2 | 1,533.3–1,720.2 | 1.06 | 52,860.5 | 41,116.2 | ✓ |
-| euro_conversion | go-builtin-decimal128 `37b9ac04c0` | 10.2 | 1,550.3 | 1,587.8 | 1,560.3–2,015.5 | 1.06 | 54,022.1 | 41,116.2 | ✓ |
-| euro_conversion | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 9.4 | 1,572.8 | 1,594.7 | 1,582.5–1,652.3 | 1.08 | 53,383.8 | 41,116.2 | ✓ |
-| euro_conversion | go-builtin-decimal64 `37b9ac04c0` | 11.3 | 1,643.2 | 1,660.3 | 1,652.6–1,727.2 | 1.06 | 53,489.0 | 41,116.2 | ✓ |
-| euro_conversion | go-builtin-decimal128-xorbid `5032fd7754` | 14.1 | 1,949.0 | 1,972.7 | 1,959.4–2,115.6 | 1.06 | 53,519.9 | 41,116.2 | ✓ |
-| euro_conversion | miguel-decimal128-go `073024a` | 7.7 | 2,133.4 | 2,258.1 | 2,193.7–4,287.5 | 1.27 ⚠ | 58,489.9 | 41,116.2 | ✓ |
-| euro_conversion | bid754 `v0.2.0` | 11.6 | 3,978.6 | 4,275.4 | 4,088.7–7,949.1 | 1.23 | 62,444.0 | 41,116.2 | ✓ |
-| risk_management | go-builtin-decimal64 `37b9ac04c0` | 21.7 | 14,488.4 | 14,870.6 | 14,550.3–15,587.2 | 1.04 | 394,661.7 | 205,580.9 | 20/20 |
-| risk_management | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 25.0 | 14,670.8 | 15,175.2 | 14,741.2–17,591.1 | 1.05 | 405,976.2 | 205,580.9 | 20/20 |
-| risk_management | go-builtin-decimal128 `37b9ac04c0` | 16.6 | 15,051.0 | 15,517.6 | 15,431.1–16,346.5 | 1.06 | 392,472.0 | 205,580.9 | 20/20 |
-| risk_management | go-builtin-decimal128-xorbid `5032fd7754` | 36.5 | 15,318.3 | 16,096.3 | 15,372.1–18,057.5 | 1.02 | 402,387.5 | 205,580.9 | 20/20 |
-| risk_management | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 12.5 | 15,945.4 | 16,727.9 | 16,013.4–16,882.8 | 1.05 | 402,524.8 | 205,580.9 | 20/20 |
-| risk_management | miguel-decimal128-go `073024a` | 10.6 | 27,636.3 | 29,651.8 | 27,851.4–53,029.4 | 1.23 | 436,689.2 | 205,580.9 | 20/20 |
+| euro_conversion | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 11.5 | 1,522.1 | 1,540.4 | 1,531.7–1,766.0 | 1.06 | 52,653.7 | 40,471.7 | ✓ |
+| euro_conversion | go-builtin-decimal128 `37b9ac04c0` | 10.2 | 1,547.4 | 1,569.8 | 1,555.2–1,619.5 | 1.04 | 53,393.3 | 40,471.7 | ✓ |
+| euro_conversion | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 9.4 | 1,571.6 | 1,621.2 | 1,582.9–1,677.4 | 1.09 | 53,521.6 | 40,471.7 | ✓ |
+| euro_conversion | go-builtin-decimal64 `37b9ac04c0` | 11.3 | 1,647.2 | 1,700.3 | 1,656.3–1,814.6 | 1.04 | 52,199.8 | 40,471.7 | ✓ |
+| euro_conversion | go-builtin-decimal128-xorbid `5032fd7754` | 14.1 | 1,948.5 | 1,974.2 | 1,962.1–2,030.8 | 1.07 | 52,842.6 | 40,471.7 | ✓ |
+| euro_conversion | miguel-decimal128-go `073024a` | 7.7 | 2,133.4 | 2,258.1 | 2,193.7–4,287.5 | 1.27 ⚠ | 58,489.9 | 40,471.7 | ✓ |
+| euro_conversion | bid754 `v0.2.0` | 11.6 | 3,978.6 | 4,275.4 | 4,088.7–7,949.1 | 1.23 | 62,444.0 | 40,471.7 | ✓ |
+| risk_management | go-builtin-decimal64 `37b9ac04c0` | 21.7 | 14,461.4 | 15,155.2 | 14,512.0–15,416.2 | 1.07 | 396,201.5 | 202,358.5 | 20/20 |
+| risk_management | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 25.0 | 14,694.8 | 15,507.0 | 14,774.9–17,282.7 | 1.02 | 400,889.2 | 202,358.5 | 20/20 |
+| risk_management | go-builtin-decimal128 `37b9ac04c0` | 16.6 | 15,048.7 | 15,816.6 | 15,154.4–16,162.3 | 1.06 | 399,542.6 | 202,358.5 | 20/20 |
+| risk_management | go-builtin-decimal128-xorbid `5032fd7754` | 36.5 | 15,328.5 | 16,086.9 | 15,402.2–16,399.9 | 1.04 | 398,817.3 | 202,358.5 | 20/20 |
+| risk_management | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 12.5 | 15,953.0 | 16,744.4 | 16,019.6–17,008.7 | 1.03 | 405,003.3 | 202,358.5 | 20/20 |
+| risk_management | miguel-decimal128-go `073024a` | 10.6 | 27,636.3 | 29,651.8 | 27,851.4–53,029.4 | 1.23 | 436,689.2 | 202,358.5 | 20/20 |
 | risk_management | bid754 `v0.2.0` | — | not supported | — | — | — | — | — | — |
-| tax_preparation fed | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 142.3 | 4,124.6 | 4,183.8 | 4,152.1–4,540.8 | 1.06 | 5,021,519.0 | 4,111,618.0 | ✓ |
-| tax_preparation fed | go-builtin-decimal128 `37b9ac04c0` | 58.6 | 4,426.0 | 4,486.5 | 4,460.6–4,849.0 | 1.02 | 4,855,567.0 | 4,111,618.0 | ✓ |
-| tax_preparation fed | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 39.8 | 4,745.8 | 4,794.9 | 4,768.2–5,115.0 | 1.06 | 4,891,339.0 | 4,111,618.0 | ✓ |
-| tax_preparation fed | go-builtin-decimal128-xorbid `5032fd7754` | 235.3 | 5,063.1 | 5,115.1 | 5,089.2–5,292.8 | 1.05 | 4,916,875.0 | 4,111,618.0 | ✓ |
-| tax_preparation fed | miguel-decimal128-go `073024a` | 41.6 | 5,261.8 | 5,913.0 | 5,536.7–8,514.9 | 1.29 ⚠ | 5,416,261.0 | 4,111,618.0 | ✓ |
-| tax_preparation fed | go-builtin-decimal64 `37b9ac04c0` | 143.4 | 5,479.0 | 5,550.8 | 5,515.0–5,733.9 | 1.03 | 4,952,899.0 | 4,111,618.0 | ✓ |
-| tax_preparation fed | bid754 `v0.2.0` | 67.7 | 15,168.0 | 16,652.7 | 15,542.1–31,357.1 | 1.14 | 5,578,986.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | miguel-decimal128-go `073024a` | 14.2 | 1,010.4 | 1,083.8 | 1,017.9–2,250.2 | 1.21 | 5,135,523.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 37.1 | 1,010.6 | 1,020.5 | 1,017.0–1,086.9 | 1.06 | 4,732,110.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | go-builtin-decimal128 `37b9ac04c0` | 20.0 | 1,016.5 | 1,027.2 | 1,022.3–1,053.1 | 1.05 | 4,821,929.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 15.4 | 1,053.4 | 1,061.4 | 1,057.8–1,071.6 | 1.06 | 4,805,944.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | go-builtin-decimal128-xorbid `5032fd7754` | 58.9 | 1,120.7 | 1,130.8 | 1,126.5–1,150.6 | 1.05 | 4,760,416.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | go-builtin-decimal64 `37b9ac04c0` | 37.6 | 1,250.6 | 1,263.2 | 1,258.0–1,279.3 | 1.05 | 4,720,595.0 | 4,111,618.0 | ✓ |
-| tax_preparation ca | bid754 `v0.2.0` | 23.7 | 3,268.6 | 3,589.6 | 3,370.4–6,762.7 | 1.21 | 5,631,695.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 57.7 | 1,434.9 | 1,457.8 | 1,446.4–1,524.7 | 1.05 | 4,752,931.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | go-builtin-decimal128 `37b9ac04c0` | 28.3 | 1,502.6 | 1,520.8 | 1,511.4–1,593.8 | 1.05 | 4,830,732.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 19.7 | 1,526.2 | 1,550.6 | 1,537.2–1,891.1 | 1.06 | 4,804,804.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | miguel-decimal128-go `073024a` | 18.5 | 1,650.2 | 1,777.1 | 1,692.5–3,713.4 | 1.25 | 5,336,455.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | go-builtin-decimal128-xorbid `5032fd7754` | 96.1 | 1,741.5 | 1,770.9 | 1,762.1–2,085.1 | 1.03 | 4,771,847.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | go-builtin-decimal64 `37b9ac04c0` | 54.4 | 1,879.5 | 1,904.5 | 1,890.2–2,290.7 | 1.04 | 4,757,201.0 | 4,111,618.0 | ✓ |
-| tax_preparation nc | bid754 `v0.2.0` | 28.7 | 5,304.7 | 5,578.4 | 5,335.5–10,716.5 | 1.30 ⚠ | 5,613,443.0 | 4,111,618.0 | ✓ |
-| banking | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 140.8 | 1,345.0 | 1,384.5 | 1,352.0–2,020.2 | 2.02 | 11,810.2 | 6,394.4 | ✓ |
-| banking | go-builtin-decimal128 `37b9ac04c0` | 94.4 | 1,366.5 | 1,413.1 | 1,380.8–2,068.7 | 2.01 | 12,055.0 | 6,394.4 | ✓ |
-| banking | go-builtin-decimal64 `37b9ac04c0` | 121.0 | 1,369.3 | 1,403.7 | 1,377.8–2,119.5 | 1.89 | 11,383.1 | 6,394.4 | ✓ |
-| banking | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 81.9 | 1,415.8 | 1,472.7 | 1,441.3–2,045.5 | 2.05 | 12,031.1 | 6,394.4 | ✓ |
-| banking | go-builtin-decimal128-xorbid `5032fd7754` | 183.6 | 1,451.4 | 1,478.0 | 1,461.6–2,157.6 | 1.96 | 11,765.8 | 6,394.4 | ✓ |
-| banking | miguel-decimal128-go `073024a` | 81.7 | 2,010.2 | 2,169.6 | 2,056.8–4,088.2 | 1.87 | 14,250.9 | 6,394.4 | ✓ |
+| tax_preparation fed | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 142.3 | 4,132.4 | 4,178.8 | 4,150.7–4,370.5 | 1.06 | 4,877,239.0 | 4,047,171.0 | ✓ |
+| tax_preparation fed | go-builtin-decimal128 `37b9ac04c0` | 58.6 | 4,433.3 | 4,558.9 | 4,461.5–5,108.5 | 1.04 | 4,824,391.0 | 4,047,171.0 | ✓ |
+| tax_preparation fed | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 39.8 | 4,739.5 | 4,894.6 | 4,769.0–5,395.5 | 1.09 | 4,859,741.0 | 4,047,171.0 | ✓ |
+| tax_preparation fed | go-builtin-decimal128-xorbid `5032fd7754` | 235.3 | 5,070.1 | 5,134.2 | 5,109.1–5,249.2 | 1.04 | 4,913,979.0 | 4,047,171.0 | ✓ |
+| tax_preparation fed | miguel-decimal128-go `073024a` | 41.6 | 5,261.8 | 5,913.0 | 5,536.7–8,514.9 | 1.29 ⚠ | 5,416,261.0 | 4,047,171.0 | ✓ |
+| tax_preparation fed | go-builtin-decimal64 `37b9ac04c0` | 143.4 | 5,477.0 | 5,567.2 | 5,522.6–5,824.4 | 1.04 | 4,800,023.0 | 4,047,171.0 | ✓ |
+| tax_preparation fed | bid754 `v0.2.0` | 67.7 | 15,168.0 | 16,652.7 | 15,542.1–31,357.1 | 1.14 | 5,578,986.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | miguel-decimal128-go `073024a` | 14.2 | 1,010.4 | 1,083.8 | 1,017.9–2,250.2 | 1.21 | 5,135,523.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 37.1 | 1,011.7 | 1,021.6 | 1,017.5–1,069.0 | 1.05 | 4,695,721.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | go-builtin-decimal128 `37b9ac04c0` | 20.0 | 1,016.9 | 1,038.8 | 1,022.5–1,063.0 | 1.05 | 4,782,424.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 15.4 | 1,052.4 | 1,062.9 | 1,058.5–1,088.5 | 1.07 | 4,710,840.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | go-builtin-decimal128-xorbid `5032fd7754` | 58.9 | 1,121.5 | 1,137.4 | 1,128.9–1,407.0 | 1.03 | 4,721,634.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | go-builtin-decimal64 `37b9ac04c0` | 37.6 | 1,250.6 | 1,266.0 | 1,260.0–1,303.3 | 1.06 | 4,721,530.0 | 4,047,171.0 | ✓ |
+| tax_preparation ca | bid754 `v0.2.0` | 23.7 | 3,268.6 | 3,589.6 | 3,370.4–6,762.7 | 1.21 | 5,631,695.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 57.7 | 1,433.5 | 1,453.3 | 1,445.4–1,486.7 | 1.05 | 4,822,097.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | go-builtin-decimal128 `37b9ac04c0` | 28.3 | 1,501.1 | 1,519.5 | 1,512.5–1,549.5 | 1.08 | 4,757,101.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 19.7 | 1,524.8 | 1,549.2 | 1,538.3–1,565.4 | 1.07 | 4,757,666.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | miguel-decimal128-go `073024a` | 18.5 | 1,650.2 | 1,777.1 | 1,692.5–3,713.4 | 1.25 | 5,336,455.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | go-builtin-decimal128-xorbid `5032fd7754` | 96.1 | 1,749.2 | 1,769.5 | 1,762.6–1,813.7 | 1.05 | 4,807,386.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | go-builtin-decimal64 `37b9ac04c0` | 54.4 | 1,879.4 | 1,908.9 | 1,891.7–2,254.2 | 1.04 | 4,797,489.0 | 4,047,171.0 | ✓ |
+| tax_preparation nc | bid754 `v0.2.0` | 28.7 | 5,304.7 | 5,578.4 | 5,335.5–10,716.5 | 1.30 ⚠ | 5,613,443.0 | 4,047,171.0 | ✓ |
+| banking | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 140.8 | 1,350.1 | 1,410.1 | 1,381.2–2,071.3 | 1.98 | 11,826.9 | 6,294.2 | ✓ |
+| banking | go-builtin-decimal64 `37b9ac04c0` | 121.0 | 1,357.6 | 1,401.2 | 1,366.5–2,147.1 | 1.97 | 11,465.7 | 6,294.2 | ✓ |
+| banking | go-builtin-decimal128 `37b9ac04c0` | 94.4 | 1,365.4 | 1,394.0 | 1,373.7–2,083.8 | 2.04 | 11,790.1 | 6,294.2 | ✓ |
+| banking | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 81.9 | 1,407.5 | 1,472.7 | 1,443.4–2,199.2 | 1.94 | 11,810.0 | 6,294.2 | ✓ |
+| banking | go-builtin-decimal128-xorbid `5032fd7754` | 183.6 | 1,451.8 | 1,495.5 | 1,460.5–2,157.6 | 1.93 | 11,820.7 | 6,294.2 | ✓ |
+| banking | miguel-decimal128-go `073024a` | 81.7 | 2,010.2 | 2,169.6 | 2,056.8–4,088.2 | 1.87 | 14,250.9 | 6,294.2 | ✓ |
 | banking | bid754 `v0.2.0` | — | not supported | — | — | — | — | — | — |
-| telco | go-builtin-decimal128 `37b9ac04c0` | 8.7 | 65.9 | 66.9 | 66.4–70.4 | 1.02 | 91.0 | 4.1 | ✓ |
-| telco | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 11.4 | 66.3 | 70.1 | 66.6–81.2 | 0.99 | 91.8 | 4.1 | ✓ |
-| telco | go-builtin-decimal128-xorbid `5032fd7754` | 13.5 | 78.1 | 79.3 | 78.4–81.0 | 1.02 | 102.0 | 4.1 | ✓ |
-| telco | go-builtin-decimal64 `37b9ac04c0` | 9.3 | 85.3 | 86.5 | 85.8–91.9 | 1.02 | 111.9 | 4.1 | ✓ |
-| telco | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 7.3 | 86.0 | 89.0 | 86.9–94.9 | 1.01 | 111.9 | 4.1 | ✓ |
-| telco | miguel-decimal128-go `073024a` | 5.5 | 177.8 | 198.1 | 186.3–214.1 | 1.01 | 235.9 | 4.1 | ✓ |
+| telco | go-builtin-decimal128 `37b9ac04c0` | 8.7 | 65.7 | 66.7 | 65.9–69.3 | 1.02 | 90.4 | 4.0 | ✓ |
+| telco | go-builtin-decimal128-ubd-level3 `37b9ac04c0` | 11.4 | 66.0 | 67.1 | 66.3–69.5 | 1.01 | 90.5 | 4.0 | ✓ |
+| telco | go-builtin-decimal128-xorbid `5032fd7754` | 13.5 | 78.3 | 79.8 | 78.6–80.8 | 1.02 | 102.3 | 4.0 | ✓ |
+| telco | go-builtin-decimal64 `37b9ac04c0` | 9.3 | 85.1 | 86.2 | 85.5–87.2 | 1.01 | 109.7 | 4.0 | ✓ |
+| telco | go-builtin-decimal128-ubd-level1 `37b9ac04c0` | 7.3 | 86.2 | 88.4 | 86.7–89.6 | 1.01 | 112.2 | 4.0 | ✓ |
+| telco | miguel-decimal128-go `073024a` | 5.5 | 177.8 | 198.1 | 186.3–214.1 | 1.01 | 235.9 | 4.0 | ✓ |
 | telco | bid754 `v0.2.0` | — | not supported | — | — | — | — | — | — |
 
 > bid754 does not run risk_management: bid754 has no power function.
@@ -168,12 +168,12 @@ Summary against **go-builtin-decimal128-xorbid** (the baseline):
 | library | compute vs baseline, % (geometric mean) | code, total KB |
 |---|--:|--:|
 | go-builtin-decimal128-xorbid | baseline | 637.9 KB |
-| go-builtin-decimal128-ubd-level3 | -13.7% | 425.9 KB |
-| go-builtin-decimal128 | -11.5% | 236.8 KB |
-| go-builtin-decimal128-ubd-level1 | -5.0% | 186.0 KB |
-| go-builtin-decimal64 | +1.0% | 398.8 KB |
-| miguel-decimal128-go | +27.7% | 179.6 KB |
-| bid754 | +171.5% (4 of 7 rows) | 131.6 KB (4 of 7 rows) |
+| go-builtin-decimal128-ubd-level3 | -13.8% | 425.9 KB |
+| go-builtin-decimal128 | -11.7% | 236.8 KB |
+| go-builtin-decimal128-ubd-level1 | -5.3% | 186.0 KB |
+| go-builtin-decimal64 | +0.7% | 398.8 KB |
+| miguel-decimal128-go | +27.5% | 179.6 KB |
+| bid754 | +171.1% (4 of 7 rows) | 131.6 KB (4 of 7 rows) |
 
 Libraries:
 
