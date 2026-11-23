@@ -159,8 +159,8 @@ func suites() []suite {
 		u := strings.ToUpper(sub)
 		return suite{app: "tax_preparation", sub: sub, dataset: "Tax." + u + ".bin.BID128",
 			dir: "data/tax_preparation", exe: "tax-" + sub,
-			args:      []string{"testGen/bin/Tax." + u + ".bin.BID128", "/tmp/abtax_" + sub, "1"},
-			golden:    "golden/Tax." + u + ".stderr.golden", records: 1,
+			args:   []string{"testGen/bin/Tax." + u + ".bin.BID128", "/tmp/abtax_" + sub, "1"},
+			golden: "golden/Tax." + u + ".stderr.golden", records: 1,
 			dataset64: "Tax." + u + ".bin.BID",
 			args64:    []string{"testGen/bin/Tax." + u + ".bin.BID", "/tmp/abtax_" + sub, "1"}}
 	}

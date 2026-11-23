@@ -37,6 +37,9 @@ var libraryNote = map[string]string{
 		"stored as XOR-BID (BID with the high word XORed so that all bits clear is +0): the baseline the UBD builds are compared with.",
 	"go-builtin-decimal128": "The built-in decimal128 of the ubd128 fork, stored as UBD, at its default -d=ubdlevel=2: " +
 		"small narrowed inline paths for +, -, *, the comparisons and the tests against zero, every other operation a kernel call.",
+	"go-builtin-decimal64": "The built-in decimal64 of the ubd128 fork (stored as XOR-BID64), the same toolchain as go-builtin-decimal128: " +
+		"the apps at 16 digits on the suite's 64-bit inputs, gated against its 64-bit goldens or, where the output is the same, the 128-bit ones. " +
+		"strconv formats decimal64 by widening it to decimal128, which is part of its time.",
 	"go-builtin-decimal128-ubd-level1": "The ubd128 fork at -d=ubdlevel=1: every decimal128 operation a kernel call, nothing inline; the smallest code.",
 	"go-builtin-decimal128-ubd-level3": "The ubd128 fork at -d=ubdlevel=3 (level -1 before the fork's 45ff73c327): " +
 		"the large inline paths derived from the BID lowering, the same kernel calls behind them; the most UBD code.",
