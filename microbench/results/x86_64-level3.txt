@@ -2,549 +2,549 @@ goos: darwin
 goarch: amd64
 pkg: github.com/migueldecimal128/go-decimal128-app-benchmark/microbench
 cpu: Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz
-BenchmarkOps/64/Add/64/money-16         	100000000	         3.087 ns/op
-BenchmarkOps/64/Add/64/money-16         	100000000	         3.093 ns/op
-BenchmarkOps/64/Add/64/money-16         	100000000	         3.087 ns/op
-BenchmarkOps/64/Add/64/money-16         	100000000	         3.087 ns/op
-BenchmarkOps/64/Add/64/d16-16           	14336952	        25.08 ns/op
-BenchmarkOps/64/Add/64/d16-16           	14354754	        25.10 ns/op
-BenchmarkOps/64/Add/64/d16-16           	14401012	        25.08 ns/op
-BenchmarkOps/64/Add/64/d16-16           	14277472	        25.09 ns/op
-BenchmarkOps/64/Sub/64/money-16         	71826136	         5.016 ns/op
-BenchmarkOps/64/Sub/64/money-16         	71813198	         5.016 ns/op
-BenchmarkOps/64/Sub/64/money-16         	71704690	         5.018 ns/op
-BenchmarkOps/64/Sub/64/money-16         	71826266	         5.018 ns/op
-BenchmarkOps/64/Sub/64/d16-16           	14283721	        25.15 ns/op
-BenchmarkOps/64/Sub/64/d16-16           	14443527	        25.07 ns/op
-BenchmarkOps/64/Sub/64/d16-16           	14356738	        25.01 ns/op
-BenchmarkOps/64/Sub/64/d16-16           	14420259	        25.12 ns/op
-BenchmarkOps/64/Mul/64/money-16         	62242018	         5.789 ns/op
-BenchmarkOps/64/Mul/64/money-16         	62189634	         5.787 ns/op
-BenchmarkOps/64/Mul/64/money-16         	62251275	         5.788 ns/op
-BenchmarkOps/64/Mul/64/money-16         	62251404	         5.788 ns/op
-BenchmarkOps/64/Mul/64/d16-16           	15070958	        23.86 ns/op
-BenchmarkOps/64/Mul/64/d16-16           	15083086	        23.91 ns/op
-BenchmarkOps/64/Mul/64/d16-16           	15016047	        23.91 ns/op
-BenchmarkOps/64/Mul/64/d16-16           	15009940	        23.93 ns/op
-BenchmarkOps/64/Div/64/money-16         	 6389524	        56.34 ns/op
-BenchmarkOps/64/Div/64/money-16         	 6388879	        56.24 ns/op
-BenchmarkOps/64/Div/64/money-16         	 6372666	        56.27 ns/op
-BenchmarkOps/64/Div/64/money-16         	 6405968	        56.33 ns/op
-BenchmarkOps/64/Div/64/d16-16           	 5791215	        62.20 ns/op
-BenchmarkOps/64/Div/64/d16-16           	 5762373	        62.47 ns/op
-BenchmarkOps/64/Div/64/d16-16           	 5765260	        62.51 ns/op
-BenchmarkOps/64/Div/64/d16-16           	 5760498	        62.47 ns/op
-BenchmarkOps/64/Add/64/nearby-16        	18333265	        19.77 ns/op
-BenchmarkOps/64/Add/64/nearby-16        	18322142	        19.70 ns/op
-BenchmarkOps/64/Add/64/nearby-16        	18275097	        19.82 ns/op
-BenchmarkOps/64/Add/64/nearby-16        	18191833	        19.82 ns/op
-BenchmarkOps/64/Less/64/money-16        	58360024	         6.173 ns/op
-BenchmarkOps/64/Less/64/money-16        	58360015	         6.174 ns/op
-BenchmarkOps/64/Less/64/money-16        	58360298	         6.173 ns/op
-BenchmarkOps/64/Less/64/money-16        	58361784	         6.175 ns/op
-BenchmarkOps/64/Less/64/d16-16          	26621047	        13.51 ns/op
-BenchmarkOps/64/Less/64/d16-16          	26616266	        13.52 ns/op
-BenchmarkOps/64/Less/64/d16-16          	26616320	        13.51 ns/op
-BenchmarkOps/64/Less/64/d16-16          	26599375	        13.50 ns/op
-BenchmarkOps/64/Equal/64/money-16       	54914613	         6.559 ns/op
-BenchmarkOps/64/Equal/64/money-16       	54908908	         6.560 ns/op
-BenchmarkOps/64/Equal/64/money-16       	54927616	         6.559 ns/op
-BenchmarkOps/64/Equal/64/money-16       	54880784	         6.572 ns/op
-BenchmarkOps/64/Equal/64/d16-16         	30499768	        11.76 ns/op
-BenchmarkOps/64/Equal/64/d16-16         	30752298	        11.71 ns/op
-BenchmarkOps/64/Equal/64/d16-16         	30778179	        11.85 ns/op
-BenchmarkOps/64/Equal/64/d16-16         	30404878	        11.69 ns/op
-BenchmarkOps/64/Quantize/64/money-16    	71814889	         5.017 ns/op
-BenchmarkOps/64/Quantize/64/money-16    	71827212	         5.016 ns/op
-BenchmarkOps/64/Quantize/64/money-16    	71767000	         5.016 ns/op
-BenchmarkOps/64/Quantize/64/money-16    	71827340	         5.016 ns/op
-BenchmarkOps/64/Quantize/64/d16-16      	16116595	        22.42 ns/op
-BenchmarkOps/64/Quantize/64/d16-16      	16118572	        22.34 ns/op
-BenchmarkOps/64/Quantize/64/d16-16      	16086710	        22.33 ns/op
-BenchmarkOps/64/Quantize/64/d16-16      	16106164	        22.34 ns/op
-BenchmarkOps/64/MulQuantize/64/cents-16 	16581248	        21.83 ns/op
-BenchmarkOps/64/MulQuantize/64/cents-16 	16629289	        21.84 ns/op
-BenchmarkOps/64/MulQuantize/64/cents-16 	16593175	        21.64 ns/op
-BenchmarkOps/64/MulQuantize/64/cents-16 	16605530	        21.64 ns/op
-BenchmarkOps/64/FMA/64/money-16         	21205917	        16.99 ns/op
-BenchmarkOps/64/FMA/64/money-16         	21209686	        16.99 ns/op
-BenchmarkOps/64/FMA/64/money-16         	21213264	        16.99 ns/op
-BenchmarkOps/64/FMA/64/money-16         	21188188	        17.00 ns/op
-BenchmarkOps/64/FMA/64/d16-16           	 6876313	        52.29 ns/op
-BenchmarkOps/64/FMA/64/d16-16           	 6880640	        52.28 ns/op
-BenchmarkOps/64/FMA/64/d16-16           	 6878881	        52.30 ns/op
-BenchmarkOps/64/FMA/64/d16-16           	 6882318	        52.27 ns/op
-BenchmarkOps/64/Sqrt/64/money-16        	  136341	      2566 ns/op
-BenchmarkOps/64/Sqrt/64/money-16        	  140262	      2568 ns/op
-BenchmarkOps/64/Sqrt/64/money-16        	  140259	      2567 ns/op
-BenchmarkOps/64/Sqrt/64/money-16        	  140020	      2567 ns/op
-BenchmarkOps/64/Floor/64/cents-16       	145446717	         2.475 ns/op
-BenchmarkOps/64/Floor/64/cents-16       	145278117	         2.476 ns/op
-BenchmarkOps/64/Floor/64/cents-16       	145297606	         2.471 ns/op
-BenchmarkOps/64/Floor/64/cents-16       	145243146	         2.473 ns/op
-BenchmarkOps/64/Add/64/cents-16         	54217078	         6.599 ns/op
-BenchmarkOps/64/Add/64/cents-16         	54370915	         6.571 ns/op
-BenchmarkOps/64/Add/64/cents-16         	54069543	         6.585 ns/op
-BenchmarkOps/64/Add/64/cents-16         	54323648	         6.590 ns/op
-BenchmarkOps/64/Sub/64/cents-16         	42681214	         8.400 ns/op
-BenchmarkOps/64/Sub/64/cents-16         	42675482	         8.364 ns/op
-BenchmarkOps/64/Sub/64/cents-16         	42706393	         8.379 ns/op
-BenchmarkOps/64/Sub/64/cents-16         	42668198	         8.394 ns/op
-BenchmarkOps/64/Mul/64/cents-16         	33204744	        10.86 ns/op
-BenchmarkOps/64/Mul/64/cents-16         	32755894	        10.86 ns/op
-BenchmarkOps/64/Mul/64/cents-16         	32694669	        10.86 ns/op
-BenchmarkOps/64/Mul/64/cents-16         	32954674	        10.86 ns/op
-BenchmarkOps/64/Div/64/cents-16         	 6055048	        59.52 ns/op
-BenchmarkOps/64/Div/64/cents-16         	 6028027	        59.78 ns/op
-BenchmarkOps/64/Div/64/cents-16         	 6023316	        59.71 ns/op
-BenchmarkOps/64/Div/64/cents-16         	 6013893	        59.77 ns/op
-BenchmarkOps/64/Less/64/cents-16        	54619123	         6.684 ns/op
-BenchmarkOps/64/Less/64/cents-16        	54578746	         6.613 ns/op
-BenchmarkOps/64/Less/64/cents-16        	54663327	         6.636 ns/op
-BenchmarkOps/64/Less/64/cents-16        	53722242	         6.633 ns/op
-BenchmarkOps/64/Equal/64/cents-16       	54208286	         6.639 ns/op
-BenchmarkOps/64/Equal/64/cents-16       	54830640	         6.637 ns/op
-BenchmarkOps/64/Equal/64/cents-16       	54911606	         6.636 ns/op
-BenchmarkOps/64/Equal/64/cents-16       	54924784	         6.569 ns/op
-BenchmarkOps/64/Add/64/cents-pos-16     	100000000	         3.527 ns/op
-BenchmarkOps/64/Add/64/cents-pos-16     	100000000	         3.528 ns/op
-BenchmarkOps/64/Add/64/cents-pos-16     	100000000	         3.527 ns/op
-BenchmarkOps/64/Add/64/cents-pos-16     	100000000	         3.526 ns/op
-BenchmarkOps/64/Sub/64/cents-pos-16     	60610090	         5.937 ns/op
-BenchmarkOps/64/Sub/64/cents-pos-16     	61708713	         5.949 ns/op
-BenchmarkOps/64/Sub/64/cents-pos-16     	60622052	         5.943 ns/op
-BenchmarkOps/64/Sub/64/cents-pos-16     	60589413	         5.937 ns/op
-BenchmarkOps/64/Less/64/cents-pos-16    	54771969	         6.574 ns/op
-BenchmarkOps/64/Less/64/cents-pos-16    	54188295	         6.673 ns/op
-BenchmarkOps/64/Less/64/cents-pos-16    	53741617	         6.671 ns/op
-BenchmarkOps/64/Less/64/cents-pos-16    	54800275	         6.673 ns/op
-BenchmarkOps/64/Equal/64/cents-pos-16   	54925178	         6.619 ns/op
-BenchmarkOps/64/Equal/64/cents-pos-16   	54848450	         6.673 ns/op
-BenchmarkOps/64/Equal/64/cents-pos-16   	54911924	         6.562 ns/op
-BenchmarkOps/64/Equal/64/cents-pos-16   	54723330	         6.562 ns/op
-BenchmarkOps/64/Add/64/cents-half-16    	31207555	        11.54 ns/op
-BenchmarkOps/64/Add/64/cents-half-16    	31199049	        11.54 ns/op
-BenchmarkOps/64/Add/64/cents-half-16    	31173934	        11.56 ns/op
-BenchmarkOps/64/Add/64/cents-half-16    	31194436	        11.52 ns/op
-BenchmarkOps/64/Sub/64/cents-half-16    	28309776	        12.62 ns/op
-BenchmarkOps/64/Sub/64/cents-half-16    	28371045	        12.67 ns/op
-BenchmarkOps/64/Sub/64/cents-half-16    	28366129	        12.62 ns/op
-BenchmarkOps/64/Sub/64/cents-half-16    	28393639	        12.64 ns/op
-BenchmarkOps/64/Less/64/cents-half-16   	54800650	         6.704 ns/op
-BenchmarkOps/64/Less/64/cents-half-16   	54564312	         6.705 ns/op
-BenchmarkOps/64/Less/64/cents-half-16   	54619405	         6.702 ns/op
-BenchmarkOps/64/Less/64/cents-half-16   	54571838	         6.671 ns/op
-BenchmarkOps/64/Equal/64/cents-half-16  	54835141	         6.649 ns/op
-BenchmarkOps/64/Equal/64/cents-half-16  	54838482	         6.636 ns/op
-BenchmarkOps/64/Equal/64/cents-half-16  	54896157	         6.643 ns/op
-BenchmarkOps/64/Equal/64/cents-half-16  	54912042	         6.638 ns/op
-BenchmarkOps/64/MulQuantizeRate/64/cents-16         	16196803	        22.40 ns/op
-BenchmarkOps/64/MulQuantizeRate/64/cents-16         	16077537	        22.38 ns/op
-BenchmarkOps/64/MulQuantizeRate/64/cents-16         	16018416	        22.46 ns/op
-BenchmarkOps/64/MulQuantizeRate/64/cents-16         	16180740	        22.23 ns/op
-BenchmarkOps/64/FromInt/64/int-16                   	35666750	        10.08 ns/op
-BenchmarkOps/64/FromInt/64/int-16                   	36279570	         9.968 ns/op
-BenchmarkOps/64/FromInt/64/int-16                   	36256284	         9.956 ns/op
-BenchmarkOps/64/FromInt/64/int-16                   	36276765	         9.953 ns/op
-BenchmarkOps/64/Parse/64/d16-16                     	 4166280	        86.43 ns/op
-BenchmarkOps/64/Parse/64/d16-16                     	 4156226	        86.45 ns/op
-BenchmarkOps/64/Parse/64/d16-16                     	 4188823	        85.93 ns/op
-BenchmarkOps/64/Parse/64/d16-16                     	 4167522	        86.76 ns/op
-BenchmarkOps/64/Format/64/d16-16                    	 8302735	        43.47 ns/op
-BenchmarkOps/64/Format/64/d16-16                    	 8339983	        43.45 ns/op
-BenchmarkOps/64/Format/64/d16-16                    	 8272350	        43.39 ns/op
-BenchmarkOps/64/Format/64/d16-16                    	 8342473	        43.39 ns/op
-BenchmarkOps/128/Add/128/money-16                   	143510066	         2.508 ns/op
-BenchmarkOps/128/Add/128/money-16                   	143526241	         2.508 ns/op
-BenchmarkOps/128/Add/128/money-16                   	143457186	         2.510 ns/op
-BenchmarkOps/128/Add/128/money-16                   	143549756	         2.508 ns/op
-BenchmarkOps/128/Add/128/d16-16                     	23067764	        15.61 ns/op
-BenchmarkOps/128/Add/128/d16-16                     	23063401	        15.61 ns/op
-BenchmarkOps/128/Add/128/d16-16                     	23078761	        15.61 ns/op
-BenchmarkOps/128/Add/128/d16-16                     	23030997	        15.61 ns/op
-BenchmarkOps/128/Sub/128/money-16                   	93373683	         3.858 ns/op
-BenchmarkOps/128/Sub/128/money-16                   	93375621	         3.858 ns/op
-BenchmarkOps/128/Sub/128/money-16                   	93351117	         3.859 ns/op
-BenchmarkOps/128/Sub/128/money-16                   	93372376	         3.859 ns/op
-BenchmarkOps/128/Sub/128/d16-16                     	22090584	        16.28 ns/op
-BenchmarkOps/128/Sub/128/d16-16                     	21886696	        16.43 ns/op
-BenchmarkOps/128/Sub/128/d16-16                     	21955149	        16.28 ns/op
-BenchmarkOps/128/Sub/128/d16-16                     	22160175	        16.27 ns/op
-BenchmarkOps/128/Mul/128/money-16                   	81186074	         4.438 ns/op
-BenchmarkOps/128/Mul/128/money-16                   	81191218	         4.439 ns/op
-BenchmarkOps/128/Mul/128/money-16                   	81189424	         4.439 ns/op
-BenchmarkOps/128/Mul/128/money-16                   	81056818	         4.437 ns/op
-BenchmarkOps/128/Mul/128/d16-16                     	59849696	         5.968 ns/op
-BenchmarkOps/128/Mul/128/d16-16                     	61114586	         5.987 ns/op
-BenchmarkOps/128/Mul/128/d16-16                     	59927097	         5.974 ns/op
-BenchmarkOps/128/Mul/128/d16-16                     	59931577	         5.965 ns/op
-BenchmarkOps/128/Div/128/money-16                   	 5085980	        70.90 ns/op
-BenchmarkOps/128/Div/128/money-16                   	 5080581	        70.87 ns/op
-BenchmarkOps/128/Div/128/money-16                   	 5070597	        71.00 ns/op
-BenchmarkOps/128/Div/128/money-16                   	 5093546	        70.80 ns/op
-BenchmarkOps/128/Div/128/d16-16                     	 3324740	       108.5 ns/op
-BenchmarkOps/128/Div/128/d16-16                     	 3311073	       108.7 ns/op
-BenchmarkOps/128/Div/128/d16-16                     	 3312054	       108.7 ns/op
-BenchmarkOps/128/Div/128/d16-16                     	 3312789	       108.6 ns/op
-BenchmarkOps/128/Add/128/nearby-16                  	50474055	         7.139 ns/op
-BenchmarkOps/128/Add/128/nearby-16                  	50459574	         7.140 ns/op
-BenchmarkOps/128/Add/128/nearby-16                  	50438421	         7.139 ns/op
-BenchmarkOps/128/Add/128/nearby-16                  	50473701	         7.138 ns/op
-BenchmarkOps/128/Less/128/money-16                  	120396942	         2.991 ns/op
-BenchmarkOps/128/Less/128/money-16                  	120382132	         2.992 ns/op
-BenchmarkOps/128/Less/128/money-16                  	120381762	         2.991 ns/op
-BenchmarkOps/128/Less/128/money-16                  	120380743	         2.992 ns/op
-BenchmarkOps/128/Less/128/d16-16                    	28745275	        12.48 ns/op
-BenchmarkOps/128/Less/128/d16-16                    	28753492	        12.47 ns/op
-BenchmarkOps/128/Less/128/d16-16                    	28952476	        12.46 ns/op
-BenchmarkOps/128/Less/128/d16-16                    	28931968	        12.48 ns/op
-BenchmarkOps/128/Equal/128/money-16                 	143542473	         2.508 ns/op
-BenchmarkOps/128/Equal/128/money-16                 	143533822	         2.508 ns/op
-BenchmarkOps/128/Equal/128/money-16                 	143542226	         2.508 ns/op
-BenchmarkOps/128/Equal/128/money-16                 	143539750	         2.512 ns/op
-BenchmarkOps/128/Equal/128/d16-16                   	33386751	        10.86 ns/op
-BenchmarkOps/128/Equal/128/d16-16                   	33234051	        10.86 ns/op
-BenchmarkOps/128/Equal/128/d16-16                   	33245103	        10.85 ns/op
-BenchmarkOps/128/Equal/128/d16-16                   	33235978	        10.86 ns/op
-BenchmarkOps/128/Quantize/128/money-16              	100000000	         3.087 ns/op
-BenchmarkOps/128/Quantize/128/money-16              	100000000	         3.087 ns/op
-BenchmarkOps/128/Quantize/128/money-16              	100000000	         3.087 ns/op
-BenchmarkOps/128/Quantize/128/money-16              	100000000	         3.087 ns/op
-BenchmarkOps/128/Quantize/128/d16-16                	22478656	        15.96 ns/op
-BenchmarkOps/128/Quantize/128/d16-16                	22623367	        15.96 ns/op
-BenchmarkOps/128/Quantize/128/d16-16                	22125912	        16.16 ns/op
-BenchmarkOps/128/Quantize/128/d16-16                	22566589	        15.95 ns/op
-BenchmarkOps/128/MulQuantize/128/cents-16           	17481742	        20.30 ns/op
-BenchmarkOps/128/MulQuantize/128/cents-16           	17831565	        20.29 ns/op
-BenchmarkOps/128/MulQuantize/128/cents-16           	17918724	        20.14 ns/op
-BenchmarkOps/128/MulQuantize/128/cents-16           	17742190	        20.14 ns/op
-BenchmarkOps/128/FMA/128/money-16                   	21612854	        16.79 ns/op
-BenchmarkOps/128/FMA/128/money-16                   	21615823	        16.75 ns/op
-BenchmarkOps/128/FMA/128/money-16                   	21373143	        16.84 ns/op
-BenchmarkOps/128/FMA/128/money-16                   	21432280	        16.80 ns/op
-BenchmarkOps/128/FMA/128/d16-16                     	 9450096	        38.16 ns/op
-BenchmarkOps/128/FMA/128/d16-16                     	 9436483	        38.15 ns/op
-BenchmarkOps/128/FMA/128/d16-16                     	 9457280	        38.14 ns/op
-BenchmarkOps/128/FMA/128/d16-16                     	 9430428	        38.21 ns/op
-BenchmarkOps/128/Sqrt/128/money-16                  	  140409	      2563 ns/op
-BenchmarkOps/128/Sqrt/128/money-16                  	  140289	      2564 ns/op
-BenchmarkOps/128/Sqrt/128/money-16                  	  140638	      2562 ns/op
-BenchmarkOps/128/Sqrt/128/money-16                  	  140566	      2561 ns/op
-BenchmarkOps/128/Floor/128/cents-16                 	100000000	         3.107 ns/op
-BenchmarkOps/128/Floor/128/cents-16                 	100000000	         3.119 ns/op
-BenchmarkOps/128/Floor/128/cents-16                 	100000000	         3.112 ns/op
-BenchmarkOps/128/Floor/128/cents-16                 	100000000	         3.108 ns/op
-BenchmarkOps/128/Add/128/cents-16                   	58366458	         6.104 ns/op
-BenchmarkOps/128/Add/128/cents-16                   	58929072	         6.104 ns/op
-BenchmarkOps/128/Add/128/cents-16                   	59067588	         6.104 ns/op
-BenchmarkOps/128/Add/128/cents-16                   	58884078	         6.112 ns/op
-BenchmarkOps/128/Sub/128/cents-16                   	49516771	         7.258 ns/op
-BenchmarkOps/128/Sub/128/cents-16                   	49455066	         7.256 ns/op
-BenchmarkOps/128/Sub/128/cents-16                   	49486712	         7.267 ns/op
-BenchmarkOps/128/Sub/128/cents-16                   	49565762	         7.266 ns/op
-BenchmarkOps/128/Mul/128/cents-16                   	60235621	         5.995 ns/op
-BenchmarkOps/128/Mul/128/cents-16                   	60879381	         5.975 ns/op
-BenchmarkOps/128/Mul/128/cents-16                   	59958458	         5.914 ns/op
-BenchmarkOps/128/Mul/128/cents-16                   	59942943	         5.984 ns/op
-BenchmarkOps/128/Div/128/cents-16                   	 3357685	       107.1 ns/op
-BenchmarkOps/128/Div/128/cents-16                   	 3352094	       107.3 ns/op
-BenchmarkOps/128/Div/128/cents-16                   	 3360265	       107.4 ns/op
-BenchmarkOps/128/Div/128/cents-16                   	 3352671	       107.2 ns/op
-BenchmarkOps/128/Less/128/cents-16                  	54569845	         6.596 ns/op
-BenchmarkOps/128/Less/128/cents-16                  	54461328	         6.592 ns/op
-BenchmarkOps/128/Less/128/cents-16                  	54523082	         6.591 ns/op
-BenchmarkOps/128/Less/128/cents-16                  	54402687	         6.596 ns/op
-BenchmarkOps/128/Equal/128/cents-16                 	59360097	         6.025 ns/op
-BenchmarkOps/128/Equal/128/cents-16                 	59739872	         6.021 ns/op
-BenchmarkOps/128/Equal/128/cents-16                 	59500572	         6.007 ns/op
-BenchmarkOps/128/Equal/128/cents-16                 	59550098	         6.015 ns/op
-BenchmarkOps/128/Add/128/cents-pos-16               	100000000	         3.480 ns/op
-BenchmarkOps/128/Add/128/cents-pos-16               	100000000	         3.469 ns/op
-BenchmarkOps/128/Add/128/cents-pos-16               	100000000	         3.478 ns/op
-BenchmarkOps/128/Add/128/cents-pos-16               	100000000	         3.477 ns/op
-BenchmarkOps/128/Sub/128/cents-pos-16               	75371581	         4.774 ns/op
-BenchmarkOps/128/Sub/128/cents-pos-16               	75170385	         4.790 ns/op
-BenchmarkOps/128/Sub/128/cents-pos-16               	75415333	         4.789 ns/op
-BenchmarkOps/128/Sub/128/cents-pos-16               	75564608	         4.788 ns/op
-BenchmarkOps/128/Less/128/cents-pos-16              	94504807	         3.831 ns/op
-BenchmarkOps/128/Less/128/cents-pos-16              	93976645	         3.813 ns/op
-BenchmarkOps/128/Less/128/cents-pos-16              	94487618	         3.833 ns/op
-BenchmarkOps/128/Less/128/cents-pos-16              	94466666	         3.836 ns/op
-BenchmarkOps/128/Equal/128/cents-pos-16             	100000000	         3.201 ns/op
-BenchmarkOps/128/Equal/128/cents-pos-16             	100000000	         3.201 ns/op
-BenchmarkOps/128/Equal/128/cents-pos-16             	100000000	         3.200 ns/op
-BenchmarkOps/128/Equal/128/cents-pos-16             	100000000	         3.201 ns/op
-BenchmarkOps/128/Add/128/cents-half-16              	34080542	        10.56 ns/op
-BenchmarkOps/128/Add/128/cents-half-16              	34229779	        10.55 ns/op
-BenchmarkOps/128/Add/128/cents-half-16              	34062426	        10.54 ns/op
-BenchmarkOps/128/Add/128/cents-half-16              	34068122	        10.54 ns/op
-BenchmarkOps/128/Sub/128/cents-half-16              	32992620	        10.91 ns/op
-BenchmarkOps/128/Sub/128/cents-half-16              	32963331	        10.93 ns/op
-BenchmarkOps/128/Sub/128/cents-half-16              	32991828	        10.91 ns/op
-BenchmarkOps/128/Sub/128/cents-half-16              	33013719	        10.90 ns/op
-BenchmarkOps/128/Less/128/cents-half-16             	32059898	        11.25 ns/op
-BenchmarkOps/128/Less/128/cents-half-16             	32029615	        11.24 ns/op
-BenchmarkOps/128/Less/128/cents-half-16             	32060318	        11.25 ns/op
-BenchmarkOps/128/Less/128/cents-half-16             	32030937	        11.32 ns/op
-BenchmarkOps/128/Equal/128/cents-half-16            	47460538	         6.459 ns/op
-BenchmarkOps/128/Equal/128/cents-half-16            	58908609	         6.568 ns/op
-BenchmarkOps/128/Equal/128/cents-half-16            	58202136	         6.473 ns/op
-BenchmarkOps/128/Equal/128/cents-half-16            	54725434	         6.295 ns/op
-BenchmarkOps/128/MulQuantizeRate/128/cents-16       	25294083	        12.75 ns/op
-BenchmarkOps/128/MulQuantizeRate/128/cents-16       	25240426	        16.32 ns/op
-BenchmarkOps/128/MulQuantizeRate/128/cents-16       	21525698	        17.76 ns/op
-BenchmarkOps/128/MulQuantizeRate/128/cents-16       	20495245	        18.34 ns/op
-BenchmarkOps/128/FromInt/128/int-16                 	748109185	         0.5162 ns/op
-BenchmarkOps/128/FromInt/128/int-16                 	667950157	         0.5011 ns/op
-BenchmarkOps/128/FromInt/128/int-16                 	697622434	         0.5049 ns/op
-BenchmarkOps/128/FromInt/128/int-16                 	741000044	         0.5466 ns/op
-BenchmarkOps/128/Parse/128/d16-16                   	 4559908	        70.82 ns/op
-BenchmarkOps/128/Parse/128/d16-16                   	 4860823	        71.98 ns/op
-BenchmarkOps/128/Parse/128/d16-16                   	 4471665	        73.03 ns/op
-BenchmarkOps/128/Parse/128/d16-16                   	 5611626	        69.76 ns/op
-BenchmarkOps/128/Format/128/d16-16                  	11048688	        32.55 ns/op
-BenchmarkOps/128/Format/128/d16-16                  	 9925959	        35.33 ns/op
-BenchmarkOps/128/Format/128/d16-16                  	10736976	        35.05 ns/op
-BenchmarkOps/128/Format/128/d16-16                  	12053828	        33.43 ns/op
-BenchmarkMem/Sum/64/n=1024-16                       	  189488	      1878 ns/op	4362.61 MB/s
-BenchmarkMem/Sum/64/n=1024-16                       	  177386	      1868 ns/op	4386.09 MB/s
-BenchmarkMem/Sum/64/n=1024-16                       	  191168	      1907 ns/op	4295.73 MB/s
-BenchmarkMem/Sum/64/n=1024-16                       	  186640	      1894 ns/op	4325.05 MB/s
-BenchmarkMem/MulQuant/64/n=1024-16                  	   18722	     20926 ns/op	1174.40 MB/s
-BenchmarkMem/MulQuant/64/n=1024-16                  	   18519	     18740 ns/op	1311.41 MB/s
-BenchmarkMem/MulQuant/64/n=1024-16                  	   19220	     19544 ns/op	1257.46 MB/s
-BenchmarkMem/MulQuant/64/n=1024-16                  	   18231	     20233 ns/op	1214.66 MB/s
-BenchmarkMem/Max/64/n=1024-16                       	   60693	      6008 ns/op	1363.57 MB/s
-BenchmarkMem/Max/64/n=1024-16                       	   62108	      5723 ns/op	1431.50 MB/s
-BenchmarkMem/Max/64/n=1024-16                       	   59856	      5885 ns/op	1392.05 MB/s
-BenchmarkMem/Max/64/n=1024-16                       	   55399	      5832 ns/op	1404.56 MB/s
-BenchmarkMem/Sum/128/n=1024-16                      	  255079	      1428 ns/op	11470.87 MB/s
-BenchmarkMem/Sum/128/n=1024-16                      	  256840	      1280 ns/op	12797.24 MB/s
-BenchmarkMem/Sum/128/n=1024-16                      	  282278	      1259 ns/op	13012.41 MB/s
-BenchmarkMem/Sum/128/n=1024-16                      	  283653	      1254 ns/op	13068.86 MB/s
-BenchmarkMem/MulQuant/128/n=1024-16                 	   20517	     17479 ns/op	2812.09 MB/s
-BenchmarkMem/MulQuant/128/n=1024-16                 	   20384	     18496 ns/op	2657.40 MB/s
-BenchmarkMem/MulQuant/128/n=1024-16                 	   18042	     17401 ns/op	2824.64 MB/s
-BenchmarkMem/MulQuant/128/n=1024-16                 	   21076	     16644 ns/op	2953.22 MB/s
-BenchmarkMem/Max/128/n=1024-16                      	  179096	      1994 ns/op	8218.57 MB/s
-BenchmarkMem/Max/128/n=1024-16                      	  171459	      2038 ns/op	8041.15 MB/s
-BenchmarkMem/Max/128/n=1024-16                      	  166292	      1974 ns/op	8300.01 MB/s
-BenchmarkMem/Max/128/n=1024-16                      	  178164	      1939 ns/op	8448.38 MB/s
-BenchmarkMem/Sum/64/n=16384-16                      	   15036	     23987 ns/op	5464.26 MB/s
-BenchmarkMem/Sum/64/n=16384-16                      	   15148	     23635 ns/op	5545.57 MB/s
-BenchmarkMem/Sum/64/n=16384-16                      	   15054	     23905 ns/op	5482.99 MB/s
-BenchmarkMem/Sum/64/n=16384-16                      	   14222	     25474 ns/op	5145.34 MB/s
-BenchmarkMem/MulQuant/64/n=16384-16                 	    1286	    259742 ns/op	1513.87 MB/s
-BenchmarkMem/MulQuant/64/n=16384-16                 	    1491	    255198 ns/op	1540.83 MB/s
-BenchmarkMem/MulQuant/64/n=16384-16                 	    1591	    254636 ns/op	1544.23 MB/s
-BenchmarkMem/MulQuant/64/n=16384-16                 	    1305	    246629 ns/op	1594.36 MB/s
-BenchmarkMem/Max/64/n=16384-16                      	    4526	     71221 ns/op	1840.37 MB/s
-BenchmarkMem/Max/64/n=16384-16                      	    5955	     68849 ns/op	1903.77 MB/s
-BenchmarkMem/Max/64/n=16384-16                      	    5409	     69870 ns/op	1875.95 MB/s
-BenchmarkMem/Max/64/n=16384-16                      	    5986	     68063 ns/op	1925.75 MB/s
-BenchmarkMem/Sum/128/n=16384-16                     	   20764	     17306 ns/op	15147.82 MB/s
-BenchmarkMem/Sum/128/n=16384-16                     	   21234	     17060 ns/op	15365.64 MB/s
-BenchmarkMem/Sum/128/n=16384-16                     	   21859	     16605 ns/op	15787.05 MB/s
-BenchmarkMem/Sum/128/n=16384-16                     	   21015	     17329 ns/op	15127.85 MB/s
-BenchmarkMem/MulQuant/128/n=16384-16                	    1462	    251818 ns/op	3123.02 MB/s
-BenchmarkMem/MulQuant/128/n=16384-16                	    1750	    226812 ns/op	3467.33 MB/s
-BenchmarkMem/MulQuant/128/n=16384-16                	    1437	    224598 ns/op	3501.51 MB/s
-BenchmarkMem/MulQuant/128/n=16384-16                	    1474	    224347 ns/op	3505.43 MB/s
-BenchmarkMem/Max/128/n=16384-16                     	   13041	     27380 ns/op	9574.43 MB/s
-BenchmarkMem/Max/128/n=16384-16                     	   12956	     27551 ns/op	9515.01 MB/s
-BenchmarkMem/Max/128/n=16384-16                     	   13144	     27714 ns/op	9458.82 MB/s
-BenchmarkMem/Max/128/n=16384-16                     	   13076	     27996 ns/op	9363.53 MB/s
-BenchmarkMem/Sum/64/n=131072-16                     	    2329	    171711 ns/op	6106.62 MB/s
-BenchmarkMem/Sum/64/n=131072-16                     	    2292	    172700 ns/op	6071.65 MB/s
-BenchmarkMem/Sum/64/n=131072-16                     	    1756	    173809 ns/op	6032.93 MB/s
-BenchmarkMem/Sum/64/n=131072-16                     	    2301	    173830 ns/op	6032.19 MB/s
-BenchmarkMem/MulQuant/64/n=131072-16                	     194	   1851664 ns/op	1698.87 MB/s
-BenchmarkMem/MulQuant/64/n=131072-16                	     190	   1858994 ns/op	1692.17 MB/s
-BenchmarkMem/MulQuant/64/n=131072-16                	     194	   1857788 ns/op	1693.27 MB/s
-BenchmarkMem/MulQuant/64/n=131072-16                	     196	   1891420 ns/op	1663.16 MB/s
-BenchmarkMem/Max/64/n=131072-16                     	     687	    500215 ns/op	2096.25 MB/s
-BenchmarkMem/Max/64/n=131072-16                     	     742	    518417 ns/op	2022.65 MB/s
-BenchmarkMem/Max/64/n=131072-16                     	     666	    539500 ns/op	1943.61 MB/s
-BenchmarkMem/Max/64/n=131072-16                     	     658	    535004 ns/op	1959.94 MB/s
-BenchmarkMem/Sum/128/n=131072-16                    	    2397	    136490 ns/op	15364.90 MB/s
-BenchmarkMem/Sum/128/n=131072-16                    	    2888	    135893 ns/op	15432.36 MB/s
-BenchmarkMem/Sum/128/n=131072-16                    	    2662	    137349 ns/op	15268.76 MB/s
-BenchmarkMem/Sum/128/n=131072-16                    	    2881	    137027 ns/op	15304.67 MB/s
-BenchmarkMem/MulQuant/128/n=131072-16               	     194	   1884703 ns/op	3338.17 MB/s
-BenchmarkMem/MulQuant/128/n=131072-16               	     195	   1842490 ns/op	3414.65 MB/s
-BenchmarkMem/MulQuant/128/n=131072-16               	     193	   1842581 ns/op	3414.48 MB/s
-BenchmarkMem/MulQuant/128/n=131072-16               	     196	   1866310 ns/op	3371.07 MB/s
-BenchmarkMem/Max/128/n=131072-16                    	    1681	    238125 ns/op	8806.93 MB/s
-BenchmarkMem/Max/128/n=131072-16                    	    1312	    234771 ns/op	8932.74 MB/s
-BenchmarkMem/Max/128/n=131072-16                    	    1524	    233391 ns/op	8985.59 MB/s
-BenchmarkMem/Max/128/n=131072-16                    	    1774	    232685 ns/op	9012.83 MB/s
-BenchmarkMem/Sum/64/n=1048576-16                    	     252	   1458850 ns/op	5750.15 MB/s
-BenchmarkMem/Sum/64/n=1048576-16                    	     249	   1437069 ns/op	5837.30 MB/s
-BenchmarkMem/Sum/64/n=1048576-16                    	     252	   1450915 ns/op	5781.60 MB/s
-BenchmarkMem/Sum/64/n=1048576-16                    	     248	   1461040 ns/op	5741.53 MB/s
-BenchmarkMem/MulQuant/64/n=1048576-16               	      22	  14464347 ns/op	1739.85 MB/s
-BenchmarkMem/MulQuant/64/n=1048576-16               	      26	  13420513 ns/op	1875.18 MB/s
-BenchmarkMem/MulQuant/64/n=1048576-16               	      27	  13602476 ns/op	1850.09 MB/s
-BenchmarkMem/MulQuant/64/n=1048576-16               	      26	  13261099 ns/op	1897.72 MB/s
-BenchmarkMem/Max/64/n=1048576-16                    	     100	   3528500 ns/op	2377.39 MB/s
-BenchmarkMem/Max/64/n=1048576-16                    	      97	   3519588 ns/op	2383.41 MB/s
-BenchmarkMem/Max/64/n=1048576-16                    	     100	   3512698 ns/op	2388.08 MB/s
-BenchmarkMem/Max/64/n=1048576-16                    	     100	   3616057 ns/op	2319.82 MB/s
-BenchmarkMem/Sum/128/n=1048576-16                   	     322	   1161486 ns/op	14444.61 MB/s
-BenchmarkMem/Sum/128/n=1048576-16                   	     307	   1136077 ns/op	14767.68 MB/s
-BenchmarkMem/Sum/128/n=1048576-16                   	     320	   1255246 ns/op	13365.68 MB/s
-BenchmarkMem/Sum/128/n=1048576-16                   	     312	   1086364 ns/op	15443.46 MB/s
-BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  13015947 ns/op	3866.92 MB/s
-BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  12837308 ns/op	3920.73 MB/s
-BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  13008276 ns/op	3869.20 MB/s
-BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  12829254 ns/op	3923.19 MB/s
-BenchmarkMem/Max/128/n=1048576-16                   	     210	   1683144 ns/op	9967.78 MB/s
-BenchmarkMem/Max/128/n=1048576-16                   	     214	   1686226 ns/op	9949.57 MB/s
-BenchmarkMem/Max/128/n=1048576-16                   	     212	   1708469 ns/op	9820.03 MB/s
-BenchmarkMem/Max/128/n=1048576-16                   	     213	   1687313 ns/op	9943.15 MB/s
-BenchmarkMem/Sum/64/n=16777216-16                   	      15	  25165740 ns/op	5333.35 MB/s
-BenchmarkMem/Sum/64/n=16777216-16                   	      13	  25252860 ns/op	5314.95 MB/s
-BenchmarkMem/Sum/64/n=16777216-16                   	      13	  25019575 ns/op	5364.51 MB/s
-BenchmarkMem/Sum/64/n=16777216-16                   	      13	  25318386 ns/op	5301.20 MB/s
-BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 204493758 ns/op	1969.02 MB/s
-BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 204683284 ns/op	1967.20 MB/s
-BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 206513712 ns/op	1949.76 MB/s
-BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 223031832 ns/op	1805.36 MB/s
-BenchmarkMem/Max/64/n=16777216-16                   	       5	  61260124 ns/op	2190.95 MB/s
-BenchmarkMem/Max/64/n=16777216-16                   	       6	  58465020 ns/op	2295.69 MB/s
-BenchmarkMem/Max/64/n=16777216-16                   	       6	  57755529 ns/op	2323.89 MB/s
-BenchmarkMem/Max/64/n=16777216-16                   	       6	  58305790 ns/op	2301.96 MB/s
-BenchmarkMem/Sum/128/n=16777216-16                  	      15	  24516673 ns/op	10949.10 MB/s
-BenchmarkMem/Sum/128/n=16777216-16                  	      14	  23743812 ns/op	11305.49 MB/s
-BenchmarkMem/Sum/128/n=16777216-16                  	      14	  23757418 ns/op	11299.02 MB/s
-BenchmarkMem/Sum/128/n=16777216-16                  	      14	  24009805 ns/op	11180.24 MB/s
-BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 204316484 ns/op	3941.47 MB/s
-BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 202969820 ns/op	3967.62 MB/s
-BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 206493242 ns/op	3899.92 MB/s
-BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 204754340 ns/op	3933.04 MB/s
-BenchmarkMem/Max/128/n=16777216-16                  	       9	  35894566 ns/op	7478.44 MB/s
-BenchmarkMem/Max/128/n=16777216-16                  	       9	  36436500 ns/op	7367.21 MB/s
-BenchmarkMem/Max/128/n=16777216-16                  	       9	  35644622 ns/op	7530.88 MB/s
-BenchmarkMem/Max/128/n=16777216-16                  	       9	  35460514 ns/op	7569.98 MB/s
-BenchmarkGather/Gather/64/n=4096-16                 	     283	   1223504 ns/op
-BenchmarkGather/Gather/64/n=4096-16                 	     296	   1239374 ns/op
-BenchmarkGather/Gather/64/n=4096-16                 	     295	   1214982 ns/op
-BenchmarkGather/Gather/64/n=4096-16                 	     291	   1218590 ns/op
-BenchmarkGather/Gather/128/n=4096-16                	     310	   1152080 ns/op
-BenchmarkGather/Gather/128/n=4096-16                	     306	   1336153 ns/op
-BenchmarkGather/Gather/128/n=4096-16                	     279	   1281638 ns/op
-BenchmarkGather/Gather/128/n=4096-16                	     297	   1179818 ns/op
-BenchmarkGather/Gather/64/n=65536-16                	     147	   2361039 ns/op
-BenchmarkGather/Gather/64/n=65536-16                	     150	   2257107 ns/op
-BenchmarkGather/Gather/64/n=65536-16                	     160	   2368536 ns/op
-BenchmarkGather/Gather/64/n=65536-16                	     154	   2336708 ns/op
-BenchmarkGather/Gather/128/n=65536-16               	     170	   1941118 ns/op
-BenchmarkGather/Gather/128/n=65536-16               	     187	   2120956 ns/op
-BenchmarkGather/Gather/128/n=65536-16               	     169	   1927378 ns/op
-BenchmarkGather/Gather/128/n=65536-16               	     170	   2184320 ns/op
-BenchmarkGather/Gather/64/n=262144-16               	     100	   3115532 ns/op
-BenchmarkGather/Gather/64/n=262144-16               	     126	   2669153 ns/op
-BenchmarkGather/Gather/64/n=262144-16               	     128	   2540243 ns/op
-BenchmarkGather/Gather/64/n=262144-16               	     138	   2738536 ns/op
-BenchmarkGather/Gather/128/n=262144-16              	     153	   2335345 ns/op
-BenchmarkGather/Gather/128/n=262144-16              	     147	   2245455 ns/op
-BenchmarkGather/Gather/128/n=262144-16              	     150	   2095648 ns/op
-BenchmarkGather/Gather/128/n=262144-16              	     170	   2181872 ns/op
-BenchmarkGather/Gather/64/n=1048576-16              	     100	   3167785 ns/op
-BenchmarkGather/Gather/64/n=1048576-16              	     100	   3664967 ns/op
-BenchmarkGather/Gather/64/n=1048576-16              	     102	   3278557 ns/op
-BenchmarkGather/Gather/64/n=1048576-16              	     100	   3251235 ns/op
-BenchmarkGather/Gather/128/n=1048576-16             	      52	   8865065 ns/op
-BenchmarkGather/Gather/128/n=1048576-16             	      38	   9039715 ns/op
-BenchmarkGather/Gather/128/n=1048576-16             	      34	   9393077 ns/op
-BenchmarkGather/Gather/128/n=1048576-16             	      39	   9199218 ns/op
-BenchmarkGather/Gather/64/n=1310720-16              	      68	   5018271 ns/op
-BenchmarkGather/Gather/64/n=1310720-16              	      67	   5251885 ns/op
-BenchmarkGather/Gather/64/n=1310720-16              	      70	   5019514 ns/op
-BenchmarkGather/Gather/64/n=1310720-16              	      60	   5080867 ns/op
-BenchmarkGather/Gather/128/n=1310720-16             	      38	  12300040 ns/op
-BenchmarkGather/Gather/128/n=1310720-16             	      27	  12788063 ns/op
-BenchmarkGather/Gather/128/n=1310720-16             	      27	  12827403 ns/op
-BenchmarkGather/Gather/128/n=1310720-16             	      31	  11928984 ns/op
-BenchmarkGather/Gather/64/n=1572864-16              	      64	   5226763 ns/op
-BenchmarkGather/Gather/64/n=1572864-16              	      72	   5012937 ns/op
-BenchmarkGather/Gather/64/n=1572864-16              	      60	   5307555 ns/op
-BenchmarkGather/Gather/64/n=1572864-16              	      70	   5175274 ns/op
-BenchmarkGather/Gather/128/n=1572864-16             	      34	  13518732 ns/op
-BenchmarkGather/Gather/128/n=1572864-16             	      26	  13941375 ns/op
-BenchmarkGather/Gather/128/n=1572864-16             	      24	  13770534 ns/op
-BenchmarkGather/Gather/128/n=1572864-16             	      25	  12982079 ns/op
-BenchmarkGather/Gather/64/n=1835008-16              	      39	   9259240 ns/op
-BenchmarkGather/Gather/64/n=1835008-16              	      38	   9244918 ns/op
-BenchmarkGather/Gather/64/n=1835008-16              	      40	   9091854 ns/op
-BenchmarkGather/Gather/64/n=1835008-16              	      44	   8606194 ns/op
-BenchmarkGather/Gather/128/n=1835008-16             	      28	  14111929 ns/op
-BenchmarkGather/Gather/128/n=1835008-16             	      28	  14774017 ns/op
-BenchmarkGather/Gather/128/n=1835008-16             	      24	  15484153 ns/op
-BenchmarkGather/Gather/128/n=1835008-16             	      24	  16313586 ns/op
-BenchmarkGather/Gather/64/n=2097152-16              	      32	  11013199 ns/op
-BenchmarkGather/Gather/64/n=2097152-16              	      28	  10743783 ns/op
-BenchmarkGather/Gather/64/n=2097152-16              	      32	  10810134 ns/op
-BenchmarkGather/Gather/64/n=2097152-16              	      32	  11222284 ns/op
-BenchmarkGather/Gather/128/n=2097152-16             	      27	  17016245 ns/op
-BenchmarkGather/Gather/128/n=2097152-16             	      20	  19094863 ns/op
-BenchmarkGather/Gather/128/n=2097152-16             	      20	  17335010 ns/op
-BenchmarkGather/Gather/128/n=2097152-16             	      20	  16666301 ns/op
-BenchmarkGather/Gather/64/n=2621440-16              	      26	  14308878 ns/op
-BenchmarkGather/Gather/64/n=2621440-16              	      24	  14812944 ns/op
-BenchmarkGather/Gather/64/n=2621440-16              	      22	  14431026 ns/op
-BenchmarkGather/Gather/64/n=2621440-16              	      25	  14814929 ns/op
-BenchmarkGather/Gather/128/n=2621440-16             	      25	  18099389 ns/op
-BenchmarkGather/Gather/128/n=2621440-16             	      18	  18882488 ns/op
-BenchmarkGather/Gather/128/n=2621440-16             	      18	  19322526 ns/op
-BenchmarkGather/Gather/128/n=2621440-16             	      18	  19554567 ns/op
-BenchmarkGather/Gather/64/n=3145728-16              	      24	  16820270 ns/op
-BenchmarkGather/Gather/64/n=3145728-16              	      21	  17240462 ns/op
-BenchmarkGather/Gather/64/n=3145728-16              	      20	  18469022 ns/op
-BenchmarkGather/Gather/64/n=3145728-16              	      19	  17268596 ns/op
-BenchmarkGather/Gather/128/n=3145728-16             	      24	  20446296 ns/op
-BenchmarkGather/Gather/128/n=3145728-16             	      22	  21143005 ns/op
-BenchmarkGather/Gather/128/n=3145728-16             	      15	  22297943 ns/op
-BenchmarkGather/Gather/128/n=3145728-16             	      15	  21995565 ns/op
-BenchmarkGather/Gather/64/n=3670016-16              	      22	  17834735 ns/op
-BenchmarkGather/Gather/64/n=3670016-16              	      18	  18638494 ns/op
-BenchmarkGather/Gather/64/n=3670016-16              	      19	  18775806 ns/op
-BenchmarkGather/Gather/64/n=3670016-16              	      18	  19943250 ns/op
-BenchmarkGather/Gather/128/n=3670016-16             	      22	  20798184 ns/op
-BenchmarkGather/Gather/128/n=3670016-16             	      14	  23041205 ns/op
-BenchmarkGather/Gather/128/n=3670016-16             	      15	  22779426 ns/op
-BenchmarkGather/Gather/128/n=3670016-16             	      16	  21009664 ns/op
-BenchmarkGather/Gather/64/n=4194304-16              	      22	  20448426 ns/op
-BenchmarkGather/Gather/64/n=4194304-16              	      20	  19566744 ns/op
-BenchmarkGather/Gather/64/n=4194304-16              	      16	  20306980 ns/op
-BenchmarkGather/Gather/64/n=4194304-16              	      16	  20654311 ns/op
-BenchmarkGather/Gather/128/n=4194304-16             	      22	  23497250 ns/op
-BenchmarkGather/Gather/128/n=4194304-16             	      16	  22664287 ns/op
-BenchmarkGather/Gather/128/n=4194304-16             	      16	  25451213 ns/op
-BenchmarkGather/Gather/128/n=4194304-16             	      14	  21886929 ns/op
-BenchmarkGather/Gather/64/n=16777216-16             	      19	  29444496 ns/op
-BenchmarkGather/Gather/64/n=16777216-16             	      12	  30367147 ns/op
-BenchmarkGather/Gather/64/n=16777216-16             	      12	  30921839 ns/op
-BenchmarkGather/Gather/64/n=16777216-16             	      15	  22802531 ns/op
-BenchmarkGather/Gather/128/n=16777216-16            	      22	  26173707 ns/op
-BenchmarkGather/Gather/128/n=16777216-16            	      12	  29653395 ns/op
-BenchmarkGather/Gather/128/n=16777216-16            	      13	  28361859 ns/op
-BenchmarkGather/Gather/128/n=16777216-16            	      18	  27565554 ns/op
-BenchmarkSort/Sort/64/n=1024-16                     	    2265	    144944 ns/op
-BenchmarkSort/Sort/64/n=1024-16                     	    2359	    147348 ns/op
-BenchmarkSort/Sort/64/n=1024-16                     	    2474	    146168 ns/op
-BenchmarkSort/Sort/64/n=1024-16                     	    2605	    145862 ns/op
-BenchmarkSort/Sort/128/n=1024-16                    	    2626	    141755 ns/op
-BenchmarkSort/Sort/128/n=1024-16                    	    2460	    141180 ns/op
-BenchmarkSort/Sort/128/n=1024-16                    	    2544	    144436 ns/op
-BenchmarkSort/Sort/128/n=1024-16                    	    2661	    141857 ns/op
-BenchmarkSort/Sort/64/n=1048576-16                  	       2	 301731030 ns/op
-BenchmarkSort/Sort/64/n=1048576-16                  	       1	 322890417 ns/op
-BenchmarkSort/Sort/64/n=1048576-16                  	       2	 288185329 ns/op
-BenchmarkSort/Sort/64/n=1048576-16                  	       2	 275794316 ns/op
-BenchmarkSort/Sort/128/n=1048576-16                 	       2	 261612042 ns/op
-BenchmarkSort/Sort/128/n=1048576-16                 	       2	 266817797 ns/op
-BenchmarkSort/Sort/128/n=1048576-16                 	       2	 264192994 ns/op
-BenchmarkSort/Sort/128/n=1048576-16                 	       2	 266347422 ns/op
+BenchmarkOps/64/Add/64/money-16         	201700341	         1.768 ns/op
+BenchmarkOps/64/Add/64/money-16         	203338383	         1.894 ns/op
+BenchmarkOps/64/Add/64/money-16         	203868091	         1.771 ns/op
+BenchmarkOps/64/Add/64/money-16         	202487330	         1.765 ns/op
+BenchmarkOps/64/Add/64/d16-16           	25198124	        14.70 ns/op
+BenchmarkOps/64/Add/64/d16-16           	24946837	        14.44 ns/op
+BenchmarkOps/64/Add/64/d16-16           	25293765	        14.36 ns/op
+BenchmarkOps/64/Add/64/d16-16           	24987075	        14.43 ns/op
+BenchmarkOps/64/Sub/64/money-16         	125081469	         2.865 ns/op
+BenchmarkOps/64/Sub/64/money-16         	125659388	         2.914 ns/op
+BenchmarkOps/64/Sub/64/money-16         	124489687	         2.919 ns/op
+BenchmarkOps/64/Sub/64/money-16         	123986492	         2.899 ns/op
+BenchmarkOps/64/Sub/64/d16-16           	25033390	        14.48 ns/op
+BenchmarkOps/64/Sub/64/d16-16           	22543276	        14.75 ns/op
+BenchmarkOps/64/Sub/64/d16-16           	25037282	        14.35 ns/op
+BenchmarkOps/64/Sub/64/d16-16           	24112639	        14.48 ns/op
+BenchmarkOps/64/Mul/64/money-16         	100000000	         3.317 ns/op
+BenchmarkOps/64/Mul/64/money-16         	100000000	         3.327 ns/op
+BenchmarkOps/64/Mul/64/money-16         	100000000	         3.342 ns/op
+BenchmarkOps/64/Mul/64/money-16         	100000000	         3.337 ns/op
+BenchmarkOps/64/Mul/64/d16-16           	26192978	        13.67 ns/op
+BenchmarkOps/64/Mul/64/d16-16           	26182131	        13.78 ns/op
+BenchmarkOps/64/Mul/64/d16-16           	26325056	        13.76 ns/op
+BenchmarkOps/64/Mul/64/d16-16           	26386117	        13.80 ns/op
+BenchmarkOps/64/Div/64/money-16         	11157210	        32.35 ns/op
+BenchmarkOps/64/Div/64/money-16         	10658577	        32.35 ns/op
+BenchmarkOps/64/Div/64/money-16         	11041555	        33.18 ns/op
+BenchmarkOps/64/Div/64/money-16         	11093422	        32.45 ns/op
+BenchmarkOps/64/Div/64/d16-16           	 9788631	        36.85 ns/op
+BenchmarkOps/64/Div/64/d16-16           	 9994915	        35.95 ns/op
+BenchmarkOps/64/Div/64/d16-16           	10062684	        36.98 ns/op
+BenchmarkOps/64/Div/64/d16-16           	 9903424	        36.78 ns/op
+BenchmarkOps/64/Add/64/nearby-16        	31851013	        11.40 ns/op
+BenchmarkOps/64/Add/64/nearby-16        	31797124	        11.40 ns/op
+BenchmarkOps/64/Add/64/nearby-16        	31599003	        11.44 ns/op
+BenchmarkOps/64/Add/64/nearby-16        	31714370	        11.42 ns/op
+BenchmarkOps/64/Less/64/money-16        	100000000	         3.711 ns/op
+BenchmarkOps/64/Less/64/money-16        	100000000	         3.539 ns/op
+BenchmarkOps/64/Less/64/money-16        	86861288	         3.519 ns/op
+BenchmarkOps/64/Less/64/money-16        	100816954	         3.541 ns/op
+BenchmarkOps/64/Less/64/d16-16          	46198237	         7.770 ns/op
+BenchmarkOps/64/Less/64/d16-16          	45957136	         7.843 ns/op
+BenchmarkOps/64/Less/64/d16-16          	44770327	         7.848 ns/op
+BenchmarkOps/64/Less/64/d16-16          	45674451	         7.812 ns/op
+BenchmarkOps/64/Equal/64/money-16       	95242730	         3.790 ns/op
+BenchmarkOps/64/Equal/64/money-16       	96229153	         3.749 ns/op
+BenchmarkOps/64/Equal/64/money-16       	96299787	         3.750 ns/op
+BenchmarkOps/64/Equal/64/money-16       	96236175	         3.768 ns/op
+BenchmarkOps/64/Equal/64/d16-16         	53783232	         6.756 ns/op
+BenchmarkOps/64/Equal/64/d16-16         	53457178	         6.751 ns/op
+BenchmarkOps/64/Equal/64/d16-16         	50274301	         6.799 ns/op
+BenchmarkOps/64/Equal/64/d16-16         	46962277	         6.895 ns/op
+BenchmarkOps/64/Quantize/64/money-16    	125190350	         2.876 ns/op
+BenchmarkOps/64/Quantize/64/money-16    	125492362	         2.866 ns/op
+BenchmarkOps/64/Quantize/64/money-16    	125370730	         2.859 ns/op
+BenchmarkOps/64/Quantize/64/money-16    	124166325	         2.881 ns/op
+BenchmarkOps/64/Quantize/64/d16-16      	28153694	        13.04 ns/op
+BenchmarkOps/64/Quantize/64/d16-16      	27777726	        12.87 ns/op
+BenchmarkOps/64/Quantize/64/d16-16      	28266919	        12.87 ns/op
+BenchmarkOps/64/Quantize/64/d16-16      	28271396	        12.79 ns/op
+BenchmarkOps/64/MulQuantize/64/cents-16 	28380729	        12.54 ns/op
+BenchmarkOps/64/MulQuantize/64/cents-16 	28823260	        12.52 ns/op
+BenchmarkOps/64/MulQuantize/64/cents-16 	28722486	        12.65 ns/op
+BenchmarkOps/64/MulQuantize/64/cents-16 	28971842	        12.54 ns/op
+BenchmarkOps/64/FMA/64/money-16         	37480809	         9.709 ns/op
+BenchmarkOps/64/FMA/64/money-16         	37227517	         9.728 ns/op
+BenchmarkOps/64/FMA/64/money-16         	37186063	         9.720 ns/op
+BenchmarkOps/64/FMA/64/money-16         	37202618	         9.723 ns/op
+BenchmarkOps/64/FMA/64/d16-16           	11743413	        30.86 ns/op
+BenchmarkOps/64/FMA/64/d16-16           	11787684	        30.71 ns/op
+BenchmarkOps/64/FMA/64/d16-16           	11216382	        31.54 ns/op
+BenchmarkOps/64/FMA/64/d16-16           	11668504	        31.28 ns/op
+BenchmarkOps/64/Sqrt/64/money-16        	  246597	      1523 ns/op
+BenchmarkOps/64/Sqrt/64/money-16        	  243169	      1484 ns/op
+BenchmarkOps/64/Sqrt/64/money-16        	  246049	      1475 ns/op
+BenchmarkOps/64/Sqrt/64/money-16        	  243698	      1473 ns/op
+BenchmarkOps/64/Floor/64/cents-16       	252246991	         1.427 ns/op
+BenchmarkOps/64/Floor/64/cents-16       	254327181	         1.412 ns/op
+BenchmarkOps/64/Floor/64/cents-16       	253179292	         1.416 ns/op
+BenchmarkOps/64/Floor/64/cents-16       	255539598	         1.413 ns/op
+BenchmarkOps/64/Add/64/cents-16         	94100893	         3.801 ns/op
+BenchmarkOps/64/Add/64/cents-16         	93310976	         3.778 ns/op
+BenchmarkOps/64/Add/64/cents-16         	95707898	         3.778 ns/op
+BenchmarkOps/64/Add/64/cents-16         	95351860	         3.773 ns/op
+BenchmarkOps/64/Sub/64/cents-16         	74218539	         4.791 ns/op
+BenchmarkOps/64/Sub/64/cents-16         	72960790	         4.782 ns/op
+BenchmarkOps/64/Sub/64/cents-16         	75034827	         4.849 ns/op
+BenchmarkOps/64/Sub/64/cents-16         	73542404	         4.884 ns/op
+BenchmarkOps/64/Mul/64/cents-16         	56945923	         6.230 ns/op
+BenchmarkOps/64/Mul/64/cents-16         	58142886	         6.284 ns/op
+BenchmarkOps/64/Mul/64/cents-16         	58661949	         6.290 ns/op
+BenchmarkOps/64/Mul/64/cents-16         	58201965	         6.321 ns/op
+BenchmarkOps/64/Div/64/cents-16         	10549186	        35.55 ns/op
+BenchmarkOps/64/Div/64/cents-16         	 9927099	        34.68 ns/op
+BenchmarkOps/64/Div/64/cents-16         	10424317	        34.32 ns/op
+BenchmarkOps/64/Div/64/cents-16         	 9464769	        34.58 ns/op
+BenchmarkOps/64/Less/64/cents-16        	93784215	         3.879 ns/op
+BenchmarkOps/64/Less/64/cents-16        	88389672	         3.837 ns/op
+BenchmarkOps/64/Less/64/cents-16        	94087440	         3.827 ns/op
+BenchmarkOps/64/Less/64/cents-16        	89886741	         3.841 ns/op
+BenchmarkOps/64/Equal/64/cents-16       	94066862	         3.818 ns/op
+BenchmarkOps/64/Equal/64/cents-16       	93882363	         3.812 ns/op
+BenchmarkOps/64/Equal/64/cents-16       	87570572	         3.812 ns/op
+BenchmarkOps/64/Equal/64/cents-16       	97174279	         3.826 ns/op
+BenchmarkOps/64/Add/64/cents-pos-16     	178204778	         2.055 ns/op
+BenchmarkOps/64/Add/64/cents-pos-16     	179162738	         2.062 ns/op
+BenchmarkOps/64/Add/64/cents-pos-16     	174821498	         2.086 ns/op
+BenchmarkOps/64/Add/64/cents-pos-16     	155040780	         2.017 ns/op
+BenchmarkOps/64/Sub/64/cents-pos-16     	98168181	         3.428 ns/op
+BenchmarkOps/64/Sub/64/cents-pos-16     	100000000	         3.486 ns/op
+BenchmarkOps/64/Sub/64/cents-pos-16     	100000000	         3.592 ns/op
+BenchmarkOps/64/Sub/64/cents-pos-16     	100000000	         3.419 ns/op
+BenchmarkOps/64/Less/64/cents-pos-16    	93812589	         3.831 ns/op
+BenchmarkOps/64/Less/64/cents-pos-16    	93927237	         3.840 ns/op
+BenchmarkOps/64/Less/64/cents-pos-16    	93429783	         3.838 ns/op
+BenchmarkOps/64/Less/64/cents-pos-16    	93643358	         3.826 ns/op
+BenchmarkOps/64/Equal/64/cents-pos-16   	96631557	         3.852 ns/op
+BenchmarkOps/64/Equal/64/cents-pos-16   	90975782	         3.799 ns/op
+BenchmarkOps/64/Equal/64/cents-pos-16   	94109562	         3.815 ns/op
+BenchmarkOps/64/Equal/64/cents-pos-16   	93969088	         7.389 ns/op
+BenchmarkOps/64/Add/64/cents-half-16    	49215867	         7.011 ns/op
+BenchmarkOps/64/Add/64/cents-half-16    	52537280	         6.998 ns/op
+BenchmarkOps/64/Add/64/cents-half-16    	50989196	         6.786 ns/op
+BenchmarkOps/64/Add/64/cents-half-16    	53087346	         6.792 ns/op
+BenchmarkOps/64/Sub/64/cents-half-16    	49012245	         7.210 ns/op
+BenchmarkOps/64/Sub/64/cents-half-16    	50068342	         7.251 ns/op
+BenchmarkOps/64/Sub/64/cents-half-16    	47133355	         7.271 ns/op
+BenchmarkOps/64/Sub/64/cents-half-16    	48347112	         7.239 ns/op
+BenchmarkOps/64/Less/64/cents-half-16   	96953295	         3.851 ns/op
+BenchmarkOps/64/Less/64/cents-half-16   	91551499	         3.839 ns/op
+BenchmarkOps/64/Less/64/cents-half-16   	92561785	         4.123 ns/op
+BenchmarkOps/64/Less/64/cents-half-16   	93745702	         3.868 ns/op
+BenchmarkOps/64/Equal/64/cents-half-16  	92071140	         3.872 ns/op
+BenchmarkOps/64/Equal/64/cents-half-16  	95916642	         3.821 ns/op
+BenchmarkOps/64/Equal/64/cents-half-16  	83572268	         3.808 ns/op
+BenchmarkOps/64/Equal/64/cents-half-16  	93734596	         3.795 ns/op
+BenchmarkOps/64/MulQuantizeRate/64/cents-16         	28166529	        12.79 ns/op
+BenchmarkOps/64/MulQuantizeRate/64/cents-16         	27218203	        12.99 ns/op
+BenchmarkOps/64/MulQuantizeRate/64/cents-16         	27859372	        12.82 ns/op
+BenchmarkOps/64/MulQuantizeRate/64/cents-16         	28209648	        12.97 ns/op
+BenchmarkOps/64/FromInt/64/int-16                   	62585761	         5.793 ns/op
+BenchmarkOps/64/FromInt/64/int-16                   	63367172	         5.721 ns/op
+BenchmarkOps/64/FromInt/64/int-16                   	63990102	         5.884 ns/op
+BenchmarkOps/64/FromInt/64/int-16                   	62091799	         5.757 ns/op
+BenchmarkOps/64/Parse/64/d16-16                     	 6104412	        51.77 ns/op
+BenchmarkOps/64/Parse/64/d16-16                     	 7050908	        51.16 ns/op
+BenchmarkOps/64/Parse/64/d16-16                     	 7216341	        50.20 ns/op
+BenchmarkOps/64/Parse/64/d16-16                     	 7162791	        50.44 ns/op
+BenchmarkOps/64/Format/64/d16-16                    	12842018	        26.55 ns/op
+BenchmarkOps/64/Format/64/d16-16                    	13975514	        25.69 ns/op
+BenchmarkOps/64/Format/64/d16-16                    	14099229	        25.80 ns/op
+BenchmarkOps/64/Format/64/d16-16                    	13983792	        26.24 ns/op
+BenchmarkOps/128/Add/128/money-16                   	231260970	         1.541 ns/op
+BenchmarkOps/128/Add/128/money-16                   	232613450	         1.553 ns/op
+BenchmarkOps/128/Add/128/money-16                   	230816781	         1.557 ns/op
+BenchmarkOps/128/Add/128/money-16                   	231733338	         1.548 ns/op
+BenchmarkOps/128/Add/128/d16-16                     	32687892	        10.96 ns/op
+BenchmarkOps/128/Add/128/d16-16                     	33095936	        10.90 ns/op
+BenchmarkOps/128/Add/128/d16-16                     	33000754	        10.89 ns/op
+BenchmarkOps/128/Add/128/d16-16                     	32623419	        10.93 ns/op
+BenchmarkOps/128/Sub/128/money-16                   	161725532	         2.223 ns/op
+BenchmarkOps/128/Sub/128/money-16                   	161463825	         2.233 ns/op
+BenchmarkOps/128/Sub/128/money-16                   	162418070	         2.222 ns/op
+BenchmarkOps/128/Sub/128/money-16                   	162835202	         2.215 ns/op
+BenchmarkOps/128/Sub/128/d16-16                     	31068612	        11.55 ns/op
+BenchmarkOps/128/Sub/128/d16-16                     	31289660	        11.54 ns/op
+BenchmarkOps/128/Sub/128/d16-16                     	31380126	        11.60 ns/op
+BenchmarkOps/128/Sub/128/d16-16                     	31552234	        11.59 ns/op
+BenchmarkOps/128/Mul/128/money-16                   	135804265	         2.647 ns/op
+BenchmarkOps/128/Mul/128/money-16                   	135220549	         2.679 ns/op
+BenchmarkOps/128/Mul/128/money-16                   	135038312	         2.684 ns/op
+BenchmarkOps/128/Mul/128/money-16                   	135776481	         2.653 ns/op
+BenchmarkOps/128/Mul/128/d16-16                     	100000000	         3.347 ns/op
+BenchmarkOps/128/Mul/128/d16-16                     	100000000	         3.325 ns/op
+BenchmarkOps/128/Mul/128/d16-16                     	100000000	         3.371 ns/op
+BenchmarkOps/128/Mul/128/d16-16                     	100000000	         3.378 ns/op
+BenchmarkOps/128/Div/128/money-16                   	 9063693	        39.73 ns/op
+BenchmarkOps/128/Div/128/money-16                   	 8972205	        40.51 ns/op
+BenchmarkOps/128/Div/128/money-16                   	 8966598	        39.91 ns/op
+BenchmarkOps/128/Div/128/money-16                   	 9045592	        39.74 ns/op
+BenchmarkOps/128/Div/128/d16-16                     	 5864480	        61.76 ns/op
+BenchmarkOps/128/Div/128/d16-16                     	 5776954	        61.16 ns/op
+BenchmarkOps/128/Div/128/d16-16                     	 5831290	        64.67 ns/op
+BenchmarkOps/128/Div/128/d16-16                     	 5860562	        61.27 ns/op
+BenchmarkOps/128/Add/128/nearby-16                  	83427981	         4.185 ns/op
+BenchmarkOps/128/Add/128/nearby-16                  	85920350	         4.212 ns/op
+BenchmarkOps/128/Add/128/nearby-16                  	85882491	         4.216 ns/op
+BenchmarkOps/128/Add/128/nearby-16                  	84691016	         4.213 ns/op
+BenchmarkOps/128/Less/128/money-16                  	205065910	         1.735 ns/op
+BenchmarkOps/128/Less/128/money-16                  	208840824	         1.712 ns/op
+BenchmarkOps/128/Less/128/money-16                  	208756240	         1.715 ns/op
+BenchmarkOps/128/Less/128/money-16                  	210246775	         1.718 ns/op
+BenchmarkOps/128/Less/128/d16-16                    	57003758	         6.415 ns/op
+BenchmarkOps/128/Less/128/d16-16                    	56343212	         6.381 ns/op
+BenchmarkOps/128/Less/128/d16-16                    	55272870	         6.378 ns/op
+BenchmarkOps/128/Less/128/d16-16                    	56512570	         6.457 ns/op
+BenchmarkOps/128/Equal/128/money-16                 	250845589	         1.448 ns/op
+BenchmarkOps/128/Equal/128/money-16                 	251005923	         1.438 ns/op
+BenchmarkOps/128/Equal/128/money-16                 	251156889	         1.442 ns/op
+BenchmarkOps/128/Equal/128/money-16                 	251273409	         1.451 ns/op
+BenchmarkOps/128/Equal/128/d16-16                   	70873376	         5.022 ns/op
+BenchmarkOps/128/Equal/128/d16-16                   	68507278	         5.016 ns/op
+BenchmarkOps/128/Equal/128/d16-16                   	72040947	         5.047 ns/op
+BenchmarkOps/128/Equal/128/d16-16                   	73745209	         5.054 ns/op
+BenchmarkOps/128/Quantize/128/money-16              	202332813	         1.765 ns/op
+BenchmarkOps/128/Quantize/128/money-16              	203264862	         1.770 ns/op
+BenchmarkOps/128/Quantize/128/money-16              	199749862	         1.770 ns/op
+BenchmarkOps/128/Quantize/128/money-16              	200431184	         1.764 ns/op
+BenchmarkOps/128/Quantize/128/d16-16                	39407205	         9.171 ns/op
+BenchmarkOps/128/Quantize/128/d16-16                	39346377	         9.236 ns/op
+BenchmarkOps/128/Quantize/128/d16-16                	38995446	         9.274 ns/op
+BenchmarkOps/128/Quantize/128/d16-16                	38899564	         9.164 ns/op
+BenchmarkOps/128/MulQuantize/128/cents-16           	30364118	        12.00 ns/op
+BenchmarkOps/128/MulQuantize/128/cents-16           	29336320	        12.19 ns/op
+BenchmarkOps/128/MulQuantize/128/cents-16           	30213862	        12.05 ns/op
+BenchmarkOps/128/MulQuantize/128/cents-16           	29645942	        12.03 ns/op
+BenchmarkOps/128/FMA/128/money-16                   	37462291	         9.653 ns/op
+BenchmarkOps/128/FMA/128/money-16                   	37728844	         9.662 ns/op
+BenchmarkOps/128/FMA/128/money-16                   	37347439	         9.891 ns/op
+BenchmarkOps/128/FMA/128/money-16                   	37019502	         9.676 ns/op
+BenchmarkOps/128/FMA/128/d16-16                     	15829134	        21.84 ns/op
+BenchmarkOps/128/FMA/128/d16-16                     	16540099	        21.90 ns/op
+BenchmarkOps/128/FMA/128/d16-16                     	16524597	        22.26 ns/op
+BenchmarkOps/128/FMA/128/d16-16                     	16244126	        22.05 ns/op
+BenchmarkOps/128/Sqrt/128/money-16                  	  243238	      1459 ns/op
+BenchmarkOps/128/Sqrt/128/money-16                  	  218902	      1489 ns/op
+BenchmarkOps/128/Sqrt/128/money-16                  	  245620	      1463 ns/op
+BenchmarkOps/128/Sqrt/128/money-16                  	  245450	      1461 ns/op
+BenchmarkOps/128/Floor/128/cents-16                 	201267729	         1.787 ns/op
+BenchmarkOps/128/Floor/128/cents-16                 	202176241	         1.769 ns/op
+BenchmarkOps/128/Floor/128/cents-16                 	202707132	         1.804 ns/op
+BenchmarkOps/128/Floor/128/cents-16                 	201830318	         1.787 ns/op
+BenchmarkOps/128/Add/128/cents-16                   	100000000	         3.533 ns/op
+BenchmarkOps/128/Add/128/cents-16                   	97528438	         3.473 ns/op
+BenchmarkOps/128/Add/128/cents-16                   	100000000	         3.468 ns/op
+BenchmarkOps/128/Add/128/cents-16                   	96622765	         3.512 ns/op
+BenchmarkOps/128/Sub/128/cents-16                   	85407813	         4.174 ns/op
+BenchmarkOps/128/Sub/128/cents-16                   	86349840	         4.173 ns/op
+BenchmarkOps/128/Sub/128/cents-16                   	85352896	         4.700 ns/op
+BenchmarkOps/128/Sub/128/cents-16                   	85675099	         4.320 ns/op
+BenchmarkOps/128/Mul/128/cents-16                   	100000000	         3.342 ns/op
+BenchmarkOps/128/Mul/128/cents-16                   	100000000	         3.324 ns/op
+BenchmarkOps/128/Mul/128/cents-16                   	100000000	         3.339 ns/op
+BenchmarkOps/128/Mul/128/cents-16                   	100000000	         3.341 ns/op
+BenchmarkOps/128/Div/128/cents-16                   	 5908044	        61.47 ns/op
+BenchmarkOps/128/Div/128/cents-16                   	 5885188	        61.26 ns/op
+BenchmarkOps/128/Div/128/cents-16                   	 5881273	        60.84 ns/op
+BenchmarkOps/128/Div/128/cents-16                   	 5897443	        61.38 ns/op
+BenchmarkOps/128/Less/128/cents-16                  	86401360	         4.196 ns/op
+BenchmarkOps/128/Less/128/cents-16                  	84085567	         4.225 ns/op
+BenchmarkOps/128/Less/128/cents-16                  	86246756	         4.203 ns/op
+BenchmarkOps/128/Less/128/cents-16                  	85921191	         4.274 ns/op
+BenchmarkOps/128/Equal/128/cents-16                 	91659985	         3.574 ns/op
+BenchmarkOps/128/Equal/128/cents-16                 	100000000	         3.593 ns/op
+BenchmarkOps/128/Equal/128/cents-16                 	100000000	         3.612 ns/op
+BenchmarkOps/128/Equal/128/cents-16                 	95908208	         3.728 ns/op
+BenchmarkOps/128/Add/128/cents-pos-16               	183933678	         1.962 ns/op
+BenchmarkOps/128/Add/128/cents-pos-16               	183236282	         1.967 ns/op
+BenchmarkOps/128/Add/128/cents-pos-16               	183410766	         1.980 ns/op
+BenchmarkOps/128/Add/128/cents-pos-16               	183966250	         1.991 ns/op
+BenchmarkOps/128/Sub/128/cents-pos-16               	130379667	         2.739 ns/op
+BenchmarkOps/128/Sub/128/cents-pos-16               	127327400	         5.400 ns/op
+BenchmarkOps/128/Sub/128/cents-pos-16               	124795465	         2.902 ns/op
+BenchmarkOps/128/Sub/128/cents-pos-16               	126953287	         2.823 ns/op
+BenchmarkOps/128/Less/128/cents-pos-16              	163439856	         2.197 ns/op
+BenchmarkOps/128/Less/128/cents-pos-16              	162854377	         2.205 ns/op
+BenchmarkOps/128/Less/128/cents-pos-16              	164650088	         2.213 ns/op
+BenchmarkOps/128/Less/128/cents-pos-16              	163427866	         2.198 ns/op
+BenchmarkOps/128/Equal/128/cents-pos-16             	180745014	         1.844 ns/op
+BenchmarkOps/128/Equal/128/cents-pos-16             	194889988	         1.851 ns/op
+BenchmarkOps/128/Equal/128/cents-pos-16             	195764064	         1.845 ns/op
+BenchmarkOps/128/Equal/128/cents-pos-16             	196557613	         1.920 ns/op
+BenchmarkOps/128/Add/128/cents-half-16              	57442818	         6.218 ns/op
+BenchmarkOps/128/Add/128/cents-half-16              	55960413	         6.121 ns/op
+BenchmarkOps/128/Add/128/cents-half-16              	59095794	         6.053 ns/op
+BenchmarkOps/128/Add/128/cents-half-16              	59235076	         6.085 ns/op
+BenchmarkOps/128/Sub/128/cents-half-16              	58973535	         6.158 ns/op
+BenchmarkOps/128/Sub/128/cents-half-16              	59138577	         6.131 ns/op
+BenchmarkOps/128/Sub/128/cents-half-16              	57836658	         6.302 ns/op
+BenchmarkOps/128/Sub/128/cents-half-16              	56164506	         6.171 ns/op
+BenchmarkOps/128/Less/128/cents-half-16             	48363240	         7.408 ns/op
+BenchmarkOps/128/Less/128/cents-half-16             	47950827	         7.406 ns/op
+BenchmarkOps/128/Less/128/cents-half-16             	43293332	         7.416 ns/op
+BenchmarkOps/128/Less/128/cents-half-16             	48816213	         7.480 ns/op
+BenchmarkOps/128/Equal/128/cents-half-16            	55573436	         6.513 ns/op
+BenchmarkOps/128/Equal/128/cents-half-16            	49837460	         6.433 ns/op
+BenchmarkOps/128/Equal/128/cents-half-16            	55718652	         6.468 ns/op
+BenchmarkOps/128/Equal/128/cents-half-16            	55089260	         6.473 ns/op
+BenchmarkOps/128/MulQuantizeRate/128/cents-16       	29951883	        12.00 ns/op
+BenchmarkOps/128/MulQuantizeRate/128/cents-16       	29586028	        12.13 ns/op
+BenchmarkOps/128/MulQuantizeRate/128/cents-16       	30142357	        12.04 ns/op
+BenchmarkOps/128/MulQuantizeRate/128/cents-16       	29654724	        12.04 ns/op
+BenchmarkOps/128/FromInt/128/int-16                 	955028706	         0.3663 ns/op
+BenchmarkOps/128/FromInt/128/int-16                 	974475798	         0.3690 ns/op
+BenchmarkOps/128/FromInt/128/int-16                 	974051827	         0.3680 ns/op
+BenchmarkOps/128/FromInt/128/int-16                 	980238286	         0.3688 ns/op
+BenchmarkOps/128/Parse/128/d16-16                   	 8386616	        42.90 ns/op
+BenchmarkOps/128/Parse/128/d16-16                   	 8209984	        43.24 ns/op
+BenchmarkOps/128/Parse/128/d16-16                   	 8385801	        42.99 ns/op
+BenchmarkOps/128/Parse/128/d16-16                   	 8364722	        43.68 ns/op
+BenchmarkOps/128/Format/128/d16-16                  	16674840	        21.83 ns/op
+BenchmarkOps/128/Format/128/d16-16                  	16324549	        21.62 ns/op
+BenchmarkOps/128/Format/128/d16-16                  	17201769	        21.54 ns/op
+BenchmarkOps/128/Format/128/d16-16                  	17022578	        20.95 ns/op
+BenchmarkMem/Sum/64/n=1024-16                       	  311511	      1149 ns/op	7131.64 MB/s
+BenchmarkMem/Sum/64/n=1024-16                       	  316992	      1147 ns/op	7139.55 MB/s
+BenchmarkMem/Sum/64/n=1024-16                       	  306120	      1144 ns/op	7160.89 MB/s
+BenchmarkMem/Sum/64/n=1024-16                       	  317886	      1151 ns/op	7117.52 MB/s
+BenchmarkMem/MulQuant/64/n=1024-16                  	   28980	     12333 ns/op	1992.74 MB/s
+BenchmarkMem/MulQuant/64/n=1024-16                  	   29209	     12356 ns/op	1988.94 MB/s
+BenchmarkMem/MulQuant/64/n=1024-16                  	   29073	     12486 ns/op	1968.34 MB/s
+BenchmarkMem/MulQuant/64/n=1024-16                  	   29166	     12376 ns/op	1985.78 MB/s
+BenchmarkMem/Max/64/n=1024-16                       	  104769	      3412 ns/op	2401.26 MB/s
+BenchmarkMem/Max/64/n=1024-16                       	  106225	      3410 ns/op	2402.49 MB/s
+BenchmarkMem/Max/64/n=1024-16                       	  104054	      3384 ns/op	2420.50 MB/s
+BenchmarkMem/Max/64/n=1024-16                       	  105577	      3471 ns/op	2359.91 MB/s
+BenchmarkMem/Sum/128/n=1024-16                      	  389151	       927.5 ns/op	17664.92 MB/s
+BenchmarkMem/Sum/128/n=1024-16                      	  393788	       911.7 ns/op	17970.75 MB/s
+BenchmarkMem/Sum/128/n=1024-16                      	  382387	       906.1 ns/op	18081.21 MB/s
+BenchmarkMem/Sum/128/n=1024-16                      	  399386	       912.0 ns/op	17964.78 MB/s
+BenchmarkMem/MulQuant/128/n=1024-16                 	   29700	     12106 ns/op	4060.16 MB/s
+BenchmarkMem/MulQuant/128/n=1024-16                 	   29542	     12145 ns/op	4047.03 MB/s
+BenchmarkMem/MulQuant/128/n=1024-16                 	   29343	     12734 ns/op	3860.00 MB/s
+BenchmarkMem/MulQuant/128/n=1024-16                 	   29643	     12130 ns/op	4051.96 MB/s
+BenchmarkMem/Max/128/n=1024-16                      	  244722	      1548 ns/op	10582.01 MB/s
+BenchmarkMem/Max/128/n=1024-16                      	  241274	      1478 ns/op	11085.84 MB/s
+BenchmarkMem/Max/128/n=1024-16                      	  245446	      1484 ns/op	11042.65 MB/s
+BenchmarkMem/Max/128/n=1024-16                      	  243550	      1481 ns/op	11065.28 MB/s
+BenchmarkMem/Sum/64/n=16384-16                      	   19941	     18217 ns/op	7195.12 MB/s
+BenchmarkMem/Sum/64/n=16384-16                      	   19956	     18090 ns/op	7245.47 MB/s
+BenchmarkMem/Sum/64/n=16384-16                      	   19942	     18131 ns/op	7229.36 MB/s
+BenchmarkMem/Sum/64/n=16384-16                      	   19980	     18169 ns/op	7214.08 MB/s
+BenchmarkMem/MulQuant/64/n=16384-16                 	    1818	    199947 ns/op	1966.61 MB/s
+BenchmarkMem/MulQuant/64/n=16384-16                 	    1830	    196723 ns/op	1998.83 MB/s
+BenchmarkMem/MulQuant/64/n=16384-16                 	    1783	    207835 ns/op	1891.96 MB/s
+BenchmarkMem/MulQuant/64/n=16384-16                 	    1795	    199388 ns/op	1972.11 MB/s
+BenchmarkMem/Max/64/n=16384-16                      	    6674	     54314 ns/op	2413.24 MB/s
+BenchmarkMem/Max/64/n=16384-16                      	    6675	     54560 ns/op	2402.33 MB/s
+BenchmarkMem/Max/64/n=16384-16                      	    6069	     53979 ns/op	2428.22 MB/s
+BenchmarkMem/Max/64/n=16384-16                      	    6562	     54223 ns/op	2417.28 MB/s
+BenchmarkMem/Sum/128/n=16384-16                     	   24916	     14672 ns/op	17866.63 MB/s
+BenchmarkMem/Sum/128/n=16384-16                     	   24824	     14575 ns/op	17985.82 MB/s
+BenchmarkMem/Sum/128/n=16384-16                     	   24904	     14502 ns/op	18076.90 MB/s
+BenchmarkMem/Sum/128/n=16384-16                     	   24636	     14834 ns/op	17672.38 MB/s
+BenchmarkMem/MulQuant/128/n=16384-16                	    1856	    194854 ns/op	4036.01 MB/s
+BenchmarkMem/MulQuant/128/n=16384-16                	    1861	    193444 ns/op	4065.43 MB/s
+BenchmarkMem/MulQuant/128/n=16384-16                	    1833	    194618 ns/op	4040.90 MB/s
+BenchmarkMem/MulQuant/128/n=16384-16                	    1860	    195520 ns/op	4022.26 MB/s
+BenchmarkMem/Max/128/n=16384-16                     	   15325	     23508 ns/op	11151.11 MB/s
+BenchmarkMem/Max/128/n=16384-16                     	   15176	     23476 ns/op	11166.66 MB/s
+BenchmarkMem/Max/128/n=16384-16                     	   15277	     23633 ns/op	11092.32 MB/s
+BenchmarkMem/Max/128/n=16384-16                     	   15376	     23565 ns/op	11124.41 MB/s
+BenchmarkMem/Sum/64/n=131072-16                     	    2467	    146366 ns/op	7164.06 MB/s
+BenchmarkMem/Sum/64/n=131072-16                     	    2476	    145900 ns/op	7186.94 MB/s
+BenchmarkMem/Sum/64/n=131072-16                     	    2428	    147511 ns/op	7108.44 MB/s
+BenchmarkMem/Sum/64/n=131072-16                     	    2472	    146980 ns/op	7134.13 MB/s
+BenchmarkMem/MulQuant/64/n=131072-16                	     228	   1581315 ns/op	1989.31 MB/s
+BenchmarkMem/MulQuant/64/n=131072-16                	     224	   1587624 ns/op	1981.41 MB/s
+BenchmarkMem/MulQuant/64/n=131072-16                	     211	   1618949 ns/op	1943.07 MB/s
+BenchmarkMem/MulQuant/64/n=131072-16                	     226	   1590010 ns/op	1978.43 MB/s
+BenchmarkMem/Max/64/n=131072-16                     	     825	    434309 ns/op	2414.36 MB/s
+BenchmarkMem/Max/64/n=131072-16                     	     832	    454259 ns/op	2308.32 MB/s
+BenchmarkMem/Max/64/n=131072-16                     	     776	    448911 ns/op	2335.82 MB/s
+BenchmarkMem/Max/64/n=131072-16                     	     829	    436161 ns/op	2404.10 MB/s
+BenchmarkMem/Sum/128/n=131072-16                    	    3014	    120495 ns/op	17404.42 MB/s
+BenchmarkMem/Sum/128/n=131072-16                    	    3032	    119167 ns/op	17598.42 MB/s
+BenchmarkMem/Sum/128/n=131072-16                    	    2989	    119205 ns/op	17592.85 MB/s
+BenchmarkMem/Sum/128/n=131072-16                    	    3001	    119077 ns/op	17611.71 MB/s
+BenchmarkMem/MulQuant/128/n=131072-16               	     231	   1586262 ns/op	3966.21 MB/s
+BenchmarkMem/MulQuant/128/n=131072-16               	     226	   1550489 ns/op	4057.72 MB/s
+BenchmarkMem/MulQuant/128/n=131072-16               	     229	   1569951 ns/op	4007.42 MB/s
+BenchmarkMem/MulQuant/128/n=131072-16               	     230	   1594914 ns/op	3944.70 MB/s
+BenchmarkMem/Max/128/n=131072-16                    	    1869	    192062 ns/op	10919.15 MB/s
+BenchmarkMem/Max/128/n=131072-16                    	    1854	    192522 ns/op	10893.06 MB/s
+BenchmarkMem/Max/128/n=131072-16                    	    1869	    192218 ns/op	10910.29 MB/s
+BenchmarkMem/Max/128/n=131072-16                    	    1858	    195157 ns/op	10745.95 MB/s
+BenchmarkMem/Sum/64/n=1048576-16                    	     274	   1194789 ns/op	7020.99 MB/s
+BenchmarkMem/Sum/64/n=1048576-16                    	     304	   1179277 ns/op	7113.35 MB/s
+BenchmarkMem/Sum/64/n=1048576-16                    	     306	   1183394 ns/op	7088.60 MB/s
+BenchmarkMem/Sum/64/n=1048576-16                    	     303	   1191368 ns/op	7041.16 MB/s
+BenchmarkMem/MulQuant/64/n=1048576-16               	      27	  12999381 ns/op	1935.92 MB/s
+BenchmarkMem/MulQuant/64/n=1048576-16               	      26	  12943566 ns/op	1944.27 MB/s
+BenchmarkMem/MulQuant/64/n=1048576-16               	      26	  12974754 ns/op	1939.60 MB/s
+BenchmarkMem/MulQuant/64/n=1048576-16               	      27	  12893203 ns/op	1951.87 MB/s
+BenchmarkMem/Max/64/n=1048576-16                    	      96	   3505645 ns/op	2392.89 MB/s
+BenchmarkMem/Max/64/n=1048576-16                    	     100	   3506403 ns/op	2392.37 MB/s
+BenchmarkMem/Max/64/n=1048576-16                    	     100	   3489343 ns/op	2404.07 MB/s
+BenchmarkMem/Max/64/n=1048576-16                    	     100	   3611307 ns/op	2322.87 MB/s
+BenchmarkMem/Sum/128/n=1048576-16                   	     303	   1157258 ns/op	14497.39 MB/s
+BenchmarkMem/Sum/128/n=1048576-16                   	     318	   1256316 ns/op	13354.29 MB/s
+BenchmarkMem/Sum/128/n=1048576-16                   	     318	   1132386 ns/op	14815.81 MB/s
+BenchmarkMem/Sum/128/n=1048576-16                   	     313	   1377026 ns/op	12183.66 MB/s
+BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  12704425 ns/op	3961.74 MB/s
+BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  12847539 ns/op	3917.61 MB/s
+BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  12888057 ns/op	3905.29 MB/s
+BenchmarkMem/MulQuant/128/n=1048576-16              	      27	  12878637 ns/op	3908.15 MB/s
+BenchmarkMem/Max/128/n=1048576-16                   	     213	   1679417 ns/op	9989.91 MB/s
+BenchmarkMem/Max/128/n=1048576-16                   	     211	   3282443 ns/op	5111.20 MB/s
+BenchmarkMem/Max/128/n=1048576-16                   	     193	   2029942 ns/op	8264.88 MB/s
+BenchmarkMem/Max/128/n=1048576-16                   	     199	   1759158 ns/op	9537.07 MB/s
+BenchmarkMem/Sum/64/n=16777216-16                   	      16	  25263776 ns/op	5312.66 MB/s
+BenchmarkMem/Sum/64/n=16777216-16                   	      13	  25276168 ns/op	5310.05 MB/s
+BenchmarkMem/Sum/64/n=16777216-16                   	      13	  25364902 ns/op	5291.47 MB/s
+BenchmarkMem/Sum/64/n=16777216-16                   	      13	  25258199 ns/op	5313.83 MB/s
+BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 208036910 ns/op	1935.49 MB/s
+BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 217550438 ns/op	1850.85 MB/s
+BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 209337072 ns/op	1923.47 MB/s
+BenchmarkMem/MulQuant/64/n=16777216-16              	       2	 208627359 ns/op	1930.01 MB/s
+BenchmarkMem/Max/64/n=16777216-16                   	       6	  59510372 ns/op	2255.37 MB/s
+BenchmarkMem/Max/64/n=16777216-16                   	       6	  57682570 ns/op	2326.83 MB/s
+BenchmarkMem/Max/64/n=16777216-16                   	       6	  58048061 ns/op	2312.18 MB/s
+BenchmarkMem/Max/64/n=16777216-16                   	       6	  57358538 ns/op	2339.98 MB/s
+BenchmarkMem/Sum/128/n=16777216-16                  	      14	  24972177 ns/op	10749.38 MB/s
+BenchmarkMem/Sum/128/n=16777216-16                  	      14	  24576362 ns/op	10922.51 MB/s
+BenchmarkMem/Sum/128/n=16777216-16                  	      14	  24756248 ns/op	10843.14 MB/s
+BenchmarkMem/Sum/128/n=16777216-16                  	      14	  24712736 ns/op	10862.23 MB/s
+BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 204822206 ns/op	3931.73 MB/s
+BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 203907566 ns/op	3949.37 MB/s
+BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 204902923 ns/op	3930.18 MB/s
+BenchmarkMem/MulQuant/128/n=16777216-16             	       2	 203689874 ns/op	3953.59 MB/s
+BenchmarkMem/Max/128/n=16777216-16                  	      10	  35813490 ns/op	7495.37 MB/s
+BenchmarkMem/Max/128/n=16777216-16                  	       9	  37425706 ns/op	7172.49 MB/s
+BenchmarkMem/Max/128/n=16777216-16                  	       9	  36361188 ns/op	7382.47 MB/s
+BenchmarkMem/Max/128/n=16777216-16                  	       9	  35495610 ns/op	7562.50 MB/s
+BenchmarkGather/Gather/64/n=4096-16                 	     284	   1229768 ns/op
+BenchmarkGather/Gather/64/n=4096-16                 	     298	   1271001 ns/op
+BenchmarkGather/Gather/64/n=4096-16                 	     289	   1215749 ns/op
+BenchmarkGather/Gather/64/n=4096-16                 	     292	   1230040 ns/op
+BenchmarkGather/Gather/128/n=4096-16                	     312	   1154734 ns/op
+BenchmarkGather/Gather/128/n=4096-16                	     310	   1163987 ns/op
+BenchmarkGather/Gather/128/n=4096-16                	     310	   1160668 ns/op
+BenchmarkGather/Gather/128/n=4096-16                	     309	   1170352 ns/op
+BenchmarkGather/Gather/64/n=65536-16                	     160	   2225067 ns/op
+BenchmarkGather/Gather/64/n=65536-16                	     160	   2369615 ns/op
+BenchmarkGather/Gather/64/n=65536-16                	     151	   2324858 ns/op
+BenchmarkGather/Gather/64/n=65536-16                	     152	   2271811 ns/op
+BenchmarkGather/Gather/128/n=65536-16               	     176	   2036932 ns/op
+BenchmarkGather/Gather/128/n=65536-16               	     170	   2000363 ns/op
+BenchmarkGather/Gather/128/n=65536-16               	     183	   2047002 ns/op
+BenchmarkGather/Gather/128/n=65536-16               	     176	   2045466 ns/op
+BenchmarkGather/Gather/64/n=262144-16               	     142	   2656662 ns/op
+BenchmarkGather/Gather/64/n=262144-16               	     138	   2641650 ns/op
+BenchmarkGather/Gather/64/n=262144-16               	     135	   2560981 ns/op
+BenchmarkGather/Gather/64/n=262144-16               	     134	   2488810 ns/op
+BenchmarkGather/Gather/128/n=262144-16              	     168	   2029970 ns/op
+BenchmarkGather/Gather/128/n=262144-16              	     168	   2289782 ns/op
+BenchmarkGather/Gather/128/n=262144-16              	     163	   2132046 ns/op
+BenchmarkGather/Gather/128/n=262144-16              	     156	   2250309 ns/op
+BenchmarkGather/Gather/64/n=1048576-16              	     100	   3172361 ns/op
+BenchmarkGather/Gather/64/n=1048576-16              	     100	   3004879 ns/op
+BenchmarkGather/Gather/64/n=1048576-16              	     100	   3067101 ns/op
+BenchmarkGather/Gather/64/n=1048576-16              	     100	   3045038 ns/op
+BenchmarkGather/Gather/128/n=1048576-16             	      55	   9063464 ns/op
+BenchmarkGather/Gather/128/n=1048576-16             	      39	   9107098 ns/op
+BenchmarkGather/Gather/128/n=1048576-16             	      39	   9169188 ns/op
+BenchmarkGather/Gather/128/n=1048576-16             	      38	   9127846 ns/op
+BenchmarkGather/Gather/64/n=1310720-16              	      68	   5025551 ns/op
+BenchmarkGather/Gather/64/n=1310720-16              	      68	   5425459 ns/op
+BenchmarkGather/Gather/64/n=1310720-16              	      69	   4907165 ns/op
+BenchmarkGather/Gather/64/n=1310720-16              	      70	   5109201 ns/op
+BenchmarkGather/Gather/128/n=1310720-16             	      37	  12594233 ns/op
+BenchmarkGather/Gather/128/n=1310720-16             	      26	  12989407 ns/op
+BenchmarkGather/Gather/128/n=1310720-16             	      26	  13360987 ns/op
+BenchmarkGather/Gather/128/n=1310720-16             	      27	  13059231 ns/op
+BenchmarkGather/Gather/64/n=1572864-16              	      57	   6069717 ns/op
+BenchmarkGather/Gather/64/n=1572864-16              	      57	   5965117 ns/op
+BenchmarkGather/Gather/64/n=1572864-16              	      57	   6054180 ns/op
+BenchmarkGather/Gather/64/n=1572864-16              	      56	   6212795 ns/op
+BenchmarkGather/Gather/128/n=1572864-16             	      32	  14824306 ns/op
+BenchmarkGather/Gather/128/n=1572864-16             	      24	  15359470 ns/op
+BenchmarkGather/Gather/128/n=1572864-16             	      22	  15146274 ns/op
+BenchmarkGather/Gather/128/n=1572864-16             	      25	  15113055 ns/op
+BenchmarkGather/Gather/64/n=1835008-16              	      46	   7572484 ns/op
+BenchmarkGather/Gather/64/n=1835008-16              	      45	   7552889 ns/op
+BenchmarkGather/Gather/64/n=1835008-16              	      44	   7745085 ns/op
+BenchmarkGather/Gather/64/n=1835008-16              	      46	   7751917 ns/op
+BenchmarkGather/Gather/128/n=1835008-16             	      30	  16144212 ns/op
+BenchmarkGather/Gather/128/n=1835008-16             	      20	  16943729 ns/op
+BenchmarkGather/Gather/128/n=1835008-16             	      21	  16610561 ns/op
+BenchmarkGather/Gather/128/n=1835008-16             	      21	  16708125 ns/op
+BenchmarkGather/Gather/64/n=2097152-16              	      32	  10858246 ns/op
+BenchmarkGather/Gather/64/n=2097152-16              	      31	  10803188 ns/op
+BenchmarkGather/Gather/64/n=2097152-16              	      31	  10979795 ns/op
+BenchmarkGather/Gather/64/n=2097152-16              	      32	  10792329 ns/op
+BenchmarkGather/Gather/128/n=2097152-16             	      27	  17147883 ns/op
+BenchmarkGather/Gather/128/n=2097152-16             	      20	  18065030 ns/op
+BenchmarkGather/Gather/128/n=2097152-16             	      19	  17364434 ns/op
+BenchmarkGather/Gather/128/n=2097152-16             	      20	  18202039 ns/op
+BenchmarkGather/Gather/64/n=2621440-16              	      26	  15282760 ns/op
+BenchmarkGather/Gather/64/n=2621440-16              	      22	  14649177 ns/op
+BenchmarkGather/Gather/64/n=2621440-16              	      25	  15112762 ns/op
+BenchmarkGather/Gather/64/n=2621440-16              	      21	  14910639 ns/op
+BenchmarkGather/Gather/128/n=2621440-16             	      25	  18963402 ns/op
+BenchmarkGather/Gather/128/n=2621440-16             	      16	  19564542 ns/op
+BenchmarkGather/Gather/128/n=2621440-16             	      18	  19364183 ns/op
+BenchmarkGather/Gather/128/n=2621440-16             	      18	  19547553 ns/op
+BenchmarkGather/Gather/64/n=3145728-16              	      24	  17529316 ns/op
+BenchmarkGather/Gather/64/n=3145728-16              	      20	  18312464 ns/op
+BenchmarkGather/Gather/64/n=3145728-16              	      19	  18041916 ns/op
+BenchmarkGather/Gather/64/n=3145728-16              	      19	  18210894 ns/op
+BenchmarkGather/Gather/128/n=3145728-16             	      24	  20752214 ns/op
+BenchmarkGather/Gather/128/n=3145728-16             	      20	  20839277 ns/op
+BenchmarkGather/Gather/128/n=3145728-16             	      16	  20484206 ns/op
+BenchmarkGather/Gather/128/n=3145728-16             	      16	  21302984 ns/op
+BenchmarkGather/Gather/64/n=3670016-16              	      24	  19030866 ns/op
+BenchmarkGather/Gather/64/n=3670016-16              	      18	  19339872 ns/op
+BenchmarkGather/Gather/64/n=3670016-16              	      20	  18529892 ns/op
+BenchmarkGather/Gather/64/n=3670016-16              	      19	  18651211 ns/op
+BenchmarkGather/Gather/128/n=3670016-16             	      21	  22161299 ns/op
+BenchmarkGather/Gather/128/n=3670016-16             	      15	  21742784 ns/op
+BenchmarkGather/Gather/128/n=3670016-16             	      25	  14033620 ns/op
+BenchmarkGather/Gather/128/n=3670016-16             	      26	  17280293 ns/op
+BenchmarkGather/Gather/64/n=4194304-16              	      22	  19679638 ns/op
+BenchmarkGather/Gather/64/n=4194304-16              	      18	  20453980 ns/op
+BenchmarkGather/Gather/64/n=4194304-16              	      18	  21334812 ns/op
+BenchmarkGather/Gather/64/n=4194304-16              	      16	  20318309 ns/op
+BenchmarkGather/Gather/128/n=4194304-16             	      22	  22438278 ns/op
+BenchmarkGather/Gather/128/n=4194304-16             	      14	  24059544 ns/op
+BenchmarkGather/Gather/128/n=4194304-16             	      14	  24278948 ns/op
+BenchmarkGather/Gather/128/n=4194304-16             	      14	  24416254 ns/op
+BenchmarkGather/Gather/64/n=16777216-16             	      19	  26795678 ns/op
+BenchmarkGather/Gather/64/n=16777216-16             	      12	  29429993 ns/op
+BenchmarkGather/Gather/64/n=16777216-16             	      10	  32089792 ns/op
+BenchmarkGather/Gather/64/n=16777216-16             	      12	  32186465 ns/op
+BenchmarkGather/Gather/128/n=16777216-16            	      21	  35582908 ns/op
+BenchmarkGather/Gather/128/n=16777216-16            	       8	  39585288 ns/op
+BenchmarkGather/Gather/128/n=16777216-16            	       9	  39129813 ns/op
+BenchmarkGather/Gather/128/n=16777216-16            	       8	  43684060 ns/op
+BenchmarkSort/Sort/64/n=1024-16                     	    2311	    286174 ns/op
+BenchmarkSort/Sort/64/n=1024-16                     	    2593	    146260 ns/op
+BenchmarkSort/Sort/64/n=1024-16                     	    2551	    143756 ns/op
+BenchmarkSort/Sort/64/n=1024-16                     	    2420	    141329 ns/op
+BenchmarkSort/Sort/128/n=1024-16                    	    2829	    127660 ns/op
+BenchmarkSort/Sort/128/n=1024-16                    	    2830	    126587 ns/op
+BenchmarkSort/Sort/128/n=1024-16                    	    2864	    126972 ns/op
+BenchmarkSort/Sort/128/n=1024-16                    	    2858	    126636 ns/op
+BenchmarkSort/Sort/64/n=1048576-16                  	       2	 275815923 ns/op
+BenchmarkSort/Sort/64/n=1048576-16                  	       2	 275197509 ns/op
+BenchmarkSort/Sort/64/n=1048576-16                  	       2	 276599495 ns/op
+BenchmarkSort/Sort/64/n=1048576-16                  	       2	 284985146 ns/op
+BenchmarkSort/Sort/128/n=1048576-16                 	       2	 251753099 ns/op
+BenchmarkSort/Sort/128/n=1048576-16                 	       2	 251519708 ns/op
+BenchmarkSort/Sort/128/n=1048576-16                 	       2	 253568814 ns/op
+BenchmarkSort/Sort/128/n=1048576-16                 	       2	 249663151 ns/op
 PASS
-ok  	github.com/migueldecimal128/go-decimal128-app-benchmark/microbench	232.945s
+ok  	github.com/migueldecimal128/go-decimal128-app-benchmark/microbench	239.531s

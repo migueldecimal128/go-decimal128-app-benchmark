@@ -21,16 +21,16 @@ Apple M3 Pro · go1.26.4 · all rows measured in one run, 2026-11-23 20:00 UTC �
 
 ## x86_64
 
-Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · all rows measured in one run, 2026-11-23 03:07 UTC · benchmark code `73c4723 + uncommitted changes`
+Intel(R) Core(TM) i9-9880H CPU @ 2.30GHz · go1.26.4 · all rows measured in one run, 2026-11-23 20:27 UTC · benchmark code `d5852f4 + uncommitted changes`
 
-| program | decimal64-XOR-BID `447e9c0b4e` | decimal128-XOR-BID `5032fd7754` | decimal128-UBD level 2 `447e9c0b4e` | decimal128-UBD level 3 `447e9c0b4e` | vs decimal128-XOR-BID | vs decimal128-UBD level 2 | vs decimal128-UBD level 3 |
+| program | decimal64-XOR-BID `37b9ac04c0` | decimal128-XOR-BID `5032fd7754` | decimal128-UBD level 2 `37b9ac04c0` | decimal128-UBD level 3 `37b9ac04c0` | vs decimal128-XOR-BID | vs decimal128-UBD level 2 | vs decimal128-UBD level 3 |
 |---|--:|--:|--:|--:|--:|--:|--:|
-| euro_conversion | 3,429.8 | 3,443.2 | 3,309.8 | 3,288.1 | 0% | +4% | +4% |
-| risk_management | 25,705.9 | 27,072.6 | 29,374.0 | 26,633.8 | −5% | −12% | −3% |
-| tax_preparation fed | 9,882.5 | 8,963.7 | 8,677.9 | 7,961.9 | +10% | +14% | +24% |
-| tax_preparation ca | 2,263.2 | 1,970.0 | 1,987.1 | 1,815.9 | +15% | +14% | +25% |
-| tax_preparation nc | 3,525.2 | 3,076.1 | 3,036.0 | 2,864.4 | +15% | +16% | +23% |
-| banking | 2,462.8 | 2,509.7 | 2,490.8 | 2,424.0 | −2% | −1% | +2% |
-| telco | 152.7 | 137.3 | 133.2 | 122.0 | +11% | +15% | +25% |
-| geometric mean | | | | | **+6.0%** | **+6.4%** | **+13.6%** |
+| euro_conversion | 1,643.2 | 1,949.0 | 1,550.3 | 1,522.2 | −16% | +6% | +8% |
+| risk_management | 14,488.4 | 15,318.3 | 15,051.0 | 14,670.8 | −5% | −4% | −1% |
+| tax_preparation fed | 5,479.0 | 5,063.1 | 4,426.0 | 4,124.6 | +8% | +24% | +33% |
+| tax_preparation ca | 1,250.6 | 1,120.7 | 1,016.5 | 1,010.6 | +12% | +23% | +24% |
+| tax_preparation nc | 1,879.5 | 1,741.5 | 1,502.6 | 1,434.9 | +8% | +25% | +31% |
+| banking | 1,369.3 | 1,451.4 | 1,366.5 | 1,345.0 | −6% | 0% | +2% |
+| telco | 85.3 | 78.1 | 65.9 | 66.3 | +9% | +29% | +29% |
+| geometric mean | | | | | **+1.0%** | **+14.1%** | **+17.0%** |
 
